@@ -1,0 +1,192 @@
+## Default values for Concourse Helm Chart.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+## Override the name of the Chart.
+##
+# nameOverride:
+
+## Concourse image.
+##
+image: concourse/concourse
+
+## Concourse image version.
+## ref: https://hub.docker.com/r/concourse/concourse/tags/
+##
+imageTag: "2.6.0"
+
+## Specify a imagePullPolicy: 'Always' if imageTag is 'latest', else set to 'IfNotPresent'.
+## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+##
+# imagePullPolicy:
+
+## Configuration values for Concourse.
+## ref: https://concourse.ci/setting-up.html
+##
+concourse:
+  ## Concourse Basic Authentication Username.
+  ## ref: https://concourse.ci/teams.html#authentication
+  ##
+  username: concourse
+
+  ## Concourse Basic Authentication Password.
+  ## ref: https://concourse.ci/teams.html#authentication
+  ##
+  password: concourse
+
+  ## Concourse Host Keys.
+  ## ref: https://concourse.ci/binaries.html#generating-keys
+  ##
+  # hostKey:
+
+  # hostKeyPub:
+
+  ## Concourse Session Signing Keys.
+  ## ref: https://concourse.ci/binaries.html#generating-keys
+  ##
+  # sessionSigningKey:
+
+  ## Concourse Worker Keys.
+  ## ref: https://concourse.ci/binaries.html#generating-keys
+  ##
+  # workerKey:
+
+  # workerKeyPub:
+
+  ## ATC listen port.
+  ## ref: https://concourse.ci/architecture.html
+  ##
+  atcPort: 8080
+
+  ## TSA listen port.
+  ## ref: https://concourse.ci/architecture.html
+  ##
+  tsaPort: 2222
+
+  ## Allow self signed certificates.
+  ##
+  allowSelfSignedCertificates: false
+
+  ## Length of time for which tokens are valid. Afterwards, users will have to log back in.
+  ## Use Go duration format (48h = 48 hours).
+  ##
+  authDuration: 24h
+
+  ## Interval on which to check for new versions of resources.
+  ## Use Go duration format (1m = 1 minute).
+  ##
+  resourceCheckingInterval: 1m
+
+  ## How long to cache the result of a get step after a newer version of the resource is found.
+  ## Use Go duration format (1m = 1 minute).
+  ##
+  oldResourceGracePeriod: 5m
+
+  ## The interval on which to check for and release old caches of resource versions.
+  ## Use Go duration format (1m = 1 minute),
+  ##
+  resourceCacheCleanupInterval: 30s
+
+  ## URL used to reach any ATC from the outside world.
+  ##
+  # externalURL:
+
+  ## An URL pointing to the Docker registry to use to fetch Docker images.
+  ## If unset, this will default to the Docker default
+  ##
+  # dockerRegistry:
+
+  ## Docker registry(ies) (comma separated) to allow connecting to even if not secure.
+  ##
+  # insecureDockerRegistry:
+
+  ## Application client ID for enabling GitHub OAuth.
+  ##
+  # githubAuthClientId:
+
+  ## Application client secret for enabling GitHub OAuth.
+  ##
+  # githubAuthClientSecret:
+
+  ## GitHub organizations (comma separated) whose members will have access.
+  ##
+  # githubAuthOrganization:
+
+  ## GitHub teams (comma separated) whose members will have access.
+  ##
+  # githubAuthTeam:
+
+  ## GitHub users (comma separated) to permit access.
+  ##
+  # githubAuthUser:
+
+  ## Override default endpoint AuthURL for Github Enterprise.
+  ##
+  # githubAuthAuthUrl:
+
+  ## Override default endpoint TokenURL for Github Enterprise.
+  ##
+  # githubAuthTokenUrl:
+
+  ## Override default API endpoint URL for Github Enterprise.
+  ##
+  # githubAuthApiUrl:
+
+  ## Name for this auth method on the web UI.
+  ##
+  # genericOauthDisplayName:
+
+  ## Application client ID for enabling generic OAuth.
+  ##
+  # genericOauthClientId:
+
+  ## Application client secret for enabling generic OAuth.
+  ##
+  # genericOauthClientSecret:
+
+  ## Generic OAuth provider AuthURL endpoint.
+  ##
+  # genericOauthAuthUrl:
+
+  ## Parameters (comma separated) to pass to the authentication server AuthURL.
+  ##
+  # genericOauthAuthUrlParam:
+
+  ## Optional scope required to authorize user.
+  ##
+  # genericOauthScope:
+
+  ## Generic OAuth provider TokenURL endpoint.
+  ##
+  # genericOauthTokenUrl:
+
+## Configuration values for Concourse Web components.
+##
+web:
+  ## Override the components name (defaults to web).
+  ##
+  # nameOverride:
+
+  ## Number of replicas.
+  ##
+  replicas: 1
+
+  ## Configure resource requests and limits.
+  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+
+  ## Service configuration.
+  ## ref: https://kubernetes.io/docs/user-guide/services/
+  ##
+  service:
+    ## For minikube, set this to ClusterIP, elsewhere use LoadBalancer.
+    ## ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
+    ##
+
+    # domainName:
+
+    # acm-arn:

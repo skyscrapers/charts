@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "web.fullname" . }}
+  labels:
+    app: {{ template "web.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    dns: route53
+  annotations:
+    domainName: {{ .Values.web.service.domainName }}
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.web.service.acm-arn }}
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: {{ .Values.concourse.atcPort }}
+    - name: https
+      port: 443
+      targetPort: {{ .Values.concourse.atcPort }}
+    - name: tsa
+      port: {{ .Values.concourse.tsaPort }}
+      targetPort: tsa
+  selector:
+    app: {{ template "web.fullname" . }}
