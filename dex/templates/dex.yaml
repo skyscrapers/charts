@@ -1,0 +1,221 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Release.Name}}
+spec:
+{{- if .Values.Dex.NodePort }}
+  type: NodePort
+{{- end }}    
+  ports:
+  - name: {{.Release.Name}}
+    protocol: TCP
+{{- if .Values.Dex.Tls }}
+    port: 443
+    targetPort: 443
+{{- else }}      
+    port: 80
+    targetPort: 80
+{{- end }}
+{{- if .Values.Dex.NodePort }}
+    nodePort: {{.Values.Dex.NodePort}}
+{{- end }}    
+  selector:
+    app: {{.Release.Name}}
+{{- if .Values.Dex.Tls }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{.Release.Name}}.tls
+data:
+  tls.ca: {{.Values.Dex.Tls.Ca}}
+  tls.crt: {{.Values.Dex.Tls.Cert}}
+  tls.key: {{.Values.Dex.Tls.Key}}
+{{- end }}
+{{- if .Values.Dex.Connector.GitHub }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{.Release.Name}}.github
+type: Opaque
+data:
+  client-id: {{.Values.Dex.Connector.GitHub.ClientId}}
+  client-secret: {{.Values.Dex.Connector.GitHub.ClientSecret}}
+{{- end }}
+{{- if .Values.Dex.Connector.Oidc }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{.Release.Name}}.oidc
+type: Opaque
+data:
+  client-id: {{.Values.Dex.Connector.Oidc.ClientId}}
+  client-secret: {{.Values.Dex.Connector.Oidc.ClientSecret}} 
+{{- end }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{.Release.Name}}
+data:
+  config.yaml: |
+    issuer: {{.Values.Dex.Issuer}}
+
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+
+    web:
+{{- if .Values.Dex.Tls }}
+      https: 0.0.0.0:443
+      tlsCert: /etc/dex/tls/tls.crt
+      tlsKey: /etc/dex/tls/tls.key
+{{- else }}
+      http: 0.0.0.0:80
+{{- end}}
+
+    connectors:
+{{- if .Values.Dex.Connector.MockCallback }}
+    - type: mockCallback
+      id: mock
+      name: Example
+{{- end }}
+{{- if .Values.Dex.Connector.GitHub }}
+    - type: github
+      id: github
+      name: {{.Values.Dex.Connector.GitHub.Name}}
+      config:
+        clientID: $GITHUB_CLIENT_ID
+        clientSecret: $GITHUB_CLIENT_SECRET
+        redirectURI: {{.Values.Dex.Issuer}}/callback
+{{- end}}          
+{{- if .Values.Dex.Connector.Oidc }}
+    - type: oidc
+      id: {{.Values.Dex.Connector.Oidc.Id}}
+      name: {{.Values.Dex.Connector.Oidc.Name}}
+      config:
+        issuer: {{.Values.Dex.Connector.Oidc.Issuer}}
+        clientID: $OIDC_CLIENT_ID
+        clientSecret: $OIDC_CLIENT_SECRET
+        redirectURI: {{.Values.Dex.Issuer}}/callback
+{{- end}}          
+{{- if .Values.Dex.Connector.Ldap }}
+    - type: ldap
+      id: ldap
+      name: {{.Values.Dex.Connector.Ldap.Name}}
+      config:
+        host: {{.Values.Dex.Connector.Ldap.Host}}
+        insecureNoSSL: {{.Values.Dex.Connector.Ldap.InsecureNoSsl}}
+        insecureSkipVerify: {{.Values.Dex.Connector.Ldap.InsecureSkipVerify}}
+        bindDN: {{.Values.Dex.Connector.Ldap.BindDn}}
+        bindPW: {{.Values.Dex.Connector.Ldap.BindPw}}
+        userSearch: 
+          baseDN: {{.Values.Dex.Connector.Ldap.UserSearch.BaseDn}}
+          filter: {{.Values.Dex.Connector.Ldap.UserSearch.Filter}}
+          username: {{.Values.Dex.Connector.Ldap.UserSearch.Username}}
+          idAttr: {{.Values.Dex.Connector.Ldap.UserSearch.IdAttr}}
+          emailAttr: {{.Values.Dex.Connector.Ldap.UserSearch.EmailAttr}}
+          nameAttr: {{.Values.Dex.Connector.Ldap.UserSearch.NameAttr}}
+        groupSearch:
+          baseDN: {{.Values.Dex.Connector.Ldap.GroupSearch.BaseDn}}
+          filter: {{.Values.Dex.Connector.Ldap.GroupSearch.Filter}}
+          userAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.UserAttr}}
+          groupAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.GroupAttr}}
+          nameAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.NameAttr}}
+{{- end }}
+
+    oauth2:
+      skipApprovalScreen: true
+
+    staticClients:
+    - id: example-app
+      redirectURIs:
+        - "{{.Values.DexApp.RedirectUri}}"
+      name: "Example App"
+      secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+
+    enablePasswordDB: true
+    staticPassword:  
+    - email: {{.Values.Dex.StaticPassword.Email}}
+      hash: {{.Values.Dex.StaticPassword.Password}}
+      username: {{.Values.Dex.StaticPassword.Username}}
+      userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}
+  labels:
+    app: {{.Release.Name}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{.Release.Name}}
+    spec:
+      containers:
+      - name: {{.Release.Name}}
+        image: {{.Values.Dex.Image}}:{{.Values.Dex.ImageTag}}
+        imagePullPolicy: Always
+        command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
+        ports:
+        - name: https
+          containerPort: 443
+
+        volumeMounts:
+        - name: config
+          mountPath: /etc/dex/cfg
+{{- if .Values.Dex.Tls }}
+        - name: tls
+          mountPath: /etc/dex/tls
+{{- end }}
+
+        env:
+{{- if .Values.Dex.Connector.GitHub }}
+        - name: GITHUB_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{.Release.Name}}.github
+              key: client-id
+        - name: GITHUB_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{.Release.Name}}.github
+              key: client-secret
+{{- end}}                
+{{- if .Values.Dex.Connector.Oidc }}
+        - name: OIDC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{.Release.Name}}.oidc
+              key: client-id
+        - name: OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{.Release.Name}}.oidc
+              key: client-secret
+{{- end}}                
+        resources:
+          limits:
+            cpu: {{ .Values.Dex.Cpu }}
+            memory: {{ .Values.Dex.Memory }}
+          requests:
+            cpu: {{ .Values.Dex.Cpu }}
+            memory: {{ .Values.Dex.Memory }}
+      volumes:
+      - name: config
+        configMap:
+          name: {{.Release.Name}}
+          items:
+          - key: config.yaml
+            path: config.yaml
+{{- if .Values.Dex.Tls }}
+      - name: tls
+        secret:
+          secretName: {{.Release.Name}}.tls
+{{- end }}            
