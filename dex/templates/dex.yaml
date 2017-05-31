@@ -1,25 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{.Release.Name}}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: {{.Release.Name}}
+spec:
+  rules:
+  - host: dex.test.skyscrape.rs
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{.Release.Name}}
+          servicePort: 80
+  - host: dex-app.test.skyscrape.rs
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{.Release.Name}}-app
+          servicePort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: {{.Release.Name}}
 spec:
-{{- if .Values.Dex.NodePort }}
-  type: NodePort
-{{- end }}    
   ports:
   - name: {{.Release.Name}}
     protocol: TCP
-{{- if .Values.Dex.Tls }}
-    port: 443
-    targetPort: 443
-{{- else }}      
     port: 80
     targetPort: 80
-{{- end }}
-{{- if .Values.Dex.NodePort }}
-    nodePort: {{.Values.Dex.NodePort}}
-{{- end }}    
   selector:
     app: {{.Release.Name}}
 {{- if .Values.Dex.Tls }}
@@ -53,7 +66,7 @@ metadata:
 type: Opaque
 data:
   client-id: {{.Values.Dex.Connector.Oidc.ClientId}}
-  client-secret: {{.Values.Dex.Connector.Oidc.ClientSecret}} 
+  client-secret: {{.Values.Dex.Connector.Oidc.ClientSecret}}
 {{- end }}
 ---
 kind: ConfigMap
@@ -68,15 +81,11 @@ data:
       type: kubernetes
       config:
         inCluster: true
-
+    logger:
+      level: "debug"
+      format: "text" # can also be "json"
     web:
-{{- if .Values.Dex.Tls }}
-      https: 0.0.0.0:443
-      tlsCert: /etc/dex/tls/tls.crt
-      tlsKey: /etc/dex/tls/tls.key
-{{- else }}
       http: 0.0.0.0:80
-{{- end}}
 
     connectors:
 {{- if .Values.Dex.Connector.MockCallback }}
@@ -92,7 +101,7 @@ data:
         clientID: $GITHUB_CLIENT_ID
         clientSecret: $GITHUB_CLIENT_SECRET
         redirectURI: {{.Values.Dex.Issuer}}/callback
-{{- end}}          
+{{- end}}
 {{- if .Values.Dex.Connector.Oidc }}
     - type: oidc
       id: {{.Values.Dex.Connector.Oidc.Id}}
@@ -102,7 +111,7 @@ data:
         clientID: $OIDC_CLIENT_ID
         clientSecret: $OIDC_CLIENT_SECRET
         redirectURI: {{.Values.Dex.Issuer}}/callback
-{{- end}}          
+{{- end}}
 {{- if .Values.Dex.Connector.Ldap }}
     - type: ldap
       id: ldap
@@ -113,7 +122,7 @@ data:
         insecureSkipVerify: {{.Values.Dex.Connector.Ldap.InsecureSkipVerify}}
         bindDN: {{.Values.Dex.Connector.Ldap.BindDn}}
         bindPW: {{.Values.Dex.Connector.Ldap.BindPw}}
-        userSearch: 
+        userSearch:
           baseDN: {{.Values.Dex.Connector.Ldap.UserSearch.BaseDn}}
           filter: {{.Values.Dex.Connector.Ldap.UserSearch.Filter}}
           username: {{.Values.Dex.Connector.Ldap.UserSearch.Username}}
@@ -139,7 +148,7 @@ data:
       secret: ZXhhbXBsZS1hcHAtc2VjcmV0
 
     enablePasswordDB: true
-    staticPassword:  
+    staticPassword:
     - email: {{.Values.Dex.StaticPassword.Email}}
       hash: {{.Values.Dex.StaticPassword.Password}}
       username: {{.Values.Dex.StaticPassword.Username}}
@@ -164,8 +173,8 @@ spec:
         imagePullPolicy: Always
         command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
         ports:
-        - name: https
-          containerPort: 443
+        - name: http
+          containerPort: 80
 
         volumeMounts:
         - name: config
@@ -187,7 +196,7 @@ spec:
             secretKeyRef:
               name: {{.Release.Name}}.github
               key: client-secret
-{{- end}}                
+{{- end}}
 {{- if .Values.Dex.Connector.Oidc }}
         - name: OIDC_CLIENT_ID
           valueFrom:
@@ -199,7 +208,7 @@ spec:
             secretKeyRef:
               name: {{.Release.Name}}.oidc
               key: client-secret
-{{- end}}                
+{{- end}}
         resources:
           limits:
             cpu: {{ .Values.Dex.Cpu }}
@@ -218,4 +227,4 @@ spec:
       - name: tls
         secret:
           secretName: {{.Release.Name}}.tls
-{{- end }}            
+{{- end }}

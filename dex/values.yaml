@@ -1,12 +1,12 @@
 Dex:
   Image: "quay.io/coreos/dex"
-  ImageTag: "v2.0.0-beta.1"
+  ImageTag: "v2.4.1"
   ImagePullPolicy: "Always"
   Component: "dex"
 
-  #Should be accessible from user browser. 
-  NodePort: 30443
-  Issuer: "https://kube-1.local.io:30443"
+  #Should be accessible from user browser.
+  #NodePort: 30443
+  Issuer: "http://dex.test.skyscrape.rs/dex"
 
   #Must set your own CA which compatible with the Issuer URI.
   #Use base64 encoded value.
@@ -23,12 +23,12 @@ Dex:
       Name: "GitHub"
       ClientId: "NTQ3YjRhYjA3M2I0ZTM5OGQ0ZjA="
       ClientSecret: "MjYzN2Y3OTMyMTNlMmI4ZDZlM2RlM2Y0YWU2NzUzMTVhOWMzZWVkMQ=="
-    Oidc:
-      Name: "Google"
-      Id: "google"
-      Issuer: "https://accounts.google.com"
-      ClientId: "ODc2MDc2NjM5NDQ0LW8zdTIzZjY5ZGlsdXMxYTBkNzd0ZHQxb3FzMWZpaDViLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29t"
-      ClientSecret: "T0pMc0FLeUpsY2ZjaUtnbkhzaHVwZjQ4"
+    # Oidc:
+    #   Name: "Google"
+    #   Id: "google"
+    #   Issuer: "https://accounts.google.com"
+    #   ClientId: "ODc2MDc2NjM5NDQ0LW8zdTIzZjY5ZGlsdXMxYTBkNzd0ZHQxb3FzMWZpaDViLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29t"
+    #   ClientSecret: "T0pMc0FLeUpsY2ZjaUtnbkhzaHVwZjQ4"
 #    Ldap:
 #      Name: "LDAP"
 #      Host: "openldap.kube-system.svc.cluster.io:389"
@@ -66,9 +66,9 @@ DexApp:
   ImagePullPolicy: "Always"
   Component: "dex-app"
 
-  #Should be accessible from user browser 
-  NodePort: 30080
-  RedirectUri: http://kube-1.local.io:30080/callback
+  #Should be accessible from user browser
+  #NodePort: 30080
+  RedirectUri: http://dex-app.test.skyscrape.rs/callback
 
   Memory: "200Mi"
   Cpu: "512m"

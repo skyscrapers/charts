@@ -5,7 +5,7 @@ metadata:
 spec:
 {{- if .Values.DexApp.NodePort }}
   type: NodePort
-{{- end }}    
+{{- end }}
   ports:
   - name: {{.Release.Name}}-app
     protocol: TCP
@@ -13,7 +13,7 @@ spec:
     targetPort: 80
 {{- if .Values.DexApp.NodePort }}
     nodePort: {{.Values.DexApp.NodePort}}
-{{- end }}      
+{{- end }}
   selector:
     app: {{.Release.Name}}-app
 ---
@@ -42,7 +42,7 @@ spec:
         volumeMounts:
         - name: tls
           mountPath: /etc/dex/tls
-{{- end }}            
+{{- end }}
 
         env:
         - name: DEX_ISSUER
@@ -54,7 +54,7 @@ spec:
           value: /etc/dex/tls/tls.cert
         - name: DEX_KEY
           value: /etc/dex/tls/tls.key
-{{- end }}            
+{{- end }}
         - name: DEX_APP_LISTEN_ADDRESS
           value: http://0.0.0.0:80
         - name: DEX_APP_REDIRECT_URI
@@ -73,4 +73,4 @@ spec:
       - name: tls
         secret:
           secretName: {{.Release.Name}}.tls
-{{- end }}            
+{{- end }}
