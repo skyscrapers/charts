@@ -6,8 +6,8 @@ all: prep package index post
 
 prep:
 	@mkdir -p charts
-	@git checkout -B gh_pages
-	@git pull origin gh_pages
+	@git checkout -B gh-pages
+	@git pull origin gh-pages
 	@git merge master
 
 package:
