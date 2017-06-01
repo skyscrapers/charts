@@ -16,7 +16,7 @@ index:
 	@mv ./charts/index.yaml index.yaml
 
 post:
-	@git add charts index.yaml
+	@git add --force charts index.yaml
 	@git commit -m "Update Charts"
 	@git checkout master
 
