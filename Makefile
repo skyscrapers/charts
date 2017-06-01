@@ -1,6 +1,6 @@
 CHARTS := $(shell find . -path '*/Chart.yaml' | tr '\n' ' ' | sed -E 's:\./|/Chart\.yaml::g')
 
-.PHONY: all prep package index post clean
+.PHONY: all prep package index post
 
 all: prep package index post
 
@@ -20,6 +20,3 @@ post:
 	@git commit -m "Update Charts"
 	@git checkout master
 	echo "gh-pages branch is ready to push. git push --force origin gh-pages"
-
-clean:
-	@rm -rf charts
