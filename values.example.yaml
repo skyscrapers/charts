@@ -1,0 +1,22 @@
+Dex:
+  Issuer: https://kubesignin.test.skyscrape.rs/dex
+  Connector:
+    GitHub:
+      Name: GitHub
+      ClientId: <BASE64_ENCODED_CLIENT_ID>
+      ClientSecret: <BASE64_ENCODED_CLIENT_SECRET>
+
+Kubesignin:
+  ClientSecret: <SOME_RANDOM_STRING>
+  RedirectUri: https://kubesignin.test.skyscrape.rs/callback
+  DomainName: kubesignin.test.skyscrape.rs
+
+# Kube2iam
+host:
+  iptables: true
+  interface: cali+
+
+# Kube-lego
+config:
+  LEGO_EMAIL: hello@skyscrapers.eu
+  LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
