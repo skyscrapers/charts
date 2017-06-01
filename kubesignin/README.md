@@ -8,7 +8,7 @@ Install this in your cluster with [Helm](https://github.com/kubernetes/helm):
 Get Helm [here](https://github.com/kubernetes/helm/blob/master/docs/install.md).
 
 ```
-helm repo add skyscrapers TBD
+helm repo add skyscrapers https://skyscrapers.github.io/charts
 ```
 ```
 helm install skyscrapers/kubesignin

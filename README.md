@@ -9,6 +9,8 @@ First you need to make a copy of `values.example.yaml` to `values.yaml` and edit
 ```sh
 helm install stable/kube2iam --values values.yaml
 helm install stable/kube-lego --values values.yaml
+
+helm repo add skyscrapers https://skyscrapers.github.io/charts
 helm install skyscrapers/kubesignin --values values.yaml
 # TODO helm install skyscrapers/nginx-ingress --values values.yaml
 # TODO helm install skyscrapers/external-dns --values values.yaml
