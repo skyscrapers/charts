@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "kubesignin.fullname" . }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "kubesignin"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  tls:
+  - secretName: {{ template "kubesignin.fullname" . }}-lego-tls
+    hosts:
+    - {{.Values.Kubesignin.DomainName}}
+  rules:
+  - host: {{.Values.Kubesignin.DomainName}}
+    http:
+      paths:
+      - path: /dex
+        backend:
+          serviceName: {{ template "dex.fullname" . }}
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: {{ template "kubesignin.fullname" . }}
+          servicePort: 80

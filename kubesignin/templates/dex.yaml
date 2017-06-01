@@ -1,46 +1,41 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: {{.Release.Name}}
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-  labels:
-    app: {{.Release.Name}}
-spec:
-  rules:
-  - host: dex.test.skyscrape.rs
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: {{.Release.Name}}
-          servicePort: 80
-  - host: dex-app.test.skyscrape.rs
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: {{.Release.Name}}-app
-          servicePort: 80
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.Release.Name}}
+  name: {{ template "dex.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: dex
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 spec:
+{{- if .Values.Dex.NodePort }}
+  type: NodePort
+{{- end }}
   ports:
-  - name: {{.Release.Name}}
+  - name: http
     protocol: TCP
     port: 80
     targetPort: 80
+{{- if .Values.Dex.NodePort }}
+    nodePort: {{.Values.Dex.NodePort}}
+{{- end }}
   selector:
-    app: {{.Release.Name}}
+    app: {{ template "name" . }}
+    component: dex
+    release: {{ .Release.Name }}
 {{- if .Values.Dex.Tls }}
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{.Release.Name}}.tls
+  name: {{ template "dex.fullname" . }}.tls
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 data:
   tls.ca: {{.Values.Dex.Tls.Ca}}
   tls.crt: {{.Values.Dex.Tls.Cert}}
@@ -51,7 +46,13 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{.Release.Name}}.github
+  name: {{ template "dex.fullname" . }}.github
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 type: Opaque
 data:
   client-id: {{.Values.Dex.Connector.GitHub.ClientId}}
@@ -62,7 +63,13 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{.Release.Name}}.oidc
+  name: {{ template "dex.fullname" . }}.oidc
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 type: Opaque
 data:
   client-id: {{.Values.Dex.Connector.Oidc.ClientId}}
@@ -72,7 +79,13 @@ data:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{.Release.Name}}
+  name: {{ template "dex.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 data:
   config.yaml: |
     issuer: {{.Values.Dex.Issuer}}
@@ -81,9 +94,11 @@ data:
       type: kubernetes
       config:
         inCluster: true
+
     logger:
-      level: "debug"
+      level: "{{.Values.Dex.LogLevel}}"
       format: "text" # can also be "json"
+
     web:
       http: 0.0.0.0:80
 
@@ -101,6 +116,9 @@ data:
         clientID: $GITHUB_CLIENT_ID
         clientSecret: $GITHUB_CLIENT_SECRET
         redirectURI: {{.Values.Dex.Issuer}}/callback
+{{- if .Values.Dex.Connector.GitHub.Org }}
+        org: {{.Values.Dex.Connector.GitHub.Org}}
+{{- end}}
 {{- end}}
 {{- if .Values.Dex.Connector.Oidc }}
     - type: oidc
@@ -141,34 +159,33 @@ data:
       skipApprovalScreen: true
 
     staticClients:
-    - id: example-app
+    - id: kubesignin
       redirectURIs:
-        - "{{.Values.DexApp.RedirectUri}}"
-      name: "Example App"
-      secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-
-    enablePasswordDB: true
-    staticPassword:
-    - email: {{.Values.Dex.StaticPassword.Email}}
-      hash: {{.Values.Dex.StaticPassword.Password}}
-      username: {{.Values.Dex.StaticPassword.Username}}
-      userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+        - "{{.Values.Kubesignin.RedirectUri}}"
+      name: "kubesignin"
+      secret: {{.Values.Kubesignin.ClientSecret}}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{.Release.Name}}
+  name: {{ template "dex.fullname" . }}
   labels:
-    app: {{.Release.Name}}
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{.Release.Name}}
+        app: {{ template "name" . }}
+        component: dex
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{.Release.Name}}
+      - name: {{ template "dex.fullname" . }}
         image: {{.Values.Dex.Image}}:{{.Values.Dex.ImageTag}}
         imagePullPolicy: Always
         command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
@@ -189,24 +206,24 @@ spec:
         - name: GITHUB_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: {{.Release.Name}}.github
+              name: {{ template "dex.fullname" . }}.github
               key: client-id
         - name: GITHUB_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: {{.Release.Name}}.github
+              name: {{ template "dex.fullname" . }}.github
               key: client-secret
 {{- end}}
 {{- if .Values.Dex.Connector.Oidc }}
         - name: OIDC_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: {{.Release.Name}}.oidc
+              name: {{ template "dex.fullname" . }}.oidc
               key: client-id
         - name: OIDC_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: {{.Release.Name}}.oidc
+              name: {{ template "dex.fullname" . }}.oidc
               key: client-secret
 {{- end}}
         resources:
@@ -219,12 +236,12 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: {{.Release.Name}}
+          name: {{ template "dex.fullname" . }}
           items:
           - key: config.yaml
             path: config.yaml
 {{- if .Values.Dex.Tls }}
       - name: tls
         secret:
-          secretName: {{.Release.Name}}.tls
+          secretName: {{ template "dex.fullname" . }}.tls
 {{- end }}
