@@ -7,8 +7,6 @@ all: prep package index post
 prep:
 	@mkdir -p charts
 	@git checkout -B gh-pages
-	@git pull origin gh-pages
-	@git merge master
 
 package:
 	$(foreach chart,$(CHARTS),(helm package $(chart) -d ./charts --save=false) &&) :
@@ -21,6 +19,7 @@ post:
 	@git add --force charts index.yaml
 	@git commit -m "Update Charts"
 	@git checkout master
+	echo "gh-pages branch is ready to push. git push --force origin gh-pages"
 
 clean:
 	@rm -rf charts
