@@ -12,7 +12,7 @@ helm install stable/kube-lego --values values.yaml
 
 helm repo add skyscrapers https://skyscrapers.github.io/charts
 helm install skyscrapers/kubesignin --values values.yaml
-# TODO helm install skyscrapers/nginx-ingress --values values.yaml
+helm install skyscrapers/nginx-ingress --values values.yaml
 # TODO helm install skyscrapers/external-dns --values values.yaml
 # TODO helm install skyscrapers/concourse --values values.yaml
 ```
