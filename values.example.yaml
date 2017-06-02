@@ -5,6 +5,7 @@ Dex:
       Name: GitHub
       ClientId: <BASE64_ENCODED_CLIENT_ID>
       ClientSecret: <BASE64_ENCODED_CLIENT_SECRET>
+      Org: skyscrapers
 
 Kubesignin:
   ClientSecret: <SOME_RANDOM_STRING>

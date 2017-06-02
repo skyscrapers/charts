@@ -22,6 +22,7 @@ Dex:
     #   Name: "GitHub"
     #   ClientId: "MjBiMWJjMjlmYTRjYzAzYWE0ODY="
     #   ClientSecret: "N2NlODQ0NTUzNWE0MTE5MTU1NjNiZmNhZTVjZTc2NTcyZmJmMjc0Zg=="
+    #   Org: skyscrapers
     # Oidc:
     #   Name: "Google"
     #   Id: "google"
