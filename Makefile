@@ -18,5 +18,4 @@ index:
 post:
 	@git add --force charts index.yaml
 	@git commit -m "Update Charts"
-	@git checkout master
 	echo "gh-pages branch is ready to push. git push --force origin gh-pages"
