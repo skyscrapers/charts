@@ -1,0 +1,54 @@
+---
+resources:
+
+# Git repos
+- name: charts-git
+  type: git
+  source:
+    uri: https://github.com/skyscrapers/charts.git
+    branch: master
+- name: charts-index-git
+  type: git
+  source:
+    uri: git@github.com:skyscrapers/charts.git
+    branch: gh-pages
+    private_key: {{GIT_PRIVATE_KEY}}
+
+jobs:
+
+- name: build-charts-repo
+  plan:
+  - do:
+    - get: charts-git
+      trigger: true
+    - task: build
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: alpine, tag: "3.4"}
+        inputs:
+        - name: charts-git
+        outputs:
+        - name: built-charts-git
+        run:
+          path: sh
+          args:
+          - -c
+          - |
+            set -e
+            # Install needed packages
+            apk add --update ca-certificates openssl git curl sudo make
+            # Install helm
+            curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | sh
+            # Clone charts repo to output
+            git clone charts-git built-charts-git
+            cd built-charts-git
+            git config user.email "ci@skyscrapers.eu"
+            git config user.name "Concourse CI"
+            # Build charts repo
+            make all
+    - put: charts-index-git
+      params:
+        repository: built-charts-git
+        force: true

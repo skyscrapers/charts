@@ -1,6 +1,6 @@
 # Skyscrapers Helm charts
 
-Our Kubernetes applications
+Our Kubernetes applications.
 
 ## Bootstrap base charts
 
@@ -16,3 +16,18 @@ helm install skyscrapers/nginx-ingress --values values.yaml
 # TODO helm install skyscrapers/external-dns --values values.yaml
 # TODO helm install skyscrapers/concourse --values values.yaml
 ```
+
+## Helm charts index
+
+You can add this charts repo by:
+
+```sh
+helm repo add skyscrapers https://skyscrapers.github.io/charts
+```
+
+The actual Helm charts index is being hosted in GitHub pages in this same repo (`gh-pages` git branch). The charts and the charts index are automatically updated by Concourse, see the `ci` folder.
+If you want to update it manually just run `make all` (make sure you have `helm` installed).
+
+## TODO
+
+Figure out what did we change in the `nginx-ingress` chart and create a PR in the upstream chart.
