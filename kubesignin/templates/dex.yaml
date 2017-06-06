@@ -102,6 +102,10 @@ data:
     web:
       http: 0.0.0.0:80
 
+    expiry:
+      signingKeys: "6h"
+      idTokens: "1h"
+
     connectors:
 {{- if .Values.Dex.Connector.MockCallback }}
     - type: mockCallback
