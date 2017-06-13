@@ -103,8 +103,8 @@ data:
       http: 0.0.0.0:80
 
     expiry:
-      signingKeys: "6h"
-      idTokens: "1h"
+       signingKeys: "6h"
+       idTokens: "1h"
 
     connectors:
 {{- if .Values.Dex.Connector.MockCallback }}
@@ -188,6 +188,7 @@ spec:
         component: dex
         release: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ template "dex.fullname" . }}
       containers:
       - name: {{ template "dex.fullname" . }}
         image: {{.Values.Dex.Image}}:{{.Values.Dex.ImageTag}}

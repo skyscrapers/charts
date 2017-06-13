@@ -22,6 +22,9 @@ spec:
         component: "{{ .Values.controller.name }}"
         release: {{ .Release.Name }}
     spec:
+{{- if .Values.controller.rbac.enabled }}
+      serviceAccountName: {{ template "fullname" . }}
+{{- end }}
       containers:
         - name: {{ template "name" . }}-{{ .Values.controller.name }}
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
@@ -29,10 +32,13 @@ spec:
           args:
             - /nginx-ingress-controller
             - --default-backend-service={{ if .Values.defaultBackend.enabled }}{{ .Release.Namespace }}/{{ template "defaultBackend.fullname" . }}{{ else }}{{ .Values.controller.defaultBackendService }}{{ end }}
+          {{- if and (contains "0.9" .Values.controller.image.tag) .Values.controller.publishService.enabled }}
+            - --publish-service={{ template "controller.publishServicePath" . }}
+          {{- end}}
           {{- if (contains "0.9" .Values.controller.image.tag) }}
             - --configmap={{ .Release.Namespace }}/{{ template "controller.fullname" . }}
           {{- else }}
-            - --configmap={{ .Release.Namespace }}/{{ template "controller.fullname" . }}
+            - --nginx-configmap={{ .Release.Namespace }}/{{ template "controller.fullname" . }}
           {{- end }}
           {{- if .Values.tcp }}
             - --tcp-services-configmap={{ .Release.Namespace }}/{{ template "fullname" . }}-tcp
@@ -42,9 +48,6 @@ spec:
           {{- end }}
           {{- if .Values.controller.scope.enabled }}
             - --watch-namespace={{ default .Release.Namespace .Values.controller.scope.namespace }}
-          {{- end }}
-          {{- if (eq .Values.controller.service.type "LoadBalancer") }}
-            - --publish-service={{ .Release.Namespace }}/{{ template "controller.fullname" . }}
           {{- end }}
           {{- range $key, $value := .Values.controller.extraArgs }}
             - --{{ $key }}={{ $value }}

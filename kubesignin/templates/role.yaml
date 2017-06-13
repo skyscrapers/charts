@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: {{ template "dex.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: dex
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+rules:
+- apiGroups:
+  - "oidc.coreos.com"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+- apiGroups:
+  - "extensions"
+  resources:
+  - thirdpartyresources
+  verbs:
+  - create
