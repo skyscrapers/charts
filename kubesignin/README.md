@@ -1,4 +1,4 @@
-## A Helm Chart for Kubesignin
+# A Helm Chart for Kubesignin
 
 Originates from https://github.com/skyscrapers/kubesignin
 

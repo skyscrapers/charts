@@ -25,4 +25,13 @@ config:
 # Nginx-ingress
 controller:
   image:
-    tag: "0.9.0-beta.3"
+    tag: "0.9.0-beta.7"
+  publishService:
+    enabled: true
+  rbac:
+    enabled: true
+  stats:
+    enabled: true
+
+ExternalDNS:
+  IAMRoleARN: <IAM_ROLE_ARN>
