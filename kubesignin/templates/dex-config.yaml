@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "dex.fullname" . }}.tls
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  tls.ca: {{.Values.Dex.Tls.Ca}}
+  tls.crt: {{.Values.Dex.Tls.Cert}}
+  tls.key: {{.Values.Dex.Tls.Key}}
+{{- end }}
+{{- if .Values.Dex.Connector.GitHub }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "dex.fullname" . }}.github
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+type: Opaque
+data:
+  client-id: {{.Values.Dex.Connector.GitHub.ClientId}}
+  client-secret: {{.Values.Dex.Connector.GitHub.ClientSecret}}
+{{- end }}
+{{- if .Values.Dex.Connector.Oidc }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "dex.fullname" . }}.oidc
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+type: Opaque
+data:
+  client-id: {{.Values.Dex.Connector.Oidc.ClientId}}
+  client-secret: {{.Values.Dex.Connector.Oidc.ClientSecret}}
+{{- end }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "dex.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  config.yaml: |
+    issuer: {{.Values.Dex.Issuer}}
+
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+
+    logger:
+      level: "{{.Values.Dex.LogLevel}}"
+      format: "text" # can also be "json"
+
+    web:
+      http: 0.0.0.0:80
+
+    expiry:
+       signingKeys: "6h"
+       idTokens: "1h"
+
+    connectors:
+{{- if .Values.Dex.Connector.MockCallback }}
+    - type: mockCallback
+      id: mock
+      name: Example
+{{- end }}
+{{- if .Values.Dex.Connector.GitHub }}
+    - type: github
+      id: github
+      name: {{.Values.Dex.Connector.GitHub.Name}}
+      config:
+        clientID: $GITHUB_CLIENT_ID
+        clientSecret: $GITHUB_CLIENT_SECRET
+        redirectURI: {{.Values.Dex.Issuer}}/callback
+{{- if .Values.Dex.Connector.GitHub.Org }}
+        org: {{.Values.Dex.Connector.GitHub.Org}}
+{{- end}}
+{{- end}}
+{{- if .Values.Dex.Connector.Oidc }}
+    - type: oidc
+      id: {{.Values.Dex.Connector.Oidc.Id}}
+      name: {{.Values.Dex.Connector.Oidc.Name}}
+      config:
+        issuer: {{.Values.Dex.Connector.Oidc.Issuer}}
+        clientID: $OIDC_CLIENT_ID
+        clientSecret: $OIDC_CLIENT_SECRET
+        redirectURI: {{.Values.Dex.Issuer}}/callback
+{{- end}}
+{{- if .Values.Dex.Connector.Ldap }}
+    - type: ldap
+      id: ldap
+      name: {{.Values.Dex.Connector.Ldap.Name}}
+      config:
+        host: {{.Values.Dex.Connector.Ldap.Host}}
+        insecureNoSSL: {{.Values.Dex.Connector.Ldap.InsecureNoSsl}}
+        insecureSkipVerify: {{.Values.Dex.Connector.Ldap.InsecureSkipVerify}}
+        bindDN: {{.Values.Dex.Connector.Ldap.BindDn}}
+        bindPW: {{.Values.Dex.Connector.Ldap.BindPw}}
+        userSearch:
+          baseDN: {{.Values.Dex.Connector.Ldap.UserSearch.BaseDn}}
+          filter: {{.Values.Dex.Connector.Ldap.UserSearch.Filter}}
+          username: {{.Values.Dex.Connector.Ldap.UserSearch.Username}}
+          idAttr: {{.Values.Dex.Connector.Ldap.UserSearch.IdAttr}}
+          emailAttr: {{.Values.Dex.Connector.Ldap.UserSearch.EmailAttr}}
+          nameAttr: {{.Values.Dex.Connector.Ldap.UserSearch.NameAttr}}
+        groupSearch:
+          baseDN: {{.Values.Dex.Connector.Ldap.GroupSearch.BaseDn}}
+          filter: {{.Values.Dex.Connector.Ldap.GroupSearch.Filter}}
+          userAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.UserAttr}}
+          groupAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.GroupAttr}}
+          nameAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.NameAttr}}
+{{- end }}
+
+    oauth2:
+      skipApprovalScreen: true
+
+    staticClients:
+    - id: kubesignin
+      redirectURIs:
+        - "{{.Values.Kubesignin.RedirectUri}}"
+      name: "kubesignin"
+      secret: {{.Values.Kubesignin.ClientSecret}}
