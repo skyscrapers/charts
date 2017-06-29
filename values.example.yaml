@@ -1,8 +1,8 @@
 Dex:
   Issuer: https://kubesignin.test.skyscrape.rs/dex
-  Connector:
+  Connectors:
     GitHub:
-      Name: GitHub
+    - Name: GitHub
       ClientId: <BASE64_ENCODED_CLIENT_ID>
       ClientSecret: <BASE64_ENCODED_CLIENT_SECRET>
       Org: skyscrapers

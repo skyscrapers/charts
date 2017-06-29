@@ -41,7 +41,7 @@ data:
   tls.crt: {{.Values.Dex.Tls.Cert}}
   tls.key: {{.Values.Dex.Tls.Key}}
 {{- end }}
-{{- if .Values.Dex.Connector.GitHub }}
+{{- if .Values.Dex.Connectors.GitHub }}
 ---
 apiVersion: v1
 kind: Secret
@@ -55,25 +55,10 @@ metadata:
     release: {{ .Release.Name }}
 type: Opaque
 data:
-  client-id: {{.Values.Dex.Connector.GitHub.ClientId}}
-  client-secret: {{.Values.Dex.Connector.GitHub.ClientSecret}}
+{{- range $index, $element := .Values.Dex.Connectors.GitHub }}
+  {{ $index }}-client-id: {{$element.ClientId}}
+  {{ $index }}-client-secret: {{$element.ClientSecret}}
 {{- end }}
-{{- if .Values.Dex.Connector.Oidc }}
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ template "dex.fullname" . }}.oidc
-  labels:
-    app: {{ template "name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-    component: "dex"
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
-type: Opaque
-data:
-  client-id: {{.Values.Dex.Connector.Oidc.ClientId}}
-  client-secret: {{.Values.Dex.Connector.Oidc.ClientSecret}}
 {{- end }}
 ---
 kind: ConfigMap
@@ -106,57 +91,20 @@ data:
        signingKeys: "6h"
        idTokens: "1h"
 
+{{- if .Values.Dex.Connectors }}
     connectors:
-{{- if .Values.Dex.Connector.MockCallback }}
-    - type: mockCallback
-      id: mock
-      name: Example
-{{- end }}
-{{- if .Values.Dex.Connector.GitHub }}
+{{- range $index, $element := .Values.Dex.Connectors.GitHub }}
     - type: github
-      id: github
-      name: {{.Values.Dex.Connector.GitHub.Name}}
+      id: gh{{ $index }}
+      name: {{$element.Name}}
       config:
-        clientID: $GITHUB_CLIENT_ID
-        clientSecret: $GITHUB_CLIENT_SECRET
-        redirectURI: {{.Values.Dex.Issuer}}/callback
-{{- if .Values.Dex.Connector.GitHub.Org }}
-        org: {{.Values.Dex.Connector.GitHub.Org}}
-{{- end}}
-{{- end}}
-{{- if .Values.Dex.Connector.Oidc }}
-    - type: oidc
-      id: {{.Values.Dex.Connector.Oidc.Id}}
-      name: {{.Values.Dex.Connector.Oidc.Name}}
-      config:
-        issuer: {{.Values.Dex.Connector.Oidc.Issuer}}
-        clientID: $OIDC_CLIENT_ID
-        clientSecret: $OIDC_CLIENT_SECRET
-        redirectURI: {{.Values.Dex.Issuer}}/callback
-{{- end}}
-{{- if .Values.Dex.Connector.Ldap }}
-    - type: ldap
-      id: ldap
-      name: {{.Values.Dex.Connector.Ldap.Name}}
-      config:
-        host: {{.Values.Dex.Connector.Ldap.Host}}
-        insecureNoSSL: {{.Values.Dex.Connector.Ldap.InsecureNoSsl}}
-        insecureSkipVerify: {{.Values.Dex.Connector.Ldap.InsecureSkipVerify}}
-        bindDN: {{.Values.Dex.Connector.Ldap.BindDn}}
-        bindPW: {{.Values.Dex.Connector.Ldap.BindPw}}
-        userSearch:
-          baseDN: {{.Values.Dex.Connector.Ldap.UserSearch.BaseDn}}
-          filter: {{.Values.Dex.Connector.Ldap.UserSearch.Filter}}
-          username: {{.Values.Dex.Connector.Ldap.UserSearch.Username}}
-          idAttr: {{.Values.Dex.Connector.Ldap.UserSearch.IdAttr}}
-          emailAttr: {{.Values.Dex.Connector.Ldap.UserSearch.EmailAttr}}
-          nameAttr: {{.Values.Dex.Connector.Ldap.UserSearch.NameAttr}}
-        groupSearch:
-          baseDN: {{.Values.Dex.Connector.Ldap.GroupSearch.BaseDn}}
-          filter: {{.Values.Dex.Connector.Ldap.GroupSearch.Filter}}
-          userAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.UserAttr}}
-          groupAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.GroupAttr}}
-          nameAttr: {{.Values.Dex.Connector.Ldap.GroupSearch.NameAttr}}
+        clientID: $GITHUB{{ $index }}_CLIENT_ID
+        clientSecret: $GITHUB{{ $index }}_CLIENT_SECRET
+        redirectURI: {{$.Values.Dex.Issuer}}/callback
+{{- if $element.Org }}
+        org: {{$element.Org}}
+{{- end }}
+{{- end }}
 {{- end }}
 
     oauth2:
@@ -207,30 +155,18 @@ spec:
 {{- end }}
 
         env:
-{{- if .Values.Dex.Connector.GitHub }}
-        - name: GITHUB_CLIENT_ID
+{{- range $index, $element := .Values.Dex.Connectors.GitHub}}
+        - name: GITHUB{{ $index }}_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: {{ template "dex.fullname" . }}.github
-              key: client-id
-        - name: GITHUB_CLIENT_SECRET
+              name: {{ template "dex.fullname" $ }}.github
+              key: {{ $index }}-client-id
+        - name: GITHUB{{ $index }}_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: {{ template "dex.fullname" . }}.github
-              key: client-secret
-{{- end}}
-{{- if .Values.Dex.Connector.Oidc }}
-        - name: OIDC_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "dex.fullname" . }}.oidc
-              key: client-id
-        - name: OIDC_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "dex.fullname" . }}.oidc
-              key: client-secret
-{{- end}}
+              name: {{ template "dex.fullname" $ }}.github
+              key: {{ $index }}-client-secret
+{{- end }}
         resources:
           limits:
             cpu: {{ .Values.Dex.Cpu }}
