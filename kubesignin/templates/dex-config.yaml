@@ -1,0 +1,91 @@
+{{- if .Values.Dex.Tls }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "dex.fullname" . }}.tls
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  tls.ca: {{.Values.Dex.Tls.Ca}}
+  tls.crt: {{.Values.Dex.Tls.Cert}}
+  tls.key: {{.Values.Dex.Tls.Key}}
+{{- end }}
+{{- if .Values.Dex.Connectors.GitHub }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "dex.fullname" . }}.github
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+type: Opaque
+data:
+{{- range $index, $element := .Values.Dex.Connectors.GitHub }}
+  {{ $index }}-client-id: {{$element.ClientId}}
+  {{ $index }}-client-secret: {{$element.ClientSecret}}
+{{- end }}
+{{- end }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "dex.fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "dex"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  config.yaml: |
+    issuer: {{.Values.Dex.Issuer}}
+
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+
+    logger:
+      level: "{{.Values.Dex.LogLevel}}"
+      format: "text" # can also be "json"
+
+    web:
+      http: 0.0.0.0:80
+
+    expiry:
+       signingKeys: "6h"
+       idTokens: "1h"
+
+{{- if .Values.Dex.Connectors }}
+    connectors:
+{{- range $index, $element := .Values.Dex.Connectors.GitHub }}
+    - type: github
+      id: gh{{ $index }}
+      name: {{$element.Name}}
+      config:
+        clientID: $GITHUB{{ $index }}_CLIENT_ID
+        clientSecret: $GITHUB{{ $index }}_CLIENT_SECRET
+        redirectURI: {{$.Values.Dex.Issuer}}/callback
+{{- if $element.Org }}
+        org: {{$element.Org}}
+{{- end }}
+{{- end }}
+{{- end }}
+
+    oauth2:
+      skipApprovalScreen: true
+
+    staticClients:
+    - id: kubesignin
+      redirectURIs:
+        - "{{.Values.Kubesignin.RedirectUri}}"
+      name: "kubesignin"
+      secret: {{.Values.Kubesignin.ClientSecret}}
