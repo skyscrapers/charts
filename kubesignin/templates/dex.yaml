@@ -24,7 +24,6 @@ spec:
     app: {{ template "name" . }}
     component: dex
     release: {{ .Release.Name }}
-{{- if .Values.Dex.Tls }}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -66,30 +65,18 @@ spec:
 {{- end }}
 
         env:
-{{- if .Values.Dex.Connector.GitHub }}
-        - name: GITHUB_CLIENT_ID
+{{- range $index, $element := .Values.Dex.Connectors.GitHub}}
+        - name: GITHUB{{ $index }}_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: {{ template "dex.fullname" . }}.github
-              key: client-id
-        - name: GITHUB_CLIENT_SECRET
+              name: {{ template "dex.fullname" $ }}.github
+              key: {{ $index }}-client-id
+        - name: GITHUB{{ $index }}_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: {{ template "dex.fullname" . }}.github
-              key: client-secret
-{{- end}}
-{{- if .Values.Dex.Connector.Oidc }}
-        - name: OIDC_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "dex.fullname" . }}.oidc
-              key: client-id
-        - name: OIDC_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: {{ template "dex.fullname" . }}.oidc
-              key: client-secret
-{{- end}}
+              name: {{ template "dex.fullname" $ }}.github
+              key: {{ $index }}-client-secret
+{{- end }}
         resources:
           limits:
             cpu: {{ .Values.Dex.Cpu }}
