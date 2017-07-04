@@ -176,6 +176,12 @@ concourse:
     ##
     replicas: 1
 
+    ## IAM role ARN to assign to the concourse web deployment
+    ## This requires Kube2iam to be setup in the cluster
+    ## ref: https://github.com/jtblin/kube2iam
+    ##
+    # IAMRoleARN:
+
     ## Configure resource requests and limits.
     ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
     ##
@@ -195,13 +201,17 @@ concourse:
 
   postgresql: {}
     ## Hostname of the postgresql server where the concourse database is hosted
+    ##
     # host:
 
     ## Database name
+    ##
     # database:
 
     ## Postgres user
+    ##
     # postgresUser:
 
     ## Postgres password
+    ##
     # postgresPassword:

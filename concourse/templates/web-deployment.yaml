@@ -15,6 +15,10 @@ spec:
       labels:
         app: {{ template "web.fullname" . }}
         release: {{ .Release.Name }}
+      {{- if .Values.concourse.web.IAMRoleARN }}
+      annotations:
+        iam.amazonaws.com/role: {{ .Values.concourse.web.IAMRoleARN }}
+      {{- end}}
     spec:
       containers:
         - name: {{ template "web.fullname" . }}
