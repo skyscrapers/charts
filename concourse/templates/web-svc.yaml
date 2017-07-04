@@ -10,10 +10,6 @@ metadata:
     heritage: "{{ .Release.Service }}"
     dns: route53
 spec:
-  tls:
-  - secretName: {{ template "concourse.fullname" . }}-lego-tls
-    hosts:
-    - {{.Values.concourse.web.service.domainName}}
   ports:
     - name: http
       port: 80
