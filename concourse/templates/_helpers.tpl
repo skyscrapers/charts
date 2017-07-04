@@ -16,6 +16,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "web.fullname" -}}
-{{- $name := default "web" .Values.web.nameOverride -}}
+{{- $name := default "concourse-web" .Values.concourse.web.nameOverride -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
