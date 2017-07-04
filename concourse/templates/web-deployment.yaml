@@ -5,22 +5,29 @@ metadata:
   labels:
     app: {{ template "web.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: web
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  replicas: {{ .Values.web.replicas }}
+  replicas: {{ .Values.concourse.web.replicas }}
   template:
     metadata:
       labels:
         app: {{ template "web.fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ template "web.fullname" . }}
-          image: "{{ .Values.image }}:{{ .Values.imageTag }}"
-          imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+          image: "{{ .Values.concourse.image }}:{{ .Values.concourse.imageTag }}"
+          imagePullPolicy: {{ default "" .Values.concourse.imagePullPolicy | quote }}
           args:
             - "web"
           env:
+            - name: _CONCOURSE_KEYS_S3
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "concourse.fullname" . }}
+                  key: concourse-keys-s3-bucket
             - name: POSTGRES_HOST
               valueFrom:
                 configMapKeyRef:
@@ -34,7 +41,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "postgresql.fullname" . }}
+                  name: {{ template "concourse.fullname" . }}
                   key: postgres-password
             - name: POSTGRES_DATABASE
               valueFrom:
@@ -42,7 +49,7 @@ spec:
                   name: {{ template "concourse.fullname" . }}
                   key: postgresql-database
             - name: CONCOURSE_POSTGRES_DATA_SOURCE
-              value: postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST)/$(POSTGRES_DATABASE)?sslmode=disable
+              value: postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST)/$(POSTGRES_DATABASE)
             - name: POD_IP
               valueFrom:
                 fieldRef:
@@ -182,12 +189,6 @@ spec:
                 configMapKeyRef:
                   name: {{ template "concourse.fullname" . }}
                   key: generic-oauth-token-url
-            - name: CONCOURSE_TSA_HOST_KEY
-              value: "/concourse-keys/host_key"
-            - name: CONCOURSE_SESSION_SIGNING_KEY
-              value: "/concourse-keys/session_signing_key"
-            - name: CONCOURSE_TSA_AUTHORIZED_KEYS
-              value: "/concourse-keys/worker_key.pub"
           ports:
             - name: atc
               containerPort: {{ .Values.concourse.atcPort }}
@@ -206,20 +207,4 @@ spec:
             initialDelaySeconds: 5
             timeoutSeconds: 1
           resources:
-{{ toYaml .Values.web.resources | indent 12 }}
-          volumeMounts:
-            - name: concourse-keys
-              mountPath: /concourse-keys
-              readOnly: true
-      volumes:
-        - name: concourse-keys
-          secret:
-            secretName: {{ template "concourse.fullname" . }}
-            defaultMode: 0400
-            items:
-              - key: host-key
-                path: host_key
-              - key: session-signing-key
-                path: session_signing_key
-              - key: worker-key-pub
-                path: worker_key.pub
+{{ toYaml .Values.concourse.web.resources | indent 12 }}

@@ -8,8 +8,8 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  postgresql-host: {{ template "postgresql.fullname" . }}
-  postgresql-database: {{ .Values.postgresql.postgresDatabase | quote }}
+  postgresql-host: {{ .Values.concourse.postgresql.host | quote }}
+  postgresql-database: {{ .Values.concourse.postgresql.database | quote }}
   concourse-atc-port: {{ .Values.concourse.atcPort | quote }}
   concourse-tsa-host: {{ template "web.fullname" . }}
   concourse-tsa-port: {{ .Values.concourse.tsaPort | quote }}
@@ -32,3 +32,4 @@ data:
   generic-oauth-auth-url-param: {{ default "" .Values.concourse.genericOauthAuthUrlParam | quote }}
   generic-oauth-scope: {{ default "" .Values.concourse.genericOauthScope | quote }}
   generic-oauth-token-url: {{ default "" .Values.concourse.genericOauthTokenUrl | quote }}
+  concourse-keys-s3-bucket: {{ default "" .Values.concourse.keysS3Bucket | quote }}

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "web.fullname" . }}
+  labels:
+    app: {{ template "web.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: web
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    dns: route53
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - secretName: {{ template "web.fullname" . }}-lego-tls
+    hosts:
+    - {{.Values.concourse.web.service.domainName}}
+  rules:
+  - host: {{.Values.concourse.web.service.domainName}}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ template "web.fullname" . }}
+          servicePort: 80

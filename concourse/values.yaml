@@ -2,28 +2,33 @@
 ## This is a YAML-formatted file.
 ## Declare variables to be passed into your templates.
 
-## Override the name of the Chart.
-##
-# nameOverride:
-
-## Concourse image.
-##
-image: concourse/concourse
-
-## Concourse image version.
-## ref: https://hub.docker.com/r/concourse/concourse/tags/
-##
-imageTag: "2.6.0"
-
-## Specify a imagePullPolicy: 'Always' if imageTag is 'latest', else set to 'IfNotPresent'.
-## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-##
-# imagePullPolicy:
-
 ## Configuration values for Concourse.
 ## ref: https://concourse.ci/setting-up.html
 ##
 concourse:
+  ## Override the name of the Chart.
+  ##
+  # nameOverride:
+
+  ## Concourse image.
+  ##
+  image: skyscrapers/concourse
+
+  ## Concourse image version.
+  ## ref: https://hub.docker.com/r/concourse/concourse/tags/
+  ##
+  imageTag: "3.2.1"
+
+  ## Specify a imagePullPolicy: 'Always' if imageTag is 'latest', else set to 'IfNotPresent'.
+  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  # imagePullPolicy:
+
+  ##
+  ##
+  ##
+  # keysS3Bucket:
+
   ## Concourse Basic Authentication Username.
   ## ref: https://concourse.ci/teams.html#authentication
   ##
@@ -160,33 +165,43 @@ concourse:
   ##
   # genericOauthTokenUrl:
 
-## Configuration values for Concourse Web components.
-##
-web:
-  ## Override the components name (defaults to web).
+  ## Configuration values for Concourse Web components.
   ##
-  # nameOverride:
-
-  ## Number of replicas.
-  ##
-  replicas: 1
-
-  ## Configure resource requests and limits.
-  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
-  ##
-  resources:
-    requests:
-      cpu: "100m"
-      memory: "128Mi"
-
-  ## Service configuration.
-  ## ref: https://kubernetes.io/docs/user-guide/services/
-  ##
-  service:
-    ## For minikube, set this to ClusterIP, elsewhere use LoadBalancer.
-    ## ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
+  web:
+    ## Override the components name (defaults to web).
     ##
+    # nameOverride:
 
-    # domainName:
+    ## Number of replicas.
+    ##
+    replicas: 1
 
-    # acm-arn:
+    ## Configure resource requests and limits.
+    ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+    ##
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+
+    ## Service configuration.
+    ## ref: https://kubernetes.io/docs/user-guide/services/
+    ##
+    service: {}
+      ## For minikube, set this to ClusterIP, elsewhere use LoadBalancer.
+      ## ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
+      ##
+      # domainName:
+
+  postgresql: {}
+    ## Hostname of the postgresql server where the concourse database is hosted
+    # host:
+
+    ## Database name
+    # database:
+
+    ## Postgres user
+    # postgresUser:
+
+    ## Postgres password
+    # postgresPassword:
