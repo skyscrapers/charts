@@ -13,6 +13,26 @@ spec:
     - name: http
       port: 80
       targetPort: {{ .Values.concourse.atcPort }}
+  selector:
+    app: {{ template "concourse.fullname" . }}
+    component: web
+    release: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "tsa.fullname" . }}
+  labels:
+    app: {{ template "concourse.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: tsa
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{.Values.concourse.tsaDomainName}}.
+spec:
+  type: LoadBalancer
+  ports:
     - name: tsa
       port: {{ .Values.concourse.tsaPort }}
       targetPort: tsa

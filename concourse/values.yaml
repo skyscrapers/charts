@@ -169,6 +169,10 @@ concourse:
   ##
   # atcDomainName:
 
+  ## Domain name for the tsa. Should be different from the atc domain name.
+  ##
+  # tsaDomainName:
+
   ## IAM role ARN to assign to the concourse web deployment
   ## This requires Kube2iam to be setup in the cluster
   ## ref: https://github.com/jtblin/kube2iam
