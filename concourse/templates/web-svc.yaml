@@ -15,7 +15,7 @@ spec:
       targetPort: {{ .Values.concourse.atcPort }}
   selector:
     app: {{ template "concourse.fullname" . }}
-    component: web
+    component: "web"
     release: {{ .Release.Name }}
 ---
 apiVersion: v1
@@ -38,5 +38,5 @@ spec:
       targetPort: tsa
   selector:
     app: {{ template "concourse.fullname" . }}
-    component: web
+    component: "web"
     release: {{ .Release.Name }}

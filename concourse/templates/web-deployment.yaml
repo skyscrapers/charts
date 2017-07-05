@@ -16,7 +16,7 @@ spec:
         app: {{ template "concourse.fullname" . }}
         component: "web"
         release: {{ .Release.Name }}
-      {{- if .Values.concourse.web.IAMRoleARN }}
+      {{- if .Values.concourse.IAMRoleARN }}
       annotations:
         iam.amazonaws.com/role: {{ .Values.concourse.IAMRoleARN }}
       {{- end}}
