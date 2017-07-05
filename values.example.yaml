@@ -35,3 +35,21 @@ controller:
 
 ExternalDNS:
   IAMRoleARN: <IAM_ROLE_ARN>
+
+concourse:
+  imageTag: '3.3.1'
+  externalURL: 'https://ci.kops.internal-test.skyscrape.rs'
+  atcDomainName: 'ci.kops.internal-test.skyscrape.rs'
+  tsaDomainName: 'tsa.ci.kops.internal-test.skyscrape.rs'
+  username: ''
+  password: ''
+  keysS3Bucket: 's3://concourse-keys-internal-test/'
+  githubAuthClientId: 'clientid'
+  githubAuthClientSecret: 'clientsecret'
+  githubAuthTeam: 'customer_org/ci,skyscrapers/skyscrapers'
+  IAMRoleARN: 'arn:aws:iam::0123456789:role/kube2iam/concourse'
+  postgresql:
+    host: 'concourse.cdejtlq8mkct.eu-west-1.rds.amazonaws.com'
+    database: 'concourse'
+    postgresUser: 'concourse'
+    postgresPassword: 'something'
