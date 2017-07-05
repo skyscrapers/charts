@@ -165,6 +165,16 @@ concourse:
   ##
   # genericOauthTokenUrl:
 
+  ## Domain name for the atc. Normally it should be the same as in externalURL.
+  ##
+  # atcDomainName:
+
+  ## IAM role ARN to assign to the concourse web deployment
+  ## This requires Kube2iam to be setup in the cluster
+  ## ref: https://github.com/jtblin/kube2iam
+  ##
+  # IAMRoleARN:
+
   ## Configuration values for Concourse Web components.
   ##
   web:
@@ -176,12 +186,6 @@ concourse:
     ##
     replicas: 1
 
-    ## IAM role ARN to assign to the concourse web deployment
-    ## This requires Kube2iam to be setup in the cluster
-    ## ref: https://github.com/jtblin/kube2iam
-    ##
-    # IAMRoleARN:
-
     ## Configure resource requests and limits.
     ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
     ##
@@ -189,15 +193,6 @@ concourse:
       requests:
         cpu: "100m"
         memory: "128Mi"
-
-    ## Service configuration.
-    ## ref: https://kubernetes.io/docs/user-guide/services/
-    ##
-    service: {}
-      ## For minikube, set this to ClusterIP, elsewhere use LoadBalancer.
-      ## ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
-      ##
-      # domainName:
 
   postgresql: {}
     ## Hostname of the postgresql server where the concourse database is hosted

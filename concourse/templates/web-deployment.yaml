@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "web.fullname" . }}
   labels:
-    app: {{ template "web.fullname" . }}
+    app: {{ template "concourse.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     component: web
     release: "{{ .Release.Name }}"
@@ -13,11 +13,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "web.fullname" . }}
+        app: {{ template "concourse.fullname" . }}
+        component: "web"
         release: {{ .Release.Name }}
       {{- if .Values.concourse.web.IAMRoleARN }}
       annotations:
-        iam.amazonaws.com/role: {{ .Values.concourse.web.IAMRoleARN }}
+        iam.amazonaws.com/role: {{ .Values.concourse.IAMRoleARN }}
       {{- end}}
     spec:
       containers:

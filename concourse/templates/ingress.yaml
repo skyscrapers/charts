@@ -1,11 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "web.fullname" . }}
+  name: {{ template "atc.fullname" . }}
   labels:
-    app: {{ template "web.fullname" . }}
+    app: {{ template "concourse.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    component: web
+    component: atc
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
     dns: route53
@@ -14,14 +14,14 @@ metadata:
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
-  - secretName: {{ template "web.fullname" . }}-lego-tls
+  - secretName: {{ template "atc.fullname" . }}-lego-tls
     hosts:
-    - {{.Values.concourse.web.service.domainName}}
+    - {{.Values.concourse.atcDomainName}}
   rules:
-  - host: {{.Values.concourse.web.service.domainName}}
+  - host: {{.Values.concourse.atcDomainName}}
     http:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "web.fullname" . }}
+          serviceName: {{ template "atc.fullname" . }}
           servicePort: 80
