@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-grafana
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/auth-signin: https://proxy.test.skyscrape.rs/oauth2/sign_in
+    ingress.kubernetes.io/auth-url: https://proxy.test.skyscrape.rs/oauth2/auth
+  labels:
+    app: prometheus-grafana
+  namespace: monitoring
+spec:
+  tls:
+  - secretName: prometheus-grafana-lego-tls
+    hosts:
+    - grafana.test.skyscrape.rs
+  rules:
+  - host: grafana.test.skyscrape.rs
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: 3000
