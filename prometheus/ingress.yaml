@@ -14,6 +14,7 @@ spec:
   - secretName: prometheus-grafana-lego-tls
     hosts:
     - grafana.test.skyscrape.rs
+    - prometheus.test.skyscrape.rs
   rules:
   - host: grafana.test.skyscrape.rs
     http:
@@ -22,3 +23,10 @@ spec:
         backend:
           serviceName: grafana
           servicePort: 3000
+  - host: prometheus.test.skyscrape.rs
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus-k8s
+          servicePort: 9090
