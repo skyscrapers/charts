@@ -790,3 +790,18 @@ kube-prometheus:
         endpoints:
         - port: web
           interval: 30s
+
+  grafana:
+    server:
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: true
+          ingress.kubernetes.io/whitelist-source-range: "34.251.91.190/32"
+        hosts:
+          - grafana.test.skyscrape.rs
+        tls:
+          - secretName: grafana-lego-tls
+            hosts:
+              - grafana.test.skyscrape.rs
