@@ -1,18 +1,15 @@
 dependencies:
-  - name: prometheus-operator
-    version: 0.0.6
-    repository: http://charts.opsgoodness.com
+  # - name: prometheus-operator
+  #   version: 0.0.6
+  #   repository: http://charts.opsgoodness.com
   - name: alertmanager
     version: 0.0.3
     repository: http://charts.opsgoodness.com
   - name: prometheus
     version: 0.0.3
     repository: http://charts.opsgoodness.com
-  - name: grafana
-    version: 0.4.1
   - name: kube-state-metrics
     version: 0.1.0
-
   - name: exporter-kube-api
     version: 0.1.0
     repository: https://charts.cloudposse.com/incubator
@@ -40,3 +37,5 @@ dependencies:
   - name: exporter-node
     version: 0.1.0
     repository: https://charts.cloudposse.com/incubator
+  - name: grafana
+    version: 0.4.1
