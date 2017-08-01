@@ -1,0 +1,17 @@
+name: cluster-monitoring
+version: 0.0.1
+description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+keywords:
+  - grafana
+  - kube-prometheus
+  - monitoring
+  - prometheus
+  - prometheus-operator
+home: https://github.com/coreos/prometheus-operator/
+sources:
+  - https://github.com/coreos/prometheus-operator/tree/master/helm
+  - https://github.com/skyscrapers/charts
+maintainers:
+  - name: skyscrapers
+    email: hello@skyscrapers.eu
+engine: gotpl
