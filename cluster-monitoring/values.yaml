@@ -1,56 +1,55 @@
-# Prometheus
-prometheus-operator:
-  sendAnalytics: false
+# prometheus-operator:
+#   sendAnalytics: false
 
 
-kube-prometheus:
-  alertmanager:
+# kube-prometheus:
+#   alertmanager:
     ## Alertmanager configuration directives
     ## Ref: https://prometheus.io/docs/alerting/configuration/
     ##
-    config:
-      global:
-        resolve_timeout: 5m
+    # config:
+    #   global:
+    #     resolve_timeout: 5m
 
-      receivers:
-        - name: webhook
-          webhook_configs:
-            - url: 'http://alertmanagerwh:30500/'
+    #   receivers:
+    #     - name: webhook
+    #       webhook_configs:
+    #         - url: 'http://alertmanagerwh:30500/'
 
-      route:
-        group_by: ['job']
-        group_interval: 5m
-        group_wait: 30s
-        receiver: webhook
-        repeat_interval: 12h
+    #   route:
+    #     group_by: ['job']
+    #     group_interval: 5m
+    #     group_wait: 30s
+    #     receiver: webhook
+    #     repeat_interval: 12h
 
     ## External URL at which Alertmanager will be reachable
     ##
-    externalUrl: ""
+    # externalUrl: ""
 
     ## Alertmanager container image
     ##
-    image:
-      repository: quay.io/prometheus/alertmanager
-      tag: v0.5.1
+    # image:
+    #   repository: quay.io/prometheus/alertmanager
+    #   tag: v0.5.1
 
-    ingress:
+    # ingress:
       ## If true, Alertmanager Ingress will be created
       ##
-      enabled: false
+      # enabled: false
 
       ## Annotations for Alertmanager Ingress
       ##
-      annotations: {}
+      # annotations: {}
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
 
-      fqdn: ""
+      # fqdn: ""
 
       ## TLS configuration for Alertmanager Ingress
       ## Secret must be manually created in the namespace
       ##
-      tls: []
+      # tls: []
         # - secretName: alertmanager-general-tls
         #   hosts:
         #     - alertmanager.example.com
@@ -58,70 +57,70 @@ kube-prometheus:
     ## Node labels for Alertmanager pod assignment
     ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector: {}
+    # nodeSelector: {}
 
     ## If true, the Operator won't process any Alertmanager configuration changes
     ##
-    paused: false
+    # paused: false
 
     ## Number of Alertmanager replicas desired
     ##
-    replicaCount: 1
+    # replicaCount: 1
 
     ## Resource limits & requests
     ## Ref: https://kubernetes.io/docs/user-guide/compute-resources/
     ##
-    resources: {}
+    # resources: {}
       # requests:
       #   memory: 400Mi
 
-    service:
+    # service:
       ## Annotations to be added to the Service
       ##
-      annotations: {}
+      # annotations: {}
 
       ## Cluster-internal IP address for Alertmanager Service
       ##
-      clusterIP: ""
+      # clusterIP: ""
 
       ## List of external IP addresses at which the Alertmanager Service will be available
       ##
-      externalIPs: []
+      # externalIPs: []
 
       ## External IP address to assign to Alertmanager Service
       ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
       ##
-      loadBalancerIP: ""
+      # loadBalancerIP: ""
 
       ## List of client IPs allowed to access Alertmanager Service
       ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
       ##
-      loadBalancerSourceRanges: []
+      # loadBalancerSourceRanges: []
 
       ## Port to expose on each node
       ## Only used if service.type is 'NodePort'
       ##
-      nodePort: 30903
+      # nodePort: 30903
 
       ## Service type
       ##
-      type: ClusterIP
+      # type: ClusterIP
 
     ## Alertmanager StorageSpec for persistent data
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/storage.md
     ##
-    storageSpec: {}
+    # storageSpec: {}
     #   class: default
     #   resources:
     #     requests:
     #       storage: 2Gi
     #   selector: {}
 
-  prometheus:
+  # prometheus:
     ## Alertmanagers to which alerts will be sent
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#alertmanagerendpoints
     ##
-    alertingEndpoints: []
+    # alertingEndpoints: []
     #   - name: ""
     #     namespace: ""
     #     port: 9093
@@ -131,37 +130,37 @@ kube-prometheus:
     ## Ignored if serviceMonitors are defined
     ## Ref: https://prometheus.io/docs/operating/configuration/
     ##
-    config:
-      specifiedInValues: true
-      value: {}
+    # config:
+    #   specifiedInValues: true
+    #   value: {}
 
     ## External URL at which Prometheus will be reachable
     ##
-    externalUrl: ""
+    # externalUrl: ""
 
     ## Prometheus container image
     ##
-    image:
-      repository: quay.io/prometheus/prometheus
-      tag: v1.5.2
+    # image:
+    #   repository: quay.io/prometheus/prometheus
+    #   tag: v1.5.2
 
-    ingress:
+    # ingress:
       ## If true, Prometheus Ingress will be created
       ##
-      enabled: false
+      # enabled: false
 
       ## Annotations for Prometheus Ingress
       ##
-      annotations: {}
+      # annotations: {}
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
 
-      fqdn: ""
+      # fqdn: ""
 
       ## TLS configuration for Prometheus Ingress
       ## Secret must be manually created in the namespace
       ##
-      tls: []
+      # tls: []
         # - secretName: prometheus-k8s-tls
         #   hosts:
         #     - prometheus.example.com
@@ -169,86 +168,86 @@ kube-prometheus:
     ## Node labels for Prometheus pod assignment
     ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector: {}
+    # nodeSelector: {}
 
     ## If true, the Operator won't process any Prometheus configuration changes
     ##
-    paused: false
+    # paused: false
 
     ## Number of Prometheus replicas desired
     ##
-    replicaCount: 1
+    # replicaCount: 1
 
     ## Resource limits & requests
     ## Ref: https://kubernetes.io/docs/user-guide/compute-resources/
     ##
-    resources: {}
+    # resources: {}
       # requests:
       #   memory: 400Mi
 
     ## How long to retain metrics
     ##
-    retention: 24h
+    # retention: 24h
 
     ## Prefix used to register routes, overriding externalUrl route.
     ## Useful for proxies that rewrite URLs.
     ##
-    routePrefix: /
+    # routePrefix: /
 
     ## Rules configmap selector
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md
     ##
-    rulesSelector: {}
+    # rulesSelector: {}
 
     ## Prometheus alerting & recording rules
     ## Ref: https://prometheus.io/docs/querying/rules/
     ## Ref: https://prometheus.io/docs/alerting/rules/
     ##
-    rules:
-      specifiedInValues: true
-      value: {}
+    # rules:
+    #   specifiedInValues: true
+    #   value: {}
 
-    service:
+    # service:
       ## Annotations to be added to the Service
       ##
-      annotations: {}
+      # annotations: {}
 
       ## Cluster-internal IP address for Prometheus Service
       ##
-      clusterIP: ""
+      # clusterIP: ""
 
       ## List of external IP addresses at which the Prometheus Service will be available
       ##
-      externalIPs: []
+      # externalIPs: []
 
       ## External IP address to assign to Prometheus Service
       ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
       ##
-      loadBalancerIP: ""
+      # loadBalancerIP: ""
 
       ## List of client IPs allowed to access Prometheus Service
       ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
       ##
-      loadBalancerSourceRanges: []
+      # loadBalancerSourceRanges: []
 
       ## Port to expose on each node
       ## Only used if service.type is 'NodePort'
       ##
-      nodePort: 30900
+      # nodePort: 30900
 
       ## Service type
       ##
-      type: ClusterIP
+      # type: ClusterIP
 
     ## Service monitors selector
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/design.md
     ##
-    serviceMonitorsSelector: {}
+    # serviceMonitorsSelector: {}
 
     ## ServiceMonitor TPRs to create & be scraped by the Prometheus instance.
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/service-monitor.md
     ##
-    serviceMonitors: []
+    # serviceMonitors: []
       ## Name of the ServiceMonitor to create
       ##
       # - name: ""
@@ -327,7 +326,7 @@ kube-prometheus:
     ## Prometheus StorageSpec for persistent data
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/storage.md
     ##
-    storageSpec: {}
+    # storageSpec: {}
     #   class: default
     #   resources:
     #     requests:
@@ -335,54 +334,54 @@ kube-prometheus:
     #   selector: {}
 
 
-grafana:
-  nodeSelector: {}
+# grafana:
+#   nodeSelector: {}
 
-  annotations: {}
+#   annotations: {}
 
-  adminUser: "admin"
-  adminPassword: "admin"
+#   adminUser: "admin"
+#   adminPassword: "admin"
 
-  service:
+#   service:
 
     ## Annotations to be added to the Service
     ##
-    annotations: {}
+    # annotations: {}
 
     ## Cluster-internal IP address for Alertmanager Service
     ##
-    clusterIP: ""
+    # clusterIP: ""
 
     ## List of external IP addresses at which the Alertmanager Service will be available
     ##
-    externalIPs: []
+    # externalIPs: []
 
     ## External IP address to assign to Alertmanager Service
     ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
     ##
-    loadBalancerIP: ""
+    # loadBalancerIP: ""
 
     ## List of client IPs allowed to access Alertmanager Service
     ## Only used if service.type is 'LoadBalancer' and supported by cloud provider
     ##
-    loadBalancerSourceRanges: []
+    # loadBalancerSourceRanges: []
 
     ## Port to expose on each node
     ## Only used if service.type is 'NodePort'
     ##
-    nodePort: 30902
+    # nodePort: 30902
 
     ## Service type
     ##
-    type: ClusterIP
+    # type: ClusterIP
 
   ## Grafana Docker image
   ##
-  image:
-    repository: grafana/grafana
-    tag: 4.4.1
+  # image:
+  #   repository: grafana/grafana
+  #   tag: 4.4.1
 
-  storageSpec: {}
+  # storageSpec: {}
   #   class: default
   #   accessMode:
   #   resources:
@@ -390,33 +389,33 @@ grafana:
   #       storage: 2Gi
   #   selector: {}
 
-  resources: {}
+  # resources: {}
     # requests:
     #   memory: 400Mi
 
-  ingress:
+  # ingress:
     ## If true, Grafana Ingress will be created
     ##
-    enabled: false
+    # enabled: false
 
     ## Annotations for Alertmanager Ingress
     ##
-    annotations: {}
+    # annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
-    fqdn: ""
+    # fqdn: ""
 
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
+    # tls: []
       # - secretName: alertmanager-general-tls
       #   hosts:
       #     - alertmanager.example.com
 
 
   # Set datasource in beginning
-  dataSource: {}
+  # dataSource: {}
 
   #serverDashboardFiles: {}
