@@ -53,3 +53,195 @@ concourse:
     database: 'concourse'
     postgresUser: 'concourse'
     postgresPassword: 'something'
+
+# Prometheus
+prometheus-operator:
+  image:
+    tag: v0.11.1
+  sendAnalytics: false
+
+kube-prometheus:
+  alertmanager:
+    image:
+      tag: v0.8.0
+    replicaCount: 3
+    config:
+      global:
+        resolve_timeout: 5m
+      route:
+        group_by: ['job']
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 12h
+        receiver: 'opsgenie'
+        routes:
+        - match:
+            alertname: DeadMansSwitch
+          receiver: 'opsgenie'
+      receivers:
+        - name: opsgenie
+          opsgenie_configs:
+            - api_key: 'api_key'
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+        ingress.kubernetes.io/whitelist-source-range: "1.2.3.4/32"
+      fqdn: alertmanager.example.com
+      tls:
+        - secretName: alertmanager-lego-tls
+          hosts:
+            - alertmanager.example.com
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          class: gp2
+          resources:
+            requests:
+              storage: 20Gi
+
+  prometheus:
+    image:
+      tag: v1.7.1
+    replicaCount: 2
+    retention: 336h
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+        ingress.kubernetes.io/whitelist-source-range: "1.2.3.4/32"
+      fqdn: prometheus.example.com
+      tls:
+        - secretName: prometheus-lego-tls
+          hosts:
+            - prometheus.example.com
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          class: gp2
+          resources:
+            requests:
+              storage: 20Gi
+    serviceMonitorsSelector:
+      matchExpressions:
+        - key: prometheus
+          operator: Exists
+    serviceMonitors:
+      - name: alertmanager
+        serviceMonitorSelectorLabels:
+          prometheus: k8s
+        selector:
+          matchExpressions:
+            - key: alertmanager
+              operator: Exists
+        namespaceSelector:
+          matchNames:
+            - monitoring
+        endpoints:
+          - port: http
+            interval: 30s
+      - name: prometheus
+        serviceMonitorSelectorLabels:
+          prometheus: k8s
+        selector:
+          matchLabels:
+            app: prometheus
+        namespaceSelector:
+          matchNames:
+            - monitoring
+        endpoints:
+          - port: http
+            interval: 30s
+    rules:
+      value:
+        general.rules: |+
+          ### Up Alerting ###
+          Alert TargetDown
+            IF 100 * (count by(job) (up == 0) / count by(job) (up)) > 10
+            FOR 10m
+            LABELS {
+              severity = "warning"
+            }
+            ANNOTATIONS {
+              summary = "Targets are down",
+              description = "{{  }}% or more of {{ .job }} targets are down."
+            }
+          ### Dead man's switch ###
+          ALERT DeadMansSwitch
+            IF vector(1)
+            LABELS {
+              severity = "none",
+            }
+            ANNOTATIONS {
+              summary = "Alerting DeadMansSwitch",
+              description = "This is a DeadMansSwitch meant to ensure that the entire Alerting pipeline is functional.",
+            }
+        alertmanager.rules: |+
+          ALERT AlertmanagerConfigInconsistent
+            IF   count_values by (service) ("config_hash", alertmanager_config_hash)
+              / on(service) group_left
+                label_replace(prometheus_operator_alertmanager_spec_replicas, "service", "alertmanager-", "alertmanager", "(.*)") != 1
+            FOR 5m
+            LABELS {
+              severity = "critical"
+            }
+            ANNOTATIONS {
+              summary = "Alertmanager configurations are inconsistent",
+              description = "The configuration of the instances of the Alertmanager cluster  are out of sync."
+            }
+          ALERT AlertmanagerDownOrMissing
+            IF   label_replace(prometheus_operator_alertmanager_spec_replicas, "job", "alertmanager-", "alertmanager", "(.*)")
+              / on(job) group_right
+                sum by(job) (up) != 1
+            FOR 5m
+            LABELS {
+              severity = "warning"
+            }
+            ANNOTATIONS {
+              summary = "Alertmanager down or not discovered",
+              description = "An unexpected number of Alertmanagers are scraped or Alertmanagers disappeared from discovery."
+            }
+          ALERT FailedReload
+            IF alertmanager_config_last_reload_successful == 0
+            FOR 10m
+            LABELS {
+              severity = "warning"
+            }
+            ANNOTATIONS {
+              summary = "Alertmanager configuration reload has failed",
+              description = "Reloading Alertmanager's configuration has failed for {{ .namespace }}/{{ .pod}}."
+            }
+        prometheus.rules: |+
+          ALERT FailedReload
+            IF prometheus_config_last_reload_successful == 0
+            FOR 10m
+            LABELS {
+              severity = "warning"
+            }
+            ANNOTATIONS {
+              summary = "Prometheus configuration reload has failed",
+              description = "Reloading Prometheus' configuration has failed for {{ .namespace }}/{{ .pod}}."
+            }
+
+grafana:
+  adminUser: "admin"
+  adminPassword: "password"
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+      ingress.kubernetes.io/whitelist-source-range: "1.2.3.4/32"
+    fqdn: grafana.example.com
+    tls:
+      - secretName: grafana-lego-tls
+        hosts:
+          - grafana.example.com
+  storageSpec:
+    accessMode: ReadWriteOnce
+    class: gp2
+    resources:
+      requests:
+        storage: 10Gi
