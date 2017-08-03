@@ -14,7 +14,7 @@ helm install skyscrapers/kubesignin --values values.yaml
 helm install skyscrapers/nginx-ingress --values values.yaml
 helm install skyscrapers/external-dns --values values.yaml
 # TODO helm install skyscrapers/concourse --values values.yaml
-helm install skyscrapers/cluster-monitoring --values values.yaml
+helm install skyscrapers/cluster-monitoring --values values.yaml --namespace infrastructure --name k8s-monitor
 ```
 
 ## Helm charts index
