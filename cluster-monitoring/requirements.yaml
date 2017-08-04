@@ -1,0 +1,10 @@
+dependencies:
+  - name: prometheus-operator
+    version: 0.0.6
+    repository: http://charts.opsgoodness.com
+  - name: kube-prometheus
+    version: 0.0.2
+    repository: http://charts.opsgoodness.com
+  - name: grafana
+    version: 0.0.2
+    repository: http://charts.opsgoodness.com
