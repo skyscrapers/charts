@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   concourse:
-  - created: 2017-08-21T17:16:11.690920818+02:00
+  - created: 2017-08-21T17:23:00.501478249+02:00
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: 7981ad111cf5b0c81dc944a807e075b25e69d5e2e064107087477bae0ca76381
@@ -25,6 +25,25 @@ entries:
     version: 0.0.1
   kubesignin:
   - apiVersion: v1
+    created: 2017-08-21T17:23:00.502006929+02:00
+    description: A Kubesignin chart for Kubernetes
+    digest: e4d2b5d649a299f5ebd7f7d2b6a7a57371a20ad9adc285daea6b0a099bddc630
+    engine: gotpl
+    home: https://github.com/skyscrapers/kubesignin.git
+    keywords:
+    - skyscrapers
+    - kubesignin
+    - dex
+    - auth
+    - oidc
+    maintainers:
+    - email: iuri@skyscrapers.eu
+      name: iuri aranda
+    name: kubesignin
+    urls:
+    - https://skyscrapers.github.io/charts/kubesignin-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
     created: 2017-08-21T17:16:11.691425808+02:00
     description: A Kubesignin chart for Kubernetes
     digest: 095d96ee808cd38aac7296e08e81b789806788b1e7af42575a9c3bae71399822
@@ -44,7 +63,7 @@ entries:
     - https://skyscrapers.github.io/charts/kubesignin-0.1.0.tgz
     version: 0.1.0
   nginx-ingress:
-  - created: 2017-08-21T17:16:11.691951182+02:00
+  - created: 2017-08-21T17:23:00.502599172+02:00
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: 6313532e62ee2bfa84dd89512b83819226244ca381f947ce17a3939aed25f2df
@@ -66,4 +85,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/nginx-ingress-0.4.2.tgz
     version: 0.4.2
-generated: 2017-08-21T17:16:11.689380511+02:00
+generated: 2017-08-21T17:23:00.500084913+02:00
