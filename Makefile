@@ -1,21 +1,15 @@
 CHARTS := $(shell find . -path '*/Chart.yaml' | tr '\n' ' ' | sed -E 's:\./|/Chart\.yaml::g')
 
-.PHONY: all prep package index post
+.PHONY: all prep package index
 
-all: prep package index post
+all: prep package index
 
 prep:
-	@mkdir -p charts
-	@git checkout -B gh-pages
+	mkdir -p charts
+	wget -q https://skyscrapers.github.io/charts/index.yaml -O old-index.yaml
 
 package:
 	$(foreach chart,$(CHARTS),(helm package $(chart) -d ./charts --save=false) &&) :
 
 index:
-	@helm repo index ./charts --url https://skyscrapers.github.io/charts/charts
-	@mv ./charts/index.yaml index.yaml
-
-post:
-	@git add --force charts index.yaml
-	@git commit -m "Update Charts"
-	echo "gh-pages branch is ready to push. git push --force origin gh-pages"
+	@helm repo index ./charts --url https://skyscrapers.github.io/charts --merge old-index.yaml
