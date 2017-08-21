@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   concourse:
-  - created: 2017-08-21T17:23:00.501478249+02:00
+  - created: 2017-08-21T17:26:54.392263151+02:00
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: 7981ad111cf5b0c81dc944a807e075b25e69d5e2e064107087477bae0ca76381
@@ -23,11 +23,76 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
+  external-dns:
+  - created: 2017-08-21T17:26:54.392509385+02:00
+    description: Configure external DNS servers (AWS Route53, Google CloudDNS and
+      others) for Kubernetes Ingresses and Services
+    digest: 13f0631cc9e350045e3c6d1feeeee403dc680993739ba7a4177e07610a2d116b
+    engine: gotpl
+    home: https://github.com/kubernetes-incubator/external-dns
+    keywords:
+    - dns
+    - external-dns
+    - route53
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-incubator/external-dns
+    - https://github.com/kubernetes/charts
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/external-dns-0.0.1.tgz
+    version: 0.0.1
+  kube-lego:
+  - apiVersion: v1
+    created: 2017-08-21T17:26:54.392798676+02:00
+    description: Automatically requests certificates from Let's Encrypt
+    digest: d5d74f84eb2575aff308d1f28c9cc5233f399a30c1198b1d12f0916314ac175d
+    engine: gotpl
+    keywords:
+    - kube-lego
+    - letsencrypt
+    maintainers:
+    - email: jack.zampolin@gmail.com
+      name: Jack Zampolin
+    - email: mgoodness@gmail.com
+      name: Michael Goodness
+    name: kube-lego
+    sources:
+    - https://github.com/jetstack/kube-lego/tree/master/examples/nginx
+    urls:
+    - https://skyscrapers.github.io/charts/kube-lego-0.1.10.tgz
+    version: 0.1.10
+  kube2iam:
+  - created: 2017-08-21T17:26:54.393087599+02:00
+    description: Provide IAM credentials to pods based on annotations.
+    digest: d20f5f3b58880f53ea4b8c690c0dfe3aa74479619f354dd953a036dc55dc9661
+    engine: gotpl
+    keywords:
+    - kube2iam
+    - aws
+    - iam
+    - security
+    maintainers:
+    - email: jm.carp@gmail.com
+      name: Josh Carp
+    - email: michael.haselton@gmail.com
+      name: Michael Haselton
+    - email: mgoodness@gmail.com
+      name: Michael Goodness
+    name: kube2iam
+    sources:
+    - https://github.com/jtblin/kube2iam
+    urls:
+    - https://skyscrapers.github.io/charts/kube2iam-0.2.1.tgz
+    version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2017-08-21T17:23:00.502006929+02:00
+    created: 2017-08-21T17:26:54.393540522+02:00
     description: A Kubesignin chart for Kubernetes
-    digest: e4d2b5d649a299f5ebd7f7d2b6a7a57371a20ad9adc285daea6b0a099bddc630
+    digest: 636d2b2613a3f28cdf75f69f19fe81bb91cb9095798825e4844f8c77bdd174f8
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -63,6 +128,28 @@ entries:
     - https://skyscrapers.github.io/charts/kubesignin-0.1.0.tgz
     version: 0.1.0
   nginx-ingress:
+  - created: 2017-08-21T17:26:54.394095247+02:00
+    description: An nginx Ingress controller that uses ConfigMap to store the nginx
+      configuration.
+    digest: d18e6dab765db7768f669d202da81e1575d355b1f2161e5d66d12a7f086f76c7
+    engine: gotpl
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    maintainers:
+    - email: jack.zampolin@gmail.com
+      name: Jack Zampolin
+    - email: mgoodness@gmail.com
+      name: Michael Goodness
+    - email: chance.zibolski@coreos.com
+      name: Chance Zibolski
+    name: nginx-ingress
+    sources:
+    - https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
+    urls:
+    - https://skyscrapers.github.io/charts/nginx-ingress-0.4.3.tgz
+    version: 0.4.3
   - created: 2017-08-21T17:23:00.502599172+02:00
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
@@ -85,4 +172,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/nginx-ingress-0.4.2.tgz
     version: 0.4.2
-generated: 2017-08-21T17:23:00.500084913+02:00
+generated: 2017-08-21T17:26:54.391707146+02:00
