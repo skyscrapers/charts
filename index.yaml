@@ -213,4 +213,20 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/nginx-ingress-0.4.2.tgz
     version: 0.4.2
-generated: 2017-08-21T17:35:44.42197431+02:00
+  prometheus-operator:
+  - apiVersion: v1
+    created: 2017-08-21T18:27:10.230925437+02:00
+    description: Provides easy monitoring definitions for Kubernetes services, and
+      deployment and management of Prometheus instances.
+    digest: e580726355b9b78f94a81b6077eee194e5ed6c1b88a98fab02b5eb2878134ef5
+    engine: gotpl
+    maintainers:
+    - email: mgoodness@gmail.com
+      name: Michael Goodness
+    name: prometheus-operator
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    urls:
+    - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
+    version: 0.0.6-skyscrapers.1
+generated: 2017-08-21T18:27:10.229620781+02:00
