@@ -49,7 +49,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 $ helm install skyscrapers/external-dns --name my-release \
   --set=ExternalDNS.IAMRoleARN=arn:aws:iam::0123456789:role/external-dns-role \
-  --set=ExternalDNS.TXTOwnerId=production
+  --set=ExternalDNS.TXTOwnerId=external-dns-production
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
