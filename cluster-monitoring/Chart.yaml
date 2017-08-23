@@ -6,7 +6,6 @@ keywords:
   - kube-prometheus
   - monitoring
   - prometheus
-  - prometheus-operator
 home: https://github.com/coreos/prometheus-operator/
 sources:
   - https://github.com/coreos/prometheus-operator/tree/master/helm
