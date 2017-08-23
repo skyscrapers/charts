@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2017-08-23T09:04:13.741321126Z
+  - created: 2017-08-23T09:17:31.732834824Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 35d5c0410b683ce89ec739e495e0a954b4e1da6f88b688a7fd110c4353bb42b9
+    digest: 05cddf5d27284baecf06ec82230c286934fca0d114f2f8c7f078ef1685c24b1b
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -43,7 +43,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2017-08-23T09:04:13.742106273Z
+  - created: 2017-08-23T09:17:31.73385589Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -66,7 +66,7 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   external-dns:
-  - created: 2017-08-23T09:04:13.742387493Z
+  - created: 2017-08-23T09:17:31.734430188Z
     description: Configure external DNS servers (AWS Route53, Google CloudDNS and
       others) for Kubernetes Ingresses and Services
     digest: 13f0631cc9e350045e3c6d1feeeee403dc680993739ba7a4177e07610a2d116b
@@ -89,7 +89,7 @@ entries:
     version: 0.0.1
   kube-lego:
   - apiVersion: v1
-    created: 2017-08-23T09:04:13.742726808Z
+    created: 2017-08-23T09:17:31.735205438Z
     description: Automatically requests certificates from Let's Encrypt
     digest: d5d74f84eb2575aff308d1f28c9cc5233f399a30c1198b1d12f0916314ac175d
     engine: gotpl
@@ -108,7 +108,7 @@ entries:
     - https://skyscrapers.github.io/charts/kube-lego-0.1.10.tgz
     version: 0.1.10
   kube2iam:
-  - created: 2017-08-23T09:04:13.743118174Z
+  - created: 2017-08-23T09:17:31.735831502Z
     description: Provide IAM credentials to pods based on annotations.
     digest: d20f5f3b58880f53ea4b8c690c0dfe3aa74479619f354dd953a036dc55dc9661
     engine: gotpl
@@ -132,7 +132,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2017-08-23T09:04:13.74368093Z
+    created: 2017-08-23T09:17:31.736391512Z
     description: A Kubesignin chart for Kubernetes
     digest: e9ab96b4c9ce35ec300d3c92bfeb52f2b1549446d8327beacc487142f8079dcf
     engine: gotpl
@@ -189,7 +189,7 @@ entries:
     - https://skyscrapers.github.io/charts/kubesignin-0.1.0.tgz
     version: 0.1.0
   nginx-ingress:
-  - created: 2017-08-23T09:04:13.74476748Z
+  - created: 2017-08-23T09:17:31.737000128Z
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: 7f43bb75bee4bca13920db15786587991039880e69d15cb1bfbe405fecc846f9
@@ -249,4 +249,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2017-08-23T09:04:13.733268737Z
+generated: 2017-08-23T09:17:31.725425222Z
