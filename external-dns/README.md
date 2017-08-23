@@ -42,12 +42,14 @@ The following tables lists the configurable parameters of the external-dns chart
 Parameter | Description | Default
 --- | --- | ---
 `ExternalDNS.IAMRoleARN` | The IAM Role ARN to use to manage Route53 | (required)
+`ExternalDNS.TXTOwnerId` | Unique identier to specify which records can be managed | (required)
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 $ helm install skyscrapers/external-dns --name my-release \
-  --set=ExternalDNS.IAMRoleARN=arn:aws:iam::0123456789:role/external-dns-role
+  --set=ExternalDNS.IAMRoleARN=arn:aws:iam::0123456789:role/external-dns-role \
+  --set=ExternalDNS.TXTOwnerId=production
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
