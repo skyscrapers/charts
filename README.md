@@ -29,5 +29,5 @@ helm upgrade --install external-dns skyscrapers/external-dns --values helm-value
 helm upgrade --install kubesignin skyscrapers/kubesignin --values helm-values.yaml
 # TODO helm upgrade --install concourse-web skyscrapers/concourse --values values.yaml
 helm upgrade --install prometheus-operator https://skyscrapers.github.io/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz --namespace infrastructure --values helm-values.yaml
-helm upgrade --install cluster-monitoring skyscrapers/cluster-monitoring --values values.yaml --namespace infrastructure --name k8s-monitor
+helm upgrade --install k8s-monitor skyscrapers/cluster-monitoring --namespace infrastructure --values helm-values.yaml 
 ```
