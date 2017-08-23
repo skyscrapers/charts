@@ -2,6 +2,22 @@
 
 Our Kubernetes applications.
 
+## Helm Setup
+
+First we initialize helm:
+```
+helm init
+```
+
+Then we setup the proper RBAC config for helm on the Kubernetes cluster:
+```
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```
+
+This needs to be done once for every cluster we set up.
+
 ## Helm charts index
 
 You can add this charts repo by:
