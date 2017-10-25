@@ -38,12 +38,12 @@ First you need to generate a `values.yaml` using the
 module, then you can just start installing:
 
 ```console
-helm upgrade --install kube2iam stable/kube2iam --namespace infrastructure --values helm-values.yaml
-helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --values helm-values.yaml
+helm upgrade --install kube2iam stable/kube2iam --namespace infrastructure --values helm-values.yaml --values helm-values-kube2iam.yaml
+helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --values helm-values.yaml --values helm-values-kube-lego.yaml
 helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values.yaml
 helm upgrade --install external-dns stable/external-dns --namespace infrastructure --values helm-values.yaml --values helm-values-external-dns.yaml
 helm upgrade --install kubesignin skyscrapers/kubesignin --namespace infrastructure --values helm-values.yaml
 # TODO helm upgrade --install concourse-web skyscrapers/concourse --values values.yaml
-helm upgrade --install prometheus-operator opsgoodness/prometheus-operator --namespace infrastructure --values helm-values.yaml --values helm-values-operator.yaml
+helm upgrade --install prometheus-operator opsgoodness/prometheus-operator --namespace infrastructure --values helm-values.yaml --values helm-values-prometheus-operator.yaml
 helm upgrade --install k8s-monitor skyscrapers/cluster-monitoring --namespace infrastructure --values helm-values.yaml
 ```
