@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "opsgenie-heartbeat-proxy.fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  opsgenie_api_key: {{ .Values.opsgenie-heartbeat-proxy.opsgenie_api_key | quote }}
+  heartbeat_name: {{ .Values.opsgenie_api_key.heartbeat_name | quote }}

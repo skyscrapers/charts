@@ -1,0 +1,7 @@
+opsgenie-heartbeat-proxy:
+    image: "traumfewo/opsgenie-heartbeat-proxy"
+    imageTag: "v0.0.2"
+    port: "8080"
+    replicas: 3
+    #opsgenie_api_key:
+    #heartbeat_name:

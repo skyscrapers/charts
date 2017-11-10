@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "opsgenie-heartbeat-proxy.fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: opsgenie-heartbeat-proxy
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.opsgenie-heartbeat-proxy.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        component: "opsgenie-heartbeat-proxy"
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "opsgenie-heartbeat-proxy.fullname" . }}
+          image: "{{ .Values.opsgenie-heartbeat-proxy.image }}:{{ .Values.opsgenie-heartbeat-proxy.imageTag }}"
+          imagePullPolicy: {{ default "" .Values.opsgenie-heartbeat-proxy.imagePullPolicy | quote }}
+          env:
+            - name: OPSGENIE_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "opsgenie-heartbeat-proxy.fullname" . }}
+                  key: opsgenie_api_key
+            - name: HEARTBEAT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "opsgenie-heartbeat-proxy.fullname" . }}
+                  key: heartbeat_name
+          ports:
+            - name: opsgenie-heartbeat-proxy
+              containerPort: {{ .Values.opsgenie-heartbeat-proxy.port }}
+          livenessProbe:
+            tcpSocket:
+              port: opsgenie-heartbeat-proxy
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: opsgenie-heartbeat-proxy
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          resources:
+{{ toYaml .Values.opsgenie-heartbeat-proxy.resources | indent 12 }}
+      imagePullSecrets:
+        - name: regsecret
