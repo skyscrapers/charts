@@ -14,7 +14,7 @@ Installs the following components for a complete k8s cluster monitoring setup:
 -   [prometheus-operator](https://github.com/coreos/prometheus-operatortree/master/helm/prometheus-operator)
 -   [kube-prometheus](https://github.com/coreos/prometheus-operator/tree/master/helm/kube-prometheus), which includes a Prometheus & Alertmanager TPR with some exporters for k8s cluster monitoring.
 -   [grafana](https://github.com/coreos/prometheus-operator/tree/master/helm/grafana)
--   opsgenie-heartbeat-proxy
+-   [opsgenie-heartbeat-proxy](https://github.com/traum-ferienwohnungen/opsgenie-heartbeat-proxy)
 
 ## Prerequisites
   - Kubernetes 1.6+
@@ -55,9 +55,9 @@ Parameter | Description | Default
 `opsgenieHeartbeatProxy.port` | Port to run container on | `8080`
 `opsgenieHeartbeatProxy.replicas` | Amount of replicas| `3`
 `opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
-`opsgenieHeartbeatProxy.opsgenie_api_key` | Opsgenie API Key | ``
-`opsgenieHeartbeatProxy.heartbeat_name` | Opsgenie Heartbeat name | ``
-`opsgenieHeartbeatProxy.resources` | Pod resource requests & limits | ``
+`opsgenieHeartbeatProxy.opsgenie_api_key` | Opsgenie API Key | `""`
+`opsgenieHeartbeatProxy.heartbeat_name` | Opsgenie Heartbeat name | `""`
+`opsgenieHeartbeatProxy.resources` | Pod resource requests & limits | `CPU: 128m, Memory: 128Mi`
 
 Upstream configuration can be found here:
 -   [prometheus-operator configuration](https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus-operator/README.md#configuration)
