@@ -8,5 +8,4 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  opsgenie_api_key: {{ .Values.opsgenieHeartbeatProxy.opsgenie_api_key | quote }}
   heartbeat_name: {{ .Values.opsgenieHeartbeatProxy.heartbeat_name | quote }}
