@@ -14,6 +14,7 @@ Installs the following components for a complete k8s cluster monitoring setup:
 -   [prometheus-operator](https://github.com/coreos/prometheus-operatortree/master/helm/prometheus-operator)
 -   [kube-prometheus](https://github.com/coreos/prometheus-operator/tree/master/helm/kube-prometheus), which includes a Prometheus & Alertmanager TPR with some exporters for k8s cluster monitoring.
 -   [grafana](https://github.com/coreos/prometheus-operator/tree/master/helm/grafana)
+-   opsgenie-heartbeat-proxy
 
 ## Prerequisites
   - Kubernetes 1.6+
@@ -42,7 +43,23 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-As this chart itself doesn't provide any configurable parameters on it's own (yet), everything is taken over from upstream:
+This charts only has configurable parameters for opsgenie-heartbeat-proxy, everything else is taken from upstream:
+
+The following tables lists the configurable parameters of the prometheus-operator chart and their default values.
+
+Parameter | Description | Default
+--- | --- | ---
+`opsgenieHeartbeatProxy.image` | Image | `traumfewo/opsgenie-heartbeat-proxy`
+`opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
+`opsgenieHeartbeatProxy.imagePullPolicy` | Image pull policy | `IfNotPresent`
+`opsgenieHeartbeatProxy.port` | Port to run container on | `8080`
+`opsgenieHeartbeatProxy.replicas` | Amount of replicas| `3`
+`opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
+`opsgenieHeartbeatProxy.opsgenie_api_key` | Opsgenie API Key | ``
+`opsgenieHeartbeatProxy.heartbeat_name` | Opsgenie Heartbeat name | ``
+`opsgenieHeartbeatProxy.resources` | Pod resource requests & limits | ``
+
+Upstream configuration can be found here:
 -   [prometheus-operator configuration](https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus-operator/README.md#configuration)
 -   [prometheus configuration](https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus/README.md#configuration)
 -   [alertmanager configuration](https://github.com/coreos/prometheus-operator/blob/master/helm/alertmanager/README.md#configuration)

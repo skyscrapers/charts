@@ -3,5 +3,9 @@ opsgenieHeartbeatProxy:
     imageTag: "v0.0.2"
     port: "8080"
     replicas: 3
+    resources:
+        requests:
+            cpu: "128m"
+            memory: "128Mi"
     #opsgenie_api_key:
     #heartbeat_name:
