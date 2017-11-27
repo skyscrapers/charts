@@ -12,7 +12,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: {{ .Values.opsgenie-heartbeat-proxy.port }}
+      targetPort: {{ index .Values "opsgenie-heartbeat-proxy" "port" }}
   selector:
     app: {{ template "fullname" . }}
     component: "opsgenie-heartbeat-proxy"

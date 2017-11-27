@@ -16,6 +16,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "opsgenie-heartbeat-proxy.fullname" -}}
-{{- $name := default "opsgenie-heartbeat-proxy" .Values.opsgenie-heartbeat-proxy.nameOverride -}}
+{{- $name := default "opsgenie-heartbeat-proxy" index .Values "opsgenie-heartbeat-proxy" "nameOverride" -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
