@@ -1,4 +1,4 @@
-opsgenie-heartbeat-proxy:
+opsgenieHeartbeatProxy:
     image: "traumfewo/opsgenie-heartbeat-proxy"
     imageTag: "v0.0.2"
     port: "8080"
