@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: opsgenie-heartbeat-proxy
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: {{ .Values.opsgenieHeartbeatProxy.port }}
+  selector:
+    app: {{ template "fullname" . }}
+    component: "opsgenie-heartbeat-proxy"
+    release: {{ .Release.Name }}
