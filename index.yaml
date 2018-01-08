@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2018-01-08T16:13:59.614991947Z
+  - created: 2018-01-08T16:47:09.212442492Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: d271e6707a8bf91a35d27a90321076810dc5923973ad8ff8eecbedf63589ea0a
+    digest: 71c965dbba80276cfa126e81a79c2991b05e7b561efb3a9396060071d196259c
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -63,7 +63,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-01-08T16:13:59.615486208Z
+  - created: 2018-01-08T16:47:09.212926221Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -151,6 +151,25 @@ entries:
     - https://skyscrapers.github.io/charts/kube2iam-0.2.1.tgz
     version: 0.2.1
   kubesignin:
+  - apiVersion: v1
+    created: 2018-01-08T16:47:09.213535517Z
+    description: A Kubesignin chart for Kubernetes
+    digest: 442aac850d385f6a4d984c7f3b4a6c46fc568b71c01ed4e4d26cacb57db091eb
+    engine: gotpl
+    home: https://github.com/skyscrapers/kubesignin.git
+    keywords:
+    - skyscrapers
+    - kubesignin
+    - dex
+    - auth
+    - oidc
+    maintainers:
+    - email: iuri@skyscrapers.eu
+      name: iuri aranda
+    name: kubesignin
+    urls:
+    - https://skyscrapers.github.io/charts/kubesignin-0.2.3.tgz
+    version: 0.2.3
   - apiVersion: v1
     created: 2018-01-08T16:13:59.616119925Z
     description: A Kubesignin chart for Kubernetes
@@ -288,4 +307,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-01-08T16:13:59.611243814Z
+generated: 2018-01-08T16:47:09.208843948Z
