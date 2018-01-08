@@ -1,6 +1,6 @@
 Dex:
   Image: "quay.io/coreos/dex"
-  ImageTag: "v2.4.1"
+  ImageTag: "v2.6.1"
   ImagePullPolicy: "Always"
 
   # # Should be accessible from user browser.
@@ -17,11 +17,17 @@ Dex:
   # # Must set your own credentials.
   # # Use base64 encoded value.
   Connectors:
-    GitHub: []
-    # - Name: "GitHub"
-    #   ClientId: "MjBiMWJjMjlmYTRjYzAzYWE0ODY="
-    #   ClientSecret: "N2NlODQ0NTUzNWE0MTE5MTU1NjNiZmNhZTVjZTc2NTcyZmJmMjc0Zg=="
-    #   Org: skyscrapers
+    GitHub:
+    - Name: "GitHub"
+      ClientId: "base64clientID"
+      ClientSecret: "base64clientSecret=="
+      Orgs:
+      - name: myorg
+        teams:
+          - myteam
+      - name: otherorg
+        teams:
+          - someteam
 
   # StaticPassword:
   #   Email: "admin@example.com"
