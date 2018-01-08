@@ -74,8 +74,17 @@ data:
         clientID: $GITHUB{{ $index }}_CLIENT_ID
         clientSecret: $GITHUB{{ $index }}_CLIENT_SECRET
         redirectURI: {{$.Values.Dex.Issuer}}/callback
-{{- if $element.Org }}
-        org: {{$element.Org}}
+{{- if $element.Orgs }}
+        orgs:
+{{- range $element.Orgs }}
+        - name: {{ .name }}
+{{- if .teams }}
+          teams:
+          {{- range .teams }}
+          - {{ . | quote }}
+          {{- end }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
