@@ -1,7 +1,7 @@
 apiVersion: v1
 description: A Kubesignin chart for Kubernetes
 name: kubesignin
-version: 0.1.2
+version: 0.2.2
 keywords: [skyscrapers, kubesignin, dex, auth, oidc]
 home: https://github.com/skyscrapers/kubesignin.git
 maintainers:
