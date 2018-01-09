@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2018-01-09T13:11:34.84685864Z
+  - created: 2018-01-09T16:05:03.880375684Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: a21ba7f8c40a21f0646e7dd9da91263c3c85c49f896c575ddc5b569d73486a30
+    digest: e9444ae8d544e8f68c20f4f3643d4a7d9144da903e63979f89a19697947019a7
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -83,7 +83,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-01-09T13:11:34.847375068Z
+  - created: 2018-01-09T16:05:03.880955494Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -172,7 +172,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-01-09T13:11:34.8480081Z
+    created: 2018-01-09T16:05:03.881580567Z
     description: A Kubesignin chart for Kubernetes
     digest: 442aac850d385f6a4d984c7f3b4a6c46fc568b71c01ed4e4d26cacb57db091eb
     engine: gotpl
@@ -327,4 +327,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-01-09T13:11:34.842614933Z
+generated: 2018-01-09T16:05:03.875441831Z
