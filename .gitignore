@@ -1,3 +1,4 @@
 charts
+!charts/kube-prometheus-0.0.5.tar.gz
 index.yaml
 /values.yaml

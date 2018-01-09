@@ -1,7 +1,4 @@
 dependencies:
   - name: kube-prometheus
-    version: 0.0.2
-    repository: http://charts.opsgoodness.com
-  - name: grafana
-    version: 0.0.2
-    repository: http://charts.opsgoodness.com
+    version: 0.0.5
+    repository: https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
