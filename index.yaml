@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2018-01-09T16:06:58.542911946Z
+  - created: 2018-01-18T10:08:47.439805127Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 83c985559772b8364cb53c6a458651d15ea33f2c2487167e5033bccd5c4f6c3b
+    digest: fdff5cb07f3bcf055de272a05657ae323b6635db72e9d21e640784246c13ea0b
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -83,7 +83,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-01-09T16:06:58.543364551Z
+  - created: 2018-01-18T10:08:47.440245252Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -127,6 +127,31 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/external-dns-0.0.1.tgz
     version: 0.0.1
+  fluentd-cloudwatch:
+  - appVersion: 0.1.1
+    created: 2018-01-18T10:08:47.440698741Z
+    description: A Fluentd CloudWatch Helm chart for Kubernetes.
+    digest: cbbf7fc72b86c9155987667d98e86a467cb86cda8a52f7c77b3540ddb7470b31
+    engine: gotpl
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluentd
+    - cloudwatch
+    - logging
+    maintainers:
+    - email: jm.carp@gmail.com
+      name: jmcarp
+    - email: michael.haselton@gmail.com
+      name: icereval
+    - email: quentin.nerden@stylight.com
+      name: kenden
+    name: fluentd-cloudwatch
+    sources:
+    - https://github.com/kubernetes/charts
+    - https://github.com/fluent/fluentd-kubernetes-daemonset
+    urls:
+    - https://skyscrapers.github.io/charts/fluentd-cloudwatch-0.2.0.tgz
+    version: 0.2.0
   kube-lego:
   - apiVersion: v1
     created: 2017-08-23T09:17:31.735205438Z
@@ -172,7 +197,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-01-09T16:06:58.543938428Z
+    created: 2018-01-18T10:08:47.441310158Z
     description: A Kubesignin chart for Kubernetes
     digest: 442aac850d385f6a4d984c7f3b4a6c46fc568b71c01ed4e4d26cacb57db091eb
     engine: gotpl
@@ -327,4 +352,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-01-09T16:06:58.538240063Z
+generated: 2018-01-18T10:08:47.435110349Z
