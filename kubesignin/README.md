@@ -7,10 +7,11 @@ Originates from https://github.com/skyscrapers/kubesignin
 Install this in your cluster with [Helm](https://github.com/kubernetes/helm):
 Get Helm [here](https://github.com/kubernetes/helm/blob/master/docs/install.md).
 
-```
+```shell
 helm repo add skyscrapers https://skyscrapers.github.io/charts
 ```
-```
+
+```shell
 helm install skyscrapers/kubesignin
 ```
 
@@ -25,7 +26,7 @@ This is the application which the end user should access to authenticate.
 
 Default values below. Check the `values.yaml` file to see the possible configuration values.
 
-```
+```yaml
 Kubesignin:
   Image: "skyscrapers/kubesignin"
   ImageTag: "latest"
@@ -39,17 +40,18 @@ Kubesignin:
 ### Dex
 
 Dex is an OIDC provider.
-Can support various connector backends like
-  - LDAP
-  - OIDC (including Google)
-  - GitHub OAuth
-  - Facebook OAuth
+Can support various connector backends like:
+
+- LDAP
+- OIDC (including Google)
+- GitHub OAuth
+- Facebook OAuth
 
 See details in [official site](https://github.com/coreos/dex)
 
 Default values below. Check the `values.yaml` file to see the possible configuration values.
 
-```
+```yaml
 Dex:
   Image: "quay.io/coreos/dex"
   ImageTag: "v2.4.1"
@@ -59,6 +61,10 @@ Dex:
   Cpu: "512m"
   ServicePort: 443
   Replicas: 1
+
+  Expiry:
+    SigningKeys: "6h"
+    IdTokens: "1h"
 ```
 
 ## Usage
@@ -89,11 +95,12 @@ Claims:
 ```
 
 Now you can use the token to access your Kubernetes cluster. kubectl example below.
-```
-$ kubectl config set-credentials iuri --token=$THE_TOKEN_USE_GET
-$ kubectl config set-context mycluster --namespace=default --user=iuri --cluster=mycluster
-$ kubectl config use-context mycluster
-$ kubectl get node
+
+```shell
+kubectl config set-credentials iuri --token=$THE_TOKEN_USE_GET
+kubectl config set-context mycluster --namespace=default --user=iuri --cluster=mycluster
+kubectl config use-context mycluster
+kubectl get node
 ```
 
 ## Contributing
