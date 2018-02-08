@@ -61,8 +61,8 @@ data:
       http: 0.0.0.0:80
 
     expiry:
-       signingKeys: "6h"
-       idTokens: "1h"
+      signingKeys: "{{.Values.Dex.Expiry.SigningKeys}}"
+      idTokens: "{{.Values.Dex.Expiry.IdTokens}}"
 
 {{- if .Values.Dex.Connectors }}
     connectors:
