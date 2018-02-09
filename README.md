@@ -24,6 +24,8 @@ You can add this charts repo by:
 
 ```sh
 helm repo add skyscrapers https://skyscrapers.github.io/charts
+helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
+helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
 ```
 
 The actual Helm charts index is being hosted in GitHub pages in this same repo (`gh-pages` git branch).
