@@ -24,6 +24,8 @@ You can add this charts repo by:
 
 ```sh
 helm repo add skyscrapers https://skyscrapers.github.io/charts
+helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
+helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
 ```
 
 The actual Helm charts index is being hosted in GitHub pages in this same repo (`gh-pages` git branch).
@@ -46,5 +48,5 @@ helm upgrade --install kubesignin skyscrapers/kubesignin --namespace infrastruct
 # TODO helm upgrade --install concourse-web skyscrapers/concourse --values values.yaml
 helm upgrade --install prometheus-operator coreos/prometheus-operator --namespace infrastructure --values helm-values.yaml --values helm-values-prometheus-operator.yaml
 helm upgrade --install k8s-monitor skyscrapers/cluster-monitoring --namespace infrastructure --values helm-values.yaml
-helm upgrade --install fluentd-cloudwatch skyscrapers/fluentd-cloudwatch --namespace infrastructure --values helm-values-fluentd-cloudwatch.yaml
+helm upgrade --install fluentd-cloudwatch incubator/fluentd-cloudwatch --namespace infrastructure --values helm-values-fluentd-cloudwatch.yaml
 ```
