@@ -9,7 +9,7 @@ prep:
 	wget -q https://skyscrapers.github.io/charts/index.yaml -O old-index.yaml
 
 package:
-	$(foreach chart,$(CHARTS),(helm package $(chart) -d ./charts --save=false) &&) :
+	$(foreach chart,$(CHARTS),(helm package $(chart) -u -d ./charts --save=false) &&) :
 
 index:
 	@helm repo index ./charts --url https://skyscrapers.github.io/charts --merge old-index.yaml
