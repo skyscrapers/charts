@@ -1,6 +1,7 @@
 prometheus: 
   app: "prometheus"
   name: "k8s-monitor"
+  role: "alert-rules"
 interval: "30s"
 elasticsearch-exporter:
   ## number of exporter instances
