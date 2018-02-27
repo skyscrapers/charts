@@ -7,34 +7,62 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
     prometheus: {{ .Values.prometheus.name }}
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
 data:
   elasticsearch.rules: |-
     groups:
-    - name: cluster.rules
-    rules:
-    - alert: ClusterHealthYellow
-      expr: elasticsearch_cluster_health_status{color="yellow", job="es-monitoring-elasticsearch-exporter"} != 0
-      for: 5m
-      labels:
-        severity: warning
-      annotations:
-        description: 'foobar'
-        summary: Elasticsearch is Yellow
-    - alert: ClusterHealthRed
-      expr: elasticsearch_cluster_health_status{color="red", job="es-monitoring-elasticsearch-exporter"} != 0
-      for: 5m
-      labels:
-        severity: critical
-      annotations:
-        description: 'foobar'
-        summary: Elasticsearch is Red!
-    - alert: ClusterEndPointDown
-      expr: elasticsearch_cluster_health_status{job="es-monitoring-elasticsearch-exporter"} != 1
-      for: 5m
-      labels:
-        severity: critical
-      annotations:
-        description: 'Cluster endpoint is down'
-        summary: Cluster endpoint is down!
-    - alert: LowDiskSpace
-    - alert: OutOfDiskSpace
+    - name: escluster.rules
+      rules:
+      - alert: ElasticsearchClusterHealthYellow
+        expr: elasticsearch_cluster_health_status{color="yellow", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is yellow.'
+          summary: Elasticsearch cluster is Yellow
+      - alert: ElasticsearchClusterHealthRed
+        expr: elasticsearch_cluster_health_status{color="red", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is RED!'
+          summary: Elasticsearch cluster is RED!
+      - alert: ElasticsearchClusterEndpointDown
+        expr: elasticsearch_cluster_health_status{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          description: 'Elasticsearch cluster endpoint for {{`{{ $labels.cluster }}`}} is DOWN!'
+          summary: Elasticsearch cluster endpoint is down!
+    - name: esdata.rules
+      rules:
+      - alert: ElasticsearchLowDiskSpace
+        expr: elasticsearch_filesystem_data_free_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.1
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
+          summary: Elasticsearch low disk
+      - alert: ElasticsearchNoDiskSpace
+        expr: elasticsearch_filesystem_data_free_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.05
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} has no free disk space'
+          summary: Elasticsearch out of disk
+    - name: esmemory.rules
+      rules:
+      - alert: ElasticsearchHeapTooHigh
+        expr: elasticsearch_jvm_memory_used_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_jvm_memory_max_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} > 0.9
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          description: 'The JVM heap usage for Elasticsearch cluster {{`{{ $labels.cluster }}`}} on node {{`{{$labels.node}}`}} has been over 90% for 15m'
+          summary: ElasticSearch heap usage is high
