@@ -42,15 +42,10 @@ The following tables lists the configurable parameters of elasticsearch-monitori
 
 Parameter | Description | Default
 --- | --- | ---
-`opsgenieHeartbeatProxy.image` | Image | `traumfewo/opsgenie-heartbeat-proxy`
-`opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
-`opsgenieHeartbeatProxy.imagePullPolicy` | Image pull policy | `IfNotPresent`
-`opsgenieHeartbeatProxy.port` | Port to run container on | `8080`
-`opsgenieHeartbeatProxy.replicas` | Amount of replicas| `3`
-`opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
-`opsgenieHeartbeatProxy.opsgenie_api_key` | Opsgenie API Key | `""`
-`opsgenieHeartbeatProxy.heartbeat_name` | Opsgenie Heartbeat name | `""`
-`opsgenieHeartbeatProxy.resources` | Pod resource requests & limits | `CPU: 128m, Memory: 128Mi`
+`prometheus.app` | Sets the `app` label value (ServiceMonitor & Alerting rules) | `prometheus`
+`prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
+`prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
+`interval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `30s`
 
 Upstream configuration can be found here:
 
