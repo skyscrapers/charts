@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: {{ .Values.prometheus.app }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    prometheus: {{ .Values.prometheus.name }}
+data:
+  elasticsearch.rules: |-
+    groups:
+    - name: cluster.rules
+    rules:
+    - alert: ClusterHealthYellow
+      expr: elasticsearch_cluster_health_status{color="yellow", job="es-monitoring-elasticsearch-exporter"} != 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'foobar'
+        summary: Elasticsearch is Yellow
+    - alert: ClusterHealthRed
+      expr: elasticsearch_cluster_health_status{color="red", job="es-monitoring-elasticsearch-exporter"} != 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        description: 'foobar'
+        summary: Elasticsearch is Red!
+    - alert: ClusterEndPointDown
+      expr: elasticsearch_cluster_health_status{job="es-monitoring-elasticsearch-exporter"} != 1
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        description: 'Cluster endpoint is down'
+        summary: Cluster endpoint is down!
+    - alert: LowDiskSpace
+    - alert: OutOfDiskSpace

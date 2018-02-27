@@ -34,7 +34,7 @@ elasticsearch-exporter:
     ## of a remote Elasticsearch server. When basic auth is needed,
     ## specify as: <proto>://<user>:<password>@<host>:<port>. e.g., http://admin:pass@localhost:9200.
     ##
-    uri: http://vpc-skyscrapers-test-logs-ylwe4ypgb5dzsdcgsq4y2liy6q.eu-west-1.es.amazonaws.com:9200
+    uri: https://vpc-skyscrapers-test-logs-ylwe4ypgb5dzsdcgsq4y2liy6q.eu-west-1.es.amazonaws.com:443
 
     ## If true, query stats for all nodes in the cluster, rather than just the
     ## node we connect to.
