@@ -32,7 +32,7 @@ data:
           description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is RED!'
           summary: Elasticsearch cluster is RED!
       - alert: ElasticsearchClusterEndpointDown
-        expr: elasticsearch_cluster_health_up{job="{{ .Release.Name }}-elasticsearch-exporter"} == 1
+        expr: elasticsearch_cluster_health_up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
         for: 1m
         labels:
           severity: critical
