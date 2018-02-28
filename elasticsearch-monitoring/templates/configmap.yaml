@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- range $key, $val := .Values.prometheus.labels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+data:
+  elasticsearch.rules: |-
+    groups:
+    - name: escluster.rules
+      rules:
+      - alert: ElasticsearchClusterHealthYellow
+        expr: elasticsearch_cluster_health_status{color="yellow", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+        for: 1m
+        labels:
+          severity: warning
+          group: persistence
+        annotations:
+          description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is yellow.'
+          summary: Elasticsearch cluster is Yellow
+      - alert: ElasticsearchClusterHealthRed
+        expr: elasticsearch_cluster_health_status{color="red", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+        for: 1m
+        labels:
+          severity: critical
+          group: persistence
+        annotations:
+          description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is RED!'
+          summary: Elasticsearch cluster is RED!
+      - alert: ElasticsearchClusterEndpointDown
+        expr: elasticsearch_cluster_health_up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
+        for: 1m
+        labels:
+          severity: critical
+          group: persistence
+        annotations:
+          description: 'Elasticsearch cluster endpoint for {{`{{ $labels.cluster }}`}} is DOWN!'
+          summary: Elasticsearch cluster endpoint is down!
+    - name: esdata.rules
+      rules:
+      - alert: ElasticsearchLowDiskSpace
+        expr: elasticsearch_filesystem_data_free_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.1
+        for: 15m
+        labels:
+          severity: warning
+          group: persistence
+        annotations:
+          description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
+          summary: Elasticsearch low disk
+      - alert: ElasticsearchNoDiskSpace
+        expr: elasticsearch_filesystem_data_free_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.05
+        for: 15m
+        labels:
+          severity: critical
+          group: persistence
+        annotations:
+          description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} has no free disk space'
+          summary: Elasticsearch out of disk
+    - name: esmemory.rules
+      rules:
+      - alert: ElasticsearchHeapTooHigh
+        expr: elasticsearch_jvm_memory_used_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_jvm_memory_max_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} > 0.9
+        for: 15m
+        labels:
+          severity: warning
+          group: persistence
+        annotations:
+          description: 'The JVM heap usage for Elasticsearch cluster {{`{{ $labels.cluster }}`}} on node {{`{{$labels.node}}`}} has been over 90% for 15m'
+          summary: ElasticSearch heap usage is high
