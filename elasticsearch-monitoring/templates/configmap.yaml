@@ -20,6 +20,7 @@ data:
         for: 1m
         labels:
           severity: warning
+          group: persistence
         annotations:
           description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is yellow.'
           summary: Elasticsearch cluster is Yellow
@@ -28,6 +29,7 @@ data:
         for: 1m
         labels:
           severity: critical
+          group: persistence
         annotations:
           description: 'Elasticsearch cluster health for {{`{{ $labels.cluster }}`}} is RED!'
           summary: Elasticsearch cluster is RED!
@@ -36,6 +38,7 @@ data:
         for: 1m
         labels:
           severity: critical
+          group: persistence
         annotations:
           description: 'Elasticsearch cluster endpoint for {{`{{ $labels.cluster }}`}} is DOWN!'
           summary: Elasticsearch cluster endpoint is down!
@@ -46,6 +49,7 @@ data:
         for: 15m
         labels:
           severity: warning
+          group: persistence
         annotations:
           description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
           summary: Elasticsearch low disk
@@ -54,6 +58,7 @@ data:
         for: 15m
         labels:
           severity: critical
+          group: persistence
         annotations:
           description: 'Elasticsearch node {{`{{$labels.node}}`}} on cluster {{`{{ $labels.cluster }}`}} has no free disk space'
           summary: Elasticsearch out of disk
@@ -64,6 +69,7 @@ data:
         for: 15m
         labels:
           severity: warning
+          group: persistence
         annotations:
           description: 'The JVM heap usage for Elasticsearch cluster {{`{{ $labels.cluster }}`}} on node {{`{{$labels.node}}`}} has been over 90% for 15m'
           summary: ElasticSearch heap usage is high
