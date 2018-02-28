@@ -13,6 +13,17 @@ metadata:
 data:
   elasticsearch.rules: |-
     groups:
+    - name: esexporter.rules
+      rules:
+      - alert: ElasticsearchExporterDown
+        expr: up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
+        for: 1m
+        labels:
+          severity: critical
+          group: persistence
+        annotations:
+          description: 'The Elastissearch metrics exporter for {{`{{ $labels.cluster }}`}} is down!'
+          summary: Elasticsearch monitoring is DOWN!
     - name: escluster.rules
       rules:
       - alert: ElasticsearchClusterHealthYellow
@@ -41,7 +52,7 @@ data:
           group: persistence
         annotations:
           description: 'Elasticsearch cluster endpoint for {{`{{ $labels.cluster }}`}} is DOWN!'
-          summary: Elasticsearch cluster endpoint is down!
+          summary: Elasticsearch cluster endpoint is DOWN!
     - name: esdata.rules
       rules:
       - alert: ElasticsearchLowDiskSpace
