@@ -54,7 +54,7 @@ elasticsearch-exporter:
 
     ## Timeout for trying to get stats from Elasticsearch. (ex: 20s)
     ##
-    timeout: 30s
+    timeout: 20s
 
     ssl:
       ## If true, a secure connection to ES cluster is used (requires SSL certs below)
