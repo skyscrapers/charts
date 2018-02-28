@@ -1,6 +1,6 @@
 # es-monitoring
 
-A Helm chart for monitoring Elasticsearch via Prometheus and Grafana. This chart will deploys the [elasticsearch-exporter](https://github.com/justwatchcom/elasticsearch_exporter) and configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards (todo).
+A Helm chart for monitoring Elasticsearch via Prometheus and Grafana. This chart deploys the [elasticsearch-exporter](https://github.com/justwatchcom/elasticsearch_exporter) and configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards (todo).
 
 ## TL;DR
 
