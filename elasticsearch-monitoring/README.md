@@ -11,6 +11,7 @@ helm install skyscrapers/elasticsearch-monitoring -f values.yaml
 ## Prerequisites
 
 - Kubernetes 1.6+
+- [Prometheus Operator](https://github.com/coreos/prometheus-operator)
 
 ## Installing the Chart
 
@@ -23,6 +24,8 @@ helm install --name my-release skyscrapers/elasticsearch-monitoring
 The command deploys the complete Elasticsearch monitoring setup on the cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
+
+**Note**: You should deploy this chart in the same namespace as your Prometheus for the configuration to be automatically picked up.
 
 ## Uninstalling the Chart
 
