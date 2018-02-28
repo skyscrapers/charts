@@ -2,7 +2,6 @@
 prometheus:
   labels:
     app: "prometheus"
-    name: "k8s-monitor"
     role: "alert-rules"
     prometheus: "k8s-monitor"
 
