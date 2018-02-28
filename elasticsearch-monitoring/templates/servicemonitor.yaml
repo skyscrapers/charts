@@ -2,11 +2,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: {{ .Values.prometheus.app }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
-    prometheus: {{ .Values.prometheus.name }}
+    {{- range $key, $val := .Values.prometheus.labels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
   name: "{{ .Release.Name }}"
   namespace: "{{ .Release.Namespace }}"
 spec:
