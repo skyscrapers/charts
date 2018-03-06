@@ -1,4 +1,4 @@
 dependencies:
   - name: kube-prometheus
-    version: 0.0.23
+    version: 0.0.26
     repository: https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
