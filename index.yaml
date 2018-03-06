@@ -1,6 +1,26 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
+  - created: 2018-03-06T13:20:37.185738286Z
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 1534bd1c10e96daf50dae190b906a978f7ed98f81590537abce0175a1dc606f7
+    engine: gotpl
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator/tree/master/helm
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.2.tgz
+    version: 0.2.2
   - created: 2018-02-28T16:32:37.936266108Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5423cddedaab58d3e7fb3bad7a3e5a2064fa3e5ddbbde4b383df96d970522bf2
@@ -123,7 +143,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-02-28T16:32:37.936752643Z
+  - created: 2018-03-06T13:20:37.186214744Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -146,9 +166,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2018-02-28T16:32:37.937391527Z
+  - created: 2018-03-06T13:20:37.186850432Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 9b9c31f64015fc942cac6a61c0ff7b6e099bba11cc8733bd39aca47587a0a113
+    digest: 4e7d6954cf353f57370b92366b0408cf1fd271a5684b3767cc1547099717e718
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -282,7 +302,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-02-28T16:32:37.937975062Z
+    created: 2018-03-06T13:20:37.18745702Z
     description: A Kubesignin chart for Kubernetes
     digest: ced5c26ae9cfee7049f7ef99a86b03a39091807d998f69682356d8921b3077e8
     engine: gotpl
@@ -456,4 +476,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-02-28T16:32:37.932067523Z
+generated: 2018-03-06T13:20:37.181352394Z
