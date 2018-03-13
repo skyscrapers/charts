@@ -42,7 +42,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
           ports:
           - name: http
-            containerPort: {{ .Values.service.httpPort }}
+            containerPort: {{ .Values.mongodbExporter.service.httpPort }}
           livenessProbe:
               httpGet:
                 port: http
