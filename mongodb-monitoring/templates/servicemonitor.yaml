@@ -12,12 +12,12 @@ metadata:
   namespace: "{{ .Release.Namespace }}"
 spec:
   endpoints:
-  - interval: {{ .Values.interval }}
-    port: http
+    - interval: {{ .Values.interval }}
+      port: http
   namespaceSelector:
     matchNames:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app: mongodb-exporter
+      app: {{ template "mongodb-exporter.fullname" . }}
       release: "{{ .Release.Name }}"

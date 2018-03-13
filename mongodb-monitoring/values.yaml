@@ -36,12 +36,11 @@ mongodbExporter:
     annotations: {}
 
   mongodb:
-    ## Address (host and port) of the MongoDB node we should connect to.
-    ## This could be a local node (localhost:27017, for instance), or the address
-    ## of a remote MongoDB server. When basic auth is needed,
-    ## specify as: <proto>://<user>:<password>@<host>:<port>/<database>. e.g., mongodb://admin:pass@localhost:27017/db.
-    ##
-    uri: mongodb://admin:pass@localhost:27017/admin"
+    dbuser: admin
+    dbpass: pass
+    dbhost: localhost
+    dbport: 27017
+    dbname: admin
     collectOplog: true
     collectReplSet: true
     collectTopMetrics: false

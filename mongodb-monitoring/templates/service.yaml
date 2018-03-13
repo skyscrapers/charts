@@ -18,5 +18,5 @@ spec:
       port: {{ .Values.mongodbExporter.service.httpPort }}
       protocol: TCP
   selector:
-    app: {{ template "mongodb-exporter.name" . }}
+    app: mongodb-exporter
     release: "{{ .Release.Name }}"

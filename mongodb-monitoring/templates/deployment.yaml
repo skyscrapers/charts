@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "mongodb-exporter.fullname" . }}
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "mongodb-exporter.fullname" . }}
+        app: mongodb-exporter
         release: {{ .Release.Name }}
     spec:
       restartPolicy: {{ .Values.mongodbExporter.restartPolicy }}
@@ -25,12 +25,24 @@ spec:
         - name: mongodb-exporter
           image: "{{ .Values.mongodbExporter.image.repository }}:{{ .Values.mongodbExporter.image.tag }}"
           imagePullPolicy: {{ .Values.mongodbExporter.image.pullPolicy | quote }}
-          command: ["/usr/local/bin/mongodb_exporter", "-web.listen-address=:{{ .Values.mongodbExporter.service.httpPort }}", "-web.metrics-path=/metrics", "-logtostderr", "-mongodb.uri={{ .Values.mongodbExporter.mongodb.uri }}", "-mongodb.collect.oplog={{ .Values.mongodbExporter.mongodb.collectOplog }}", "-mongodb.collect.replset={{ .Values.mongodbExporter.mongodb.collectReplSet }}", "-mongodb.collect.top={{ .Values.mongodbExporter.mongodb.collectTopMetrics }}", "-mongodb.collect.database={{ .Values.mongodbExporter.mongodb.collectDatabaseMetrics }}", "-mongodb.collect.collection={{ .Values.mongodbExporter.mongodb.collectCollectionMetrics }}", "-mongodb.collect.profile={{ .Values.mongodbExporter.mongodb.collectProfileMetrics }}", "-mongodb.collect.connpoolstats={{ .Values.mongodbExporter.mongodb.collectConnPoolStats }}"]
+          command: 
+            - "/usr/local/bin/mongodb_exporter"
+            - "-web.listen-address=:{{ .Values.mongodbExporter.service.httpPort }}"
+            - "-web.metrics-path=/metrics"
+            - "-logtostderr"
+            - "-mongodb.uri=mongodb://{{ .Values.mongodbExporter.mongodb.dbuser }}:{{ .Values.mongodbExporter.mongodb.dbpass }}@{{ .Values.mongodbExporter.mongodb.dbhost }}:{{ .Values.mongodbExporter.mongodb.dbport }}/{{ .Values.mongodbExporter.mongodb.dbname }}"
+            - "-mongodb.collect.oplog={{ .Values.mongodbExporter.mongodb.collectOplog }}"
+            - "-mongodb.collect.replset={{ .Values.mongodbExporter.mongodb.collectReplSet }}"
+            - "-mongodb.collect.top={{ .Values.mongodbExporter.mongodb.collectTopMetrics }}"
+            - "-mongodb.collect.database={{ .Values.mongodbExporter.mongodb.collectDatabaseMetrics }}"
+            - "-mongodb.collect.collection={{ .Values.mongodbExporter.mongodb.collectCollectionMetrics }}"
+            - "-mongodb.collect.profile={{ .Values.mongodbExporter.mongodb.collectProfileMetrics }}"
+            - "-mongodb.collect.connpoolstats={{ .Values.mongodbExporter.mongodb.collectConnPoolStats }}"
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.mongodbExporter.resources | indent 12 }}
           ports:
-          - name: http
-            containerPort: {{ .Values.mongodbExporter.service.httpPort }}
+            - name: http
+              containerPort: {{ .Values.mongodbExporter.service.httpPort }}
           livenessProbe:
               httpGet:
                 port: http
