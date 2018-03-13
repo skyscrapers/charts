@@ -18,7 +18,7 @@ mongodbExporter:
   restartPolicy: Always
 
   image:
-    repository: skyscrapers/mongodb-exporter
+    repository: "skyscrapers/mongodb-exporter"
     tag: latest
     pullPolicy: IfNotPresent
 

@@ -1,5 +1,4 @@
----
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "mongodb-exporter.fullname" . }}
@@ -25,19 +24,8 @@ spec:
       containers:
         - name: mongodb-exporter
           image: "{{ .Values.mongodbExporter.image.repository }}:{{ .Values.mongodbExporter.image.tag }}"
-          imagePullPolicy: {{ .Values.mongodbExporter.image.pullPolicy }}
-          command: ["/usr/local/bin/mongodb_exporter",
-                    "-web.listen-address=:{{ .Values.mongodbExporter.service.httpPort }}",
-                    "-web.metrics-path=/metrics",
-                    "-logtostderr",
-                    "-mongodb.uri={{ .Values.mongodbExporter.mongodb.uri }}",
-                    "-mongodb.collect.oplog={{ .Values.mongodbExporter.mongodb.collectOplog }}",
-                    "-mongodb.collect.replset={{ .Values.mongodbExporter.mongodb.collectReplSet }}",
-                    "-mongodb.collect.top={{ .Values.mongodbExporter.mongodb.collectTopMetrics }}",
-                    "-mongodb.collect.database={{ .Values.mongodbExporter.mongodb.collectDatabaseMetrics }}",
-                    "-mongodb.collect.collection={{ .Values.mongodbExporter.mongodb.collectCollectionMetrics }}",
-                    "-mongodb.collect.profile={{ .Values.mongodbExporter.mongodb.collectProfileMetrics }}",
-                    "-mongodb.collect.connpoolstats={{ .Values.mongodbExporter.mongodb.collectConnPoolStats }}"]
+          imagePullPolicy: {{ .Values.mongodbExporter.image.pullPolicy | quote }}
+          command: ["/usr/local/bin/mongodb_exporter", "-web.listen-address=:{{ .Values.mongodbExporter.service.httpPort }}", "-web.metrics-path=/metrics", "-logtostderr", "-mongodb.uri={{ .Values.mongodbExporter.mongodb.uri }}", "-mongodb.collect.oplog={{ .Values.mongodbExporter.mongodb.collectOplog }}", "-mongodb.collect.replset={{ .Values.mongodbExporter.mongodb.collectReplSet }}", "-mongodb.collect.top={{ .Values.mongodbExporter.mongodb.collectTopMetrics }}", "-mongodb.collect.database={{ .Values.mongodbExporter.mongodb.collectDatabaseMetrics }}", "-mongodb.collect.collection={{ .Values.mongodbExporter.mongodb.collectCollectionMetrics }}", "-mongodb.collect.profile={{ .Values.mongodbExporter.mongodb.collectProfileMetrics }}", "-mongodb.collect.connpoolstats={{ .Values.mongodbExporter.mongodb.collectConnPoolStats }}"]
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           ports:
