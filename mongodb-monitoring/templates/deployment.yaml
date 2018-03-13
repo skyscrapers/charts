@@ -9,7 +9,7 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  replicas: {{ .Values.mongodbExporter.replicas }}
+  replicas: {{ .Values.mongodbExporter.replicaCount }}
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -24,8 +24,10 @@ spec:
       restartPolicy: {{ .Values.mongodbExporter.restartPolicy }}
       containers:
         - name: mongodb-exporter
+          image: "{{ .Values.mongodbExporter.image.repository }}:{{ .Values.mongodbExporter.image.tag }}"
+          imagePullPolicy: {{ .Values.mongodbExporter.image.pullPolicy }}
           command: ["/usr/local/bin/mongodb_exporter",
-                    "-web.listen-address=:{{ .Values.service.httpPort }}",
+                    "-web.listen-address=:{{ .Values.mongodbExporter.service.httpPort }}",
                     "-web.metrics-path=/metrics",
                     "-logtostderr",
                     "-mongodb.uri={{ .Values.mongodbExporter.mongodb.uri }}",
@@ -36,8 +38,6 @@ spec:
                     "-mongodb.collect.collection={{ .Values.mongodbExporter.mongodb.collectCollectionMetrics }}",
                     "-mongodb.collect.profile={{ .Values.mongodbExporter.mongodb.collectProfileMetrics }}",
                     "-mongodb.collect.connpoolstats={{ .Values.mongodbExporter.mongodb.collectConnPoolStats }}"]
-          image: "{{ .Values.mongodbExporter.image.repository }}:{{ .Values.mongodbExporter.image.tag }}"
-          imagePullPolicy: {{ .Values.mongodbExporter.image.pullPolicy }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           ports:
