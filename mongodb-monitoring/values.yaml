@@ -8,11 +8,44 @@ prometheus:
 ## Interval for how often Prometheus scrapes the mongodb-exporter
 interval: "30s"
 
-mongodb_exporter:
-  deployments:
-    first:
-      name: mongodb-exporter
-      mongodb_uri: "mongodb://admin:pass@localhost:27017/pekarnya"
-      mongodb_collect_connpoolstats: "true"
-      mongodb_collect_oplog: "true"
-  service_name: mongodb-exporter
+mongodbExporter:
+  ## number of exporter instances
+  ##
+  replicaCount: 1
+
+  ## restart policy for all containers
+  ##
+  restartPolicy: Always
+
+  image:
+    repository: skyscrapers/mongodb-exporter
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  resources: {}
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    type: ClusterIP
+    httpPort: 9001
+    annotations: {}
+
+  mongodb:
+    ## Address (host and port) of the MongoDB node we should connect to.
+    ## This could be a local node (localhost:27017, for instance), or the address
+    ## of a remote MongoDB server. When basic auth is needed,
+    ## specify as: <proto>://<user>:<password>@<host>:<port>/<database>. e.g., mongodb://admin:pass@localhost:27017/db.
+    ##
+    uri: mongodb://admin:pass@localhost:27017/admin"
+    collectOplog: true
+    collectReplSet: true
+    collectTopMetrics: false
+    collectDatabaseMetrics: false
+    collectCollectionMetrics: false
+    collectProfileMetrics: false
+    collectConnPoolStats: false

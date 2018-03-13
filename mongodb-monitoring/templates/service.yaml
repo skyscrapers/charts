@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "mongodb-exporter.fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ template "mongodb-exporter.name" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+{{- if .Values.mongodbExporter.service.annotations }}
+  annotations:
+{{ toYaml .Values.mongodbExporter.service.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.mongodbExporter.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.mongodbExporter.service.httpPort }}
+      protocol: TCP
+  selector:
+    app: {{ template "mongodb-exporter.name" . }}
+    release: "{{ .Release.Name }}"
