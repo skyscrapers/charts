@@ -5,7 +5,7 @@ prometheus:
     role: "alert-rules"
     prometheus: "k8s-monitor"
 
-## Interval for how often Prometheus scrapes the elasticsearch-exporter
+## Interval for how often Prometheus scrapes the mongodb-exporter
 interval: "30s"
 
 mongodb_exporter:
