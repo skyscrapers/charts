@@ -1,0 +1,19 @@
+apiVersion: v1
+name: mongodb-monitoring
+version: 0.0.1
+description: MongoDB monitoring using Prometheus-operator and Grafana.
+keywords:
+  - grafana
+  - kube-prometheus
+  - monitoring
+  - prometheus
+  - mongodb
+home: https://github.com/skyscrapers/charts/
+sources:
+  - https://github.com/skyscrapers/mongodb_exporter
+  - https://github.com/skyscrapers/charts
+  - https://github.com/flant/charts/tree/master/prometheus/mongodb_exporter
+maintainers:
+  - name: skyscrapers
+    email: hello@skyscrapers.eu
+engine: gotpl
