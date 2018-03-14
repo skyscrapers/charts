@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2018-03-14T14:09:06.200540097Z
+  - created: 2018-03-14T16:10:45.144279669Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 65c1bb8f593eaa432ed8aa5d6fa360ef121c005256789d330476ca5fc2fea865
+    digest: f159ccbe53de76ccf71c4df376e56749c781253c840c490e7baee00c59ce470d
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -143,7 +143,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-03-14T14:09:06.201016442Z
+  - created: 2018-03-14T16:10:45.144775996Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -166,9 +166,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2018-03-14T14:09:06.201670968Z
+  - created: 2018-03-14T16:10:45.145405887Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: a7bc31a854ab02caa6c89bc8b526f502bb9728bdd4fcc749f3f1a4a444bbe78c
+    digest: b39b027755daf359274e3a317dea795e6611b9566ee86934784b41084babee2f
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -302,7 +302,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-03-14T14:09:06.202270696Z
+    created: 2018-03-14T16:10:45.145991899Z
     description: A Kubesignin chart for Kubernetes
     digest: ced5c26ae9cfee7049f7ef99a86b03a39091807d998f69682356d8921b3077e8
     engine: gotpl
@@ -415,6 +415,30 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/kubesignin-0.1.0.tgz
     version: 0.1.0
+  mongodb-monitoring:
+  - apiVersion: v1
+    created: 2018-03-14T16:10:45.146381049Z
+    description: MongoDB monitoring using Prometheus-operator and Grafana.
+    digest: 4d7fc7fa812f05554c11409607981a410f6cd623348a7ae6f919d1547eab8d83
+    engine: gotpl
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    - mongodb
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: mongodb-monitoring
+    sources:
+    - https://github.com/skyscrapers/mongodb_exporter
+    - https://github.com/skyscrapers/charts
+    - https://github.com/flant/charts/tree/master/prometheus/mongodb_exporter
+    urls:
+    - https://skyscrapers.github.io/charts/mongodb-monitoring-0.0.1.tgz
+    version: 0.0.1
   nginx-ingress:
   - created: 2017-08-23T09:17:31.737000128Z
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
@@ -476,4 +500,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-03-14T14:09:06.196078877Z
+generated: 2018-03-14T16:10:45.139964869Z
