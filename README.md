@@ -36,7 +36,6 @@ The charts and the charts index are automatically updated by Concourse when new 
 on the master branch. see the [`ci`](https://github.com/skyscrapers/ci) repository for more details
 on the setup.
 
-
 ## Bootstrap base charts
 
 First you need to generate a `values.yaml` using the
