@@ -27,7 +27,10 @@ helm repo add skyscrapers https://skyscrapers.github.io/charts
 helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
 helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
 ```
-
+Before going to the next step make sure that your local helm repos are updated. Run the following command before moving forward:
+```sh
+helm repo update
+```
 The actual Helm charts index is being hosted in GitHub pages in this same repo (`gh-pages` git branch).
 The charts and the charts index are automatically updated by Concourse when new commits arrive
 on the master branch. see the [`ci`](https://github.com/skyscrapers/ci) repository for more details
