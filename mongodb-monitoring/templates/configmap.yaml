@@ -15,7 +15,7 @@ data:
     groups:
     - name: mongoexporter.rules
       rules:
-      - alert: ElasticsearchExporterDown
+      - alert: MongoDBExporterDown
         expr: up{job="{{ .Release.Name }}-mongodb-monitoring"} != 1
         for: 1m
         labels:
