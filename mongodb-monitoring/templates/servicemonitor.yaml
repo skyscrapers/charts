@@ -19,5 +19,5 @@ spec:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app: {{ template "mongodb-exporter.fullname" . }}
+      app: mongodb-exporter
       release: "{{ .Release.Name }}"

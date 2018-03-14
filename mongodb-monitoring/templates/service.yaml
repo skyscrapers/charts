@@ -4,7 +4,7 @@ metadata:
   name: {{ template "mongodb-exporter.fullname" . }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-    app: {{ template "mongodb-exporter.name" . }}
+    app: mongodb-exporter
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 {{- if .Values.mongodbExporter.service.annotations }}

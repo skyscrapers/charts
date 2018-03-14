@@ -22,6 +22,9 @@ mongodbExporter:
     tag: latest
     pullPolicy: IfNotPresent
 
+    ## Configure resource requests and limits
+    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+    ##
   resources: {}
     # requests:
     #   cpu: 100m
@@ -36,15 +39,43 @@ mongodbExporter:
     annotations: {}
 
   mongodb:
-    dbuser: admin
-    dbpass: pass
-    dbhost: localhost
-    dbport: 27017
-    dbname: admin
+    ## username to connect to the mongodb server
+    ##
+    dbuser: foo
+ 
+    ## password to connect to the mongodb server
+    ##
+    dbpass: bar
+ 
+    ## Address (host and port) of the MongoDB replicaset we should connect to.
+    ## Specify as <host>[:port][,<host>[<port>]] e.g., 10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5:27019
+    ##
+    replicasetmembers: localhost
+ 
+    ## If true, collect Mongodb Oplog status
+    ##
     collectOplog: true
+
+    ## If true, collect Mongodb replica set status
+    ##
     collectReplSet: true
+
+    ## If true, collect Mongodb Top metrics
+    ##
     collectTopMetrics: false
+
+    ## If true, collect MongoDB database metrics
+    ##
     collectDatabaseMetrics: false
+
+    ## If true, collect MongoDB collection metrics
+    ##
     collectCollectionMetrics: false
+
+    ## If true, collect MongoDB profile metrics
+    ##
     collectProfileMetrics: false
+
+    ## If true, collect MongoDB connpoolstats
+    ##
     collectConnPoolStats: false
