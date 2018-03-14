@@ -11,3 +11,36 @@ metadata:
   name: "{{ .Release.Name }}"
   namespace: "{{ .Release.Namespace }}"
 data:
+  mongodb.rules: |-
+    groups:
+    - name: mongoexporter.rules
+      rules:
+      - alert: ElasticsearchExporterDown
+        expr: up{job="{{ .Release.Name }}-mongodb-monitoring"} != 1
+        for: 1m
+        labels:
+          severity: critical
+          group: persistence
+        annotations:
+          description: 'The MongoDB metrics exporter for {{`{{ $labels.cluster }}`}} is down!'
+          summary: MongoDB monitoring is DOWN!
+    - name: mongocluster.rules
+      rules:
+      - alert: MongoDBClusterNotHealthy
+        expr: mongodb_replset_member_health{job="{{ .Release.Name }}-mongodb-monitoring"} != 1
+        for: 1m
+        labels:
+          severity: warning
+          group: persistence
+        annotations:
+          description: 'MongoDB cluster not healthy for {{`{{ $labels.cluster }}`}}.'
+          summary: MongoDB cluster not health
+      - alert: MongoDBClusterMultipleMasters
+        expr: mongodb_replset_master_count{job="{{ .Release.Name }}-mongodb-monitoring"} != 1
+        for: 1m
+        labels:
+          severity: warning
+          group: persistence
+        annotations:
+          description: 'MongoDB cluster has multiple masters for {{`{{ $labels.cluster }}`}}.'
+          summary: MongoDB cluster has multiple masters
