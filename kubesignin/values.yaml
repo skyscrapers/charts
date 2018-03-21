@@ -66,4 +66,9 @@ Kubesignin:
   Cpu: "512m"
   Replicas: 1
 
+  # Tokens that have these groups as claims will be given admin access to the cluster
+  K8sAdminsGroups: []
+    # - "myorg:myteam"
+    # - "otherorg:someteam"
+
   # Debug: true
