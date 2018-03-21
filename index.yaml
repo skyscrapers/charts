@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cluster-monitoring:
-  - created: 2018-03-14T16:10:45.144279669Z
+  - created: 2018-03-21T13:55:49.771408845Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: f159ccbe53de76ccf71c4df376e56749c781253c840c490e7baee00c59ce470d
+    digest: 1c889937c13ea70240d077e87598f8fadb73dbc8834f2c3951a37615649b21e1
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -143,7 +143,7 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: 2018-03-14T16:10:45.144775996Z
+  - created: 2018-03-21T13:55:49.771909184Z
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
@@ -166,9 +166,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2018-03-14T16:10:45.145405887Z
+  - created: 2018-03-21T13:55:49.772574712Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: b39b027755daf359274e3a317dea795e6611b9566ee86934784b41084babee2f
+    digest: f254d1a98adbf5a4a25644075db146d34b9d301e932c2b81af4ae2bbf85aa23d
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -302,9 +302,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-03-14T16:10:45.145991899Z
+    created: 2018-03-21T13:55:49.773195063Z
     description: A Kubesignin chart for Kubernetes
-    digest: ced5c26ae9cfee7049f7ef99a86b03a39091807d998f69682356d8921b3077e8
+    digest: d96a54c1a308814d91dc2e23565466fe789aa32e4a2fb82b12af161f00b9b93b
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -417,7 +417,7 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: 2018-03-14T16:10:45.146381049Z
+    created: 2018-03-21T13:55:49.77361467Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 4d7fc7fa812f05554c11409607981a410f6cd623348a7ae6f919d1547eab8d83
     engine: gotpl
@@ -500,4 +500,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-03-14T16:10:45.139964869Z
+generated: 2018-03-21T13:55:49.767093328Z
