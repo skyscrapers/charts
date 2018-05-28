@@ -43,7 +43,7 @@ Dex:
   #   UserID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
 
   Memory: "200Mi"
-  Cpu: "512m"
+  Cpu: "100m"
   Replicas: 1
 
   LogLevel: info
@@ -63,7 +63,7 @@ Kubesignin:
   # DomainName: kubesignin.example.com
 
   Memory: "200Mi"
-  Cpu: "512m"
+  Cpu: "100m"
   Replicas: 1
 
   # Tokens that have these groups as claims will be given admin access to the cluster
