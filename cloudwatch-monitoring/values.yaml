@@ -6,7 +6,7 @@ prometheus:
     prometheus: "application-monitor"
     namespace: "application-monitoring"
 
-## Interval for how often Prometheus scrapes the elasticsearch-exporter
+## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
 interval: "30s"
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart

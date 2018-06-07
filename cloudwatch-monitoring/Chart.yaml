@@ -1,16 +1,16 @@
-name: elasticsearch-monitoring
+name: cloudwatch-monitoring
 version: 0.1.0
-description: ElasticSearch monitoring using Prometheus-operator and Grafana.
+description: Cloudwatch monitoring using Prometheus-operator and Grafana.
 keywords:
   - grafana
   - kube-prometheus
   - monitoring
   - prometheus
-  - elasticsearch
+  - cloudwatch
 home: https://github.com/skyscrapers/charts/
 sources:
-  - https://github.com/justwatchcom/elasticsearch_exporter
-  - https://github.com/kubernetes/charts/tree/master/stable/elasticsearch-exporter
+  - http://github.com/prometheus/cloudwatch_exporter
+  - https://github.com/kubernetes/charts/tree/master/stable/prometheus-cloudwatch-exporter
   - https://github.com/skyscrapers/charts
 maintainers:
   - name: skyscrapers
