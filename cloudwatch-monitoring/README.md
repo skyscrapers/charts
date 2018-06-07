@@ -45,7 +45,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```shell
 helm install --name my-release \
-  --set --set prometheus-cloudwatch-exporter.aws.role=arn:aws:iam::1234567890:role/kube2iam/cloudwatch_role \
+  --set prometheus-cloudwatch-exporter.aws.role=arn:aws:iam::1234567890:role/kube2iam/cloudwatch_role \
     skyscrapers/cloudwatch-monitoring
 ```
 
