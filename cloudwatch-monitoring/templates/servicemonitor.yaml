@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- range $key, $val := .Values.prometheus.labels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  endpoints:
+  - interval: {{ .Values.interval }}
+    port: http
+  namespaceSelector:
+    matchNames:
+    - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      app: prometheus-cloudwatch-exporter
+      release: "{{ .Release.Name }}"
