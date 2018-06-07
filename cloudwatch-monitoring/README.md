@@ -35,11 +35,11 @@ Parameter | Description | Default
 `prometheus.app` | Sets the `app` label value (ServiceMonitor & Alerting rules) | `prometheus`
 `prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
 `prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
-`interval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `30s`
+`interval` | Interval for how often Prometheus scrapes the cloudwatch-exporter | `30s`
 
 Upstream configuration can be found here:
 
-- [elasticsearch-exporter](https://github.com/kubernetes/charts/tree/master/stable/prometheus-cloudwatch-exporter/README.md)
+- [cloudwatch-exporter](https://github.com/kubernetes/charts/tree/master/stable/prometheus-cloudwatch-exporter/README.md)
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
