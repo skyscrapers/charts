@@ -39,6 +39,10 @@ spec:
           value: {{ .Values.awsRegion }}
         - name: LOG_GROUP_NAME
           value: {{ .Values.logGroupName }}
+        - name: K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
 {{- if not .Values.awsRole }}
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
