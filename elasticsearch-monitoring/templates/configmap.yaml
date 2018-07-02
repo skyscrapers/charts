@@ -17,7 +17,7 @@ data:
       rules:
       - alert: ElasticsearchExporterDown
         expr: up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
-        for: 1m
+        for: 5m
         labels:
           severity: critical
           group: persistence
@@ -28,7 +28,7 @@ data:
       rules:
       - alert: ElasticsearchClusterHealthYellow
         expr: elasticsearch_cluster_health_status{color="yellow", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
-        for: 1m
+        for: 5m
         labels:
           severity: warning
           group: persistence
@@ -37,7 +37,7 @@ data:
           summary: Elasticsearch cluster is Yellow
       - alert: ElasticsearchClusterHealthRed
         expr: elasticsearch_cluster_health_status{color="red", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
-        for: 1m
+        for: 5m
         labels:
           severity: critical
           group: persistence
@@ -46,7 +46,7 @@ data:
           summary: Elasticsearch cluster is RED!
       - alert: ElasticsearchClusterEndpointDown
         expr: elasticsearch_cluster_health_up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
-        for: 1m
+        for: 5m
         labels:
           severity: critical
           group: persistence
