@@ -72,3 +72,34 @@ Kubesignin:
     # - "otherorg:someteam"
 
   # Debug: true
+
+proxy:
+  image:
+    repository: "quay.io/gambol99/keycloak-proxy"
+    tag: "v2.2.1"
+    pullPolicy: "IfNotPresent"
+  oidc:
+    discoveryURL: https://kubesigin.domain/dex
+  service:
+    internalPort: 3000
+    externalPort: 3000
+  resources:
+    limits:
+      cpu: "20m"
+      memory: "50Mi"
+    requests:
+      cpu: "10m"
+      memory: "10Mi"
+
+proxies:
+  dashboard:
+    replicaCount: 2
+    upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
+    oidc:
+      redirectURL: "kubernetes-dashboard.test.skyscrape.rs"
+  grafana:
+    replicaCount: 2
+    upstreamURL: "http://k8s-monitor-grafana.infrastructure.svc.cluster.local"
+    oidc:
+      redirectURL: "kubernetes-grafana.test.skyscrape.rs"
+  
