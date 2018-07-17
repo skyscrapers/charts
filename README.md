@@ -14,6 +14,10 @@ Then we setup the proper RBAC config for helm on the Kubernetes cluster:
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```
+
+Now, due to a [bug in HELM/Kubelet](https://github.com/kubernetes/helm/issues/3121), we want to run the tiller on a separate node (make sure you've set `helm_node` to true in the [`cluster` terraform module](https://github.com/skyscrapers/terraform-kubernetes#cluster)).
+```
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"tolerations": [{"effect": "NoSchedule","key": "function","operator":"Equal","value": "helm"}]}}}}'
 ```
 
