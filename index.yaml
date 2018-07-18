@@ -1,6 +1,28 @@
 apiVersion: v1
 entries:
   cloudwatch-monitoring:
+  - created: 2018-07-18T15:04:09.598784402Z
+    description: Cloudwatch monitoring using Prometheus-operator and Grafana.
+    digest: d81ba48af11cb0949aeaa3ff56b04e8fda8b3919ae04d49fdf2117076ae87356
+    engine: gotpl
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    - cloudwatch
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cloudwatch-monitoring
+    sources:
+    - http://github.com/prometheus/cloudwatch_exporter
+    - https://github.com/kubernetes/charts/tree/master/stable/prometheus-cloudwatch-exporter
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.1.tgz
+    version: 0.1.1
   - created: 2018-07-17T14:46:01.433977967Z
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 8079c753badba56b42afb1c1e3b772b5a5f3644c77749b95797a58f60bce62ab
@@ -24,9 +46,9 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
-  - created: 2018-07-17T14:46:01.439027358Z
+  - created: 2018-07-18T15:04:09.603600723Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 5cc7755e062bf3dce122783ba93ccc0b1eb8b202a4c87f3dd2f084441eda749a
+    digest: 04e06504fd1a677f386f7488ca31652dbc5eeec14b313c93a559e7197cb2cbd2
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -189,9 +211,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2018-07-17T14:46:01.439686431Z
+  - created: 2018-07-18T15:04:09.604244417Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 68b76d5a9bccd480b0375a15e3a04cb58232240e9a904ab97f0e456261a04a6d
+    digest: ffc7eb6bf504b21fcea36bb145390bae8e57abccbf3b4d7f97df53ca0aade993
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -279,7 +301,7 @@ entries:
     version: 0.0.1
   fluentd-cloudwatch:
   - appVersion: v0.12.33-cloudwatch
-    created: 2018-07-17T14:46:01.440168617Z
+    created: 2018-07-18T15:04:09.604775584Z
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 4f90aed45eabbe40429a07b2084419a5381d1484cf1cc3225110b01b147f53b9
     engine: gotpl
@@ -420,7 +442,7 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-07-17T14:46:01.440741272Z
+    created: 2018-07-18T15:04:09.605354082Z
     description: A Kubesignin chart for Kubernetes
     digest: ed3484f6de90ef1e949b3defc47b7437dc8d47d05bfdac33e5f42ef95adc9730
     engine: gotpl
@@ -535,7 +557,7 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: 2018-07-17T14:46:01.441141889Z
+    created: 2018-07-18T15:04:09.605766447Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 4d7fc7fa812f05554c11409607981a410f6cd623348a7ae6f919d1547eab8d83
     engine: gotpl
@@ -618,4 +640,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-07-17T14:46:01.432851825Z
+generated: 2018-07-18T15:04:09.59759034Z
