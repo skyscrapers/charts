@@ -7,7 +7,7 @@ prometheus:
     namespace: "application-monitoring"
 
 ## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
-interval: "30s"
+interval: "300s"
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
