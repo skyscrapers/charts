@@ -76,7 +76,7 @@ Kubesignin:
 proxy:
   image:
     repository: "quay.io/gambol99/keycloak-proxy"
-    tag: "v2.2.1"
+    tag: "v2.2.2"
     pullPolicy: "IfNotPresent"
   oidc:
     discoveryURL: https://kubesigin.domain/dex
@@ -91,15 +91,12 @@ proxy:
       cpu: "10m"
       memory: "10Mi"
 
-proxies:
-  dashboard:
-    replicaCount: 2
-    upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
-    oidc:
-      redirectURL: "kubernetes-dashboard.test.skyscrape.rs"
-  grafana:
-    replicaCount: 2
-    upstreamURL: "http://k8s-monitor-grafana.infrastructure.svc.cluster.local"
-    oidc:
-      redirectURL: "kubernetes-grafana.test.skyscrape.rs"
-  
+# Keycloack proxies to setup
+proxies: {}
+  # dashboard:
+  #   replicaCount: 2
+  #   upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
+  #   oidc:
+  #     redirectURL: "kubernetes-dashboard.example.com"
+  #   # Extra arguments to pass to the keycloack-proxy container
+  #   extraArgs: []

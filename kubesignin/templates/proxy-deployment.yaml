@@ -33,6 +33,9 @@ spec:
             - "--resources=uri=/*"
             - "--scopes=groups"
             - "--match-claims=groups=skyscrapers:k8s-admins"
+{{- if .Values.proxy.extraArgs }}
+{{ toYaml .Values.extraVars | indent 12 }}
+{{- end }}
           ports:
             - containerPort: {{ $.Values.proxy.service.internalPort }}
           livenessProbe:
