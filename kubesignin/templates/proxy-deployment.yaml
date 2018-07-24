@@ -1,0 +1,55 @@
+{{- range $key, $value := .Values.proxies }}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "name" $ }}-{{ $key }}
+  labels:
+    app: {{ template "name" $ }}-{{ $key }}
+    chart: {{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  replicas: {{ $value.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" $ }}-{{ $key }}
+        release: {{ $.Release.Name }}
+    spec:
+      containers:
+        - name: {{ $.Chart.Name }}
+          image: "{{ $.Values.proxy.image.repository }}:{{ $.Values.proxy.image.tag }}"
+          imagePullPolicy: {{ $.Values.proxy.image.pullPolicy }}
+          args:
+            - "--listen=0.0.0.0:{{ $.Values.proxy.service.internalPort }}"
+            - "--discovery-url=https://{{ $.Values.Kubesignin.DomainName }}/dex"
+            - "--client-id=kubesignin"
+            - "--client-secret={{ $.Values.Kubesignin.ClientSecret}}"
+            - "--redirection-url=https://{{ $value.oidc.redirectURL }}"
+            - "--enable-refresh-tokens=true"
+            - "--encryption-key={{ randAlphaNum 32 }}"
+            - "--upstream-url={{ $value.upstreamURL }}"
+            - "--resources=uri=/*"
+            - "--scopes=groups"
+            - "--match-claims=groups={{ $value.oidc.groups }}"
+{{- if $value.extraArgs }}
+{{ toYaml $value.extraArgs | indent 12 }}
+{{- end }}
+          ports:
+            - containerPort: {{ $.Values.proxy.service.internalPort }}
+          livenessProbe:
+            httpGet:
+              path: /oauth/health
+              port: {{ $.Values.proxy.service.internalPort }}
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /oauth/health
+              port: {{ $.Values.proxy.service.internalPort }}
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+          resources:
+{{ toYaml $.Values.proxy.resources | indent 12 }}
+{{- end }}

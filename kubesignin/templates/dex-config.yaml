@@ -96,5 +96,8 @@ data:
     - id: kubesignin
       redirectURIs:
         - "{{.Values.Kubesignin.RedirectUri}}"
+{{- range $key, $value := .Values.proxies }}
+        - "https://{{ $value.oidc.redirectURL }}/oauth/callback"
+{{- end }}
       name: "kubesignin"
       secret: {{.Values.Kubesignin.ClientSecret}}

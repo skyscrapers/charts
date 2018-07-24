@@ -67,6 +67,12 @@ Dex:
     IdTokens: "1h"
 ```
 
+### Keycloack-proxy
+
+[Keycloak-proxy](https://github.com/gambol99/keycloak-proxy) can be used as OIDC proxy for authorizing access to the Kubernetes dashboard, Grafana, etc.
+
+Check the `values.yaml` file to see the possible configuration values.
+
 ## Usage
 
 1. Access Kubesignin using the browser, normally this will be `https://kubesignin.yourdomain.com/login`

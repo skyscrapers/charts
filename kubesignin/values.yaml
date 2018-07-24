@@ -72,3 +72,35 @@ Kubesignin:
     # - "otherorg:someteam"
 
   # Debug: true
+
+proxy:
+  image:
+    repository: "quay.io/gambol99/keycloak-proxy"
+    tag: "v2.2.2"
+    pullPolicy: "IfNotPresent"
+  oidc:
+    discoveryURL: https://kubesigin.domain/dex
+  service:
+    internalPort: 3000
+    externalPort: 3000
+  resources:
+    limits:
+      cpu: "20m"
+      memory: "50Mi"
+    requests:
+      cpu: "10m"
+      memory: "10Mi"
+
+# Keycloack proxies to setup
+proxies:
+  dashboard:
+    replicaCount: 2
+    # Upstream service to proxy to
+    upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
+    oidc:
+      # Ingress URL
+      redirectURL: "kubernetes-dashboard.example.com"
+      # Comma separated list of groups for matching the OIDC claim
+      groups: skyscrapers:k8s-admins
+    # # Extra arguments to pass to the keycloack-proxy container
+    # extraArgs: []
