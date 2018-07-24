@@ -32,7 +32,7 @@ spec:
             - "--upstream-url={{ $value.upstreamURL }}"
             - "--resources=uri=/*"
             - "--scopes=groups"
-            - "--match-claims=groups=skyscrapers:k8s-admins"
+            - "--match-claims=groups={{ $value.oidc.groups }}"
 {{- if $value.extraArgs }}
 {{ toYaml $value.extraArgs | indent 12 }}
 {{- end }}
