@@ -30,9 +30,8 @@ spec:
             - "--enable-refresh-tokens=true"
             - "--encryption-key={{ randAlphaNum 32 }}"
             - "--upstream-url={{ $value.upstreamURL }}"
-            - "--resources=uri=/*"
+            - "--resources=uri=/*|groups={{ $value.oidc.groups }}"
             - "--scopes=groups"
-            - "--match-claims=groups={{ $value.oidc.groups }}"
 {{- if $value.extraArgs }}
 {{ toYaml $value.extraArgs | indent 12 }}
 {{- end }}
