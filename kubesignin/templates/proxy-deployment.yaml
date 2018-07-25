@@ -32,6 +32,9 @@ spec:
             - "--upstream-url={{ $value.upstreamURL }}"
             - "--resources=uri=/*|groups={{ $value.oidc.groups }}"
             - "--scopes=groups"
+            - "--upstream-keepalive-timeout={{ $value.upstreamTimeout }}"
+            - "--upstream-timeout={{ $value.upstreamTimeout }}"
+            - "--upstream-response-header-timeout={{ $value.upstreamTimeout }}"
 {{- if $value.extraArgs }}
 {{ toYaml $value.extraArgs | indent 12 }}
 {{- end }}

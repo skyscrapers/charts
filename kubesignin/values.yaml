@@ -97,6 +97,7 @@ proxies:
     replicaCount: 2
     # Upstream service to proxy to
     upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
+    upstreamTimeout: "60s"
     oidc:
       # Ingress URL
       redirectURL: "kubernetes-dashboard.example.com"
