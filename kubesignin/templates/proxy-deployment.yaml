@@ -35,6 +35,8 @@ spec:
             - "--upstream-keepalive-timeout={{ $value.upstreamTimeout }}"
             - "--upstream-timeout={{ $value.upstreamTimeout }}"
             - "--upstream-response-header-timeout={{ $value.upstreamTimeout }}"
+            - "--server-read-timeout={{ $value.upstreamTimeout }}"
+            - "--server-write-timeout={{ $value.upstreamTimeout }}"
 {{- if $value.extraArgs }}
 {{ toYaml $value.extraArgs | indent 12 }}
 {{- end }}
