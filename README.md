@@ -48,7 +48,7 @@ First you need to generate a `values.yaml` using the
 module, then you can just start installing:
 
 ```console
-helm upgrade --install k8s-dashboard stable/kubernetes-dashboard --namespace kube-system
+helm upgrade --install k8s-dashboard stable/kubernetes-dashboard --namespace kube-system --values helm-values-dashboard.yaml
 helm upgrade --install kube2iam stable/kube2iam --namespace infrastructure --values helm-values.yaml --values helm-values-kube2iam.yaml
 helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --values helm-values.yaml --values helm-values-kube-lego.yaml
 helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values.yaml
