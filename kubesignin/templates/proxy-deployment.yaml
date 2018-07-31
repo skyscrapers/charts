@@ -32,11 +32,11 @@ spec:
             - "--upstream-url={{ $value.upstreamURL }}"
             - "--resources=uri=/*|groups={{ $value.oidc.groups }}"
             - "--scopes=groups"
-            - "--upstream-keepalive-timeout={{ $value.upstreamTimeout }}"
-            - "--upstream-timeout={{ $value.upstreamTimeout }}"
-            - "--upstream-response-header-timeout={{ $value.upstreamTimeout }}"
-            - "--server-read-timeout={{ $value.upstreamTimeout }}"
-            - "--server-write-timeout={{ $value.upstreamTimeout }}"
+            - "--upstream-keepalive-timeout={{ $value.upstreamTimeout | default "60s" }}"
+            - "--upstream-timeout={{ $value.upstreamTimeout | default "60s" }}"
+            - "--upstream-response-header-timeout={{ $value.upstreamTimeout | default "60s" }}"
+            - "--server-read-timeout={{ $value.upstreamTimeout | default "60s" }}"
+            - "--server-write-timeout={{ $value.upstreamTimeout | default "60s" }}"
 {{- if $value.extraArgs }}
 {{ toYaml $value.extraArgs | indent 12 }}
 {{- end }}
