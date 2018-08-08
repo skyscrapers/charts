@@ -23,7 +23,7 @@ spec:
       annotations:
         description: 'The Elasticsearch metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: Elasticsearch monitoring is DOWN!
-    {{- if .Values.amazonService }}
+    {{- if .Values.amazonService.enabled }}
     - alert: ElasticsearchCloudwatchExporterDown
       expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
       for: 5m
@@ -65,7 +65,7 @@ spec:
         summary: Elasticsearch cluster endpoint is DOWN!
   - name: esdata.rules
     rules:
-    {{- if .Values.amazonService }}
+    {{- if .Values.amazonService.enabled }}
     - alert: ElasticsearchLowDiskSpace
       expr: aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} <= 10240
       for: 15m

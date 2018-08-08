@@ -13,13 +13,13 @@ interval: "30s"
 ## Elasticsearch directly, due to Amazon reserving part of the volume for
 ## internal operations.
 ## https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/es-metricscollected.html
-amazonService: false
-
-## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
-## Note: setting this too low can have an impact on your AWS bill, since the
-## exporter makes API calls to Amazon Cloudwatch every time Prometheus scrapes
-## https://aws.amazon.com/cloudwatch/pricing/
-amazonServiceInterval: "300s"
+amazonService:
+  enabled: false
+  ## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
+  ## Note: setting this too low can have an impact on your AWS bill, since the
+  ## exporter makes API calls to Amazon Cloudwatch every time Prometheus scrapes
+  ## https://aws.amazon.com/cloudwatch/pricing/
+  interval: "300s"
 
 ## The following settings come from the elasticsearch-exporter chart
 elasticsearch-exporter:

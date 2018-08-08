@@ -22,7 +22,7 @@ spec:
       app: elasticsearch-exporter
       release: "{{ .Release.Name }}"
 
-{{- if .Values.amazonService }}
+{{- if .Values.amazonService.enabled }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -38,7 +38,7 @@ metadata:
   namespace: "{{ .Release.Namespace }}"
 spec:
   endpoints:
-  - interval: {{ .Values.amazonServiceInterval }}
+  - interval: {{ .Values.amazonService.interval }}
     port: http
   namespaceSelector:
     matchNames:
