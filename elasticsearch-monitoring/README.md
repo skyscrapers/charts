@@ -1,6 +1,6 @@
 # es-monitoring
 
-A Helm chart for monitoring Elasticsearch via Prometheus and Grafana. This chart deploys the [elasticsearch-exporter](https://github.com/justwatchcom/elasticsearch_exporter) and configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards (todo).
+A Helm chart for monitoring Elasticsearch via Prometheus and Grafana. This chart deploys the [elasticsearch-exporter](https://github.com/justwatchcom/elasticsearch_exporter) and configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards.
 
 ## TL;DR
 
@@ -49,10 +49,13 @@ Parameter | Description | Default
 `prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
 `prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
 `interval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `30s`
+`amazonService` | Whether we're monitoring an Amazon Elasticsearch Service domain. Enabling this will get disk statistics from Cloudwatch instead of Elasticsearch directly | `false`
+`amazonServiceInterval` | Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter | `600s`
 
 Upstream configuration can be found here:
 
 - [elasticsearch-exporter](https://github.com/kubernetes/charts/blob/master/stable/elasticsearch-exporter/README.md#configuration)
+- [prometheus-cloudwatch-exporter](https://github.com/kubernetes/charts/tree/master/stable/prometheus-cloudwatch-exporter/README.md#configuration)
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
