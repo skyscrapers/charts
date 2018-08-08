@@ -13,13 +13,13 @@ interval: "30s"
 ## Elasticsearch directly, due to Amazon reserving part of the volume for
 ## internal operations.
 ## https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/es-metricscollected.html
-amazonService: true
+amazonService: false
 
 ## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
 ## Note: setting this too low can have an impact on your AWS bill, since the
 ## exporter makes API calls to Amazon Cloudwatch every time Prometheus scrapes
 ## https://aws.amazon.com/cloudwatch/pricing/
-amazonServiceInterval: "600s"
+amazonServiceInterval: "300s"
 
 ## The following settings come from the elasticsearch-exporter chart
 elasticsearch-exporter:
@@ -148,7 +148,8 @@ prometheus-cloudwatch-exporter:
   config: |-
     # Only get statistics for AWS/ES FreeStorageSpace
     region: eu-west-1
-    period_seconds: 240
+    period_seconds: 60
+    set_timestamp: false
     metrics:
     - aws_namespace: AWS/ES
       aws_metric_name: FreeStorageSpace
