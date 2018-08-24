@@ -12,6 +12,7 @@ metadata:
 spec:
   groups:
   - name: calico.rules
+    rules:
     - alert: CalicoNodeInstanceDown
       expr: up{job="{{ .Release.Name }}-calico"} != 1
       for: 5m
