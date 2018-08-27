@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-calico"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app: prometheus
+    prometheus: k8s-monitor
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  groups:
+  - name: calico.rules
+    rules:
+    - alert: CalicoNodeInstanceDown
+      expr: up{job="{{ .Release.Name }}-calico"} != 1
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        description: '{{`{{$labels.instance}}`}} of job {{`{{$labels.job}}`}} has been down for more than 5 minutes'
+        summary: 'Instance {{`{{$labels.instance}}`}} Pod: {{`{{$labels.pod}}`}} is down'
+    - alert: CalicoDataplaneFailures
+      expr: felix_int_dataplane_failures{job="{{ .Release.Name }}-calico"} > 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: '{{`{{$labels.instance}}`}} with calico-node pod {{`{{$labels.pod}}`}} has been having dataplane failures'
+        summary: 'Instance {{`{{$labels.instance}}`}} - Dataplane failures'
