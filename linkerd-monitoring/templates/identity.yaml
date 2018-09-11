@@ -1,0 +1,18 @@
+{{- range .Values.linkerd }}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: linkerd-proxy
+  name: linkerd-metrics
+  namespace: {{ . }}
+spec:
+  ports:
+  - name: metrics
+    port: 4191
+    protocol: TCP
+    targetPort: 4191
+  selector:
+    linkerd.io/control-plane-ns: linkerd
+  type: ClusterIP
+{{- end }}
