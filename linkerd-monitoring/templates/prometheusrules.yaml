@@ -2,12 +2,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: "{{ .Release.Name }}-linkerd"
-  namespace: "{{ .Release.Namespace }}"
+  namespace: infrastructure
   labels:
     app: prometheus
     prometheus: k8s-monitor
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
+    release: "k8s-monitor"
     heritage: "{{ .Release.Service }}"
 spec:
   groups:

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: prometheus
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "k8s-monitor"
+    heritage: "{{ .Release.Service }}"
+    prometheus: k8s
+  name: "linkerd-proxy"
+  namespace: infrastructure
+spec:
+  endpoints:
+  - interval: 30s
+    port: metrics
+  namespaceSelector:
+    any: true
+  selector:
+    app: linkerd-proxy
