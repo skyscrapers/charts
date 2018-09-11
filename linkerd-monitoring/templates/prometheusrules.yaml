@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-linkerd"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app: prometheus
+    prometheus: k8s-monitor
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  groups:
+  - name: linkerd.rules
+    rules:
+    - alert: LinkerdHighLatency
+      expr: histogram_quantile(0.99, irate(response_latency_ms_bucket[1m])) >2000
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'latency is high'
+        summary: 'Namespace {{`{{$labels.namespace}}`}} Pod: {{`{{$labels.pod}}`}} has high latency'
