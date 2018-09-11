@@ -51,7 +51,7 @@ module, then you can just start installing:
 helm upgrade --install k8s-dashboard stable/kubernetes-dashboard --namespace kube-system --values helm-values-dashboard.yaml
 helm upgrade --install kube2iam stable/kube2iam --namespace infrastructure --values helm-values.yaml --values helm-values-kube2iam.yaml
 helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --values helm-values.yaml --values helm-values-kube-lego.yaml
-helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values.yaml
+helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values-nginx-ingress.yaml
 helm upgrade --install external-dns stable/external-dns --namespace infrastructure --values helm-values.yaml --values helm-values-external-dns.yaml
 helm upgrade --install kubesignin skyscrapers/kubesignin --namespace infrastructure --values helm-values.yaml
 # TODO helm upgrade --install concourse-web skyscrapers/concourse --values values.yaml
