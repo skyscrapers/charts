@@ -15,7 +15,7 @@ spec:
   - name: linkerd.rules
     rules:
     - alert: LinkerdHighLatency
-      expr: histogram_quantile(0.99, irate(response_latency_ms_bucket[1m])) >20
+      expr: histogram_quantile(0.99, irate(response_latency_ms_bucket[1m])) >2000
       for: 5m
       labels:
         severity: warning
