@@ -71,4 +71,6 @@ helm upgrade --install logging-es-monitor skyscrapers/elasticsearch-monitoring -
 ```
 
 # Only if gRPC is available in the cluster:
+```
 helm upgrade --install linkerd skyscrapers/linkerd-monitoring --values linkerd.yaml
+```
