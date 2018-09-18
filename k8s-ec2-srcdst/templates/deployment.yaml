@@ -21,7 +21,7 @@ spec:
         release: {{ .Release.Name }}
     spec:
       hostNetwork: true
-      serviceAccountName: {{ include "k8s-ec2-srcdst.fullname" . }}
+      serviceAccountName: {{ include "k8s-ec2-srcdst.fullname" . }}-skyscrapers
       volumes:
         - name: ssl-certs
           hostPath:
