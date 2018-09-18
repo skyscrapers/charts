@@ -54,11 +54,12 @@ helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --v
 helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values-nginx-ingress.yaml
 helm upgrade --install external-dns stable/external-dns --namespace infrastructure --values helm-values.yaml --values helm-values-external-dns.yaml
 helm upgrade --install kubesignin skyscrapers/kubesignin --namespace infrastructure --values helm-values.yaml
-# TODO helm upgrade --install concourse-web skyscrapers/concourse --values values.yaml
 helm upgrade --install prometheus-operator coreos/prometheus-operator --namespace infrastructure --values helm-values.yaml --values helm-values-prometheus-operator.yaml
 helm upgrade --install k8s-monitor skyscrapers/cluster-monitoring --namespace infrastructure --values helm-values.yaml
 helm upgrade --install fluentd-cloudwatch skyscrapers/fluentd-cloudwatch --namespace infrastructure --values helm-values-fluentd-cloudwatch.yaml
 helm upgrade --install kibana stable/kibana --namespace infrastructure --values helm-values-kibana.yaml
+# Deploys the latest version (to date) of the `k8s-ec2-srcdst` container. Can be removed once `kops` updates its deployed version: https://github.com/kubernetes/kops/pull/5746
+helm upgrade --install k8s-ec2-srcdst skyscrapers/k8s-ec2-srcdst --namespace infrastructure
 
 # Only when you use spot instances
 helm upgrade --install kube-spot-termination-notice-handler incubator/kube-spot-termination-notice-handler --namespace infrastructure --values helm-values-kube-spot-termination-notice-handler.yaml
