@@ -1,0 +1,53 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "k8s-ec2-srcdst.fullname" . }}
+  labels:
+    app: {{ include "k8s-ec2-srcdst.name" . }}
+    chart: {{ include "k8s-ec2-srcdst.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    role.kubernetes.io/networking: "1"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "k8s-ec2-srcdst.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "k8s-ec2-srcdst.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      hostNetwork: true
+      serviceAccountName: {{ include "k8s-ec2-srcdst.fullname" . }}
+      volumes:
+        - name: ssl-certs
+          hostPath:
+            path: "/etc/ssl/certs/ca-certificates.crt"
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: AWS_REGION
+              value: {{ .Values.aws_region }}
+          volumeMounts:
+            - name: ssl-certs
+              mountPath: "/etc/ssl/certs/ca-certificates.crt"
+              readOnly: true
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
