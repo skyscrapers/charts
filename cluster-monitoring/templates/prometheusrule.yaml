@@ -48,7 +48,7 @@ spec:
   - name: node-custom.rules
     rules:
     - alert: MemoryUsageHigh
-      expr: (sum(node_memory_MemTotal) - sum(node_memory_MemFree + node_memory_Buffers + node_memory_Cached) ) / sum(node_memory_MemTotal) * 100 >= 90
+      expr: ((node_memory_MemTotal - node_memory_MemFree - node_memory_Buffers - node_memory_Cached) / node_memory_MemTotal) * 100 >= 90
       for: 1h
       labels:
         severity: warning
