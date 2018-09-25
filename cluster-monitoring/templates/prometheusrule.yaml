@@ -40,7 +40,7 @@ metadata:
     app: prometheus
     prometheus: k8s-monitor
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "k8s-monitor"
+    release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
     role: alert-rules
 spec:
