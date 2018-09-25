@@ -9,6 +9,7 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+    role: alert-rules
 spec:
   groups:
   - name: calico.rules
@@ -29,3 +30,36 @@ spec:
       annotations:
         description: '{{`{{$labels.instance}}`}} with calico-node pod {{`{{$labels.pod}}`}} has been having dataplane failures'
         summary: 'Instance {{`{{$labels.instance}}`}} - Dataplane failures'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-node-custom"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app: prometheus
+    prometheus: k8s-monitor
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "k8s-monitor"
+    heritage: "{{ .Release.Service }}"
+    role: alert-rules
+spec:
+  groups:
+  - name: node-custom.rules
+    rules:
+    - alert: MemoryUsageHigh
+      expr: (sum(node_memory_MemTotal) - sum(node_memory_MemFree + node_memory_Buffers + node_memory_Cached) ) / sum(node_memory_MemTotal) * 100 >= 90
+      for: 1h
+      labels:
+        severity: warning
+      annotations:
+        description: '{{`{{$labels.instance}}`}} is using more than 90% Memory for >1h '
+        summary: 'Instance {{`{{$labels.instance}}`}} Memory usage high'
+    - alert: CPUUsageHigh
+      expr: 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1h]))) >= 10
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
+        summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
