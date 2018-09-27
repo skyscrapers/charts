@@ -54,6 +54,7 @@ helm upgrade --install kube-lego stable/kube-lego --namespace infrastructure --v
 helm upgrade --install nginx-ingress stable/nginx-ingress --namespace infrastructure --values helm-values-nginx-ingress.yaml
 helm upgrade --install external-dns stable/external-dns --namespace infrastructure --values helm-values.yaml --values helm-values-external-dns.yaml
 helm upgrade --install kubesignin skyscrapers/kubesignin --namespace infrastructure --values helm-values.yaml
+helm upgrade --install k8s-autoscaler stable/cluster-autoscaler --namespace infrastructure --values helm-values-autoscaler.yaml
 helm upgrade --install prometheus-operator coreos/prometheus-operator --namespace infrastructure --values helm-values.yaml --values helm-values-prometheus-operator.yaml
 helm upgrade --install k8s-monitor skyscrapers/cluster-monitoring --namespace infrastructure --values helm-values.yaml
 helm upgrade --install fluentd-cloudwatch skyscrapers/fluentd-cloudwatch --namespace infrastructure --values helm-values-fluentd-cloudwatch.yaml

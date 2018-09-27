@@ -20,3 +20,26 @@ spec:
     matchLabels:
       app: "{{ .Release.Name }}-calico-node"
       component: felix
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: "{{ .Release.Name }}-autoscaler"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app: prometheus
+    prometheus: k8s-monitor
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  endpoints:
+  - port: http
+    interval: 10s
+  namespaceSelector:
+    matchNames:
+    - infrastructure
+  selector:
+    matchLabels:
+      app: aws-cluster-autoscaler
+      release: k8s-autoscaler
