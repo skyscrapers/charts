@@ -18,7 +18,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 
 Now, due to a [bug in HELM/Kubelet](https://github.com/kubernetes/helm/issues/3121), we want to run the tiller on a separate node (make sure you've set `helm_node` to true in the [`cluster` terraform module](https://github.com/skyscrapers/terraform-kubernetes#cluster)).
 ```
-kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec": {"template": {"spec": {"affinity": {"nodeAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": {"nodeSelectorTerms":[{"matchExpressions": [{"key": "function","operator": "In","values": ["helm"]}]}]}}}}}}}'
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec": {"template": {"spec": {"affinity": {"nodeAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": {"nodeSelectorTerms":[{"matchExpressions": [{"key": "function","operator": "In","values": ["helm"]}]}]}}},"tolerations": [{"effect": "NoSchedule","key": "function","operator":"Equal","value": "helm"}]}}}}'
 ```
 
 This needs to be done once for every cluster we set up.
