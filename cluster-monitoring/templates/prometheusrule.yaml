@@ -53,7 +53,7 @@ spec:
       labels:
         severity: warning
       annotations:
-        description: '{{`{{$labels.node}}`}} is overcommited by {{`{{$value}}`}}'
+        description: '{{`{{$labels.node}}`}} is overcommited by {{`{{$value}}`}}%'
         summary: 'Instance {{`{{$labels.node}}`}} Memory usage high'
     - alert: CPUUsageHigh
       expr: 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1h]))) >= 90
