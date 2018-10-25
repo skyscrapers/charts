@@ -48,7 +48,7 @@ spec:
   - name: node-custom.rules
     rules:
     - alert: MemoryOvercommitted
-      expr: round(((sum(kube_pod_container_resource_limits_memory_bytes) by (node) / sum(kube_node_status_capacity_memory_bytes ) by (node) )) *100) >100
+      expr: round(((sum(kube_pod_container_resource_limits_memory_bytes) by (node) / sum(kube_node_status_capacity_memory_bytes ) by (node) )) *100) >=100
       for: 1h
       labels:
         severity: warning
