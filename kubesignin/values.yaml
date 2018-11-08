@@ -42,8 +42,8 @@ Dex:
   #   Username: "admin"
   #   UserID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
 
-  Memory: "200Mi"
-  Cpu: "100m"
+  Memory: 28Mi
+  Cpu: 2m
   Replicas: 1
 
   LogLevel: info
@@ -62,8 +62,8 @@ Kubesignin:
   # # This is going to be used for both kubesignin and dex
   # DomainName: kubesignin.example.com
 
-  Memory: "200Mi"
-  Cpu: "100m"
+  Memory: 16Mi
+  Cpu: 2m
   Replicas: 1
 
   # Tokens that have these groups as claims will be given admin access to the cluster
@@ -85,11 +85,11 @@ proxy:
     externalPort: 3000
   resources:
     limits:
-      cpu: "20m"
-      memory: "50Mi"
+      cpu: 2m
+      memory: 16Mi
     requests:
-      cpu: "10m"
-      memory: "10Mi"
+      cpu: 1m
+      memory: 8Mi
 
 # Keycloack proxies to setup
 proxies:
