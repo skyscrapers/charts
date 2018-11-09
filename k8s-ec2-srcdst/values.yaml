@@ -13,6 +13,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 resources:
+  limits:
+    cpu: 10m
+    memory: 64Mi
   requests:
     cpu: 10m
     memory: 64Mi
