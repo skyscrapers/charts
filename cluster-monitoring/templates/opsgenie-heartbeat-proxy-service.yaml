@@ -10,9 +10,9 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   ports:
-    - name: http
-      port: 80
-      targetPort: {{ .Values.opsgenieHeartbeatProxy.port }}
+  - name: http
+    port: 80
+    targetPort: {{ .Values.opsgenieHeartbeatProxy.port }}
   selector:
     app: {{ template "fullname" . }}
     component: "opsgenie-heartbeat-proxy"
