@@ -29,7 +29,7 @@
           "bars"       : false,
           "dashLength" : 10,
           "dashes"     : false,
-          "datasource" : "${DS_PROMETHEUS}",
+          "datasource" : "Prometheus",
           "description": "This represents the total [CPU resource requests](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu) of the worker nodes in the cluster.\nFor comparison the total [allocatable CPU cores](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node-allocatable.md) of the worker nodes is also shown.",
           "editable"   : false,
           "error"      : false,
@@ -125,7 +125,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "Prometheus",
           "editable"  : false,
           "format"    : "percent",
           "gauge"     : {
@@ -212,7 +212,7 @@
           "bars"       : false,
           "dashLength" : 10,
           "dashes"     : false,
-          "datasource" : "${DS_PROMETHEUS}",
+          "datasource" : "Prometheus",
           "description": "This represents the total [memory resource requests](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory) of the worker nodes in the cluster.\nFor comparison the total [allocatable memory](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node-allocatable.md) of the worker nodes is also shown.",
           "editable"   : false,
           "error"      : false,
@@ -308,7 +308,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "Prometheus",
           "editable"  : false,
           "format"    : "percent",
           "gauge"     : {
@@ -423,6 +423,6 @@
     ]
   },
   "timezone": "browser",
-  "title"   : "Kubernetes Worker Resource Requests",
+  "title"   : "K8s / Compute Resources / Worker Requests",
   "version" : 1
 }

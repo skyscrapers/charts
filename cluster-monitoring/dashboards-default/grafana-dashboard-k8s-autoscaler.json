@@ -820,7 +820,7 @@
             "thresholdLabels" : false,
             "thresholdMarkers": true
           },
-          "height"      : "150",
+          "height"      : "250px",
           "id"          : 13,
           "interval"    : null,
           "links"       : [],

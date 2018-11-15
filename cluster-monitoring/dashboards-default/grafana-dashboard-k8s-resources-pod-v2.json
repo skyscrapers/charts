@@ -56,43 +56,32 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "sum by(container_name) (container_memory_working_set_bytes{pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
-              "interval"      : "10s",
-              "intervalFactor": 1,
-              "legendFormat"  : "Current: {{ container_name }}",
-              "metric"        : "container_memory_working_set_bytes",
+              "expr"          : "sum by (container_name)(rate(container_cpu_usage_seconds_total{image!=\"\",container_name!=\"POD\",pod_name=\"$pod\"}[1m]))",
+              "intervalFactor": 2,
+              "legendFormat"  : "{{ container_name }}",
               "refId"         : "A",
-              "step"          : 15
+              "step"          : 30
             },
             {
-              "expr"          : "sum by(container_name) (container_memory_usage_bytes{pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
-              "interval"      : "10s",
-              "intervalFactor": 1,
-              "legendFormat"  : "Current (+cache): {{ container_name }}",
-              "metric"        : "container_memory_usage_bytes",
-              "refId"         : "B",
-              "step"          : 15
-            },
-            {
-              "expr"          : "kube_pod_container_resource_requests_memory_bytes{pod=\"$pod\", container=~\"$container\"}",
+              "expr"          : "kube_pod_container_resource_requests_cpu_cores{pod=\"$pod\", container=~\"$container\"}",
               "interval"      : "10s",
               "intervalFactor": 2,
               "legendFormat"  : "Requested: {{ container }}",
-              "metric"        : "kube_pod_container_resource_requests_memory_bytes",
-              "refId"         : "C",
+              "metric"        : "kube_pod_container_resource_requests_cpu_cores",
+              "refId"         : "B",
               "step"          : 20
             },
             {
-              "expr"          : "kube_pod_container_resource_limits_memory_bytes{pod=\"$pod\", container=~\"$container\"}",
+              "expr"          : "kube_pod_container_resource_limits_cpu_cores{pod=\"$pod\", container=~\"$container\"}",
               "interval"      : "10s",
               "intervalFactor": 2,
               "legendFormat"  : "Limit: {{ container }}",
               "metric"        : "kube_pod_container_resource_limits_memory_bytes",
-              "refId"         : "D",
+              "refId"         : "C",
               "step"          : 20
             }
           ],
-          "title"  : "Memory Usage",
+          "title"  : "CPU Usage",
           "tooltip": {
             "msResolution": true,
             "shared"      : true,
@@ -107,7 +96,7 @@
           },
           "yaxes": [
             {
-              "format" : "bytes",
+              "format" : "short",
               "logBase": 1,
               "show"   : true
             },
@@ -171,32 +160,43 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "sum by (container_name)(rate(container_cpu_usage_seconds_total{image!=\"\",container_name!=\"POD\",pod_name=\"$pod\"}[1m]))",
-              "intervalFactor": 2,
-              "legendFormat"  : "{{ container_name }}",
+              "expr"          : "sum by(container_name) (container_memory_working_set_bytes{pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
+              "interval"      : "10s",
+              "intervalFactor": 1,
+              "legendFormat"  : "Current (w/o cache): {{ container_name }}",
+              "metric"        : "container_memory_working_set_bytes",
               "refId"         : "A",
-              "step"          : 30
+              "step"          : 15
             },
             {
-              "expr"          : "kube_pod_container_resource_requests_cpu_cores{pod=\"$pod\", container=~\"$container\"}",
+              "expr"          : "sum by(container_name) (container_memory_usage_bytes{pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
+              "interval"      : "10s",
+              "intervalFactor": 1,
+              "legendFormat"  : "Current (w/ cache): {{ container_name }}",
+              "metric"        : "container_memory_usage_bytes",
+              "refId"         : "B",
+              "step"          : 15
+            },
+            {
+              "expr"          : "kube_pod_container_resource_requests_memory_bytes{pod=\"$pod\", container=~\"$container\"}",
               "interval"      : "10s",
               "intervalFactor": 2,
               "legendFormat"  : "Requested: {{ container }}",
-              "metric"        : "kube_pod_container_resource_requests_cpu_cores",
-              "refId"         : "B",
+              "metric"        : "kube_pod_container_resource_requests_memory_bytes",
+              "refId"         : "C",
               "step"          : 20
             },
             {
-              "expr"          : "kube_pod_container_resource_limits_cpu_cores{pod=\"$pod\", container=~\"$container\"}",
+              "expr"          : "kube_pod_container_resource_limits_memory_bytes{pod=\"$pod\", container=~\"$container\"}",
               "interval"      : "10s",
               "intervalFactor": 2,
               "legendFormat"  : "Limit: {{ container }}",
               "metric"        : "kube_pod_container_resource_limits_memory_bytes",
-              "refId"         : "C",
+              "refId"         : "D",
               "step"          : 20
             }
           ],
-          "title"  : "CPU Usage",
+          "title"  : "Memory Usage",
           "tooltip": {
             "msResolution": true,
             "shared"      : true,
@@ -211,7 +211,7 @@
           },
           "yaxes": [
             {
-              "format" : "short",
+              "format" : "bytes",
               "logBase": 1,
               "show"   : true
             },
@@ -413,5 +413,5 @@
   },
   "timezone": "browser",
   "title"   : "K8s / Compute Resources / Pod v2",
-  "version" : 2
+  "version" : 3
 }
