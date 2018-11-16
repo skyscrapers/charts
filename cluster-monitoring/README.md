@@ -80,3 +80,19 @@ helm install --name my-release -f values.yaml skyscrapers/cluster-monitoring
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
+
+## Migrate from older versions to 1.0.0
+
+With version `1.0.0` of this chart we move from using an old [`kube-prometheus`](https://github.com/coreos/prometheus-operator/tree/master/helm) version to the new [`prometheus-operator`](https://github.com/helm/charts/tree/master/stable/prometheus-operator) chart as dependency. This is a breaking change and an upgrade from previous versions is not possible. You need to remove everything before deploying the new version:
+
+```sh
+helm delete --purge prometheus-operator
+helm delete --purge k8s-monitor
+
+kubectl delete crd prometheuses.monitoring.coreos.com
+kubectl delete crd prometheusrules.monitoring.coreos.com
+kubectl delete crd servicemonitors.monitoring.coreos.com
+kubectl delete crd alertmanagers.monitoring.coreos.com
+```
+
+After the `helm purge` there might still be some leftover resources to delete. You can find these by running `kubectl get all --all-namespaces -l release=<your helm release name>` and delete those resources.
