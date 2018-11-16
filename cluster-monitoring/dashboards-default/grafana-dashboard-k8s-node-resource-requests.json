@@ -389,7 +389,10 @@
   ],
   "schemaVersion": 14,
   "style"        : "dark",
-  "tags"         : [],
+  "tags"         : [
+    "k8s",
+    "prometheus"
+  ],
   "templating"   : {
     "list": []
   },

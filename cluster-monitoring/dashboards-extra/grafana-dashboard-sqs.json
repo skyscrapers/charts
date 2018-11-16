@@ -472,7 +472,10 @@
   ],
   "schemaVersion": 14,
   "style"        : "dark",
-  "tags"         : [],
+  "tags"         : [
+    "sqs",
+    "prometheus"
+  ],
   "templating"   : {
     "list": [
       {

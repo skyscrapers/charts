@@ -902,6 +902,8 @@
   "schemaVersion": 14,
   "style"        : "dark",
   "tags"         : [
+    "autoscaler",
+    "k8s",
     "prometheus"
   ],
   "templating": {

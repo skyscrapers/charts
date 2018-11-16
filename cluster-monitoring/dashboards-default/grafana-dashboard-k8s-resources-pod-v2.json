@@ -317,7 +317,10 @@
   "schemaVersion"  : 14,
   "sharedCrosshair": false,
   "style"          : "dark",
-  "tags"           : [],
+  "tags"           : [
+    "k8s",
+    "prometheus"
+  ],
   "templating"     : {
     "list": [
       {

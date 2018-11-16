@@ -2,10 +2,10 @@
 defaultDashboards: true
 
 # Specify which extra Grafana dashboards you want to include
-extraDashboards:
-- mongodb
-- sqs
-- webapp
+extraDashboards: []
+# - mongodb
+# - sqs
+# - webapp
 
 opsgenieHeartbeatProxy:
   image: "traumfewo/opsgenie-heartbeat-proxy"

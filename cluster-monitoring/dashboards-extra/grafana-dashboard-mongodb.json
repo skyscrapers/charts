@@ -1443,6 +1443,7 @@
   "schemaVersion": 14,
   "style"        : "dark",
   "tags"         : [
+    "mongodb",
     "prometheus"
   ],
   "templating": {

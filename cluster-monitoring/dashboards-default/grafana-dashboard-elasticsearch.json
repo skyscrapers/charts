@@ -3017,7 +3017,7 @@
   "style"        : "dark",
   "tags"         : [
     "elasticsearch",
-    "App"
+    "prometheus"
   ],
   "templating": {
     "list": [
