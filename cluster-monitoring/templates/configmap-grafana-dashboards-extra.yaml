@@ -1,14 +1,19 @@
-{{- range .Values.extraDashboards }}
+{{- if .Values.extraDashboards }}
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ printf "%s-%s" (include "fullname" $) . | trunc 63 | trimSuffix "-" }}
-  labels:
-    app: {{ template "fullname" $ }}
-    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
-    release: "{{ $.Release.Name }}"
-    heritage: "{{ $.Release.Service }}"
-    grafana_dashboard: "1"
-data:
-  {{ . }}.json: {{ $.Files.Get (printf "dashboards-extra/grafana-dashboard-%s.json" .) | toJson }}
+kind: ConfigMapList
+items:
+{{- range .Values.extraDashboards }}
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: {{ printf "%s-%s-%s" $.Release.Name "grafana-dashboard" . | trunc 63 | trimSuffix "-" }}
+    labels:
+      app: {{ template "fullname" $ }}
+      chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+      release: "{{ $.Release.Name }}"
+      heritage: "{{ $.Release.Service }}"
+      grafana_dashboard: "1"
+  data:
+    {{ . }}.json: {{ $.Files.Get (printf "dashboards-extra/grafana-dashboard-%s.json" .) | toJson }}
+{{- end }}
 {{- end }}
