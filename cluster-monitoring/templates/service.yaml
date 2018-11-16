@@ -4,11 +4,8 @@ metadata:
   name: "{{ .Release.Name }}-calico"
   namespace: kube-system
   labels:
-    app: "{{ .Release.Name }}-calico-node"
-    component: felix
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
+    component: calico
 spec:
   type: ClusterIP
   ports:

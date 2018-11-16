@@ -1,0 +1,18 @@
+{{- if .Values.defaultDashboards }}
+apiVersion: v1
+kind: ConfigMapList
+items:
+{{- range $path, $fileContents := .Files.Glob "dashboards-default/*.json" }}
+{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" }}
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: {{ printf "%s-%s" $.Release.Name $dashboardName | trunc 63 | trimSuffix "-" }}
+    labels:
+{{ include "labels" $ | indent 6 }}
+      grafana_dashboard: "{{ $.Release.Name }}"
+      component: grafana
+  data:
+    {{ $dashboardName }}.json: {{ $.Files.Get $path | toJson }}
+{{- end }}
+{{- end }}

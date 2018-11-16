@@ -3,11 +3,8 @@ kind: Deployment
 metadata:
   name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+{{ include "labels" $ | indent 4 }}
     component: opsgenie-heartbeat-proxy
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ .Values.opsgenieHeartbeatProxy.replicas }}
   template:
@@ -18,34 +15,34 @@ spec:
         release: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
-          image: "{{ .Values.opsgenieHeartbeatProxy.image }}:{{ .Values.opsgenieHeartbeatProxy.imageTag }}"
-          imagePullPolicy: {{ default "" .Values.opsgenieHeartbeatProxy.imagePullPolicy | quote }}
-          env:
-            - name: OPSGENIE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
-                  key: opsgenie_api_key
-            - name: HEARTBEAT_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
-                  key: heartbeat_name
-          ports:
-            - name: opsgenie-proxy
-              containerPort: {{ .Values.opsgenieHeartbeatProxy.port }}
-          livenessProbe:
-            tcpSocket:
-              port: opsgenie-proxy
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
-          readinessProbe:
-            tcpSocket:
-              port: opsgenie-proxy
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
-          resources:
+      - name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
+        image: "{{ .Values.opsgenieHeartbeatProxy.image }}:{{ .Values.opsgenieHeartbeatProxy.imageTag }}"
+        imagePullPolicy: {{ default "" .Values.opsgenieHeartbeatProxy.imagePullPolicy | quote }}
+        env:
+        - name: OPSGENIE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
+              key: opsgenie_api_key
+        - name: HEARTBEAT_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
+              key: heartbeat_name
+        ports:
+        - name: opsgenie-proxy
+          containerPort: {{ .Values.opsgenieHeartbeatProxy.port }}
+        livenessProbe:
+          tcpSocket:
+            port: opsgenie-proxy
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: opsgenie-proxy
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        resources:
 {{ toYaml .Values.opsgenieHeartbeatProxy.resources | indent 12 }}
       imagePullSecrets:
         - name: regsecret

@@ -1,8 +1,6 @@
 ## Prometheus MatchLabel selectors
 prometheus:
   labels:
-    app: "prometheus"
-    role: "alert-rules"
     prometheus: "k8s-monitor"
 
 ## Interval for how often Prometheus scrapes the mongodb-exporter

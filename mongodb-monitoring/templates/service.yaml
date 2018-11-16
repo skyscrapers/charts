@@ -3,10 +3,7 @@ kind: Service
 metadata:
   name: {{ template "mongodb-exporter.fullname" . }}
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-    app: mongodb-exporter
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
 {{- if .Values.mongodbExporter.service.annotations }}
   annotations:
 {{ toYaml .Values.mongodbExporter.service.annotations | indent 4 }}

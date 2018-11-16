@@ -4,12 +4,9 @@ metadata:
   name: "{{ .Release.Name }}-calico"
   namespace: "{{ .Release.Namespace }}"
   labels:
-    app: prometheus
-    prometheus: k8s-monitor
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
-    role: alert-rules
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    component: calico
 spec:
   groups:
   - name: calico.rules
@@ -37,12 +34,8 @@ metadata:
   name: "{{ .Release.Name }}-node-custom"
   namespace: "{{ .Release.Namespace }}"
   labels:
-    app: prometheus
-    prometheus: k8s-monitor
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
-    role: alert-rules
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
 spec:
   groups:
   - name: node-custom.rules

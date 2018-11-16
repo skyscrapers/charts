@@ -1,4 +1,4 @@
 dependencies:
-  - name: kube-prometheus
-    version: 0.0.26
-    repository: https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
+- name: prometheus-operator
+  version: 0.1.21
+  repository: https://kubernetes-charts.storage.googleapis.com/

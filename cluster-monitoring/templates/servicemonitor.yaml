@@ -4,11 +4,9 @@ metadata:
   name: "{{ .Release.Name }}-calico"
   namespace: "{{ .Release.Namespace }}"
   labels:
-    app: prometheus
-    prometheus: k8s-monitor
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    component: calico
 spec:
   endpoints:
   - port: metrics
@@ -27,11 +25,9 @@ metadata:
   name: "{{ .Release.Name }}-autoscaler"
   namespace: "{{ .Release.Namespace }}"
   labels:
-    app: prometheus
-    prometheus: k8s-monitor
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    component: autoscaler
 spec:
   endpoints:
   - port: http

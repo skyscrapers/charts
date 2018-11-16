@@ -1,0 +1,535 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn"   : 1,
+        "datasource": "-- Grafana --",
+        "enable"    : true,
+        "hide"      : true,
+        "iconColor" : "rgba(0, 211, 255, 1)",
+        "name"      : "Annotations & Alerts",
+        "type"      : "dashboard"
+      }
+    ]
+  },
+  "editable"    : true,
+  "gnetId"      : null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id"          : null,
+  "links"       : [],
+  "rows"        : [
+    {
+      "collapse": false,
+      "height"  : "500",
+      "panels"  : [
+        {
+          "aliasColors": {},
+          "bars"       : false,
+          "dashLength" : 10,
+          "dashes"     : false,
+          "datasource" : "Prometheus",
+          "fill"       : 1,
+          "id"         : 1,
+          "legend"     : {
+            "avg"    : false,
+            "current": false,
+            "max"    : false,
+            "min"    : false,
+            "show"   : true,
+            "total"  : false,
+            "values" : false
+          },
+          "lines"          : true,
+          "linewidth"      : 1,
+          "links"          : [],
+          "nullPointMode"  : "null",
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "span"           : 12,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "sum(aws_sqs_number_of_messages_deleted_sum{queue_name=~\"$queue_name\"})",
+              "format"        : "time_series",
+              "hide"          : false,
+              "interval"      : "",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_number_of_messages_deleted",
+              "refId"         : "A"
+            },
+            {
+              "expr"          : "sum(aws_sqs_number_of_empty_receives_sum{queue_name=~\"$queue_name\"})",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_number_of_empty_receives",
+              "refId"         : "B"
+            },
+            {
+              "expr"          : "sum(aws_sqs_number_of_messages_received_sum{queue_name=~\"$queue_name\"})",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_number_of_messages_received",
+              "refId"         : "C"
+            },
+            {
+              "expr"          : "sum(aws_sqs_number_of_messages_sent_sum{queue_name=~\"$queue_name\"})",
+              "format"        : "time_series",
+              "interval"      : "",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_number_of_messages_sent",
+              "refId"         : "D"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom"  : null,
+          "timeShift" : null,
+          "title"     : "AWS/SQS",
+          "tooltip"   : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ]
+        }
+      ],
+      "repeat"         : null,
+      "repeatIteration": null,
+      "repeatRowId"    : null,
+      "showTitle"      : false,
+      "title"          : "Dashboard Row",
+      "titleSize"      : "h6"
+    },
+    {
+      "collapse": false,
+      "height"  : 250,
+      "panels"  : [
+        {
+          "aliasColors": {},
+          "bars"       : false,
+          "dashLength" : 10,
+          "dashes"     : false,
+          "datasource" : "Prometheus",
+          "fill"       : 1,
+          "id"         : 2,
+          "legend"     : {
+            "avg"    : false,
+            "current": false,
+            "max"    : false,
+            "min"    : false,
+            "show"   : true,
+            "total"  : false,
+            "values" : false
+          },
+          "lines"          : true,
+          "linewidth"      : 1,
+          "links"          : [],
+          "nullPointMode"  : "null",
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "span"           : 6,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "aws_sqs_approximate_age_of_oldest_message_average{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_approximate_age_of_oldest_message",
+              "refId"         : "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom"  : null,
+          "timeShift" : null,
+          "title"     : "ApproximateAgeOfOldestMessage",
+          "tooltip"   : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "format" : "dtdurations",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars"       : false,
+          "dashLength" : 10,
+          "dashes"     : false,
+          "datasource" : "Prometheus",
+          "fill"       : 1,
+          "id"         : 3,
+          "legend"     : {
+            "avg"    : false,
+            "current": false,
+            "max"    : false,
+            "min"    : false,
+            "show"   : true,
+            "total"  : false,
+            "values" : false
+          },
+          "lines"          : true,
+          "linewidth"      : 1,
+          "links"          : [],
+          "nullPointMode"  : "null",
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "span"           : 6,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "aws_sqs_approximate_number_of_messages_visible_sum{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_approximate_number_of_messages_visible",
+              "refId"         : "A"
+            },
+            {
+              "expr"          : "aws_sqs_approximate_number_of_messages_not_visible_sum{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_approximate_number_of_messages_not_visible",
+              "refId"         : "B"
+            },
+            {
+              "expr"          : "aws_sqs_approximate_number_of_messages_delayed_sum{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_approximate_number_of_messages_delayed",
+              "refId"         : "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom"  : null,
+          "timeShift" : null,
+          "title"     : "ApproximateNumberOfMessages",
+          "tooltip"   : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ]
+        }
+      ],
+      "repeat"         : null,
+      "repeatIteration": null,
+      "repeatRowId"    : null,
+      "showTitle"      : false,
+      "title"          : "Dashboard Row",
+      "titleSize"      : "h6"
+    },
+    {
+      "collapse": false,
+      "height"  : 250,
+      "panels"  : [
+        {
+          "aliasColors": {},
+          "bars"       : false,
+          "dashLength" : 10,
+          "dashes"     : false,
+          "datasource" : "Prometheus",
+          "fill"       : 1,
+          "id"         : 4,
+          "legend"     : {
+            "avg"    : false,
+            "current": false,
+            "max"    : false,
+            "min"    : false,
+            "show"   : true,
+            "total"  : false,
+            "values" : false
+          },
+          "lines"          : true,
+          "linewidth"      : 1,
+          "links"          : [],
+          "nullPointMode"  : "null",
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "span"           : 6,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "aws_sqs_number_of_empty_receives_sum{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "interval"      : "",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_number_of_empty_receives",
+              "refId"         : "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom"  : null,
+          "timeShift" : null,
+          "title"     : "NumberOfEmptyReceives",
+          "tooltip"   : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars"       : false,
+          "dashLength" : 10,
+          "dashes"     : false,
+          "datasource" : "Prometheus",
+          "fill"       : 1,
+          "id"         : 5,
+          "legend"     : {
+            "avg"    : false,
+            "current": false,
+            "max"    : false,
+            "min"    : false,
+            "show"   : true,
+            "total"  : false,
+            "values" : false
+          },
+          "lines"          : true,
+          "linewidth"      : 1,
+          "links"          : [],
+          "nullPointMode"  : "null",
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "span"           : 6,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "aws_sqs_sent_message_size_average{queue_name=~\"$queue_name\"}",
+              "format"        : "time_series",
+              "intervalFactor": 2,
+              "legendFormat"  : "aws_sqs_sent_message_size",
+              "refId"         : "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom"  : null,
+          "timeShift" : null,
+          "title"     : "SentMessageSize",
+          "tooltip"   : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "format" : "decbytes",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ]
+        }
+      ],
+      "repeat"         : null,
+      "repeatIteration": null,
+      "repeatRowId"    : null,
+      "showTitle"      : false,
+      "title"          : "Dashboard Row",
+      "titleSize"      : "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style"        : "dark",
+  "tags"         : [
+    "sqs",
+    "prometheus"
+  ],
+  "templating"   : {
+    "list": [
+      {
+        "allValue"      : null,
+        "current"       : {},
+        "datasource"    : "Prometheus",
+        "hide"          : 0,
+        "includeAll"    : false,
+        "label"         : null,
+        "multi"         : false,
+        "name"          : "queue_name",
+        "options"       : [],
+        "query"         : "label_values(aws_sqs_approximate_age_of_oldest_message_average,queue_name)",
+        "refresh"       : 1,
+        "regex"         : "",
+        "sort"          : 0,
+        "tagValuesQuery": "",
+        "tags"          : [],
+        "tagsQuery"     : "",
+        "type"          : "query",
+        "useTags"       : false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to"  : "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title"   : "SQS",
+  "version" : 5
+}

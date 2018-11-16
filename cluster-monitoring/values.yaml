@@ -1,11 +1,20 @@
+# Whether to include the default dashboards
+defaultDashboards: true
+
+# Specify which extra Grafana dashboards you want to include
+extraDashboards: []
+# - mongodb
+# - sqs
+# - webapp
+
 opsgenieHeartbeatProxy:
-    image: "traumfewo/opsgenie-heartbeat-proxy"
-    imageTag: "v0.0.2"
-    port: "8080"
-    replicas: 3
-    resources:
-        requests:
-            cpu: "128m"
-            memory: "128Mi"
-    #opsgenie_api_key:
-    #heartbeat_name:
+  image: "traumfewo/opsgenie-heartbeat-proxy"
+  imageTag: "v0.0.3"
+  port: "8080"
+  replicas: 3
+  resources:
+    requests:
+      cpu: "128m"
+      memory: "128Mi"
+  #opsgenie_api_key:
+  #heartbeat_name:

@@ -2,9 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
     {{- range $key, $val := .Values.prometheus.labels }}
     {{ $key }}: {{ $val | quote }}
     {{- end}}
