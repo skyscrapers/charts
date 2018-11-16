@@ -3,9 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
+    component: opsgenie-heartbeat-proxy
 data:
   heartbeat_name: {{ .Values.opsgenieHeartbeatProxy.heartbeat_name | quote }}

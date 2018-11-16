@@ -9,11 +9,9 @@ items:
   metadata:
     name: {{ printf "%s-%s" $.Release.Name $dashboardName | trunc 63 | trimSuffix "-" }}
     labels:
-      app: {{ template "fullname" $ }}
-      chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
-      release: "{{ $.Release.Name }}"
-      heritage: "{{ $.Release.Service }}"
-      grafana_dashboard: "1"
+{{ include "labels" $ | indent 6 }}
+      grafana_dashboard: "{{ $.Release.Name }}"
+      component: grafana
   data:
     {{ $dashboardName }}.json: {{ $.Files.Get $path | toJson }}
 {{- end }}

@@ -1,15 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
     {{- range $key, $val := .Values.prometheus.labels }}
     {{ $key }}: {{ $val | quote }}
     {{- end}}
-  name: "{{ .Release.Name }}"
-  namespace: "{{ .Release.Namespace }}"
 spec:
   endpoints:
   - interval: {{ .Values.interval }}
@@ -27,15 +25,13 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  name: "{{ .Release.Name }}-cw"
+  namespace: "{{ .Release.Namespace }}"
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+{{ include "labels" $ | indent 4 }}
     {{- range $key, $val := .Values.prometheus.labels }}
     {{ $key }}: {{ $val | quote }}
     {{- end}}
-  name: "{{ .Release.Name }}-cw"
-  namespace: "{{ .Release.Namespace }}"
 spec:
   endpoints:
   - interval: {{ .Values.amazonService.interval }}

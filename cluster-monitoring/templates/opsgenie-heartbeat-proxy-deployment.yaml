@@ -3,11 +3,8 @@ kind: Deployment
 metadata:
   name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
   labels:
-    app: {{ template "fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+{{ include "labels" $ | indent 4 }}
     component: opsgenie-heartbeat-proxy
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ .Values.opsgenieHeartbeatProxy.replicas }}
   template:
