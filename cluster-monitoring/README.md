@@ -49,8 +49,8 @@ The following tables lists the configurable parameters of the prometheus-operato
 
 Parameter | Description | Default
 --- | --- | ---
-`defaultDashboards` | Whether to include the default Grafana dashboards | `true`
-`extraDashboards` | Extra dashboard files to include (found in `./dashboards-extra`). | `[]`
+`defaultDashboards` | Whether to include the default Grafana dashboards (found in `./dashboards-default`) | `true`
+`extraDashboards` | Extra dashboard files to include (found in `./dashboards-extra`) | `[]`
 `opsgenieHeartbeatProxy.image` | Image | `traumfewo/opsgenie-heartbeat-proxy`
 `opsgenieHeartbeatProxy.imageTag` | Image tag | `v0.0.2`
 `opsgenieHeartbeatProxy.imagePullPolicy` | Image pull policy | `IfNotPresent`
