@@ -280,7 +280,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_number_of_data_nodes{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_number_of_data_nodes{cluster=~\".*:$domain\"})",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -364,7 +364,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_number_of_pending_tasks{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_number_of_pending_tasks{cluster=~\".*:$domain\"})",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -461,7 +461,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_active_primary_shards{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_active_primary_shards{cluster=~\".*:$domain\"})",
               "intervalFactor": 2,
               "legendFormat"  : "",
               "refId"         : "A",
@@ -541,7 +541,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_active_shards{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_active_shards{cluster=~\".*:$domain\"})",
               "intervalFactor": 2,
               "legendFormat"  : "",
               "refId"         : "A",
@@ -621,7 +621,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_initializing_shards{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_initializing_shards{cluster=~\".*:$domain\"})",
               "intervalFactor": 2,
               "legendFormat"  : "",
               "refId"         : "A",
@@ -701,7 +701,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_relocating_shards{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_relocating_shards{cluster=~\".*:$domain\"})",
               "intervalFactor": 2,
               "legendFormat"  : "",
               "refId"         : "A",
@@ -781,7 +781,7 @@
           "tableColumn": "",
           "targets"    : [
             {
-              "expr"          : "sum(elasticsearch_cluster_health_delayed_unassigned_shards{cluster~=\".*:$domain\"})",
+              "expr"          : "sum(elasticsearch_cluster_health_delayed_unassigned_shards{cluster=~\".*:$domain\"})",
               "intervalFactor": 2,
               "legendFormat"  : "",
               "refId"         : "A",
@@ -854,7 +854,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_process_cpu_percent{cluster~=\".*:$domain\",es_master_node=\"true\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_process_cpu_percent{cluster=~\".*:$domain\",es_master_node=\"true\",name=~\"$node\"}",
               "format"        : "time_series",
               "instant"       : false,
               "interval"      : "",
@@ -865,7 +865,7 @@
               "step"          : 10
             },
             {
-              "expr"          : "elasticsearch_process_cpu_percent{cluster~=\".*:$domain\",es_data_node=\"true\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_process_cpu_percent{cluster=~\".*:$domain\",es_data_node=\"true\",name=~\"$node\"}",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -954,7 +954,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_jvm_memory_used_bytes{cluster~=\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_jvm_memory_used_bytes{cluster=~\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -964,7 +964,7 @@
               "step"          : 10
             },
             {
-              "expr"          : "elasticsearch_jvm_memory_committed_bytes{cluster~=\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_jvm_memory_committed_bytes{cluster=~\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{  name }}  - committed: {{area}}",
@@ -972,7 +972,7 @@
               "step"          : 10
             },
             {
-              "expr"          : "elasticsearch_jvm_memory_max_bytes{cluster~=\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_jvm_memory_max_bytes{cluster=~\".*:$domain\",name=~\"$node\",name=~\"$node\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{  name }}  - max: {{area}}",
@@ -1058,7 +1058,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "1-(elasticsearch_filesystem_data_available_bytes{cluster~=\".*:$domain\"}/elasticsearch_filesystem_data_size_bytes{cluster~=\".*:$domain\",name=~\"$node\"})",
+              "expr"          : "1-(elasticsearch_filesystem_data_available_bytes{cluster=~\".*:$domain\"}/elasticsearch_filesystem_data_size_bytes{cluster=~\".*:$domain\",name=~\"$node\"})",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1278,7 +1278,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_indices_docs{cluster~=\".*:$domain\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_indices_docs{cluster=~\".*:$domain\",name=~\"$node\"}",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1366,7 +1366,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "irate(elasticsearch_indices_indexing_index_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_indexing_index_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1454,7 +1454,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_docs_deleted{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_docs_deleted{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1542,7 +1542,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_merges_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_merges_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1644,7 +1644,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "irate(elasticsearch_indices_indexing_index_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_indexing_index_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1654,7 +1654,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_search_query_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_search_query_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - query",
@@ -1662,7 +1662,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_search_fetch_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_search_fetch_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - fetch",
@@ -1670,7 +1670,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_merges_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_merges_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - merges",
@@ -1678,7 +1678,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_refresh_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_refresh_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - refresh",
@@ -1686,7 +1686,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_flush_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_flush_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - flush",
@@ -1774,7 +1774,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "irate(elasticsearch_indices_indexing_index_time_seconds_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_indexing_index_time_seconds_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -1784,7 +1784,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_search_query_time_ms_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_search_query_time_ms_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - query",
@@ -1792,7 +1792,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_search_fetch_time_ms_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_search_fetch_time_ms_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - fetch",
@@ -1800,7 +1800,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_merges_total_time_ms_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_merges_total_time_ms_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - merges",
@@ -1808,7 +1808,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_refresh_total_time_ms_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_refresh_total_time_ms_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - refresh",
@@ -1816,7 +1816,7 @@
               "step"          : 4
             },
             {
-              "expr"          : "irate(elasticsearch_indices_flush_time_ms_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_indices_flush_time_ms_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{ name }} - flush",
@@ -1914,7 +1914,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_search_query_time_seconds{cluster~=\".*:$domain\",name=~\"$node\"}[$interval]) ",
+              "expr"          : "rate(elasticsearch_indices_search_query_time_seconds{cluster=~\".*:$domain\",name=~\"$node\"}[$interval]) ",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2002,7 +2002,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_indexing_index_time_seconds_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_indexing_index_time_seconds_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2090,7 +2090,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_merges_total_time_seconds_total{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_merges_total_time_seconds_total{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2190,7 +2190,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_indices_fielddata_memory_size_bytes{cluster~=\".*:$domain\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_indices_fielddata_memory_size_bytes{cluster=~\".*:$domain\",name=~\"$node\"}",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2278,7 +2278,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_fielddata_evictions{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_fielddata_evictions{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2366,7 +2366,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_indices_query_cache_memory_size_bytes{cluster~=\".*:$domain\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_indices_query_cache_memory_size_bytes{cluster=~\".*:$domain\",name=~\"$node\"}",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2454,7 +2454,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_indices_query_cache_evictions{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_indices_query_cache_evictions{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2551,7 +2551,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : " irate(elasticsearch_thread_pool_rejected_count{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : " irate(elasticsearch_thread_pool_rejected_count{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{name}} - {{ type }}",
@@ -2633,7 +2633,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_thread_pool_active_count{cluster~=\".*:$domain\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_thread_pool_active_count{cluster=~\".*:$domain\",name=~\"$node\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{name}} - {{ type }}",
@@ -2716,7 +2716,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "elasticsearch_thread_pool_active_count{cluster~=\".*:$domain\",name=~\"$node\"}",
+              "expr"          : "elasticsearch_thread_pool_active_count{cluster=~\".*:$domain\",name=~\"$node\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{name}} - {{ type }}",
@@ -2798,7 +2798,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "irate(elasticsearch_thread_pool_completed_count{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "irate(elasticsearch_thread_pool_completed_count{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "{{name}} - {{ type }}",
@@ -2895,7 +2895,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_jvm_gc_collection_seconds_count{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_jvm_gc_collection_seconds_count{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
@@ -2983,7 +2983,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "rate(elasticsearch_jvm_gc_collection_seconds_count{cluster~=\".*:$domain\",name=~\"$node\"}[$interval])",
+              "expr"          : "rate(elasticsearch_jvm_gc_collection_seconds_count{cluster=~\".*:$domain\",name=~\"$node\"}[$interval])",
               "format"        : "time_series",
               "interval"      : "",
               "intervalFactor": 2,
