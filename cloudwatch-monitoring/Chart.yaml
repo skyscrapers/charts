@@ -1,5 +1,5 @@
 name: cloudwatch-monitoring
-version: 0.1.1
+version: 0.1.2
 description: Cloudwatch monitoring using Prometheus-operator and Grafana.
 keywords:
   - grafana
