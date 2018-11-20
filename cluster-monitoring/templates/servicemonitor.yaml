@@ -16,7 +16,7 @@ spec:
     - kube-system
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}-calico-node"
+      app: {{ template "fullname" . }}
       component: calico
 ---
 apiVersion: monitoring.coreos.com/v1
