@@ -472,7 +472,7 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 9
       },
       "hideTimeOverride": false,
       "id"              : 75,
@@ -699,7 +699,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 15
+        "y": 3
       },
       "height": "200px",
       "id"    : 32,
@@ -815,7 +815,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 15
+        "y": 3
       },
       "id"    : 77,
       "isNew" : true,
@@ -917,7 +917,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 15
+        "y": 3
       },
       "height": "",
       "id"    : 79,
@@ -1007,6 +1007,86 @@
         "align"     : false,
         "alignLevel": null
       }
+    },
+    {
+      "columns": [
+        {
+          "text" : "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fontSize"  : "100%",
+      "gridPos"   : {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "height"    : "1024",
+      "id"        : 85,
+      "links"     : [],
+      "pageSize"  : 7,
+      "scroll"    : true,
+      "showHeader": true,
+      "sort"      : {
+        "col" : 1,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias"     : "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern"   : "Time",
+          "type"      : "date"
+        },
+        {
+          "alias"    : "TTL",
+          "colorMode": "cell",
+          "colors"   : [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals"  : 0,
+          "pattern"   : "Current",
+          "thresholds": [
+            "0",
+            "691200"
+          ],
+          "type": "number",
+          "unit": "s"
+        },
+        {
+          "alias"    : "",
+          "colorMode": null,
+          "colors"   : [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals"  : 2,
+          "pattern"   : "/.*/",
+          "thresholds": [],
+          "type"      : "number",
+          "unit"      : "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr"          : "avg(nginx_ingress_controller_ssl_expire_time_seconds) by (host) - time()",
+          "format"        : "time_series",
+          "intervalFactor": 1,
+          "legendFormat"  : "{{ host }}",
+          "metric"        : "gke_letsencrypt_cert_expiration",
+          "refId"         : "A",
+          "step"          : 1
+        }
+      ],
+      "title"    : "Ingress Certificate Expiry",
+      "transform": "timeseries_aggregations",
+      "type"     : "table"
     }
   ],
   "refresh"      : "5s",
