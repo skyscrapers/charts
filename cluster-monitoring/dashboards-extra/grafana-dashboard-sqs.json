@@ -476,7 +476,7 @@
     "sqs",
     "prometheus"
   ],
-  "templating"   : {
+  "templating": {
     "list": [
       {
         "allValue"      : null,

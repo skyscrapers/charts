@@ -348,7 +348,7 @@
     "k8s",
     "prometheus"
   ],
-  "templating"     : {
+  "templating": {
     "list": [
       {
         "allValue"      : ".*",

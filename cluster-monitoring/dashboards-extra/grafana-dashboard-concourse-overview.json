@@ -1,0 +1,1088 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn"   : 1,
+        "datasource": "-- Grafana --",
+        "enable"    : true,
+        "hide"      : true,
+        "iconColor" : "rgba(0, 211, 255, 1)",
+        "name"      : "Annotations & Alerts",
+        "type"      : "dashboard"
+      }
+    ]
+  },
+  "editable"    : false,
+  "gnetId"      : null,
+  "graphTooltip": 0,
+  "id"          : null,
+  "iteration"   : 1523194747923,
+  "links"       : [
+    {
+      "asDropdown" : true,
+      "icon"       : "external link",
+      "includeVars": true,
+      "keepTime"   : true,
+      "tags"       : [
+        "concourse"
+      ],
+      "targetBlank": false,
+      "title"      : "Concourse",
+      "type"       : "dashboards"
+    },
+    {
+      "icon"       : "external link",
+      "tags"       : [],
+      "targetBlank": true,
+      "title"      : "Concourse Docs",
+      "tooltip"    : "",
+      "type"       : "link",
+      "url"        : "http://concourse.ci/metrics.html"
+    }
+  ],
+  "panels": [
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds started",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id"          : 1,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_started_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Started",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds finished",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id"          : 2,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_finished_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Finished",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds succeeded",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id"          : 3,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_succeeded_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Succeeded",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds aborted",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id"          : 4,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_aborted_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Aborted",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds errored",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id"          : 5,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_errored_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Errored",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout"   : null,
+      "colorBackground": false,
+      "colorValue"     : false,
+      "colors"         : [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource" : "Prometheus",
+      "description": "Total number of Concourse builds failed",
+      "format"     : "none",
+      "gauge"      : {
+        "maxValue"        : 100,
+        "minValue"        : 0,
+        "show"            : false,
+        "thresholdLabels" : false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id"          : 6,
+      "interval"    : null,
+      "links"       : [],
+      "mappingType" : 1,
+      "mappingTypes": [
+        {
+          "name" : "value to text",
+          "value": 1
+        },
+        {
+          "name" : "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints"  : 100,
+      "nullPointMode"  : "connected",
+      "nullText"       : null,
+      "postfix"        : "",
+      "postfixFontSize": "50%",
+      "prefix"         : "",
+      "prefixFontSize" : "50%",
+      "rangeMaps"      : [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to"  : "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full"     : false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show"     : true
+      },
+      "tableColumn": "",
+      "targets"    : [
+        {
+          "expr"          : "max(concourse_builds_failed_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "refId"         : "A"
+        }
+      ],
+      "thresholds"   : "",
+      "title"        : "Builds Failed",
+      "transparent"  : true,
+      "type"         : "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps"    : [
+        {
+          "op"   : "=",
+          "text" : "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id"    : 7,
+      "legend": {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : false,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "max(concourse_builds_started_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "legendFormat"  : "Started",
+          "refId"         : "A"
+        },
+        {
+          "expr"          : "max(concourse_builds_finished_total)",
+          "format"        : "time_series",
+          "instant"       : false,
+          "intervalFactor": 2,
+          "legendFormat"  : "Finished",
+          "refId"         : "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "Builds Started / Finished",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "description": "HTTP response duration",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id"    : 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg"         : true,
+        "current"     : true,
+        "max"         : true,
+        "min"         : true,
+        "rightSide"   : true,
+        "show"        : true,
+        "sort"        : "current",
+        "sortDesc"    : false,
+        "total"       : false,
+        "values"      : true
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "avg(rate(concourse_http_responses_duration_seconds_sum[5m]) / rate(concourse_http_responses_duration_seconds_count[5m]))",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "legendFormat"  : "{{ route }}",
+          "refId"         : "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "HTTP Response Duration",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "s",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "description": "Number of containers per worker",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id"    : 9,
+      "legend": {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : false,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "max(concourse_workers_containers) by(worker)",
+          "format"        : "time_series",
+          "interval"      : "",
+          "intervalFactor": 2,
+          "legendFormat"  : "{{ worker }}",
+          "refId"         : "A",
+          "step"          : 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "Worker Containers",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "description": "Number of volumes per worker",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "id"    : 10,
+      "legend": {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : false,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "max(concourse_workers_volumes) by(worker)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "legendFormat"  : "{{ worker }}",
+          "refId"         : "A",
+          "step"          : 60
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "Worker Volumes",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "description": "Current number of concourse database connections",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id"    : 11,
+      "legend": {
+        "alignAsTable": false,
+        "avg"         : false,
+        "current"     : false,
+        "max"         : false,
+        "min"         : false,
+        "rightSide"   : false,
+        "show"        : false,
+        "total"       : false,
+        "values"      : false
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "max(concourse_db_connections) by(dbname)",
+          "format"        : "time_series",
+          "interval"      : "",
+          "intervalFactor": 2,
+          "legendFormat"  : "{{ dbname }}",
+          "refId"         : "A",
+          "step"          : 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "Database Connections",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars"       : false,
+      "dashLength" : 10,
+      "dashes"     : false,
+      "datasource" : "Prometheus",
+      "description": "Recent number of Concourse database queries",
+      "fill"       : 1,
+      "gridPos"    : {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id"    : 12,
+      "legend": {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : false,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"          : true,
+      "linewidth"      : 1,
+      "links"          : [],
+      "nullPointMode"  : "null",
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "max(concourse_db_queries_total)",
+          "format"        : "time_series",
+          "intervalFactor": 2,
+          "legendFormat"  : "Queries",
+          "refId"         : "A",
+          "step"          : 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom"  : null,
+      "timeShift" : null,
+      "title"     : "Database Queries",
+      "tooltip"   : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type"       : "graph",
+      "xaxis"      : {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : "0",
+          "show"   : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : false
+        }
+      ]
+    }
+  ],
+  "refresh"      : "30s",
+  "schemaVersion": 16,
+  "style"        : "dark",
+  "tags"         : [
+    "concourse",
+    "prometheus"
+  ],
+  "time": {
+    "from": "now-1h",
+    "to"  : "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title"   : "Concourse / Overview",
+  "uid"     : "concourse_overview",
+  "version" : 1
+}
