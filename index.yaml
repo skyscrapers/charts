@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cloudwatch-monitoring:
-  - created: 2018-11-22T14:09:57.356911088Z
+  - created: 2018-11-23T08:50:45.898367487Z
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: 0bb58e6287184d79d7938e3285cbdb0280b4d01f4f7683934f50b1eca8d03831
+    digest: dcc40515b6cc5740bf4a21bf7e12df5d58f0bc0d4b23a8bd4f74e60f2df857e2
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -68,9 +68,9 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
-  - created: 2018-11-22T14:09:57.366423262Z
+  - created: 2018-11-23T08:50:45.90814299Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: c061a8bd8dfef98c1ca27180708fdda2e86cc67d00f6d1fac12f6fe0d53fdc5f
+    digest: 62acab2248454c6b62574d1a93255829e81d74b61eefb15bae37083b7e0a69d5
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -381,9 +381,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2018-11-22T14:09:57.367287472Z
+  - created: 2018-11-23T08:50:45.908947284Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 3315ef52366cb1709847c7dacb39e2fb3f5e368f19bc2bd7f4d746d0cc5d8ce3
+    digest: a23a814a8e8b1ad40158ca8ccba6e161cd0a55bebfd940b83d8cb80ca05e8db9
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -515,9 +515,9 @@ entries:
     version: 0.0.1
   fluentd-cloudwatch:
   - appVersion: v0.12.33-cloudwatch
-    created: 2018-11-22T14:09:57.367668961Z
+    created: 2018-11-23T08:50:45.909361226Z
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
-    digest: 2f608847890b947031fa1239522e65d32d87858c2dc3ea6a4d08a62134b6ee24
+    digest: 22a761fe8cb6ffba3761071fe5a5bd300206a75da04704c985cd4009da645c46
     engine: gotpl
     home: https://www.fluentd.org/
     icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
@@ -614,9 +614,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2018-11-22T14:09:57.367846278Z
+    created: 2018-11-23T08:50:45.909548902Z
     description: Deploys the k8s-ec2-srcdst container
-    digest: 8e510721276d6de2e2bb1c6cb0e74362f12d65cc0dd09b941fdf5b440d3710f8
+    digest: 9e134bf62df1dc72c1887526b9e5d63914f29b0256cc43f5b7f0de36d19e9780
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -675,9 +675,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2018-11-22T14:09:57.368348562Z
+    created: 2018-11-23T08:50:45.910071826Z
     description: A Kubesignin chart for Kubernetes
-    digest: 2fc5e9fc1fb8043d8169340c9e075880196ca6cc701c2fe67a1b81bacd4ca990
+    digest: c9d1a04da8245c1cc8d43c460cc6ecb19f2e0b835044fd37a4914d10523774a0
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -847,9 +847,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: 2018-11-22T14:09:57.368648515Z
+    created: 2018-11-23T08:50:45.910392643Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: c1d0e5c8bc055d1bc92ad52c2826de18e6965588b8ed8e887ad4a9b86e1a695d
+    digest: 80150736b464158cf646b6a4bf994a8fb4dd29164a47db8196767a12e8afe6c5
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -953,4 +953,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2018-11-22T14:09:57.356207784Z
+generated: 2018-11-23T08:50:45.897625736Z
