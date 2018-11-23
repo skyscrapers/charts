@@ -84,7 +84,7 @@ helm install --name my-release -f values.yaml skyscrapers/cluster-monitoring
 
 ## Migrate from older versions to 1.0.0
 
-With version `1.0.0` of this chart we move from using an old [`kube-prometheus`](https://github.com/coreos/prometheus-operator/tree/master/helm) version to the new [`prometheus-operator`](https://github.com/helm/charts/tree/master/stable/prometheus-operator) chart as dependency. This is a breaking change and an upgrade from previous versions is not possible. You need to remove everything before deploying the new version:
+With version `1.0.0` of this chart we move from using an old [`kube-prometheus`](https://github.com/coreos/prometheus-operator/tree/master/helm) version to the new [`prometheus-operator`](https://github.com/helm/charts/tree/master/stable/prometheus-operator) chart as dependency. This is a **breaking change (with data loss)** and an upgrade from previous versions is not possible. You need to remove everything before deploying the new version:
 
 ```sh
 helm delete --purge prometheus-operator
