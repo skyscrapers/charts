@@ -90,13 +90,22 @@ With version `1.0.0` of this chart we move from using an old [`kube-prometheus`]
 helm delete --purge prometheus-operator
 helm delete --purge k8s-monitor
 
+# Remove the `kubelet` svc created by prometheus-operator
+kubectl delete svc -n kube-system kubelet
+
+# Remove CRDs or helm will fail
+# WARNING: this will also remove all your Prometheuses, AlertManagers,
+# ServiceMonitors and PrometheusRules created via the CRD!
+# You will need to redeploy these after deploying the chart.
+# Instead of removing the CRDs, you can also set the following value:
+# `prometheus-operator.prometheusOperator.createCustomResource: false`
 kubectl delete crd prometheuses.monitoring.coreos.com
 kubectl delete crd prometheusrules.monitoring.coreos.com
 kubectl delete crd servicemonitors.monitoring.coreos.com
 kubectl delete crd alertmanagers.monitoring.coreos.com
 ```
 
-After the `helm purge` there might still be some leftover resources to delete. You can find these by running `kubectl get all --all-namespaces -l release=<your helm release name>` and delete those resources.
+After the `helm purge` there might still be some leftover resources to delete. You can find these by running `kubectl get all --all-namespaces -l release=<your helm release name>` and delete those resources. Don't forget to also check your ConfigMaps for any leftovers.
 
 ## Acknowledgements
 
