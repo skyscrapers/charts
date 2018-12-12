@@ -2928,7 +2928,7 @@
       "pointradius"    : 5,
       "points"         : false,
       "renderer"       : "flot",
-      "repeat"         : "RuleGroup",
+      "repeat"         : "",
       "repeatDirection": "h",
       "seriesOverrides": [],
       "spaceLength"    : 10,
@@ -2936,19 +2936,10 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "prometheus_rule_group_interval_seconds{job=\"k8s-monitor-prometheus-ope-prometheus\",instance=\"$Prometheus:9090\",rule_group=~\".*;$RuleGroup\"}\n",
+          "expr"          : "label_replace(prometheus_rule_group_last_duration_seconds{job=\"k8s-monitor-prometheus-ope-prometheus\",instance=\"$Prometheus:9090\"}, \"rule_group_name\", \"$1\", \"rule_group\", \".*;(.*)$\")",
           "format"        : "time_series",
           "intervalFactor": 2,
-          "legendFormat"  : "Interval",
-          "metric"        : "prometheus_local_storage_memory_chunkdescs",
-          "refId"         : "A",
-          "step"          : 10
-        },
-        {
-          "expr"          : "prometheus_rule_group_last_duration_seconds{job=\"k8s-monitor-prometheus-ope-prometheus\",instance=\"$Prometheus:9090\",rule_group=~\".*;$RuleGroup\"}\n",
-          "format"        : "time_series",
-          "intervalFactor": 2,
-          "legendFormat"  : "Last Duration",
+          "legendFormat"  : "{{rule_group_name}}",
           "metric"        : "prometheus_local_storage_memory_chunkdescs",
           "refId"         : "B",
           "step"          : 10
@@ -2957,7 +2948,7 @@
       "thresholds": [],
       "timeFrom"  : null,
       "timeShift" : null,
-      "title"     : "Rule Group: $RuleGroup",
+      "title"     : "Rule Group last duration",
       "tooltip"   : {
         "msResolution": false,
         "shared"      : true,
@@ -2992,7 +2983,7 @@
       ]
     }
   ],
-  "refresh"      : "1m",
+  "refresh"      : "",
   "schemaVersion": 16,
   "style"        : "dark",
   "tags"         : [],
@@ -3015,26 +3006,6 @@
         "tagValuesQuery": null,
         "tags"          : [],
         "tagsQuery"     : null,
-        "type"          : "query",
-        "useTags"       : false
-      },
-      {
-        "allValue"      : null,
-        "current"       : {},
-        "datasource"    : "${DS_PROMETHEUS}",
-        "hide"          : 2,
-        "includeAll"    : true,
-        "label"         : null,
-        "multi"         : false,
-        "name"          : "RuleGroup",
-        "options"       : [],
-        "query"         : "label_values(prometheus_rule_group_last_duration_seconds{job=\"k8s-monitor-prometheus-ope-prometheus\",instance=\"$Prometheus:9090\"}, rule_group)",
-        "refresh"       : 2,
-        "regex"         : ".*;(.*)$",
-        "sort"          : 1,
-        "tagValuesQuery": "",
-        "tags"          : [],
-        "tagsQuery"     : "",
         "type"          : "query",
         "useTags"       : false
       }
