@@ -1,0 +1,17 @@
+name: cronjobs-monitoring
+version: 0.1.2
+description: Cloudwatch monitoring using Prometheus-operator and Grafana.
+keywords:
+  - kube-state-metrics
+  - monitoring
+  - prometheus
+  - cronjobs
+home: https://github.com/skyscrapers/charts/
+sources:
+  - https://github.com/coreos/prometheus-operator
+  - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+  - https://github.com/skyscrapers/charts
+maintainers:
+  - name: skyscrapers
+    email: hello@skyscrapers.eu
+engine: gotpl

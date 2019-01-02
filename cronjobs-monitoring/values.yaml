@@ -1,0 +1,3 @@
+## Prometheus MatchLabel selectors
+labels:
+  prometheus: "application-monitor"
