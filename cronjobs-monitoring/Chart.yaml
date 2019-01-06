@@ -1,5 +1,5 @@
 name: cronjobs-monitoring
-version: 0.1.2
+version: 0.0.1
 description: Cloudwatch monitoring using Prometheus-operator and Grafana.
 keywords:
   - kube-state-metrics
