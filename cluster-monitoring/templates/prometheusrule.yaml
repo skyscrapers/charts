@@ -56,3 +56,54 @@ spec:
       annotations:
         description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
         summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-cronjob"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+spec:
+  groups:
+  - name: cronjobs.rules
+    rules:
+    - record: job_cronjob:kube_job_status_start_time:max                                                                  
+      expr: |
+        label_replace(
+          label_replace(
+            max(
+              kube_job_status_start_time
+              * ON(job_name) GROUP_RIGHT()
+              kube_job_labels{label_cronjob!=""}
+            ) BY (job_name, label_cronjob)
+            == ON(label_cronjob) GROUP_LEFT()
+            max(
+              kube_job_status_start_time
+              * ON(job_name) GROUP_RIGHT()
+              kube_job_labels{label_cronjob!=""}
+            ) BY (label_cronjob),
+            "job", "$1", "job_name", "(.+)"),
+          "cronjob", "$1", "label_cronjob", "(.+)")
+    - record: job_cronjob:kube_job_status_not_succeed:sum
+      expr: |
+        clamp_max(
+          job_cronjob:kube_job_status_start_time:max,
+        1)
+        * ON(job) GROUP_LEFT()
+        label_replace(
+          label_replace(
+            (kube_job_status_succeeded == 0),
+            "job", "$1", "job_name", "(.+)"),
+          "cronjob", "$1", "label_cronjob", "(.+)")
+    - alert: CronJobFailures
+      expr: |
+        job_cronjob:kube_job_status_not_succeed:sum
+        == 0
+      for: 1m
+      labels:
+        severity: critical
+        group: cronjobs
+      annotations:
+        description: '{{ `{{ $labels.cronjob }}` }} last run did not succeed.'
