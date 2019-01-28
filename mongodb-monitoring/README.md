@@ -1,6 +1,6 @@
 # mongodb-monitoring
 
-A Helm chart for monitoring MongoDB via Prometheus and Grafana. This chart deploys the [mongodb-exporter](https://github.com/skyscrapers/mongodb_exporter) and configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards.
+A Helm chart for monitoring MongoDB via Prometheus and Grafana. This chart configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards.
 
 ## TL;DR
 
@@ -21,7 +21,7 @@ To install the chart with the release name `my-release`:
 helm install --name my-release skyscrapers/mongodb-monitoring
 ```
 
-The command deploys the complete MongoDB monitoring setup on the cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
+The command configures Prometheus to scrape mongo nodes in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
 
@@ -39,20 +39,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-This charts exposes a couple of configurable parameters, next to the ones from the upstream [mongodb-exporter](https://github.com/skyscrapers/mongodb_exporter).
-
-The following tables lists the configurable parameters of mongodb-monitoring chart and their default values.
-
-Parameter | Description | Default
---- | --- | ---
-`prometheus.app` | Sets the `app` label value (ServiceMonitor & Alerting rules) | `prometheus`
-`prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
-`prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
-`interval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `30s`
-
-Upstream configuration can be found here:
-
-- [mongodb-exporter](https://github.com/flant/charts/tree/master/prometheus/mongodb_exporter)
+This charts scrapes mongodb nodes to collect data and push it to prometheus. By default the only parameter is a list of IPs to scrape.
 
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
 
@@ -65,4 +52,3 @@ helm install --name my-release -f my-values.yaml skyscrapers/mongodb-monitoring
 
 # Origin
 
-https://github.com/flant/charts/tree/master/prometheus/mongodb_exporter

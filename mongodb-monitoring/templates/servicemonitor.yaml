@@ -17,5 +17,4 @@ spec:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app: mongodb-exporter
       release: "{{ .Release.Name }}"
