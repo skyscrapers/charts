@@ -7,15 +7,17 @@ metadata:
     {{ $key }}: {{ $val | quote }}
     {{- end}}
   name: "{{ .Release.Name }}"
-  namespace: "{{ .Release.Namespace }}"
 spec:
   endpoints:
     - interval: {{ .Values.interval }}
-      port: http
+      port: metrics
   namespaceSelector:
     matchNames:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app: mongodb-exporter
-      release: "{{ .Release.Name }}"
+      app: {{ template "app.name" . }}
+      chart: {{ template "app.chart" . }}
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: mongodb
