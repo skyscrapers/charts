@@ -7,13 +7,43 @@ metadata:
     {{ $key }}: {{ $val | quote }}
     {{- end}}
   name: "{{ .Release.Name }}"
-  namespace: "{{ .Release.Namespace }}"
 spec:
   groups:
   - name: mongodb.rules
     rules:
-    - alert: mongodbMetricsDown
+    - alert: MongodbMetricsDown
       expr: up{job="{{ .Release.Name }}-metrics"} != 1
       for: 5m
       labels:
         severity: critical
+    - alert: MongodbNoConnectionsAvailable
+      expr: mongodb_mongod_connections{state='available'} == 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'No connections available anymore on {{`{{$labels.instance}}`}}'
+        summary: 'No connections available anymore on {{`{{$labels.instance}}`}}'
+    - alert: MongodbUnhealthyMember
+      expr: mongodb_mongod_replset_member_health != 1
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        description: 'A mongo node with issues has been detected on {{`{{$labels.instance}}`}}'
+        summary: 'A mongo node in the cluster is unhealthy'
+    - alert: MongodbReplicationLagWarning
+      expr: rate(mongodb_mongod_replset_oplog_head_timestamp[5m]) > 10
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The replication is running out on {{`{{$labels.instance}}`}} more than 10 seconds'
+        summary:  'The replication is lagging on {{`{{$labels.instance}}`}}'
+    - alert: MongodbReplicationLagCritical
+      expr: rate(mongodb_mongod_replset_oplog_head_timestamp[5m]) > 60
+      for: 5m
+      labels:
+        severity: critical
+        description: 'The replication is running out on {{`{{$labels.instance}}`}} more than 60 seconds'
+        summary:  'The replication is lagging on {{`{{$labels.instance}}`}}'

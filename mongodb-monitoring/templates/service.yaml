@@ -8,14 +8,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     component: mongodb
-  namespace: {{ .Values.project }}
 spec:
   ports:
     - port: 9216
       targetPort: 9216
       protocol: TCP
-      name: http
-  selector:
-    app: {{ template "app.name" . }}
-    release: {{ .Release.Name }}
-    component: mongodb
+      name: metrics

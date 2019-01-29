@@ -9,11 +9,10 @@ metadata:
     heritage: {{ .Release.Service }}
     component: mongodb
 subsets:
-{{- range .Values.nodes }}
-  - addresses:
-      - ip: {{ . }}
-    ports:
-      - name: http
-        port: 9216
-        protocol: TCP
-{{- end }}
+- addresses:
+  {{- range .Values.nodes }}
+  - ip: {{ . }}
+  {{- end }}
+  ports:
+  - port: 9216
+    name: metrics

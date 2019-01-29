@@ -1,6 +1,6 @@
 # mongodb-monitoring
 
-A Helm chart for monitoring MongoDB via Prometheus and Grafana. This chart configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics, sets up some alerts and Grafana dashboards.
+A Helm chart for monitoring MongoDB via Prometheus and Grafana. This chart configures Prometheus (via the [Operator](https://github.com/coreos/prometheus-operator)) for scraping the exposed metrics and sets up  alerts.
 
 ## TL;DR
 
