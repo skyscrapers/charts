@@ -75,13 +75,13 @@ spec:
           label_replace(
             max(
               kube_job_status_start_time
-              * ON(job_name) GROUP_RIGHT()
+              * ON(job_name, namespace) GROUP_RIGHT()
               kube_job_labels{label_cronjob!=""}
-            ) BY (job_name, label_cronjob)
+            ) BY (job_name, namespace, label_cronjob)
             == ON(label_cronjob) GROUP_LEFT()
             max(
               kube_job_status_start_time
-              * ON(job_name) GROUP_RIGHT()
+              * ON(job_name, namespace) GROUP_RIGHT()
               kube_job_labels{label_cronjob!=""}
             ) BY (label_cronjob),
             "job", "$1", "job_name", "(.+)"),
