@@ -69,26 +69,26 @@ spec:
   - name: esdata.rules
     rules:
     {{- if .Values.amazonService.enabled }}
-    - alert: ElasticsearchLowDiskSpace
+    - alert: ElasticsearchAWSLowDiskSpace
       expr: aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} <= 10240
       for: 15m
       labels:
         severity: warning
         group: persistence
       annotations:
-        description: 'Elasticsearch cluster {{`{{ $labels.domain_namae }}`}} has less than 10GB left'
-        summary: Elasticsearch low disk
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchlowdiskspace'
-    - alert: ElasticsearchNoDiskSpace
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.domain_namae }}`}} has less than 10GB left'
+        summary: AWS Elasticsearch low disk
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawslowdiskspace'
+    - alert: ElasticsearchAWSNoDiskSpace
       expr: aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} <= 5120
       for: 15m
       labels:
         severity: critical
         group: persistence
       annotations:
-        description: 'Elasticsearch cluster {{`{{ $labels.domain_name }}`}} has less than 5GB left'
-        summary: Elasticsearch out of disk
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchnodiskspace'
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.domain_name }}`}} has less than 5GB left'
+        summary: AWS Elasticsearch out of disk
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawsnodiskspace'
     {{- else }}
     - alert: ElasticsearchLowDiskSpace
       expr: elasticsearch_filesystem_data_available_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.1
