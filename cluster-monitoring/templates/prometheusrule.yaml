@@ -19,6 +19,7 @@ spec:
       annotations:
         description: '{{`{{$labels.instance}}`}} of job {{`{{$labels.job}}`}} has been down for more than 5 minutes'
         summary: 'Instance {{`{{$labels.instance}}`}} Pod: {{`{{$labels.pod}}`}} is down'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-caliconodeinstancedown'
     - alert: CalicoDataplaneFailures
       expr: felix_int_dataplane_failures{job="{{ .Release.Name }}-calico"} > 0
       for: 5m
@@ -27,6 +28,7 @@ spec:
       annotations:
         description: '{{`{{$labels.instance}}`}} with calico-node pod {{`{{$labels.pod}}`}} has been having dataplane failures'
         summary: 'Instance {{`{{$labels.instance}}`}} - Dataplane failures'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-calicodataplanefailures'
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -48,6 +50,7 @@ spec:
       annotations:
         description: '{{`{{$labels.node}}`}} is overcommited by {{`{{$value}}`}}%'
         summary: 'Instance {{`{{$labels.node}}`}} Memory usage high'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-memoryovercommitted'
     - alert: CPUUsageHigh
       expr: 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1h]))) >= 90
       for: 5m
@@ -56,6 +59,7 @@ spec:
       annotations:
         description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
         summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-cpuusagehigh'
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
