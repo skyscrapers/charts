@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   cloudwatch-monitoring:
-  - created: 2019-02-07T14:19:07.109957274Z
+  - created: 2019-02-28T16:20:57.72204485Z
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: fc284591957f09ade25f1044338b02f0e799980045438e7066e92502f37ab76f
+    digest: 1ca55b30b8ba5092244a5cd8ce856a1b781168646dd896d1aab75853536df4d5
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -68,6 +68,28 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
+  - created: 2019-02-28T16:20:57.835020005Z
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 6449f792181a81acae808479b12a183b6045e781af772f0977c0ea868dfb1c0c
+    engine: gotpl
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - monitoring
+    - prometheus
+    - opsgenie
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.3.tgz
+    version: 1.1.3
   - created: 2019-02-07T14:19:07.12494537Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: fc7a14969518041965bb7f015fae06baad27de014d90fba0e907cccb535b30ad
@@ -491,6 +513,28 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
+  - created: 2019-02-28T16:20:57.841390405Z
+    description: ElasticSearch monitoring using Prometheus-operator and Grafana.
+    digest: 42480e4b900edffc83f7ab70afedec5b120bd4a7cc050409b26d49ee2d07b868
+    engine: gotpl
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    - elasticsearch
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: elasticsearch-monitoring
+    sources:
+    - https://github.com/justwatchcom/elasticsearch_exporter
+    - https://github.com/kubernetes/charts/tree/master/stable/elasticsearch-exporter
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.2.tgz
+    version: 0.2.2
   - created: 2019-02-07T14:19:07.125829434Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: d3d4ebe7f8374e909a7f0e596900466a55e46275d5cf8c0138a8a08df994cbef
@@ -724,9 +768,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-07T14:19:07.126040589Z
+    created: 2019-02-28T16:20:57.841771722Z
     description: Deploys the k8s-ec2-srcdst container
-    digest: 98f9702323884759d03ca9f64c0349f07d35a3bd0a5b979cb5d017af16ed551a
+    digest: 188490ab8644fa914139ea288ae2599fd85dffe8d9e49d63ee5d3585b5eff72c
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -785,9 +829,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2019-02-07T14:19:07.127245099Z
+    created: 2019-02-28T16:20:57.842611866Z
     description: A Kubesignin chart for Kubernetes
-    digest: ce92530ad845d39c61a5e344a4b109ed6fda4f12a714a3a104aacc8568633378
+    digest: 823c1e8b5927e02dbcc0724d9934228338d8831480d10e5db6efc96ab7bb94a5
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -957,6 +1001,27 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
+    created: 2019-02-28T16:20:57.843012952Z
+    description: MongoDB monitoring using Prometheus-operator and Grafana.
+    digest: 2bbda6ee43240371bc3d78b74b58b9c02977d147aaf73cd4d4301b66de0dd934
+    engine: gotpl
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    - mongodb
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: mongodb-monitoring
+    sources:
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/mongodb-monitoring-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
     created: 2019-02-07T14:19:07.127828511Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 3df84bdef832ad59cd8dc68bc08e41a8462615f631a719e44531d86d4a4805fb
@@ -1084,4 +1149,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2019-02-07T14:19:07.103608908Z
+generated: 2019-02-28T16:20:57.71998852Z
