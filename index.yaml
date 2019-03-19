@@ -1,9 +1,32 @@
 apiVersion: v1
 entries:
+  aws-service-operator:
+  - apiVersion: v1
+    appVersion: v0.0.1-alpha4
+    created: 2019-03-19T10:29:52.623907007Z
+    description: The AWS Service Operator allows you to manage AWS resources using
+      Kubernetes Custom Resource Definitions.
+    digest: 8196a4b8f7d37ee1a8e1719d93de17e97e0871c4db78cfd289754ae3ea343c32
+    engine: gotpl
+    home: https://github.com/awslabs/aws-service-operator
+    keywords:
+    - AWS
+    maintainers:
+    - email: heichris@amazon.com
+      name: christopherhein
+    - email: ash.caire@gmail.com
+      name: acaire
+    name: aws-service-operator
+    sources:
+    - https://github.com/awslabs/aws-service-operator
+    tillerVersion: '>=2.8.0'
+    urls:
+    - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
+    version: 0.0.1-alpha4
   cloudwatch-monitoring:
-  - created: 2019-03-07T13:50:51.63034025Z
+  - created: 2019-03-19T10:29:52.649352471Z
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: b0dbc88d3c89b18d4fd6d136d4317dfb7f1048e24904b52170517c47b0bd60de
+    digest: dd47d9475398857fbc04ad8e08a9ef03e9a23b4c5ba4fa5cd338c1e7de64589f
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -68,9 +91,9 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
-  - created: 2019-03-07T13:50:51.639703442Z
+  - created: 2019-03-19T10:29:52.757206052Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 3e20c1da0a37d88ce59e92151a05f5b4bbd5371d6bf93a178cb4467650ca899d
+    digest: 0eaa4399c1c3c220c9f0ff510abeeff7a7ba91623cca07f20e5a4733797c50e7
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -513,9 +536,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2019-03-07T13:50:51.640504676Z
+  - created: 2019-03-19T10:29:52.758641054Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 75d276e8077826f47c53cb9989daf961ff5095e367ef659677952b98b85b48c3
+    digest: e70192db493bae95ce3c1a7cb99dd66b5f32cace0056b4115fefd305c6529d05
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -768,9 +791,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-03-07T13:50:51.640687713Z
+    created: 2019-03-19T10:29:52.758968575Z
     description: Deploys the k8s-ec2-srcdst container
-    digest: de80eb9242d22845bfb21de24272c1d1539bbe9f0852a79644862a3d3aeac0e9
+    digest: da239932ab59ce4fedddb1953beae367e5ed71146cb2c80481fed8666e36f5b9
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -829,9 +852,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2019-03-07T13:50:51.641135029Z
+    created: 2019-03-19T10:29:52.773080632Z
     description: A Kubesignin chart for Kubernetes
-    digest: 7438bff123b5f747b4986665bdec4a5ce326783a698dc66fe56018d47194229a
+    digest: ec7af28c427cc1bdb7059a414abd6929c04ac66913e3eb62ace9aa8a04925227
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -1001,9 +1024,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: 2019-03-07T13:50:51.641397304Z
+    created: 2019-03-19T10:29:52.77355912Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: af1e31964f1006cf62dd1f4a5c31e67c7160fd1d813718c32a63ef9a1c43d42c
+    digest: ff92f2e7af5700f68d28e50781e84ed0c301a3740f0c7516791ebd5d19f8d7b7
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -1149,4 +1172,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2019-03-07T13:50:51.629074482Z
+generated: 2019-03-19T10:29:52.622613372Z
