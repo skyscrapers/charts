@@ -14,6 +14,8 @@ extraDashboards: []
 # - sqs
 # - webapp
 
+cwExporterScrapeInterval: "300s"
+
 opsgenieHeartbeatProxy:
   image: "traumfewo/opsgenie-heartbeat-proxy"
   imageTag: "v0.0.3"
