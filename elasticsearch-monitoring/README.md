@@ -48,7 +48,8 @@ Parameter | Description | Default
 `prometheus.app` | Sets the `app` label value (ServiceMonitor & Alerting rules) | `prometheus`
 `prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
 `prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
-`interval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `30s`
+`esExporterScrapeInterval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `60s`
+`esExporterScrapeTimeout` | Tiemout for the elasticsearch-exporter Prometheus scraper | `30s`
 `amazonService.enabled` | Whether we're monitoring an Amazon Elasticsearch Service domain. Enabling this will get disk statistics from Cloudwatch instead of Elasticsearch directly | `false`
 `amazonService.interval` | Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter | `600s`
 

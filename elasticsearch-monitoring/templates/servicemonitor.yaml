@@ -10,7 +10,8 @@ metadata:
     {{- end}}
 spec:
   endpoints:
-  - interval: {{ .Values.interval }}
+  - interval: {{ .Values.esExporterScrapeInterval }}
+    scrapeTimeout: {{ .Values.esExporterScrapeTimeout }}
     port: http
   namespaceSelector:
     matchNames:
