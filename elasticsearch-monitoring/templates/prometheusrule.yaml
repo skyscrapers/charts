@@ -70,23 +70,23 @@ spec:
     rules:
     {{- if .Values.amazonService.enabled }}
     - alert: ElasticsearchAWSLowDiskSpace
-      expr: aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} <= 10240
+      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.1
       for: 15m
       labels:
         severity: warning
         group: persistence
       annotations:
-        description: 'AWS Elasticsearch cluster {{`{{ $labels.domain_namae }}`}} has less than 10GB left'
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
         summary: AWS Elasticsearch low disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawslowdiskspace'
     - alert: ElasticsearchAWSNoDiskSpace
-      expr: aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} <= 5120
+      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.05
       for: 15m
       labels:
         severity: critical
         group: persistence
       annotations:
-        description: 'AWS Elasticsearch cluster {{`{{ $labels.domain_name }}`}} has less than 5GB left'
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} has no free disk space'
         summary: AWS Elasticsearch out of disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawsnodiskspace'
     {{- else }}
