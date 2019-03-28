@@ -76,7 +76,7 @@ spec:
         severity: warning
         group: persistence
       annotations:
-        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} has less than 10GB left'
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
         summary: AWS Elasticsearch low disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawslowdiskspace'
     - alert: ElasticsearchAWSNoDiskSpace
@@ -86,7 +86,7 @@ spec:
         severity: critical
         group: persistence
       annotations:
-        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} has less than 5GB left'
+        description: 'AWS Elasticsearch cluster {{`{{ $labels.cluster }}`}} has no free disk space'
         summary: AWS Elasticsearch out of disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawsnodiskspace'
     {{- else }}
