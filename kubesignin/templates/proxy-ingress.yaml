@@ -7,10 +7,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/app-root: {{ $value.oidc.appRoot }}
   labels:
     app: {{ template "name" $ }}-{{ $key }}
     chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
-    component: kubesignin-proxy-{{ $key }} 
+    component: kubesignin-proxy-{{ $key }}
     heritage: {{ $.Release.Service }}
     release: {{ $.Release.Name }}
 spec:

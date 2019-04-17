@@ -80,6 +80,7 @@ proxy:
     pullPolicy: "IfNotPresent"
   oidc:
     discoveryURL: https://kubesigin.domain/dex
+    appRoot: "/"
   service:
     internalPort: 3000
     externalPort: 3000
