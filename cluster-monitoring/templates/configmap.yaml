@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "opsgenieHeartbeatProxy.fullname" . }}
-  labels:
-{{ include "labels" $ | indent 4 }}
-    component: opsgenie-heartbeat-proxy
-data:
-  heartbeat_name: {{ .Values.opsgenieHeartbeatProxy.heartbeat_name | quote }}
