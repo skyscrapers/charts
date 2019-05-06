@@ -85,12 +85,11 @@ proxy:
     internalPort: 3000
     externalPort: 3000
   resources:
-    limits:
-      cpu: 2m
-      memory: 16Mi
     requests:
       cpu: 1m
-      memory: 8Mi
+      memory: 16Mi
+    limits:
+      memory: 16Mi
 
 # Keycloack proxies to setup
 proxies:

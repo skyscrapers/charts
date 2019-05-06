@@ -78,11 +78,10 @@ spec:
               key: {{ $index }}-client-secret
 {{- end }}
         resources:
-          limits:
-            cpu: {{ .Values.Dex.Cpu }}
-            memory: {{ .Values.Dex.Memory }}
           requests:
             cpu: {{ .Values.Dex.Cpu }}
+            memory: {{ .Values.Dex.Memory }}
+          limits:
             memory: {{ .Values.Dex.Memory }}
       volumes:
       - name: config

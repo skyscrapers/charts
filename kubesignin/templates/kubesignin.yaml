@@ -80,11 +80,10 @@ spec:
 {{- end }}
 
         resources:
-          limits:
-            cpu: {{ .Values.Kubesignin.Cpu }}
-            memory: {{ .Values.Kubesignin.Memory }}
           requests:
             cpu: {{ .Values.Kubesignin.Cpu }}
+            memory: {{ .Values.Kubesignin.Memory }}
+          limits:
             memory: {{ .Values.Kubesignin.Memory }}
 
       volumes:
