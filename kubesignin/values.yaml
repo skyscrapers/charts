@@ -92,16 +92,16 @@ proxy:
       memory: 16Mi
 
 # Keycloack proxies to setup
-proxies:
-  dashboard:
-    replicaCount: 2
-    # Upstream service to proxy to
-    upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
-    upstreamTimeout: "60s"
-    oidc:
-      # Ingress URL
-      redirectURL: "kubernetes-dashboard.example.com"
-      # Comma separated list of groups for matching the OIDC claim
-      groups: skyscrapers:k8s-admins
-    # # Extra arguments to pass to the keycloack-proxy container
-    # extraArgs: []
+proxies: {}
+  # dashboard:
+  #   replicaCount: 2
+  #   # Upstream service to proxy to
+  #   upstreamURL: "https://k8s-dashboard-kubernetes-dashboard.kube-system.svc.cluster.local"
+  #   upstreamTimeout: "60s"
+  #   oidc:
+  #     # Ingress URL
+  #     redirectURL: "kubernetes-dashboard.example.com"
+  #     # Comma separated list of groups for matching the OIDC claim
+  #     groups: skyscrapers:k8s-admins
+  #   # Extra arguments to pass to the keycloack-proxy container
+  #   extraArgs: []
