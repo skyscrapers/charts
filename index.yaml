@@ -3,10 +3,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: 2019-05-08T12:21:49.256999193Z
+    created: 2019-05-08T15:31:32.628174716Z
     description: The AWS Service Operator allows you to manage AWS resources using
       Kubernetes Custom Resource Definitions.
-    digest: 753543e9c335e940f677385d515a2631d12f67687183394a2b6251782c6232b5
+    digest: 24dc8d3a71d798a1355656e2643609f3dfba004b3814652226a259b0b423b579
     engine: gotpl
     home: https://github.com/awslabs/aws-service-operator
     keywords:
@@ -24,9 +24,9 @@ entries:
     - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
     version: 0.0.1-alpha4
   cloudwatch-monitoring:
-  - created: 2019-05-08T12:21:49.258300454Z
+  - created: 2019-05-08T15:31:32.644569907Z
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: 63af4d4b2a05aafcd4abc9f6ba5b829f9110dd2e854ecd2331479ac8cd40108e
+    digest: 9225c47bc978d3d6598e96c914384d7668e6e54c786c15c9d5bdcd7a3cb7df27
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -91,6 +91,28 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
+  - created: 2019-05-08T15:31:32.835023087Z
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 703acbbf125c420e8b0576fb38c9e0db9def201b039bdbf3ffa75efb9244f323
+    engine: gotpl
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - monitoring
+    - prometheus
+    - opsgenie
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-1.3.0.tgz
+    version: 1.3.0
   - created: 2019-05-08T12:21:49.37242804Z
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 0fc74fcde8d87ab1b86b40bb783e21ed37d5957ab597c68e93547e9932cee72e
@@ -602,9 +624,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: 2019-05-08T12:21:49.378173115Z
+  - created: 2019-05-08T15:31:32.861626029Z
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 8195832d13fae99c87e50f0ffb6c430ab396aaa5aee927af96b1475f78e9fc2d
+    digest: 2b9c0126c82073462bed7f4c98babed9d4e64e1c2d43e167bded029f1794ec1f
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -900,9 +922,9 @@ entries:
     version: 0.2.0
   helm-base:
   - apiVersion: v1
-    created: 2019-05-08T12:21:49.378508368Z
+    created: 2019-05-08T15:31:32.862020294Z
     description: A Helm chart for Kubernetes
-    digest: c95a8a53eb31678c75aaac39e684d66fe65d85be83f41d019c7535934df3cbe6
+    digest: 8c52cfac00098be9c8dc650b6445f3343820af023f067924de7c1c929633a3b3
     engine: gotpl
     home: https://github.com/skyscrapers/charts.git
     keywords:
@@ -921,9 +943,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-08T12:21:49.385847664Z
+    created: 2019-05-08T15:31:32.862299608Z
     description: Deploys the k8s-ec2-srcdst container
-    digest: ee126c12247c2cbccea73d9732fa92be630ce3229ac052a50b0671472bcb5bcb
+    digest: 399555e3b33a2e5e7081a3508c93bf89fe9750aecc183ea111f231e2ffd97d78
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -982,9 +1004,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: 2019-05-08T12:21:49.397235231Z
+    created: 2019-05-08T15:31:32.863048188Z
     description: A Kubesignin chart for Kubernetes
-    digest: 50d8833ba45c110630c1ceded66c7723e0f3917fb2b192ce1b5173d9b3bbce77
+    digest: d7364da4807d6f296c1e5d9e948fd65f38f84dc10579404fb54da305be19b46f
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -1173,9 +1195,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: 2019-05-08T12:21:49.398010836Z
+    created: 2019-05-08T15:31:32.863486365Z
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: eb3d5b38a4c0d46c47c2a734b6bb774a987dea43a31955443baf24ec50c9a13d
+    digest: 6c2db98061b7a71459f7f7f0cd256af0c6dd0658c0b8a1c7d7dc0698e82b0b55
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -1321,4 +1343,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: 2019-05-08T12:21:49.256179673Z
+generated: 2019-05-08T15:31:32.574724825Z
