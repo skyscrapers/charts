@@ -42,20 +42,11 @@ spec:
   groups:
   - name: node-custom.rules
     rules:
-    - alert: MemoryOvercommitted
-      expr: round(((sum(kube_pod_container_resource_limits_memory_bytes) by (node) / sum(kube_node_status_capacity_memory_bytes ) by (node) )) *100) >=100
-      for: 1h
-      labels:
-        severity: info
-      annotations:
-        description: '{{`{{$labels.node}}`}} is overcommited by {{`{{$value}}`}}%'
-        summary: 'Instance {{`{{$labels.node}}`}} Memory usage high'
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-memoryovercommitted'
     - alert: CPUUsageHigh
       expr: 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1h]))) >= 90
       for: 5m
       labels:
-        severity: warning
+        severity: info
       annotations:
         description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
         summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
