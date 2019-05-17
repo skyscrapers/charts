@@ -2,7 +2,6 @@
 
 This charts creates a ServiceAccount used by Concourse to deploy helm charts with the right permissions.
 
-
 ## Installation
 
 Install this in your cluster with [Helm](https://github.com/kubernetes/helm):
