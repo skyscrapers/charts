@@ -3,10 +3,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2019-05-21T10:44:47.028944405Z"
+    created: "2019-05-21T16:50:55.338875936Z"
     description: The AWS Service Operator allows you to manage AWS resources using
       Kubernetes Custom Resource Definitions.
-    digest: 2b64f51b53606b13869f712483bc1e1e2e99d6cbc7687dc9d3b6b992ad4799c9
+    digest: d7548504657b37e3c7c9ca9bb60bcd97be9e1f2a983f0c6335272c3747b8cc6f
     engine: gotpl
     home: https://github.com/awslabs/aws-service-operator
     keywords:
@@ -24,9 +24,9 @@ entries:
     - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
     version: 0.0.1-alpha4
   cloudwatch-monitoring:
-  - created: "2019-05-21T10:44:47.030099098Z"
+  - created: "2019-05-21T16:50:55.340032507Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: a3f26fbbceada128e73ee1a7f36d513064e8d9ddb2d8b8d1622b4e8aeada9e5c
+    digest: cead38ee3706a00ce0dfd3bdc15c153e9376e472dbc33e21323ecac8741d05f4
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -91,9 +91,9 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
-  - created: "2019-05-21T10:44:47.048955298Z"
+  - created: "2019-05-21T16:50:55.363068501Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: eae84e1a4341ee9bfcc6ee6d442f0ad326092d4b0ccdb8d2ffe687467dcdfcf6
+    digest: 5780c420c7c1d8bce1343dca7d4ccd6ab6be5d5329fa9d29ba1fc258f494b929
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -646,9 +646,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: "2019-05-21T10:44:47.049877186Z"
+  - created: "2019-05-21T16:50:55.363921262Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 9259bbf6698d80358f3e9cafd6ecc8b955cab247a89b6165978b13a9ee6076b8
+    digest: 9458fb17951d6da2f8632644f03c098ed0d382553df3b9b94a986fe7e760430a
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -945,18 +945,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-05-21T10:44:47.050041199Z"
+    created: "2019-05-21T16:50:55.364085391Z"
     description: A Helm chart to deploy anything
-    digest: bec2763d7c94a159ed31b21c277ac694dc7ef41f36856ff7d115e47fc1b9c493
+    digest: 6103056d7e2f21a850751d8a7884c4356cde14b82005c6bfdc340f258ae9ee41
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2019-05-21T10:44:47.050240938Z"
+    created: "2019-05-21T16:50:55.364285711Z"
     description: A Helm chart for Kubernetes
-    digest: 1a42dfdcdca80c09caaf83c46f5b39c3105cf71a16479c79deb0039b9780d27a
+    digest: ecd1952a3ddf560f0d3ad3de233b33400817b3acea29fdc1ad3298b4ed446572
     engine: gotpl
     home: https://github.com/skyscrapers/charts.git
     keywords:
@@ -975,9 +975,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-05-21T10:44:47.050421408Z"
+    created: "2019-05-21T16:50:55.364461269Z"
     description: Deploys the k8s-ec2-srcdst container
-    digest: d68542a876e8b58032c6a5e87774b0567317e5cef53d62738264043818d6d9ab
+    digest: bb13910f05d06d869af49a9ab0d3820ecdc8aef21970e89a876d13f0620dc2c7
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -1035,6 +1035,25 @@ entries:
     - https://skyscrapers.github.io/charts/kube2iam-0.2.1.tgz
     version: 0.2.1
   kubesignin:
+  - apiVersion: v1
+    created: "2019-05-21T16:50:55.364936115Z"
+    description: A Kubesignin chart for Kubernetes
+    digest: 5cb22bafa3560bbc40ac212fce4c1d876bf37f957c69310a7babc291bc96b619
+    engine: gotpl
+    home: https://github.com/skyscrapers/kubesignin.git
+    keywords:
+    - skyscrapers
+    - kubesignin
+    - dex
+    - auth
+    - oidc
+    maintainers:
+    - email: iuri@skyscrapers.eu
+      name: iuri aranda
+    name: kubesignin
+    urls:
+    - https://skyscrapers.github.io/charts/kubesignin-0.3.9.tgz
+    version: 0.3.9
   - apiVersion: v1
     created: "2019-05-21T10:44:47.050936305Z"
     description: A Kubesignin chart for Kubernetes
@@ -1246,9 +1265,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2019-05-21T10:44:47.051205684Z"
+    created: "2019-05-21T16:50:55.365239563Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: 14d0bd40d5a2778277e63a2d12d1ff2bf350ec3ee36ef99d788d854b74c54773
+    digest: 93c312910616fed31df48649274fcbf318934adf4c14743849646630db47de6a
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -1394,4 +1413,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
-generated: "2019-05-21T10:44:47.02670073Z"
+generated: "2019-05-21T16:50:55.335357476Z"
