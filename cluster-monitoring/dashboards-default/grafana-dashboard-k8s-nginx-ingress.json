@@ -1201,7 +1201,7 @@
     ]
   },
   "timezone"   : "browser",
-  "title"      : "K8s / NGINX Ingress",
+  "title"      : "Kubernetes / NGINX Ingress",
   "uid"        : "at-nginx",
   "version"    : 2,
   "description": "Dashboard for ingress-nginx"

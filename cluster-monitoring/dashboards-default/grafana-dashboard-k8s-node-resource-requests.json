@@ -68,7 +68,7 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "min(sum(kube_node_status_allocatable_cpu_cores * on (node) group_left (label_kubernetes_io_role) kube_node_labels{label_kubernetes_io_role=\"node\", label_function=\"\"}) by (instance))",
+              "expr"          : "min(sum(kube_node_status_allocatable_cpu_cores * on (node) group_left (label_kubernetes_io_role) kube_node_labels{label_kubernetes_io_role=\"node\"}) by (instance))",
               "hide"          : false,
               "intervalFactor": 2,
               "legendFormat"  : "Allocatable CPU Cores",
@@ -76,7 +76,7 @@
               "step"          : 20
             },
             {
-              "expr"          : "min(sum(kube_pod_container_resource_requests_cpu_cores * on (node) group_left (label_kubernetes_io_role) kube_node_labels{label_kubernetes_io_role=\"node\", label_function=\"\"}) by (instance))",
+              "expr"          : "min(sum(kube_pod_container_resource_requests_cpu_cores * on (node) group_left (label_kubernetes_io_role) kube_node_labels{label_kubernetes_io_role=\"node\"}) by (instance))",
               "hide"          : false,
               "intervalFactor": 2,
               "legendFormat"  : "Requested CPU Cores",
@@ -426,6 +426,6 @@
     ]
   },
   "timezone": "browser",
-  "title"   : "K8s / Compute Resources / Worker Requests",
+  "title"   : "Kubernetes / Compute Resources / Worker Requests",
   "version" : 1
 }

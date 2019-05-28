@@ -442,6 +442,6 @@
     ]
   },
   "timezone": "browser",
-  "title"   : "K8s / Compute Resources / Pod v2",
+  "title"   : "Kubernetes / Compute Resources / Pod v2",
   "version" : 3
 }
