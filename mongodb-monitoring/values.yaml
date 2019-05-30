@@ -1,7 +1,7 @@
 ## Prometheus MatchLabel selectors
 prometheus:
   labels:
-    prometheus: "k8s-monitor"
+    prometheus: "cluster-monitoring"
 
 nodes:
 - 10.1.2.3

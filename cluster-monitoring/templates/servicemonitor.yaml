@@ -38,4 +38,4 @@ spec:
   selector:
     matchLabels:
       app: aws-cluster-autoscaler
-      release: k8s-autoscaler
+      release: cluster-autoscaler

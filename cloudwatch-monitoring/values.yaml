@@ -1,7 +1,7 @@
 ## Prometheus MatchLabel selectors
 prometheus:
   labels:
-    prometheus: "k8s-monitor"
+    prometheus: "cluster-monitoring"
 
 ## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
 interval: "300s"

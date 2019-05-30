@@ -88,7 +88,7 @@ With version `1.0.0` of this chart we move from using an old [`kube-prometheus`]
 
 ```sh
 helm delete --purge prometheus-operator
-helm delete --purge k8s-monitor
+helm delete --purge cluster-monitoring
 
 # Remove the `kubelet` svc created by prometheus-operator
 kubectl delete svc -n kube-system kubelet
