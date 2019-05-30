@@ -46,7 +46,7 @@ The following tables lists the configurable parameters of elasticsearch-monitori
 Parameter | Description | Default
 --- | --- | ---
 `prometheus.app` | Sets the `app` label value (ServiceMonitor & Alerting rules) | `prometheus`
-`prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `k8s-monitor`
+`prometheus.name` | Sets the `prometheus` label value (ServiceMonitor & Alerting rules) | `cluster-monitoring`
 `prometheus.role` | Sets the `role` label value (Alerting rules) | `alert-rules`
 `esExporterScrapeInterval` | Interval for how often Prometheus scrapes the elasticsearch-exporter | `60s`
 `esExporterScrapeTimeout` | Tiemout for the elasticsearch-exporter Prometheus scraper | `30s`
