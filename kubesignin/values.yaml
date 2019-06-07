@@ -36,6 +36,8 @@ Dex:
         teams:
           - someteam
 
+  RedirectUris: []
+
   # StaticPassword:
   #   Email: "admin@example.com"
   #   Hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
@@ -78,9 +80,6 @@ proxy:
     repository: "quay.io/gambol99/keycloak-proxy"
     tag: "v2.2.2"
     pullPolicy: "IfNotPresent"
-  oidc:
-    discoveryURL: https://kubesigin.domain/dex
-    appRoot: "/"
   service:
     internalPort: 3000
     externalPort: 3000
