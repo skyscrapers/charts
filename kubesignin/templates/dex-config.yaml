@@ -99,7 +99,7 @@ data:
 {{- range $key, $value := .Values.proxies }}
         - "https://{{ $value.oidc.redirectURL }}/oauth/callback"
 {{- end }}
-{{- range .Values.RedirectUris }}
+{{- range .Values.Dex.RedirectUris }}
         - {{ . | quote }}
 {{- end }}
       name: "kubesignin"
