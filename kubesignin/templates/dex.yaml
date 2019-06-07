@@ -35,8 +35,6 @@ metadata:
     component: "dex"
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-  annotations:
-    checksum/config: {{ include (print $.Template.BasePath "/dex-config.yaml") . | sha256sum }}
 spec:
   replicas: 1
   template:
@@ -45,6 +43,8 @@ spec:
         app: {{ template "name" . }}
         component: dex
         release: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/dex-config.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ template "dex.fullname" . }}
       containers:
