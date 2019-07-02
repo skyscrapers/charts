@@ -53,19 +53,9 @@ spec:
         - name: http
           containerPort: 80
 
-{{- if .Values.Dex.Tls }}
-        volumeMounts:
-        - name: tls
-          mountPath: /etc/dex/tls
-{{- end }}
-
         env:
         - name: DEX_ISSUER
           value: {{.Values.Dex.Issuer}}
-{{- if .Values.Dex.Tls }}
-        - name: DEX_CA
-          value: /etc/dex/tls/tls.ca
-{{- end }}
         - name: KUBESIGNIN_REDIRECT_URI
           value: {{.Values.Kubesignin.RedirectUri}}
         - name: KUBESIGNIN_LISTEN_ADDRESS
@@ -85,10 +75,3 @@ spec:
             memory: {{ .Values.Kubesignin.Memory }}
           limits:
             memory: {{ .Values.Kubesignin.Memory }}
-
-      volumes:
-{{- if .Values.Dex.Tls }}
-      - name: tls
-        secret:
-          secretName: {{ template "dex.fullname" . }}.tls
-{{- end }}

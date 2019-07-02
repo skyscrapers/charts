@@ -20,10 +20,6 @@ spec:
   - host: {{.Values.Kubesignin.DomainName}}
     http:
       paths:
-      - path: /dex
-        backend:
-          serviceName: {{ template "dex.fullname" . }}
-          servicePort: 80
       - path: /
         backend:
           serviceName: {{ template "kubesignin.fullname" . }}
