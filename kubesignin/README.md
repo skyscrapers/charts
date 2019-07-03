@@ -32,46 +32,14 @@ Kubesignin:
   ImageTag: "latest"
   ImagePullPolicy: "Always"
 
+  ClientId: kubernetes
+  # openssl rand -base64 32 | head -c 32 | base64
+  ClientSecret: V0tZUzh6aXlHSW5ySENVZnBLNVEyaEJLeDRjbVAzeTU=
+
   Memory: "200Mi"
   Cpu: "512m"
   Replicas: 1
 ```
-
-### Dex
-
-Dex is an OIDC provider.
-Can support various connector backends like:
-
-- LDAP
-- OIDC (including Google)
-- GitHub OAuth
-- Facebook OAuth
-
-See details in [official site](https://github.com/coreos/dex)
-
-Default values below. Check the `values.yaml` file to see the possible configuration values.
-
-```yaml
-Dex:
-  Image: "quay.io/coreos/dex"
-  ImageTag: "v2.4.1"
-  ImagePullPolicy: "Always"
-
-  Memory: "200Mi"
-  Cpu: "512m"
-  ServicePort: 443
-  Replicas: 1
-
-  Expiry:
-    SigningKeys: "6h"
-    IdTokens: "1h"
-```
-
-### Keycloack-proxy
-
-[Keycloak-proxy](https://github.com/gambol99/keycloak-proxy) can be used as OIDC proxy for authorizing access to the Kubernetes dashboard, Grafana, etc.
-
-Check the `values.yaml` file to see the possible configuration values.
 
 ## Usage
 
@@ -86,7 +54,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IjBjZmRmMWE4MDgxOWUwZTkyOTA4ZjU0Y2M0M2E1Yzk2OTg0YWU1
 Claims:
 
 {
-  "iss": "https://kubesignin.yourdomain.com/dex",
+  "iss": "https://dex.yourdomain.com",
   "sub": "CgY1MTA4MDkSBmdpdGh1Yg",
   "aud": "kubesignin",
   "exp": 1496423372,

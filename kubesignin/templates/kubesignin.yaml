@@ -61,7 +61,7 @@ spec:
         - name: KUBESIGNIN_LISTEN_ADDRESS
           value: "http://0.0.0.0:80"
         - name: KUBESIGNIN_CLIENT_ID
-          value: kubesignin
+          value: {{.Values.Kubesignin.ClientId}}
         - name: KUBESIGNIN_CLIENT_SECRET
           value: {{.Values.Kubesignin.ClientSecret}}
 {{- if .Values.Kubesignin.Debug }}
