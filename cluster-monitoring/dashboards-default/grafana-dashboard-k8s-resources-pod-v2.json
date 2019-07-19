@@ -345,8 +345,7 @@
   "sharedCrosshair": false,
   "style"          : "dark",
   "tags"           : [
-    "k8s",
-    "prometheus"
+    "kubernetes"
   ],
   "templating": {
     "list": [

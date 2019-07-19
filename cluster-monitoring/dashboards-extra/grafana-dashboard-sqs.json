@@ -474,7 +474,7 @@
   "style"        : "dark",
   "tags"         : [
     "sqs",
-    "prometheus"
+    "aws"
   ],
   "templating": {
     "list": [
