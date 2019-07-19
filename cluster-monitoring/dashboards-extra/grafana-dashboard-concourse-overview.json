@@ -1049,8 +1049,7 @@
   "schemaVersion": 16,
   "style"        : "dark",
   "tags"         : [
-    "concourse",
-    "prometheus"
+    "concourse"
   ],
   "time": {
     "from": "now-1h",

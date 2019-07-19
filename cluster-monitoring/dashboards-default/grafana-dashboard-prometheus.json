@@ -3080,7 +3080,9 @@
   "refresh"      : "",
   "schemaVersion": 16,
   "style"        : "dark",
-  "tags"         : [],
+  "tags"         : [
+    "prometheus"
+  ],
   "templating"   : {
     "list": [
       {

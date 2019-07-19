@@ -1253,7 +1253,7 @@
   "schemaVersion": 16,
   "style"        : "dark",
   "tags"         : [
-    "prometheus"
+    "mongodb"
   ],
   "templating": {
     "list": [

@@ -1093,9 +1093,8 @@
   "schemaVersion": 16,
   "style"        : "dark",
   "tags"         : [
-    "nginx-ingress",
-    "k8s",
-    "prometheus"
+    "nginx",
+    "kubernetes"
   ],
   "templating": {
     "list": [
@@ -1201,8 +1200,8 @@
     ]
   },
   "timezone"   : "browser",
-  "title"      : "Kubernetes / NGINX Ingress",
+  "title"      : "Kubernetes / NGINX Ingress Controller",
   "uid"        : "at-nginx",
   "version"    : 2,
-  "description": "Dashboard for ingress-nginx"
+  "description": "Dashboard for the NGINX Ingress Controller"
 }

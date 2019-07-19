@@ -912,9 +912,8 @@
   "schemaVersion": 14,
   "style"        : "dark",
   "tags"         : [
-    "autoscaler",
-    "k8s",
-    "prometheus"
+    "cluster-autoscaler",
+    "kubernetes"
   ],
   "templating": {
     "list": []
@@ -949,6 +948,6 @@
     ]
   },
   "timezone": "browser",
-  "title"   : "K8s / Autoscaler",
+  "title"   : "Kubernetes / Autoscaler",
   "version" : 12
 }

@@ -3044,7 +3044,6 @@
   "style"        : "dark",
   "tags"         : [
     "elasticsearch",
-    "prometheus",
     "aws"
   ],
   "templating": {

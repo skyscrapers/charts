@@ -862,8 +862,7 @@
   "schemaVersion": 14,
   "style"        : "dark",
   "tags"         : [
-    "http",
-    "prometheus"
+    "http"
   ],
   "templating": {
     "list": [
