@@ -37,5 +37,5 @@ spec:
     - infrastructure
   selector:
     matchLabels:
-      app: aws-cluster-autoscaler
-      release: cluster-autoscaler
+      app.kubernetes.io/instance: cluster-autoscaler
+      app.kubernetes.io/name: aws-cluster-autoscaler
