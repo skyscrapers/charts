@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "neo4j-monitoring.fullname" . }}
+  labels:
+{{ include "neo4j-monitoring.labels" . | indent 4 }}
+    {{- range $key, $val := .Values.prometheusSelectorLabels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+spec:
+  endpoints:
+    - interval: {{ .Values.scrapeInterval }}
+      port: metrics
+  namespaceSelector:
+    matchNames:
+      - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "neo4j-monitoring.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
