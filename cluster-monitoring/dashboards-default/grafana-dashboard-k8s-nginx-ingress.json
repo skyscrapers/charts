@@ -1201,7 +1201,6 @@
   },
   "timezone"   : "browser",
   "title"      : "Kubernetes / NGINX Ingress Controller",
-  "uid"        : "at-nginx",
   "version"    : 2,
   "description": "Dashboard for the NGINX Ingress Controller"
 }

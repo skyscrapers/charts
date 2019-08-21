@@ -1082,6 +1082,5 @@
   },
   "timezone": "browser",
   "title"   : "Concourse / Overview",
-  "uid"     : "concourse_overview",
   "version" : 1
 }
