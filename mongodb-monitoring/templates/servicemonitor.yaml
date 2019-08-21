@@ -32,7 +32,7 @@ metadata:
     {{- range $key, $val := .Values.prometheus.labels }}
     {{ $key }}: {{ $val | quote }}
     {{- end}}
-  name: "{{ .Release.Name }}"-node-exporter
+  name: "{{ .Release.Name }}-node-exporter"
 spec:
   endpoints:
     - interval: {{ .Values.interval }}
