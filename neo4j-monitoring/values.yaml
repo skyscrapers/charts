@@ -1,0 +1,20 @@
+# Default values for neo4j-monitoring.
+
+nameOverride: ""
+fullnameOverride: ""
+
+# Prometheus MatchLabel selectors
+prometheusSelectorLabels:
+  prometheus: cluster-monitoring
+
+# IPs of external NEO4J nodes to monitor
+nodes: []
+# - 10.1.2.3
+# - 10.2.3.1
+# - 10.3.2.1
+
+# Port where the NEO4J metrics are exposed
+metricsPort: 2004
+
+# Prometheus scrape interval
+scrapeInterval: 60s
