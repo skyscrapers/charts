@@ -4451,7 +4451,7 @@
         "multi": false,
         "name": "job",
         "options": [],
-        "query": "label_values(neo4j_bolt_accumulated_processing_time{endpoint=\"metrics\"}, job)",
+        "query": "label_values(neo4j_bolt_accumulated_processing_time, job)",
         "refresh": 1,
         "regex": "",
         "sort": 1,
