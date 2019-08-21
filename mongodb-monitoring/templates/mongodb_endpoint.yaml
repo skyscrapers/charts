@@ -16,3 +16,7 @@ subsets:
   ports:
   - port: 9216
     name: metrics
+  {{ if .Values.nodeMetricsEnabled }}
+  - port: {{ .Values.nodeMetricsPort }}
+    name: metrics-node
+  {{ end }}

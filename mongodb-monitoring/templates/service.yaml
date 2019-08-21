@@ -14,3 +14,9 @@ spec:
       targetPort: 9216
       protocol: TCP
       name: metrics
+    {{ if .Values.nodeMetricsEnabled }}
+    - port: {{ .Values.nodeMetricsPort }}
+      targetPort: {{ .Values.nodeMetricsPort }}
+      protocol: TCP
+      name: metrics-node
+    {{ end }}

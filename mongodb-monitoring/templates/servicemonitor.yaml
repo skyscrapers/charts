@@ -21,3 +21,30 @@ spec:
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
       component: mongodb
+
+{{ if .Values.nodeMetricsEnabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+{{ include "labels" $ | indent 4 }}
+    {{- range $key, $val := .Values.prometheus.labels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+  name: "{{ .Release.Name }}"-node-exporter
+spec:
+  endpoints:
+    - interval: {{ .Values.interval }}
+      port: metrics-node
+  namespaceSelector:
+    matchNames:
+      - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      app: {{ template "app.name" . }}
+      chart: {{ template "app.chart" . }}
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: mongodb
+{{ end }}
