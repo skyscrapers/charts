@@ -9,3 +9,9 @@ nodes:
 - 10.3.2.1
 
 interval: 60s
+
+# Whether to include node_exporter scraping
+nodeMetricsEnabled: false
+
+# Port where the node_exporter metrics are exposed
+nodeMetricsPort: 9100
