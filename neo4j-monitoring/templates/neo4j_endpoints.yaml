@@ -10,5 +10,9 @@ subsets:
       - ip: {{ . }}
       {{- end }}
     ports:
-      - port: {{ .Values.metricsPort }}
-        name: metrics
+      - port: {{ .Values.neo4jMetricsPort }}
+        name: metrics-neo4j
+      {{ if .Values.nodeMetricsEnabled }}
+      - port: {{ .Values.nodeMetricsPort }}
+        name: metrics-node
+      {{ end }}

@@ -6,7 +6,13 @@ metadata:
 {{ include "neo4j-monitoring.labels" . | indent 4 }}
 spec:
   ports:
-    - port: {{ .Values.metricsPort }}
-      targetPort: {{ .Values.metricsPort }}
+    - port: {{ .Values.neo4jMetricsPort }}
+      targetPort: {{ .Values.neo4jMetricsPort }}
       protocol: TCP
-      name: metrics
+      name: metrics-neo4j
+    {{ if .Values.nodeMetricsEnabled }}
+    - port: {{ .Values.nodeMetricsPort }}
+      targetPort: {{ .Values.nodeMetricsPort }}
+      protocol: TCP
+      name: metrics-node
+    {{ end }}
