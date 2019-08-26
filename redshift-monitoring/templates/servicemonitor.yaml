@@ -1,8 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: "{{ .Release.Name }}-cw"
-  namespace: "{{ .Release.Namespace }}"
+  name: {{ include "redshift-monitoring.fullname" . }}
   labels:
 {{ include "redshift-monitoring.labels" . | indent 4 }}
     {{- range $key, $val := .Values.prometheusSelectorLabels }}
@@ -17,7 +16,6 @@ spec:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app.kubernetes.io/name: prometheus-cloudwatch-exporter
-      app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-271
+      app: prometheus-cloudwatch-exporter
+      release: {{ .Release.Name }}
+

@@ -1,7 +1,7 @@
 # Prometheus MatchLabel selectors
 prometheusSelectorLabels:
   prometheus: cluster-monitoring
-
+  
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
   # Default values for prometheus-cloudwatch-exporter.
@@ -20,6 +20,9 @@ prometheus-cloudwatch-exporter:
     port: 80
     targetPort: 9100
     annotations: {}
+
+  serviceMonitor:
+    enabled: false
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
