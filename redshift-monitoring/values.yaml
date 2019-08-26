@@ -1,0 +1,118 @@
+## Prometheus MatchLabel selectors
+prometheus:
+  labels:
+    prometheus: "cluster-monitoring"
+
+
+## The following settings come from the prometheus-cloudwatch-exporter chart
+prometheus-cloudwatch-exporter:
+  # Default values for prometheus-cloudwatch-exporter.
+  # This is a YAML-formatted file.
+  # Declare variables to be passed into your templates.
+
+  replicaCount: 1
+
+  image:
+    repository: prom/cloudwatch-exporter
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 9100
+    annotations: {}
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # limits:
+    #   memory: 128Mi
+
+  aws:
+    region: eu-west-1
+    role:
+    # Note: Do not specify the aws_access_key_id abd aws_secret_access_key if you specified role before
+    aws_access_key_id:
+    aws_secret_access_key:
+
+  serviceAccount:
+    # Specifies whether a ServiceAccount should be created
+    create: true
+    # The name of the ServiceAccount to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+
+  rbac:
+    # Specifies whether RBAC resources should be created
+    create: true
+
+  config: |-
+    # Only get statistics for AWS/ES FreeStorageSpace
+    region: eu-west-1
+    period_seconds: 60
+    set_timestamp: false
+    metrics:
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: DatabaseConnections
+      aws_dimensions: [ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: HealthStatus
+      aws_dimensions: [ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: MaintenanceMode
+      aws_dimensions: [ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: CPUUtilization
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: PercentageDiskSpaceUsed
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: NetworkReceiveThroughput
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: NetworkTransmitThroughput
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: ReadLatency
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: ReadThroughput
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: ReadIOPS
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: WriteLatency
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: WriteThroughput
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+    - aws_namespace: AWS/Redshift
+      aws_metric_name: WriteIOPS
+      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_statistics: [Average]
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}

@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "redshift-monitoring.fullname" . }}
+  labels:
+{{ include "redshift-monitoring.labels" . | indent 4 }}
+    {{- range $key, $val := .Values.prometheusSelectorLabels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+spec:
+  groups:
+    - name: redshift.rules
+      rules: []
