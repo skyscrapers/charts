@@ -4,19 +4,20 @@ metadata:
   name: "{{ .Release.Name }}-cw"
   namespace: "{{ .Release.Namespace }}"
   labels:
-{{ include "labels" $ | indent 4 }}
-    {{- range $key, $val := .Values.prometheus.labels }}
+{{ include "redshift-monitoring.labels" . | indent 4 }}
+    {{- range $key, $val := .Values.prometheusSelectorLabels }}
     {{ $key }}: {{ $val | quote }}
     {{- end}}
 spec:
   endpoints:
-  - interval: {{ .Values.amazonService.interval }}
+  - interval: {{ .Values.prometheus-cloudwatch-exporter.config.period_seconds }}
     port: http
   namespaceSelector:
     matchNames:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      app: prometheus-cloudwatch-exporter
-      release: "{{ .Release.Name }}"
+      app.kubernetes.io/name: prometheus-cloudwatch-exporter
+      app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+271
