@@ -2,6 +2,8 @@
 prometheusSelectorLabels:
   prometheus: cluster-monitoring
   
+scrapeInterval: "60s"
+
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
   # Default values for prometheus-cloudwatch-exporter.
@@ -54,7 +56,6 @@ prometheus-cloudwatch-exporter:
     create: true
 
   config: |-
-    # Only get statistics for AWS/ES FreeStorageSpace
     region: eu-west-1
     period_seconds: 60
     set_timestamp: false

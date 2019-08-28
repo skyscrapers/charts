@@ -9,7 +9,7 @@ metadata:
     {{- end}}
 spec:
   endpoints:
-  - interval: {{ .Values.prometheus-cloudwatch-exporter.config.period_seconds }}
+  - interval: {{ .Values.scrapeInterval }}
     port: http
   namespaceSelector:
     matchNames:
