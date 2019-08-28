@@ -1,0 +1,15 @@
+apiVersion: v1
+description: Redshift monitoring using Prometheus-operator and Grafana.
+name: redshift-monitoring
+version: 1.0.0
+keywords:
+  - grafana
+  - prometheus-operator
+  - prometheus
+  - redshift
+home: https://github.com/skyscrapers/charts/
+sources:
+  - https://github.com/skyscrapers/charts
+maintainers:
+  - name: skyscrapers
+    email: hello@skyscrapers.eu
