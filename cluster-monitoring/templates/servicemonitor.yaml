@@ -1,3 +1,4 @@
+{{ if .Values.enableCalico }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -19,6 +20,7 @@ spec:
       app: {{ template "fullname" . }}
       component: calico
 ---
+{{ end }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
