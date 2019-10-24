@@ -24,7 +24,7 @@ spec:
         summary: Redshift monitoring is DOWN!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshiftexporterdown'
     - alert: RedshiftHealthStatus
-      expr: aws_redshift_health_status_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
+      expr: aws_redshift_health_status_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1 and aws_redshift_maintenance_mode_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} == 0
       for: 5m
       labels:
         severity: critical
@@ -32,7 +32,7 @@ spec:
       annotations:
         description: 'Redshift cluster is not healthy for {{`{{ $labels.cluster }}`}}!'
         summary: Redshift cluster is not healthy!
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshiftclusternothealthy'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-RedshiftHealthStatus'
     - alert: RedshiftMaintenanceMode
       expr: aws_redshift_maintenance_mode_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 0
       for: 5m
@@ -41,7 +41,7 @@ spec:
         group: persistence
         description: 'Redshift cluster is in maintenance mode for {{`{{ $labels.cluster }}`}}!'
         summary: Redshift cluster is in maintenance mode!
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshiftclustermaintenancemode'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-RedshiftMaintenanceMode'
     - alert: RedshiftLowDiskSpace
       expr: aws_redshift_percentage_disk_space_used_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 95
       for: 15m
@@ -51,7 +51,7 @@ spec:
       annotations:
         description: 'AWS Redshift cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
         summary: AWS Redshift low disk
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshfitawslowdiskspace'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-RedshiftLowDiskSpace'
     - alert: RedshiftSNoDiskSpace
       expr: aws_redshift_percentage_disk_space_used_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 99
       for: 15m
@@ -61,7 +61,7 @@ spec:
       annotations:
         description: 'AWS Redshift cluster {{`{{ $labels.cluster }}`}} is out of free disk space'
         summary: AWS Redshift low disk
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshfitawslowdiskspace'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-redshfitlowdiskspace'
     - alert: RedshiftSCPUHigh
       expr: aws_redshift_cpuutilization_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 95
       for: 30m
