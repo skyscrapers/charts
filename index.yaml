@@ -3,10 +3,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2019-10-11T08:37:55.076450207Z"
+    created: "2019-10-24T09:39:01.853791443Z"
     description: The AWS Service Operator allows you to manage AWS resources using
       Kubernetes Custom Resource Definitions.
-    digest: 82fde27285a31286a91d233ab748bdc41371877a12f6c28d338d8fbb3b3b3cb0
+    digest: 91bca3b19df3107157988c747a999730f7caa29bb53c2c92fe225cd654558a0b
     engine: gotpl
     home: https://github.com/awslabs/aws-service-operator
     keywords:
@@ -24,9 +24,9 @@ entries:
     - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
     version: 0.0.1-alpha4
   cloudwatch-monitoring:
-  - created: "2019-10-11T08:37:55.079954219Z"
+  - created: "2019-10-24T09:39:01.855010106Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
-    digest: 160a77371506e9c1d42196efad230d578f40e7a54a22a504ae80278321d8ac3b
+    digest: a70c12ff848f8b81a9af35360e761dc78937b207855334ddcc4d787c348bfe04
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -91,9 +91,9 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
-  - created: "2019-10-11T08:37:55.101414638Z"
+  - created: "2019-10-24T09:39:01.868343434Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: fd938e5e75ab7498f6eb8d6522295593af1901da0bb4f71372ceac0337f0f57a
+    digest: 2572e5ea8b44fcc25e872db895017549ed5c0e90e68eb460b16ae86db2919ea8
     engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
@@ -800,9 +800,9 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: "2019-10-11T08:37:55.102768335Z"
+  - created: "2019-10-24T09:39:01.869107047Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 226325211561a0caf03f45dda4da0213487717a1073470332222c118a540f3cf
+    digest: f5080b31883af45da8a5bf438b49537b67c6afcf09e9e1b3fd8e1e06f066d81f
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -1121,18 +1121,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-10-11T08:37:55.103048239Z"
+    created: "2019-10-24T09:39:01.869249Z"
     description: A Helm chart to deploy anything
-    digest: aafd13e91b24d3753821e44ec0730d0c815994b5f5d47a529fe31c95df424d28
+    digest: 0ec054ac5fe3589ce2e224a6963ed1dea0074b834036be259b0124bc9085fb4b
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2019-10-11T08:37:55.103395061Z"
+    created: "2019-10-24T09:39:01.869437468Z"
     description: A Helm chart for Kubernetes
-    digest: e3626d6086496c19b2498c782b63aabfc167736d26d622cdb02dff0a6446693f
+    digest: 438658ddc7f1972897844ee0ec496dbf7b866c7a7e1829a48512367cbca3e5cf
     engine: gotpl
     home: https://github.com/skyscrapers/charts.git
     keywords:
@@ -1151,9 +1151,9 @@ entries:
   k8s-ec2-srcdst:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-10-11T08:37:55.103693155Z"
+    created: "2019-10-24T09:39:01.86960169Z"
     description: Deploys the k8s-ec2-srcdst container
-    digest: 3fd4bdae6afb4f0e240e978b0a9a7ae6b45b5cd49ce49cfbc387fa0f53f8e9b9
+    digest: 42ac1ea3ea9da1b4045d8c6ecf3b6809198d0b1deeb06b95f9a7c6cb47859cdc
     name: k8s-ec2-srcdst
     urls:
     - https://skyscrapers.github.io/charts/k8s-ec2-srcdst-0.1.1.tgz
@@ -1212,9 +1212,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: "2019-10-11T08:37:55.108340996Z"
+    created: "2019-10-24T09:39:01.869853169Z"
     description: A Kubesignin chart for Kubernetes
-    digest: edf15a7cd9dd743e562effb8ad7e4e767bc7faf0edcd510f84257193f6bcfbd9
+    digest: 30dbc853ed8188bd764667140c307dfbbce3d0dc04b9ec6446c0c944da8d58dc
     engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
@@ -1496,9 +1496,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2019-10-11T08:37:55.112187412Z"
+    created: "2019-10-24T09:39:01.870136527Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: d0b442299eaf620012b51e399c735f5858a3f5a551e923b3e219f75e6f324bcc
+    digest: da9027886757a76a55d38ddb871bc87d527470a69ed6ed483bcec557389145fa
     engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -1648,10 +1648,10 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2019-10-11T08:37:55.112666251Z"
+    created: "2019-10-24T09:39:01.870351292Z"
     description: External (not on K8s) NEO4J monitoring using Prometheus-operator
       and Grafana
-    digest: fb9c370528ae523588ffacd85019c5fa0a4f6bff6479864846e36e532e25716e
+    digest: f5c96d96d87a14471b22628d7ed2acbe586ff44a3d9c08e938b8b53dc9d8030c
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1746,6 +1746,25 @@ entries:
     version: 0.0.6-skyscrapers.1
   redshift-monitoring:
   - apiVersion: v1
+    created: "2019-10-24T09:39:01.871053923Z"
+    description: Redshift monitoring using Prometheus-operator and Grafana.
+    digest: cd352abba16270ac84f715ed4eb50d7cfb5957d4cd419fbc556f257558369294
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - prometheus
+    - redshift
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: redshift-monitoring
+    sources:
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/redshift-monitoring-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v1
     created: "2019-10-11T08:37:55.114006979Z"
     description: Redshift monitoring using Prometheus-operator and Grafana.
     digest: 51ce64cdc136618301b55f1893179dcd692ba1d6598856cfad2d365005e237b9
@@ -1764,4 +1783,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/redshift-monitoring-1.0.0.tgz
     version: 1.0.0
-generated: "2019-10-11T08:37:55.070896631Z"
+generated: "2019-10-24T09:39:01.852820082Z"
