@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "openvpn.fullname" . }}
+  labels:
+{{ include "openvpn.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+{{- with .Values.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "openvpn.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "openvpn.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print .Template.BasePath "/openvpn-config.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/etc/openvpn/setup/configure.sh"]
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+              {{- if .Values.service.hostPort }}
+              hostPort: {{ .Values.service.hostPort }}
+              {{- end }}
+              name: openvpn
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          readinessProbe:
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            exec:
+              command:
+                - nc
+              {{- if eq .Values.openvpn.OVPN_PROTO "udp" }}
+                - -u
+              {{- end }}
+                - -z
+                - 127.0.0.1
+                - "{{ .Values.service.internalPort }}"
+        {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+        {{- end}}
+          volumeMounts:
+            - mountPath: /etc/openvpn/setup
+              name: openvpn
+              readOnly: false
+            - mountPath: /etc/openvpn/certs
+              name: {{ include "openvpn.fullname" . }}-certs
+              readOnly: false
+      volumes:
+        - name: openvpn
+          configMap:
+            name: {{ include "openvpn.fullname" . }}
+            defaultMode: 0775
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "openvpn.fullname" . }}-certs
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode }}
+        storageClassName: {{ .Values.persistence.storageClass }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size }}
