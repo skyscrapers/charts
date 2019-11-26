@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: 2.4.0
+description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+  generation is also part of the deployment, and this chart will generate client keys
+  as needed.
+name: openvpn
+version: 1.0.0
+maintainers:
+- name: duboisph
+sources:
+- https://github.com/skyscrapers/charts/tree/master/charts/openvpn
+- https://github.com/kubernetes/charts/tree/master/stable/openvpn
