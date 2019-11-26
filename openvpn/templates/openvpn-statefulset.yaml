@@ -91,7 +91,9 @@ spec:
       spec:
         accessModes:
           - {{ .Values.persistence.accessMode }}
-        storageClassName: {{ .Values.persistence.storageClass }}
         resources:
           requests:
             storage: {{ .Values.persistence.size }}
+      {{- with .Values.persistence.storageClassName }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
