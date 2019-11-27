@@ -31,10 +31,10 @@ prometheus-cloudwatch-exporter:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    #   cpu: 10m
+    #   memory: 320Mi
     # limits:
-    #   memory: 128Mi
+    #   memory: 320Mi
 
   aws:
     region: eu-west-1

@@ -16,15 +16,3 @@ extraDashboards: []
 
 # Whether to enable the Calico ServiceMonitor & PrometheusRule
 enableCalico: true
-
-opsgenieHeartbeatProxy:
-  image: "traumfewo/opsgenie-heartbeat-proxy"
-  imageTag: "v0.0.3"
-  port: "8080"
-  replicas: 3
-  resources:
-    requests:
-      cpu: "128m"
-      memory: "128Mi"
-  #opsgenie_api_key:
-  #heartbeat_name:
