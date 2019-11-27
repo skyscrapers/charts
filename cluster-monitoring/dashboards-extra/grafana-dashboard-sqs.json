@@ -241,21 +241,21 @@
           "steppedLine"    : false,
           "targets"        : [
             {
-              "expr"          : "aws_sqs_approximate_number_of_messages_visible_sum{queue_name=~\"$queue_name\"}",
+              "expr"          : "aws_sqs_approximate_number_of_messages_visible_average{queue_name=~\"$queue_name\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "aws_sqs_approximate_number_of_messages_visible",
               "refId"         : "A"
             },
             {
-              "expr"          : "aws_sqs_approximate_number_of_messages_not_visible_sum{queue_name=~\"$queue_name\"}",
+              "expr"          : "aws_sqs_approximate_number_of_messages_not_visible_average{queue_name=~\"$queue_name\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "aws_sqs_approximate_number_of_messages_not_visible",
               "refId"         : "B"
             },
             {
-              "expr"          : "aws_sqs_approximate_number_of_messages_delayed_sum{queue_name=~\"$queue_name\"}",
+              "expr"          : "aws_sqs_approximate_number_of_messages_delayed_average{queue_name=~\"$queue_name\"}",
               "format"        : "time_series",
               "intervalFactor": 2,
               "legendFormat"  : "aws_sqs_approximate_number_of_messages_delayed",
