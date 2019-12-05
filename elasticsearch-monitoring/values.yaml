@@ -1,24 +1,18 @@
-## Prometheus MatchLabel selectors
-prometheus:
-  labels:
-    prometheus: "cluster-monitoring"
+# Default values for elasticsearch-monitoring.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-## Interval for how often Prometheus scrapes the elasticsearch-exporter
-esExporterScrapeInterval: "60s"
-esExporterScrapeTimeout: "30s"
+nameOverride: ""
+fullnameOverride: ""
 
 ## Whether we're monitoring an Amazon Elasticsearch Service domain.
-## Enabling this will get disk statistics from Cloudwatch instead of
+## Enabling this will get disk statistics from CloudWatch instead of
 ## Elasticsearch directly, due to Amazon reserving part of the volume for
 ## internal operations.
 ## https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/es-metricscollected.html
-amazonService:
-  enabled: false
-  ## Interval for how often Prometheus scrapes the prometheus-cloudwatch-exporter
-  ## Note: setting this too low can have an impact on your AWS bill, since the
-  ## exporter makes API calls to Amazon Cloudwatch every time Prometheus scrapes
-  ## https://aws.amazon.com/cloudwatch/pricing/
-  interval: "300s"
+amazonService: true
+
+## ------------------------------ ##
 
 ## The following settings come from the elasticsearch-exporter chart
 elasticsearch-exporter:
@@ -32,8 +26,17 @@ elasticsearch-exporter:
 
   image:
     repository: justwatch/elasticsearch_exporter
-    tag: 1.0.2
+    tag: 1.1.0
     pullPolicy: IfNotPresent
+    pullSecret: ""
+
+  ## Set enabled to false if you don't want securityContext
+  ## in your Deployment.
+  ## The below values are the default for kubernetes.
+  ## Openshift won't deploy with runAsUser: 1000 without additional permissions.
+  securityContext:
+    enabled: true  # Should be set to false when running on OpenShift
+    runAsUser: 1000
 
   resources: {}
     # requests:
@@ -42,9 +45,37 @@ elasticsearch-exporter:
     # limits:
     #   memory: 48Mi
 
+  priorityClassName: ""
+
+  nodeSelector: {}
+
+  tolerations: {}
+
+  podAnnotations: {}
+
+  affinity: {}
+
   service:
     type: ClusterIP
     httpPort: 9108
+    metricsPort:
+      name: http
+    annotations: {}
+    labels: {}
+
+  ## Extra environment variables that will be passed into the exporter pod
+  ## example:
+  ## env:
+  ##   KEY_1: value1
+  ##   KEY_2: value2
+  # env:
+
+  # A list of secrets and their paths to mount inside the pod
+  # This is useful for mounting certificates for security
+  secretMounts: []
+  #  - name: elastic-certs
+  #    secretName: elastic-certs
+  #    path: /ssl
 
   es:
     ## Address (host and port) of the Elasticsearch node we should connect to.
@@ -63,14 +94,39 @@ elasticsearch-exporter:
     ##
     indices: true
 
+    ## If true, query settings stats for all indices in the cluster.
+    ##
+    indices_settings: true
+
+    ## If true, query stats for shards in the cluster.
+    ##
+    shards: true
+
+    ## If true, query stats for snapshots in the cluster.
+    ##
+    snapshots: true
+
+    ## If true, query stats for cluster settings.
+    ##
+    cluster_settings: false
+
     ## Timeout for trying to get stats from Elasticsearch. (ex: 20s)
     ##
-    timeout: 20s
+    timeout: 30s
+
+    ## Skip SSL verification when connecting to Elasticsearch
+    ## (only available if image.tag >= 1.0.4rc1)
+    ##
+    sslSkipVerify: false
 
     ssl:
       ## If true, a secure connection to ES cluster is used (requires SSL certs below)
       ##
       enabled: false
+
+      ## If true, certs from secretMounts will be need to be referenced instead of certs below
+      ##
+      useExistingSecrets: false
 
       ca:
 
@@ -78,21 +134,63 @@ elasticsearch-exporter:
         ##
         # pem:
 
+        # Path of ca pem file which should match a secretMount path
+        # path: /ssl/ca.pem
       client:
 
         ## PEM that contains the client cert to connect to Elasticsearch.
         ##
         # pem:
 
+        # Path of client pem file which should match a secretMount path
+        # pemPath: /ssl/client.pem
+
         ## Private key for client auth when connecting to Elasticsearch
         ##
         # key:
+
+        # Path of client key file which should match a secretMount path
+        # keyPath: /ssl/client.key
 
   web:
     ## Path under which to expose metrics.
     ##
     path: /metrics
 
+  serviceMonitor:
+    ## If true, a ServiceMonitor CRD is created for a prometheus operator
+    ## https://github.com/coreos/prometheus-operator
+    ##
+    enabled: true
+    #  namespace: monitoring
+    labels:
+      prometheus: cluster-monitoring
+    interval: 60s
+    scrapeTimeout: 30s
+    scheme: http
+
+  prometheusRule:
+    ## If true, a PrometheusRule CRD is created for a prometheus operator
+    ## https://github.com/coreos/prometheus-operator
+    ##
+    enabled: false
+    #  namespace: monitoring
+    labels: {}
+    rules: []
+
+  # Create a service account
+  # To use a service account not handled by the chart, set the name here
+  # and set create to false
+  serviceAccount:
+    create: false
+    name: default
+
+  # Creates a PodSecurityPolicy and the role/rolebinding
+  # allowing the serviceaccount to use it
+  podSecurityPolicies:
+    enabled: true
+
+## ------------------------------ ##
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
@@ -104,14 +202,29 @@ prometheus-cloudwatch-exporter:
 
   image:
     repository: prom/cloudwatch-exporter
-    tag: latest
+    tag: cloudwatch_exporter-0.7.0
     pullPolicy: IfNotPresent
+
+  # Example proxy configuration:
+  # command:
+  #   - 'java'
+  #   - '-Dhttp.proxyHost=proxy.example.com'
+  #   - '-Dhttp.proxyPort=3128'
+  #   - '-Dhttps.proxyHost=proxy.example.com'
+  #   - '-Dhttps.proxyPort=3128'
+  #   - '-jar'
+  #   - '/cloudwatch_exporter.jar'
+  #   - '9106'
+  #   - '/config/config.yml'
+
+  command: []
 
   service:
     type: ClusterIP
-    port: 80
-    targetPort: 9100
+    port: 9106
+    portName: http
     annotations: {}
+    labels: {}
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -125,9 +238,18 @@ prometheus-cloudwatch-exporter:
     #   memory: 160Mi
 
   aws:
-    region: eu-west-1
     role:
-    # Note: Do not specify the aws_access_key_id abd aws_secret_access_key if you specified role before
+
+    # The name of a pre-created secret in which AWS credentials are stored. When
+    # set, aws_access_key_id is assumed to be in a field called access_key,
+    # aws_secret_access_key is assumed to be in a field called secret_key, and the
+    # session token, if it exists, is assumed to be in a field called
+    # security_token
+    secret:
+      name:
+      includesSessionToken: false
+
+    # Note: Do not specify the aws_access_key_id and aws_secret_access_key if you specified role or secret.name before
     aws_access_key_id:
     aws_secret_access_key:
 
@@ -145,7 +267,7 @@ prometheus-cloudwatch-exporter:
   config: |-
     # Only get statistics for AWS/ES FreeStorageSpace
     region: eu-west-1
-    period_seconds: 60
+    period_seconds: 60  # Important to get accurate AWS ES readings
     set_timestamp: false
     metrics:
     - aws_namespace: AWS/ES
@@ -158,3 +280,61 @@ prometheus-cloudwatch-exporter:
   tolerations: []
 
   affinity: {}
+
+  # Configurable health checks against the /healthy and /ready endpoints
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 3
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 3
+
+  serviceMonitor:
+    # When set true then use a ServiceMonitor to configure scraping
+    enabled: true
+    # Set the namespace the ServiceMonitor should be deployed
+    # namespace: monitoring
+    # Set how frequently Prometheus should scrape
+    interval: 300s
+    # Set path to cloudwatch-exporter telemtery-path
+    # telemetryPath: /metrics
+    # Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator
+    labels:
+      prometheus: "cluster-monitoring"
+    # Set timeout for scrape
+    timeout: 10s
+    # Set relabelings for the ServiceMonitor, use to apply to samples before scraping
+    # relabelings: []
+    # Set metricRelabelings for the ServiceMonitor, use to apply to samples for ingestion
+    # metricRelabelings: []
+    #
+    # Example - note the Kubernetes convention of camelCase instead of Prometheus' snake_case
+    # metricRelabelings:
+    #   - sourceLabels: [dbinstance_identifier]
+    #     action: replace
+    #     replacement: mydbname
+    #     targetLabel: dbname
+
+  ingress:
+    enabled: false
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    labels: {}
+    path: /
+    hosts:
+      - chart-example.local
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+  securityContext:
+    runAsUser: 65534  # run as nobody user instead of root

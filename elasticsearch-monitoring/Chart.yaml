@@ -1,5 +1,5 @@
 name: elasticsearch-monitoring
-version: 0.2.5
+version: 1.0.0
 description: ElasticSearch monitoring using Prometheus-operator and Grafana.
 keywords:
   - grafana

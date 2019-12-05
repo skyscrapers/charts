@@ -1,19 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
+  name: {{ include "elasticsearch-monitoring.fullname" . }}
   labels:
-{{ include "labels" $ | indent 4 }}
-    {{- range $key, $val := .Values.prometheus.labels }}
-    {{ $key }}: {{ $val | quote }}
-    {{- end}}
-  name: "{{ .Release.Name }}"
-  namespace: "{{ .Release.Namespace }}"
+    prometheus: "cluster-monitoring"
+{{ include "elasticsearch-monitoring.labels" . | indent 4 }}
 spec:
   groups:
   - name: esexporter.rules
     rules:
     - alert: ElasticsearchExporterDown
-      expr: up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
+      expr: up{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} != 1
       for: 5m
       labels:
         severity: critical
@@ -22,9 +19,9 @@ spec:
         description: 'The Elasticsearch metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: Elasticsearch monitoring is DOWN!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchexporterdown'
-    {{- if .Values.amazonService.enabled }}
+    {{- if .Values.amazonService }}
     - alert: ElasticsearchCloudwatchExporterDown
-      expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
+      expr: up{job="{{ include "elasticsearch-monitoring.cloudwatchExporterName" . }}"} != 1
       for: 5m
       labels:
         severity: critical
@@ -37,7 +34,7 @@ spec:
   - name: escluster.rules
     rules:
     - alert: ElasticsearchClusterHealthYellow
-      expr: elasticsearch_cluster_health_status{color="yellow", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+      expr: elasticsearch_cluster_health_status{color="yellow", job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} != 0
       for: 5m
       labels:
         severity: warning
@@ -47,7 +44,7 @@ spec:
         summary: Elasticsearch cluster is Yellow
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchclusterhealthyellow'
     - alert: ElasticsearchClusterHealthRed
-      expr: elasticsearch_cluster_health_status{color="red", job="{{ .Release.Name }}-elasticsearch-exporter"} != 0
+      expr: elasticsearch_cluster_health_status{color="red", job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} != 0
       for: 5m
       labels:
         severity: critical
@@ -57,7 +54,7 @@ spec:
         summary: Elasticsearch cluster is RED!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchclusterhealthred'
     - alert: ElasticsearchClusterEndpointDown
-      expr: elasticsearch_cluster_health_up{job="{{ .Release.Name }}-elasticsearch-exporter"} != 1
+      expr: elasticsearch_cluster_health_up{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} != 1
       for: 5m
       labels:
         severity: critical
@@ -68,9 +65,9 @@ spec:
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchclusterendpointdown'
   - name: esdata.rules
     rules:
-    {{- if .Values.amazonService.enabled }}
+    {{- if .Values.amazonService }}
     - alert: ElasticsearchAWSLowDiskSpace
-      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.1
+      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ include "elasticsearch-monitoring.cloudwatchExporterName" . }}"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.1
       for: 15m
       labels:
         severity: warning
@@ -80,7 +77,7 @@ spec:
         summary: AWS Elasticsearch low disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawslowdiskspace'
     - alert: ElasticsearchAWSNoDiskSpace
-      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.05
+      expr: sum(label_join(aws_es_free_storage_space_minimum{job="{{ include "elasticsearch-monitoring.cloudwatchExporterName" . }}"}, "cluster", ":", "client_id", "domain_name")) by (cluster) / min(clamp_max(elasticsearch_filesystem_data_size_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}", es_data_node="true"}/1024/1024, 102400)) by (cluster) <= 0.05
       for: 15m
       labels:
         severity: critical
@@ -91,7 +88,7 @@ spec:
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchawsnodiskspace'
     {{- else }}
     - alert: ElasticsearchLowDiskSpace
-      expr: elasticsearch_filesystem_data_available_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.1
+      expr: elasticsearch_filesystem_data_available_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} / elasticsearch_filesystem_data_size_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} <= 0.1
       for: 15m
       labels:
         severity: warning
@@ -101,7 +98,7 @@ spec:
         summary: Elasticsearch low disk
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-elasticsearchlowdiskspace'
     - alert: ElasticsearchNoDiskSpace
-      expr: elasticsearch_filesystem_data_available_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_filesystem_data_size_bytes{job="{{ .Release.Name }}-elasticsearch-exporter"} <= 0.05
+      expr: elasticsearch_filesystem_data_available_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} / elasticsearch_filesystem_data_size_bytes{job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} <= 0.05
       for: 15m
       labels:
         severity: critical
@@ -114,7 +111,7 @@ spec:
   - name: esmemory.rules
     rules:
     - alert: ElasticsearchHeapTooHigh
-      expr: elasticsearch_jvm_memory_used_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} / elasticsearch_jvm_memory_max_bytes{area="heap", job="{{ .Release.Name }}-elasticsearch-exporter"} > 0.9
+      expr: elasticsearch_jvm_memory_used_bytes{area="heap", job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} / elasticsearch_jvm_memory_max_bytes{area="heap", job="{{ include "elasticsearch-monitoring.elasticsearchExporterName" . }}"} > 0.9
       for: 15m
       labels:
         severity: warning
