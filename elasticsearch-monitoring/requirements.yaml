@@ -1,7 +1,7 @@
 dependencies:
   - name: elasticsearch-exporter
-    version: 0.1.1
+    version: 2.1.1
     repository: https://kubernetes-charts.storage.googleapis.com
   - name: prometheus-cloudwatch-exporter
-    version: 0.1.4
+    version: 0.5.0
     repository: https://kubernetes-charts.storage.googleapis.com
