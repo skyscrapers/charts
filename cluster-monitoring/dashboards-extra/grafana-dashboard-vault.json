@@ -40,7 +40,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 2,
+        "h": 4,
         "w": 24,
         "x": 0,
         "y": 0
@@ -81,9 +81,11 @@
       ],
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full"     : false,
+        "full"     : true,
         "lineColor": "rgb(31, 120, 193)",
-        "show"     : false
+        "show"     : true,
+        "ymax"     : 1,
+        "ymin"     : 0
       },
       "tableColumn": "",
       "targets"    : [
@@ -126,7 +128,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 2
+        "y": 4
       },
       "id"    : 16,
       "panels": [],
@@ -148,7 +150,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 3
+        "y": 5
       },
       "hiddenSeries": false,
       "id"          : 6,
@@ -265,7 +267,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 3
+        "y": 5
       },
       "hiddenSeries": false,
       "id"          : 28,
@@ -368,7 +370,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 15
       },
       "id"    : 18,
       "panels": [],
@@ -387,7 +389,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 16
       },
       "hiddenSeries": false,
       "id"          : 36,
@@ -492,7 +494,7 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 16
       },
       "hiddenSeries": false,
       "id"          : 41,
@@ -609,7 +611,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 20
+        "y": 22
       },
       "hiddenSeries": false,
       "id"          : 12,
@@ -708,7 +710,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 20
+        "y": 22
       },
       "hiddenSeries": false,
       "id"          : 37,
@@ -816,7 +818,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 29
       },
       "hiddenSeries": false,
       "id"          : 42,
@@ -935,7 +937,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 29
       },
       "hiddenSeries": false,
       "id"          : 43,
@@ -1052,7 +1054,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 36
       },
       "id"    : 40,
       "panels": [
@@ -1280,7 +1282,7 @@
       "type" : "row"
     }
   ],
-  "refresh"      : "1m",
+  "refresh"      : "5m",
   "schemaVersion": 21,
   "style"        : "dark",
   "tags"         : [],
@@ -1288,7 +1290,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to"  : "now"
   },
   "timepicker": {
@@ -1319,5 +1321,5 @@
   "timezone": "",
   "title"   : "Vault",
   "uid"     : "_a16NUpiz2",
-  "version" : 27
+  "version" : 29
 }
