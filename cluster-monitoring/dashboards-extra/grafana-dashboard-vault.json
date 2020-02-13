@@ -130,102 +130,8 @@
       },
       "id"    : 16,
       "panels": [],
-      "title" : "Token",
+      "title" : "",
       "type"  : "row"
-    },
-    {
-      "aliasColors": {
-        "Lookup": "#0a50a1"
-      },
-      "bars"        : false,
-      "dashLength"  : 10,
-      "dashes"      : false,
-      "datasource"  : "Prometheus",
-      "fill"        : 1,
-      "fillGradient": 0,
-      "gridPos"     : {
-        "h": 6,
-        "w": 14,
-        "x": 0,
-        "y": 3
-      },
-      "hiddenSeries": false,
-      "id"          : 14,
-      "legend"      : {
-        "avg"    : false,
-        "current": false,
-        "max"    : false,
-        "min"    : false,
-        "show"   : true,
-        "total"  : false,
-        "values" : false
-      },
-      "lines"        : true,
-      "linewidth"    : 1,
-      "links"        : [],
-      "nullPointMode": "null",
-      "options"      : {
-        "dataLinks": []
-      },
-      "percentage"     : false,
-      "pointradius"    : 5,
-      "points"         : false,
-      "renderer"       : "flot",
-      "seriesOverrides": [],
-      "spaceLength"    : 10,
-      "stack"          : false,
-      "steppedLine"    : false,
-      "targets"        : [
-        {
-          "expr"          : "sum( irate(vault_token_lookup_count[5m]) > 0)",
-          "format"        : "time_series",
-          "instant"       : false,
-          "intervalFactor": 1,
-          "legendFormat"  : "Lookups",
-          "refId"         : "A"
-        }
-      ],
-      "thresholds" : [],
-      "timeFrom"   : null,
-      "timeRegions": [],
-      "timeShift"  : null,
-      "title"      : "Token Lookup",
-      "tooltip"    : {
-        "shared"    : true,
-        "sort"      : 0,
-        "value_type": "individual"
-      },
-      "type" : "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode"   : "time",
-        "name"   : null,
-        "show"   : true,
-        "values" : []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format"  : "short",
-          "label"   : null,
-          "logBase" : 1,
-          "max"     : null,
-          "min"     : "0",
-          "show"    : true
-        },
-        {
-          "format" : "short",
-          "label"  : null,
-          "logBase": 1,
-          "max"    : null,
-          "min"    : null,
-          "show"   : true
-        }
-      ],
-      "yaxis": {
-        "align"     : false,
-        "alignLevel": null
-      }
     },
     {
       "aliasColors": {
@@ -239,9 +145,9 @@
       "fill"        : 1,
       "fillGradient": 0,
       "gridPos"     : {
-        "h": 6,
-        "w": 10,
-        "x": 14,
+        "h": 10,
+        "w": 12,
+        "x": 0,
         "y": 3
       },
       "hiddenSeries": false,
@@ -272,20 +178,35 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "sum( irate(vault_token_create_count[1m]) > 0)",
+          "expr"          : "sum(changes(vault_token_create_count[5m])) by (job)",
           "format"        : "time_series",
           "instant"       : false,
           "intervalFactor": 1,
-          "legendFormat"  : "Create",
+          "legendFormat"  : "create",
           "refId"         : "A"
         },
         {
-          "expr"          : "sum( irate(vault_token_store_count[1m]) > 0)",
+          "expr"          : "sum(changes(vault_token_store_count[5m])) by (job)",
           "format"        : "time_series",
           "instant"       : false,
           "intervalFactor": 2,
-          "legendFormat"  : "Store",
+          "legendFormat"  : "store",
           "refId"         : "B"
+        },
+        {
+          "expr"        : "sum(changes(vault_token_createAccessor_count[5m])) by (job)",
+          "legendFormat": "createAccessor",
+          "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_token_lookup_count[5m])) by (job)",
+          "legendFormat": "lookup",
+          "refId"       : "D"
+        },
+        {
+          "expr"        : "sum(changes(vault_token_revoke_tree_count[5m])) by (job)",
+          "legendFormat": "revoke_tree",
+          "refId"       : "E"
         }
       ],
       "thresholds" : [],
@@ -331,21 +252,9 @@
       }
     },
     {
-      "collapsed" : false,
-      "datasource": null,
-      "gridPos"   : {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 9
+      "aliasColors": {
+        "GET": "#1f78c1"
       },
-      "id"    : 20,
-      "panels": [],
-      "title" : "Audit",
-      "type"  : "row"
-    },
-    {
-      "aliasColors" : {},
       "bars"        : false,
       "dashLength"  : 10,
       "dashes"      : false,
@@ -353,19 +262,17 @@
       "fill"        : 1,
       "fillGradient": 0,
       "gridPos"     : {
-        "h": 6,
-        "w": 14,
-        "x": 0,
-        "y": 10
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 3
       },
       "hiddenSeries": false,
-      "id"          : 4,
+      "id"          : 28,
       "legend"      : {
         "alignAsTable": false,
         "avg"         : false,
         "current"     : false,
-        "hideEmpty"   : true,
-        "hideZero"    : false,
         "max"         : false,
         "min"         : false,
         "rightSide"   : false,
@@ -390,35 +297,33 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "sum( irate(vault_audit_log_request[5m]) > 0)",
+          "expr"          : "sum(changes(vault_dynamodb_get_count[5m])) by (job)",
           "format"        : "time_series",
-          "hide"          : false,
-          "instant"       : false,
           "intervalFactor": 1,
-          "legendFormat"  : "Request ",
+          "legendFormat"  : "GET",
           "refId"         : "A"
         },
         {
-          "expr"          : "sum( irate(vault_audit_log_response[5m]) > 0)",
-          "format"        : "time_series",
-          "instant"       : false,
-          "intervalFactor": 1,
-          "legendFormat"  : "Response",
-          "refId"         : "B"
+          "expr"        : "sum(changes(vault_dynamodb_list_count[5m])) by (job)",
+          "legendFormat": "LIST",
+          "refId"       : "B"
         },
         {
-          "expr"          : "sum( irate(vault_core_handle_request[5m]) > 0)",
-          "format"        : "time_series",
-          "intervalFactor": 1,
-          "legendFormat"  : "Handled",
-          "refId"         : "C"
+          "expr"        : "sum(changes(vault_dynamodb_put_count[5m])) by (job)",
+          "legendFormat": "PUT",
+          "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_dynamodb_delete_count[5m])) by (job)",
+          "legendFormat": "DELETE",
+          "refId"       : "D"
         }
       ],
       "thresholds" : [],
       "timeFrom"   : null,
       "timeRegions": [],
       "timeShift"  : null,
-      "title"      : "Audit Log Request",
+      "title"      : "Dynamodb",
       "tooltip"    : {
         "shared"    : true,
         "sort"      : 0,
@@ -439,7 +344,7 @@
           "label"   : null,
           "logBase" : 1,
           "max"     : null,
-          "min"     : "0",
+          "min"     : null,
           "show"    : true
         },
         {
@@ -457,8 +362,22 @@
       }
     },
     {
+      "collapsed" : false,
+      "datasource": null,
+      "gridPos"   : {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id"    : 18,
+      "panels": [],
+      "title" : "Extra",
+      "type"  : "row"
+    },
+    {
       "aliasColors" : {},
-      "bars"        : true,
+      "bars"        : false,
       "dashLength"  : 10,
       "dashes"      : false,
       "datasource"  : "Prometheus",
@@ -466,26 +385,26 @@
       "fillGradient": 0,
       "gridPos"     : {
         "h": 6,
-        "w": 10,
-        "x": 14,
-        "y": 10
+        "w": 12,
+        "x": 0,
+        "y": 14
       },
       "hiddenSeries": false,
       "id"          : 36,
       "legend"      : {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg"         : false,
         "current"     : false,
         "max"         : false,
         "min"         : false,
-        "rightSide"   : true,
-        "show"        : false,
+        "rightSide"   : false,
+        "show"        : true,
         "sort"        : "avg",
         "sortDesc"    : true,
         "total"       : false,
         "values"      : false
       },
-      "lines"        : false,
+      "lines"        : true,
       "linewidth"    : 1,
       "links"        : [],
       "nullPointMode": "null",
@@ -502,19 +421,19 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "sum( irate(vault_route_rollback_auth_token__sum[5m]) > 0)",
+          "expr"          : "sum(changes(vault_route_rollback_auth_token__count[5m])) by (job)",
           "format"        : "time_series",
           "intervalFactor": 1,
           "legendFormat"  : "auth_token",
           "refId"         : "A"
         },
         {
-          "expr"        : "sum( irate(vault_route_rollback_cubbyhole__sum[5m]) > 0)",
+          "expr"        : "sum(changes(vault_route_rollback_cubbyhole__count[5m])) by (job)",
           "legendFormat": "cubbyhole",
           "refId"       : "B"
         },
         {
-          "expr"        : "sum( irate(vault_route_rollback_identity__sum[5m]) > 0)",
+          "expr"        : "sum(changes(vault_route_rollback_identity__count[5m])) by (job)",
           "legendFormat": "identity",
           "refId"       : "C"
         }
@@ -562,18 +481,119 @@
       }
     },
     {
-      "collapsed" : false,
-      "datasource": null,
-      "gridPos"   : {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 16
+      "aliasColors" : {},
+      "bars"        : false,
+      "dashLength"  : 10,
+      "dashes"      : false,
+      "datasource"  : "Prometheus",
+      "fill"        : 1,
+      "fillGradient": 0,
+      "gridPos"     : {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 14
       },
-      "id"    : 18,
-      "panels": [],
-      "title" : "Policy",
-      "type"  : "row"
+      "hiddenSeries": false,
+      "id"          : 41,
+      "legend"      : {
+        "alignAsTable": false,
+        "avg"         : false,
+        "current"     : false,
+        "max"         : false,
+        "min"         : false,
+        "rightSide"   : false,
+        "show"        : true,
+        "sort"        : "avg",
+        "sortDesc"    : true,
+        "total"       : false,
+        "values"      : false
+      },
+      "lines"        : true,
+      "linewidth"    : 1,
+      "links"        : [],
+      "nullPointMode": "null",
+      "options"      : {
+        "dataLinks": []
+      },
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "sum(changes(vault_core_check_token_count[5m])) by (job)",
+          "format"        : "time_series",
+          "intervalFactor": 1,
+          "legendFormat"  : "check__token",
+          "refId"         : "A"
+        },
+        {
+          "expr"        : "sum(changes(vault_core_fetch_acl_and_token_count[5m])) by (job)",
+          "legendFormat": "fetch_acl_and_token",
+          "refId"       : "B"
+        },
+        {
+          "expr"        : "sum(changes(vault_core_handle_request_count[5m])) by (job)",
+          "legendFormat": "handle_request",
+          "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_core_post_unseal_count[5m])) by (job)",
+          "legendFormat": "post_unseal",
+          "refId"       : "D"
+        },
+        {
+          "expr"        : "sum(changes(vault_core_unseal_count[5m])) by (job)",
+          "legendFormat": "unseal",
+          "refId"       : "E"
+        }
+      ],
+      "thresholds" : [],
+      "timeFrom"   : null,
+      "timeRegions": [],
+      "timeShift"  : null,
+      "title"      : "Core",
+      "tooltip"    : {
+        "shared"    : true,
+        "sort"      : 2,
+        "value_type": "individual"
+      },
+      "type" : "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format"  : "short",
+          "label"   : "",
+          "logBase" : 1,
+          "max"     : null,
+          "min"     : null,
+          "show"    : true
+        },
+        {
+          "format" : "short",
+          "label"  : "",
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : true
+        }
+      ],
+      "yaxis": {
+        "align"     : false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -586,10 +606,10 @@
       "fill"        : 1,
       "fillGradient": 0,
       "gridPos"     : {
-        "h": 6,
-        "w": 24,
+        "h": 7,
+        "w": 12,
         "x": 0,
-        "y": 17
+        "y": 20
       },
       "hiddenSeries": false,
       "id"          : 12,
@@ -619,18 +639,24 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "sum(rate(vault_policy_get_policy_count[1m]))",
+          "expr"          : "sum(changes(vault_policy_get_policy_count[5m])) by (job)",
           "format"        : "time_series",
           "intervalFactor": 1,
           "legendFormat"  : "GET",
           "refId"         : "A"
+        },
+        {
+          "expr"        : "sum(changes(vault_policy_set_policy_count[5m])) by (job)",
+          "interval"    : "",
+          "legendFormat": "SET",
+          "refId"       : "B"
         }
       ],
       "thresholds" : [],
       "timeFrom"   : null,
       "timeRegions": [],
       "timeShift"  : null,
-      "title"      : "Policy Get",
+      "title"      : "Policy",
       "tooltip"    : {
         "shared"    : true,
         "sort"      : 0,
@@ -669,20 +695,6 @@
       }
     },
     {
-      "collapsed" : false,
-      "datasource": null,
-      "gridPos"   : {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 23
-      },
-      "id"    : 32,
-      "panels": [],
-      "title" : "Dynamodb backend",
-      "type"  : "row"
-    },
-    {
       "aliasColors": {
         "GET": "#1f78c1"
       },
@@ -694,22 +706,20 @@
       "fillGradient": 0,
       "gridPos"     : {
         "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 24
+        "w": 12,
+        "x": 12,
+        "y": 20
       },
       "hiddenSeries": false,
-      "id"          : 28,
+      "id"          : 37,
       "legend"      : {
-        "alignAsTable": false,
-        "avg"         : true,
-        "current"     : false,
-        "max"         : false,
-        "min"         : true,
-        "rightSide"   : true,
-        "show"        : true,
-        "total"       : true,
-        "values"      : true
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : true,
+        "total"  : false,
+        "values" : false
       },
       "lines"        : true,
       "linewidth"    : 1,
@@ -728,28 +738,33 @@
       "steppedLine"    : false,
       "targets"        : [
         {
-          "expr"          : "rate(vault_dynamodb_get_count{pod=\"vault-1\"}[5m])",
+          "expr"          : "sum(changes(vault_barrier_delete_count[5m])) by (job)",
           "format"        : "time_series",
           "intervalFactor": 1,
-          "legendFormat"  : "GET",
+          "legendFormat"  : "DELETE",
           "refId"         : "A"
         },
         {
-          "expr"        : "rate(vault_dynamodb_list_count{pod=\"vault-1\"}[5m])",
-          "legendFormat": "LIST",
+          "expr"        : "sum(changes(vault_barrier_get_count[5m])) by (job)",
+          "legendFormat": "GET",
           "refId"       : "B"
         },
         {
-          "expr"        : "rate(vault_dynamodb_put_count{pod=\"vault-1\"}[5m])",
-          "legendFormat": "PUT",
+          "expr"        : "sum(changes(vault_barrier_list_count[5m])) by (job)",
+          "legendFormat": "LIST",
           "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_barrier_put_count[5m])) by (job)",
+          "legendFormat": "PUT",
+          "refId"       : "D"
         }
       ],
       "thresholds" : [],
       "timeFrom"   : null,
       "timeRegions": [],
       "timeShift"  : null,
-      "title"      : "Dynamodb",
+      "title"      : "Barrier",
       "tooltip"    : {
         "shared"    : true,
         "sort"      : 0,
@@ -770,7 +785,7 @@
           "label"   : null,
           "logBase" : 1,
           "max"     : null,
-          "min"     : null,
+          "min"     : "0",
           "show"    : true
         },
         {
@@ -786,9 +801,486 @@
         "align"     : false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {
+        "GET": "#1f78c1"
+      },
+      "bars"        : false,
+      "dashLength"  : 10,
+      "dashes"      : false,
+      "datasource"  : "Prometheus",
+      "fill"        : 1,
+      "fillGradient": 0,
+      "gridPos"     : {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id"          : 42,
+      "legend"      : {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : true,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"        : true,
+      "linewidth"    : 1,
+      "links"        : [],
+      "nullPointMode": "null",
+      "options"      : {
+        "dataLinks": []
+      },
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "sum(changes(vault_expire_fetch_lease_times_by_token_count[5m])) by (job)",
+          "format"        : "time_series",
+          "intervalFactor": 1,
+          "legendFormat"  : "fetch_lease_times_by_token",
+          "refId"         : "A"
+        },
+        {
+          "expr"        : "sum(changes(vault_expire_fetch_lease_times_count[5m])) by (job)",
+          "interval"    : "",
+          "legendFormat": "fetch_lease_times",
+          "refId"       : "B"
+        },
+        {
+          "expr"        : "sum(changes(vault_expire_register_auth_count[5m])) by (job)",
+          "legendFormat": "register_auth",
+          "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_expire_revoke_by_token_count[5m])) by (job)",
+          "legendFormat": "revoke_by_token",
+          "refId"       : "D"
+        },
+        {
+          "expr"        : "sum(changes(vault_expire_revoke_common_count[5m])) by (job)",
+          "legendFormat": "revoke_common",
+          "refId"       : "E"
+        },
+        {
+          "expr"        : "sum(changes(vault_expire_revoke_prefix_count[5m])) by (job)",
+          "legendFormat": "revoke_prefix",
+          "refId"       : "F"
+        }
+      ],
+      "thresholds" : [],
+      "timeFrom"   : null,
+      "timeRegions": [],
+      "timeShift"  : null,
+      "title"      : "Expire",
+      "tooltip"    : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "type" : "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format"  : "short",
+          "label"   : null,
+          "logBase" : 1,
+          "max"     : null,
+          "min"     : "0",
+          "show"    : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : true
+        }
+      ],
+      "yaxis": {
+        "align"     : false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "GET": "#1f78c1"
+      },
+      "bars"        : false,
+      "dashLength"  : 10,
+      "dashes"      : false,
+      "datasource"  : "Prometheus",
+      "fill"        : 1,
+      "fillGradient": 0,
+      "gridPos"     : {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id"          : 43,
+      "legend"      : {
+        "avg"    : false,
+        "current": false,
+        "max"    : false,
+        "min"    : false,
+        "show"   : true,
+        "total"  : false,
+        "values" : false
+      },
+      "lines"        : true,
+      "linewidth"    : 1,
+      "links"        : [],
+      "nullPointMode": "null",
+      "options"      : {
+        "dataLinks": []
+      },
+      "percentage"     : false,
+      "pointradius"    : 5,
+      "points"         : false,
+      "renderer"       : "flot",
+      "seriesOverrides": [],
+      "spaceLength"    : 10,
+      "stack"          : false,
+      "steppedLine"    : false,
+      "targets"        : [
+        {
+          "expr"          : "sum(changes(vault_rollback_attempt_auth_aws__count[5m])) by (job)",
+          "format"        : "time_series",
+          "intervalFactor": 1,
+          "legendFormat"  : "auth_aws",
+          "refId"         : "A"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_auth_github_sky__count[5m])) by (job)",
+          "interval"    : "",
+          "legendFormat": "github_sky",
+          "refId"       : "B"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_auth_kubernetes__count[5m])) by (job)",
+          "legendFormat": "kubernetes",
+          "refId"       : "C"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_auth_token__count[5m])) by (job)",
+          "legendFormat": "token",
+          "refId"       : "D"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_cubbyhole__count[5m])) by (job)",
+          "legendFormat": "cubbyhole",
+          "refId"       : "E"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_identity__count[5m])) by (job)",
+          "legendFormat": "identity",
+          "refId"       : "F"
+        },
+        {
+          "expr"        : "sum(changes(vault_rollback_attempt_sys__count[5m])) by (job)",
+          "legendFormat": "sys",
+          "refId"       : "G"
+        }
+      ],
+      "thresholds" : [],
+      "timeFrom"   : null,
+      "timeRegions": [],
+      "timeShift"  : null,
+      "title"      : "Rollback attempt",
+      "tooltip"    : {
+        "shared"    : true,
+        "sort"      : 0,
+        "value_type": "individual"
+      },
+      "type" : "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode"   : "time",
+        "name"   : null,
+        "show"   : true,
+        "values" : []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format"  : "short",
+          "label"   : null,
+          "logBase" : 1,
+          "max"     : null,
+          "min"     : "0",
+          "show"    : true
+        },
+        {
+          "format" : "short",
+          "label"  : null,
+          "logBase": 1,
+          "max"    : null,
+          "min"    : null,
+          "show"   : true
+        }
+      ],
+      "yaxis": {
+        "align"     : false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed" : true,
+      "datasource": null,
+      "gridPos"   : {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id"    : 40,
+      "panels": [
+        {
+          "aliasColors" : {},
+          "bars"        : false,
+          "dashLength"  : 10,
+          "dashes"      : false,
+          "datasource"  : "Prometheus",
+          "fill"        : 1,
+          "fillGradient": 0,
+          "gridPos"     : {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "hiddenSeries": false,
+          "id"          : 4,
+          "legend"      : {
+            "alignAsTable": false,
+            "avg"         : false,
+            "current"     : false,
+            "hideEmpty"   : true,
+            "hideZero"    : false,
+            "max"         : false,
+            "min"         : false,
+            "rightSide"   : false,
+            "show"        : true,
+            "total"       : false,
+            "values"      : false
+          },
+          "lines"        : true,
+          "linewidth"    : 1,
+          "links"        : [],
+          "nullPointMode": "null",
+          "options"      : {
+            "dataLinks": []
+          },
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "sum(changes(vault_audit_log_request_count[5m])) by (job)",
+              "format"        : "time_series",
+              "hide"          : false,
+              "instant"       : false,
+              "interval"      : "",
+              "intervalFactor": 1,
+              "legendFormat"  : "Request ",
+              "refId"         : "A"
+            },
+            {
+              "expr"          : "sum(changes(vault_audit_log_request_count[5m])) by (job)",
+              "format"        : "time_series",
+              "instant"       : false,
+              "intervalFactor": 1,
+              "legendFormat"  : "Response",
+              "refId"         : "B"
+            },
+            {
+              "expr"          : "sum(changes(vault_core_handle_request_count[5m])) by (job)",
+              "format"        : "time_series",
+              "intervalFactor": 1,
+              "legendFormat"  : "Handled",
+              "refId"         : "C"
+            }
+          ],
+          "thresholds" : [],
+          "timeFrom"   : null,
+          "timeRegions": [],
+          "timeShift"  : null,
+          "title"      : "Audit Log Request",
+          "tooltip"    : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format"  : "short",
+              "label"   : null,
+              "logBase" : 1,
+              "max"     : null,
+              "min"     : "0",
+              "show"    : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ],
+          "yaxis": {
+            "align"     : false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors" : {},
+          "bars"        : false,
+          "dashLength"  : 10,
+          "dashes"      : false,
+          "datasource"  : "Prometheus",
+          "fill"        : 1,
+          "fillGradient": 0,
+          "gridPos"     : {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "hiddenSeries": false,
+          "id"          : 38,
+          "legend"      : {
+            "alignAsTable": false,
+            "avg"         : false,
+            "current"     : false,
+            "hideEmpty"   : true,
+            "hideZero"    : false,
+            "max"         : false,
+            "min"         : false,
+            "rightSide"   : false,
+            "show"        : true,
+            "total"       : false,
+            "values"      : false
+          },
+          "lines"        : true,
+          "linewidth"    : 1,
+          "links"        : [],
+          "nullPointMode": "null",
+          "options"      : {
+            "dataLinks": []
+          },
+          "percentage"     : false,
+          "pointradius"    : 5,
+          "points"         : false,
+          "renderer"       : "flot",
+          "seriesOverrides": [],
+          "spaceLength"    : 10,
+          "stack"          : false,
+          "steppedLine"    : false,
+          "targets"        : [
+            {
+              "expr"          : "sum(changes(vault_audit_file__log_request_count[5m])) by (job)",
+              "format"        : "time_series",
+              "hide"          : false,
+              "instant"       : false,
+              "interval"      : "",
+              "intervalFactor": 1,
+              "legendFormat"  : "Request ",
+              "refId"         : "A"
+            },
+            {
+              "expr"          : "sum(changes(vault_audit_file__log_response_count[5m])) by (job)",
+              "format"        : "time_series",
+              "instant"       : false,
+              "intervalFactor": 1,
+              "legendFormat"  : "Response",
+              "refId"         : "B"
+            }
+          ],
+          "thresholds" : [],
+          "timeFrom"   : null,
+          "timeRegions": [],
+          "timeShift"  : null,
+          "title"      : "Audit File Log Request",
+          "tooltip"    : {
+            "shared"    : true,
+            "sort"      : 0,
+            "value_type": "individual"
+          },
+          "type" : "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode"   : "time",
+            "name"   : null,
+            "show"   : true,
+            "values" : []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format"  : "short",
+              "label"   : null,
+              "logBase" : 1,
+              "max"     : null,
+              "min"     : "0",
+              "show"    : true
+            },
+            {
+              "format" : "short",
+              "label"  : null,
+              "logBase": 1,
+              "max"    : null,
+              "min"    : null,
+              "show"   : true
+            }
+          ],
+          "yaxis": {
+            "align"     : false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Audit",
+      "type" : "row"
     }
   ],
-  "refresh"      : false,
+  "refresh"      : "1m",
   "schemaVersion": 21,
   "style"        : "dark",
   "tags"         : [],
@@ -796,7 +1288,7 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-6h",
     "to"  : "now"
   },
   "timepicker": {
@@ -827,5 +1319,5 @@
   "timezone": "",
   "title"   : "Vault",
   "uid"     : "_a16NUpiz2",
-  "version" : 19
+  "version" : 27
 }
