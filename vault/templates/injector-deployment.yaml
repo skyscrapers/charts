@@ -39,6 +39,7 @@ spec:
               value: ":8080"
             - name: AGENT_INJECT_LOG_LEVEL
               value: {{ .Values.injector.logLevel | default "info" }}
+            - name: AGENT_INJECT_VAULT_ADDR
             {{- if .Values.injector.externalVaultAddr }}
               value: "{{ .Values.injector.externalVaultAddr }}"
             {{- else }}
