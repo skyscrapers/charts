@@ -46,7 +46,7 @@
       }
     ]
   },
-  "description": "Neo4j (3.4) monitoring dashboard, with Prometheus data source.\nBased off https://grafana.com/grafana/dashboards/10371",
+  "description": "Neo4j (>= 3.5) monitoring dashboard, with Prometheus data source.\nRead more at https://graphaware.com/neo4j/2019/06/11/monitoring-neo4j-prometheus.html",
   "editable": true,
   "gnetId": 10371,
   "graphTooltip": 0,
@@ -464,7 +464,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "irate(neo4j_ids_in_use_node{job='$job', instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_ids_in_use_node{job='$job', instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -547,7 +547,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "irate(neo4j_ids_in_use_relationship{job=\"$job\", instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_ids_in_use_relationship{job=\"$job\", instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -631,7 +631,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "irate(neo4j_ids_in_use_property{job='$job', instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_ids_in_use_property{job='$job', instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -726,7 +726,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "neo4j_transaction_last_closed_tx_id{job='$job', instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_last_closed_tx_id_total{job='$job', instance=~\"$leader\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Last Closed Write Transaction ID",
@@ -810,7 +810,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "irate(neo4j_transaction_committed{job='$job', instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_transaction_committed_total{job='$job', instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -893,7 +893,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "irate(neo4j_transaction_rollbacks{job=\"$job\", instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_transaction_rollbacks_total{job=\"$job\", instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -959,7 +959,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace({__name__=~\"neo4j_transaction_(started|committed|rollbacks|terminated)\", job='$job', instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_transaction_(.+)\")",
+          "expr": "label_replace({__name__=~\"neo4j_transaction_(started|committed|rollbacks|terminated)_total\", job='$job', instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_transaction_(.+)\")",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1048,7 +1048,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_transaction_committed{job='$job', instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_committed_total{job='$job', instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1057,7 +1057,7 @@
           "refId": "A"
         },
         {
-          "expr": "neo4j_transaction_committed_read{job='$job', instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_committed_read_total{job='$job', instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1065,7 +1065,7 @@
           "refId": "B"
         },
         {
-          "expr": "neo4j_transaction_committed_write{job='$job', instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_committed_write_total{job='$job', instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -1177,7 +1177,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "neo4j_transaction_last_committed_tx_id{job='$job', instance=\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_last_committed_tx_id_total{job='$job', instance=\"$leader\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Last Committed Transaction ID",
@@ -1258,7 +1258,7 @@
           "refId": "D"
         },
         {
-          "expr": "neo4j_transaction_peak_concurrent{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_transaction_peak_concurrent_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Peak concurrent {{instance}}",
@@ -1347,7 +1347,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_transaction_committed_read{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_transaction_committed_read_total{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -1436,7 +1436,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_transaction_committed_write{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_transaction_committed_write_total{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "rate {{instance}}",
@@ -1525,14 +1525,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_transaction_committed{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_transaction_committed_total{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "rate {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "irate(neo4j_transaction_committed{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "irate(neo4j_transaction_committed_total{job='$job', instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "iRate {{instance}}",
@@ -1582,7 +1582,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1634,7 +1634,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace({__name__=~\"neo4j_bolt_messages_(done|failed)\", job='$job', instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_bolt_messages_(.+)\")",
+          "expr": "label_replace({__name__=~\"neo4j_bolt_messages_(done|failed)_total\", job='$job', instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_bolt_messages_(.+)\")",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1730,7 +1730,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_bolt_messages_received{job='$job', instance=~\"$neo4j_instance\"} - neo4j_bolt_messages_started{job='$job', instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_bolt_messages_received_total{job='$job', instance=~\"$neo4j_instance\"} - neo4j_bolt_messages_started_total{job='$job', instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1739,7 +1739,7 @@
           "refId": "A"
         },
         {
-          "expr": "label_replace({__name__=~\"neo4j_bolt_messages_(received|started)\", job=\"$job\", instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_bolt_messages_(.+)\")",
+          "expr": "label_replace({__name__=~\"neo4j_bolt_messages_(received|started)_total\", job=\"$job\", instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_bolt_messages_(.+)\")",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1748,7 +1748,7 @@
           "refId": "C"
         },
         {
-          "expr": "rate(neo4j_bolt_messages_received{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_bolt_messages_received_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "hide": true,
           "instant": false,
@@ -1757,7 +1757,7 @@
           "refId": "B"
         },
         {
-          "expr": "rate(neo4j_bolt_messages_started{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_bolt_messages_started_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "hide": true,
           "instant": false,
@@ -1848,7 +1848,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_bolt_accumulated_queue_time{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_bolt_accumulated_queue_time_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2115,7 +2115,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_bolt_accumulated_processing_time{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_bolt_accumulated_processing_time_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2219,7 +2219,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_page_cache_page_faults{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_page_cache_page_faults_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2308,7 +2308,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_page_cache_page_faults{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_page_faults_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2397,14 +2397,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_page_cache_pins{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_pins_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "pins {{instance}}",
           "refId": "B"
         },
         {
-          "expr": "rate(neo4j_page_cache_unpins{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_unpins_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "unpins {{instance}}",
@@ -2493,14 +2493,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_page_cache_evictions{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_evictions_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "evictions{{instance}}",
           "refId": "A"
         },
         {
-          "expr": "rate(neo4j_page_cache_eviction_exceptions{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_eviction_exceptions_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "eviction exceptions {{instance}}",
@@ -2590,7 +2590,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_page_cache_evictions{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_page_cache_evictions_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2680,7 +2680,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_page_cache_flushes{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_page_cache_flushes_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2769,7 +2769,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_page_cache_hits{job='$job'}",
+          "expr": "neo4j_page_cache_hits_total{job='$job'}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{__name__}}",
@@ -2858,7 +2858,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_page_cache_hits{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_hits_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -2947,7 +2947,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_page_cache_flushes{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_page_cache_flushes_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -3209,7 +3209,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "check_point_time",
+          "alias": "check_point_total_time_total",
           "yaxis": 2
         }
       ],
@@ -3218,7 +3218,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "label_replace({__name__=~\"neo4j_check_point_(events|total_time)\", job=\"$job\", instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_(.*)\")",
+          "expr": "label_replace({__name__=~\"neo4j_check_point_(events|total_time)_total\", job=\"$job\", instance=~\"$neo4j_instance\"}, \"label\", \"$1\", \"__name__\", \"neo4j_(.*)\")",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -3416,7 +3416,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "{__name__=~\"vm_gc_time_g1_.+_generation\", job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "{__name__=~\"vm_gc_time_g1_.+_generation_total\", job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -3424,7 +3424,7 @@
           "refId": "A"
         },
         {
-          "expr": "delta(vm_gc_time_g1_old_generation{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "delta(vm_gc_time_g1_old_generation_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -3432,7 +3432,7 @@
           "refId": "B"
         },
         {
-          "expr": "delta(vm_gc_time_g1_young_generation{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
+          "expr": "delta(vm_gc_time_g1_young_generation_total{job=\"$job\", instance=~\"$neo4j_instance\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -3440,7 +3440,7 @@
           "refId": "C"
         },
         {
-          "expr": "vm_gc_count_g1_old_generation",
+          "expr": "vm_gc_count_g1_old_generation_total",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -3448,7 +3448,7 @@
           "refId": "D"
         },
         {
-          "expr": "vm_gc_count_g1_young_generation",
+          "expr": "vm_gc_count_g1_young_generation_total",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -3785,7 +3785,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3835,15 +3835,15 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_transaction_committed_read{job=\"$job\", instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_transaction_committed_read_total{job=\"$job\", instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "neo4j_instance {{instance}}",
+          "legendFormat": "Leader {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(neo4j_transaction_committed_read{job=\"$job\", instance!=\"$neo4j_instance\"}[$interval]))",
+          "expr": "sum(rate(neo4j_transaction_committed_read_total{job=\"$job\", instance!=\"$leader\"}[$interval]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3856,7 +3856,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Committed read transaction rate - neo4j_instance Vs Others",
+      "title": "Committed read transaction rate - Leader Vs Others",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3932,14 +3932,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_transaction_committed_write{job=\"$job\", instance=\"$neo4j_instance\"}[$interval])",
+          "expr": "rate(neo4j_transaction_committed_write_total{job=\"$job\", instance=\"$leader\"}[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "neo4j_instance {{instance}}",
+          "legendFormat": "Leader {{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(neo4j_transaction_committed_write{job=\"$job\", instance!=\"$neo4j_instance\"}[$interval]))",
+          "expr": "sum(rate(neo4j_transaction_committed_write_total{job=\"$job\", instance!=\"$leader\"}[$interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Others sum",
@@ -3950,7 +3950,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Committed write transaction rate - neo4j_instance Vs Others",
+      "title": "Committed write transaction rate - Leader Vs Others",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -4026,7 +4026,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(neo4j_causal_clustering_read_replica_pull_updates[$interval])",
+          "expr": "rate(neo4j_causal_clustering_read_replica_pull_updates_total[$interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -4243,7 +4243,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4294,7 +4294,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_cypher_replan_events{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_cypher_replan_events_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{__name__}} {{instance}}",
@@ -4383,7 +4383,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "neo4j_cypher_replan_wait_time{job=\"$job\", instance=~\"$neo4j_instance\"}",
+          "expr": "neo4j_cypher_replan_wait_time_total{job=\"$job\", instance=~\"$neo4j_instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{__name__}} {{instance}}",
@@ -4451,7 +4451,7 @@
         "multi": false,
         "name": "job",
         "options": [],
-        "query": "label_values(neo4j_bolt_accumulated_processing_time, job)",
+        "query": "label_values(neo4j_bolt_accumulated_processing_time_total, job)",
         "refresh": 1,
         "regex": "",
         "sort": 1,
@@ -4467,41 +4467,103 @@
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
-        "label": "Neo4j Instance",
+        "label": "Instance",
         "multi": true,
         "name": "neo4j_instance",
         "options": [],
-        "query": "label_values(neo4j_bolt_accumulated_processing_time{job=~\"$job\"}, instance)",
+        "query": "label_values(neo4j_bolt_accumulated_processing_time_total{job=~\"$job\"}, instance)",
         "refresh": 1,
         "regex": "",
         "sort": 1,
         "tagValuesQuery": null,
         "tags": [],
-        "tagsQuery": "label_values(neo4j_bolt_accumulated_processing_time{job=~\"$job\"}, instance)",
+        "tagsQuery": "label_values(neo4j_bolt_accumulated_processing_time_total{job=~\"$job\"}, instance)",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Leader (instance)",
+        "multi": false,
+        "name": "leader",
+        "options": [],
+        "query": "query_result(neo4j_causal_clustering_core_is_leader{job=~\"$job\"} == 1)",
+        "refresh": 2,
+        "regex": "/instance=\\\"(.+:\\d+)\\\",/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Leader (Pod)",
+        "multi": false,
+        "name": "leader_pod",
+        "options": [],
+        "query": "query_result(neo4j_causal_clustering_core_is_leader{job=~\"$job\"} == 1)",
+        "refresh": 2,
+        "regex": "/pod=\\\"(.+)\\\",/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
         "auto": true,
         "auto_count": 30,
-        "auto_min": "10s",
+        "auto_min": "30s",
         "current": {
           "text": "auto",
-          "value": "$__auto_interval"
+          "value": "$__auto_interval_interval"
         },
         "hide": 0,
-        "label": "Interval",
+        "label": null,
         "name": "interval",
         "options": [
           {
             "selected": true,
             "text": "auto",
-            "value": "$__auto_interval"
+            "value": "$__auto_interval_interval"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
           },
           {
             "selected": false,
             "text": "1m",
             "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "2m",
+            "value": "2m"
+          },
+          {
+            "selected": false,
+            "text": "3m",
+            "value": "3m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
           },
           {
             "selected": false,
@@ -4549,8 +4611,9 @@
             "value": "30d"
           }
         ],
-        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "query": "30s,1m,2m,3m,5m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
+        "skipUrlSync": false,
         "type": "interval"
       }
     ]
