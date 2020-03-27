@@ -1,0 +1,9 @@
+Folding@Home client has been successfully deployed.
+
+{{- .Values.replicaCount }} replicas have been deployed and each replica runs its own web dashboard.
+
+To access a dashboard:
+
+export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "fah-client.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+echo "Visit http://127.0.0.1:8080 to access the Folding@Home client dashboard"
+kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:7396

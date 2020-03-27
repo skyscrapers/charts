@@ -1,0 +1,13 @@
+apiVersion: v2
+name: fah-client
+description: A Helm chart to deploy the Folding@Home client on Kubernetes
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. It's also used to determine
+# the fah-client Docker image tag.
+appVersion: 7.5.1
