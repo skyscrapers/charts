@@ -1,0 +1,56 @@
+# Default values for fah-client.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: skyscrapers/fah-client
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+fahConfig:
+  user: Anonymous
+  team: 0
+  passkey: "" # (get one here: https://apps.foldingathome.org/getpasskey)
+  power: "full" # CPU will be limited at k8s level
+  gpu: false
+
+# This is the value for the fah Pods PriorityClass. Normally you'll want your
+# business critical Pods to be prioritized above the Folding@Home clients. If so,
+# set this value to something lower than your other Pods priorities (0 by default).
+# If set to something < -10, these Pods won't be taken into consideration in
+# cluster autoscaler decisions, which means that they won't trigger a cluster
+# scale-up if there are no resources to schedule them. And they won't prevent
+# scale-downs. More info can be found in the cluster-autoscaler documentation:
+# https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-does-cluster-autoscaler-work-with-pod-priority-and-preemption
+priorityClassValue: -5
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+resources:
+  # The Folding@Home client is obviously CPU bound, so it will use most of the
+  # CPU available to it, so it's recommended to set limits.cpu = requests.cpu.
+  # As per the memory, it won't use much, so we've set some low defaults.
+  limits:
+    # cpu: 1
+    memory: 256Mi
+  requests:
+    # cpu: 1
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
