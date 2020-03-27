@@ -53,3 +53,12 @@ spec:
         description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
         summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-cpuusagehigh'
+    - alert: NodeWithImpairedVolumes
+      expr: count by(node)(kube_node_spec_taint{key="NodeWithImpairedVolumes", effect="NoSchedule"}) > 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: 'Node {{`{{$labels.node}}`}} has Impaired Volumes'
+        description: 'EBS volumes are failing to attach to node {{`{{$labels.node}}`}}'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-nodewithimpairedvolumes'
