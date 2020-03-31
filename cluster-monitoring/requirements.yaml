@@ -1,4 +1,8 @@
 dependencies:
+# Currently locking to prometheus-operator 8.10.0, which uses the Grafana v5.0.0
+# chart version.
+# We can update again once https://github.com/helm/charts/pull/21562 has been
+# merged and released.
 - name: prometheus-operator
-  version: 8.12.3
+  version: 8.10.0
   repository: https://kubernetes-charts.storage.googleapis.com/
