@@ -3,11 +3,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2020-03-27T08:48:14.850787004Z"
+    created: "2020-03-31T11:16:06.388134783Z"
     description: The AWS Service Operator allows you to manage AWS resources using
       Kubernetes Custom Resource Definitions.
-    digest: 47dc4b3cfb0b3c1c703a31d31df63b59770ac28f7f95ff3584dda92f2125a81b
-    engine: gotpl
+    digest: 13fb2b8159d0ecc999d473f5b00412fae9e18d5b8cfa4bb69804ca3e48afb96f
     home: https://github.com/awslabs/aws-service-operator
     keywords:
     - AWS
@@ -19,7 +18,6 @@ entries:
     name: aws-service-operator
     sources:
     - https://github.com/awslabs/aws-service-operator
-    tillerVersion: '>=2.8.0'
     urls:
     - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
     version: 0.0.1-alpha4
@@ -27,7 +25,6 @@ entries:
   - created: "2019-11-29T11:00:21.530589823Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 610c333203978b8447b76ea839ea45a26c98a439626db777136f51e5619815cc
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -49,7 +46,6 @@ entries:
   - created: "2018-11-20T16:13:53.340857985Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 923914cdd5ebe3040b8ec3a709689937eb1d04f6e4b11e0c54655334fdafa4de
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -71,7 +67,6 @@ entries:
   - created: "2018-07-17T14:46:01.433977967Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 8079c753badba56b42afb1c1e3b772b5a5f3644c77749b95797a58f60bce62ab
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -91,10 +86,35 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
+  - apiVersion: v1
+    created: "2020-03-31T11:16:06.440223875Z"
+    dependencies:
+    - name: prometheus-operator
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 8.12.3
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 322f3ce5adaaffedb9317ca2b8388e71bed936909118000465d63aa605913ffa
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - monitoring
+    - prometheus
+    - opsgenie
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.8.tgz
+    version: 1.6.8
   - created: "2020-03-27T08:48:14.870677052Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5679c5f6cd30eeacebac585654c8369c66a5edd5663ee2748b203f929c9cd406
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -116,7 +136,6 @@ entries:
   - created: "2020-03-23T12:40:00.020329271Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: eab3aabcb3ffcfc7ceb7046aae09c044641b98016932606ea0f7f623758367c2
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -138,7 +157,6 @@ entries:
   - created: "2020-03-09T12:56:06.350630302Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: bae9459f9c19be0fbebe399a8d5edfac1c5bce59f20cb383aa38b0f64202af4c
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -160,7 +178,6 @@ entries:
   - created: "2020-02-25T16:01:15.661202389Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 3fcb24db95bf9dbf480a4e9536d4d43c6cae74dc7d17000720c73698b1195b18
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -182,7 +199,6 @@ entries:
   - created: "2019-11-27T20:34:02.41458783Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 71d90746d142bfe1d4a1035823fd66a03dc58cbade48aa809a98eb8be360143a
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -204,7 +220,6 @@ entries:
   - created: "2019-11-27T09:54:31.886540871Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: fb1309176f4f84bfe1e04efcdfc881ac0eccd2fe509e8bee455b7e6f32fdf250
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -226,7 +241,6 @@ entries:
   - created: "2019-11-15T12:00:52.560184804Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 74fa0f1f8baee990f0aa64fea1ade45f2276677528f629796ce088592313d0ba
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -248,7 +262,6 @@ entries:
   - created: "2019-10-24T09:39:01.868343434Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 2572e5ea8b44fcc25e872db895017549ed5c0e90e68eb460b16ae86db2919ea8
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -270,7 +283,6 @@ entries:
   - created: "2019-10-02T13:31:11.678022587Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 8888c0cbc8d18acce64974b1923eecfccfca1b6ba67328c88066f7ee451c78a3
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -292,7 +304,6 @@ entries:
   - created: "2019-08-02T08:38:25.977869532Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 4f25f01d7836cb58d157b3fe98dc47ca4b2126ddce52d9ac59d97092f4492015
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -314,7 +325,6 @@ entries:
   - created: "2019-08-01T14:14:12.729250532Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 91d57438a972d2bb8e96f04738c652588016b28c447759bdf58402b325347a21
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -336,7 +346,6 @@ entries:
   - created: "2019-07-19T13:13:56.805102401Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: bb35be27628211f942e38989032e52694f0bceef2005c9151aefa73a692f2eca
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -358,7 +367,6 @@ entries:
   - created: "2019-07-03T08:09:24.230707908Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: ba5f4d5930a49e829fa5f3af53aa8a9a243f5f1eb59d7d8baf8787c422041973
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -380,7 +388,6 @@ entries:
   - created: "2019-05-28T09:03:51.20724915Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 99ccb3fd9cabe70d8d8e83fed06fe4832daf25532f10ff6f7704229fdac43671
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -402,7 +409,6 @@ entries:
   - created: "2019-05-21T16:50:55.363068501Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5780c420c7c1d8bce1343dca7d4ccd6ab6be5d5329fa9d29ba1fc258f494b929
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -424,7 +430,6 @@ entries:
   - created: "2019-05-08T15:31:32.835023087Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 703acbbf125c420e8b0576fb38c9e0db9def201b039bdbf3ffa75efb9244f323
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -446,7 +451,6 @@ entries:
   - created: "2019-05-08T12:21:49.37242804Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 0fc74fcde8d87ab1b86b40bb783e21ed37d5957ab597c68e93547e9932cee72e
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -468,7 +472,6 @@ entries:
   - created: "2019-04-16T15:09:00.624862999Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 749633026b9b6c97027ee1730f698621de3a95fd9d0c0e6030cfb5dfb076e247
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -490,7 +493,6 @@ entries:
   - created: "2019-03-28T17:25:42.670252647Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 8844084416a7a51d9349fe0359de6118d07a9de29e016fae82a61cb2a5ff38f1
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -512,7 +514,6 @@ entries:
   - created: "2019-03-21T16:43:16.614845502Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: b9cfa29139e207537443bdcf49d965e7fda88a6c782803b70323c4825da74c0e
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -534,7 +535,6 @@ entries:
   - created: "2019-02-07T14:19:07.12494537Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: fc7a14969518041965bb7f015fae06baad27de014d90fba0e907cccb535b30ad
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -556,7 +556,6 @@ entries:
   - created: "2019-01-29T12:35:06.220669963Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 22d065605d4eb103e3800fd99db2100c131f4d72ed2b45101e7973318e218c8c
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -578,7 +577,6 @@ entries:
   - created: "2019-01-15T09:49:27.796143188Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: eb0a2cb4de3d5be0c4c7e9e71e93a619739f428ca0df963bc9c9f036803d2a29
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -600,7 +598,6 @@ entries:
   - created: "2019-01-15T09:19:12.293180204Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 4504c316a4f4b9a097e1dd4ef3bd4771871b16be2e5b573a55d19ceb4fda693b
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -622,7 +619,6 @@ entries:
   - created: "2019-01-14T11:01:30.962557251Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 580f503d7ac343560c65d158e400a0d0be3541c6d85f4264a1dee24f89a63e85
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -644,7 +640,6 @@ entries:
   - created: "2018-11-23T10:26:12.05414089Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: a35488ab92f15758b15ed7798031c835e9446e3dd167c7f032e07103ab1bcde0
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -666,7 +661,6 @@ entries:
   - created: "2018-11-21T10:22:38.984553848Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 1933cacd4ce5e6f9af4096bce66dad93a97482d929afa06c0edc5fbe20aaeed9
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -688,7 +682,6 @@ entries:
   - created: "2018-11-20T16:39:35.739967724Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 36393cf4ef6161498f0e806978d558ccbb6da2a378f071af38efc80e8ae38aff
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -710,7 +703,6 @@ entries:
   - created: "2018-11-20T08:36:46.474945676Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: a78ec15ff70ed9ae040a9135d4c3dad31134d647f04f0021c7f1b41fac6c829c
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -732,7 +724,6 @@ entries:
   - created: "2018-11-14T08:18:21.212727399Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 59c10d2c55244e73ffe279ce7c25a11b8092d2888678566846fb3cf411c035d6
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -752,7 +743,6 @@ entries:
   - created: "2018-10-25T12:46:41.828216865Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 6f8403d0260608af5f249e1d36acdefca2caea9c3cde92af56e6c925a00a9367
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -772,7 +762,6 @@ entries:
   - created: "2018-10-25T12:30:35.952553323Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: f53b007968b26f209e61cffee0979eb7387f3b89a48beaa8e5e10d4ff923fa46
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -792,7 +781,6 @@ entries:
   - created: "2018-09-25T13:21:33.721544978Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 201949a334cf6bde9dfae56ca8c32ae5c0d8be43f387eb1544f2fb34e9fa7c90
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -812,7 +800,6 @@ entries:
   - created: "2018-02-28T16:32:37.936266108Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5423cddedaab58d3e7fb3bad7a3e5a2064fa3e5ddbbde4b383df96d970522bf2
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -832,7 +819,6 @@ entries:
   - created: "2018-02-28T09:27:38.489206781Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: ce583a3fe62536f55c4d86a74c9908ccca0c9a91df3ff2c46811958bfd9a42ba
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -852,7 +838,6 @@ entries:
   - created: "2018-02-13T08:09:19.752981674Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 7eef0691b803a3fcb885af1ae88ac477e6094625888e02516e6a962acb3a57c3
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -872,7 +857,6 @@ entries:
   - created: "2018-01-08T16:47:09.212442492Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 71c965dbba80276cfa126e81a79c2991b05e7b561efb3a9396060071d196259c
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -892,7 +876,6 @@ entries:
   - created: "2017-10-25T10:23:29.801339038Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 18b4a0fd6f1cdeea20a1fd9d716f45a08c9379bbd9ed6a71245776b173ec9b2d
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -912,7 +895,6 @@ entries:
   - created: "2017-08-22T07:26:43.931972379Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 04a6fd08368f0bd6e7be29efeabf3c4a34593325a5e22a175fbbb401bb4d58ad
-    engine: gotpl
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -935,7 +917,6 @@ entries:
     description: Concourse is a simple and scalable CI system. This chart only sets
       up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
-    engine: gotpl
     home: https://concourse.ci/
     icon: https://avatars1.githubusercontent.com/u/7809479
     keywords:
@@ -954,10 +935,17 @@ entries:
     - https://skyscrapers.github.io/charts/concourse-0.0.1.tgz
     version: 0.0.1
   elasticsearch-monitoring:
-  - created: "2020-03-27T08:48:14.871859746Z"
+  - apiVersion: v1
+    created: "2020-03-31T11:16:06.444337348Z"
+    dependencies:
+    - name: elasticsearch-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 2.1.1
+    - name: prometheus-cloudwatch-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 0.5.0
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 062def6717132929b96cc87806df9dba49d4c14e7a2fe9ee7aac46688118d320
-    engine: gotpl
+    digest: 3703495c3638422a368ab36b13323c5a73b57cc93d3253f1f373e36034575ac4
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -979,7 +967,6 @@ entries:
   - created: "2019-12-05T14:57:45.845511502Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 3946a6e80f384f992db88e3bb711d2dd34f808f7649e1d35acea4c6036683f84
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1001,7 +988,6 @@ entries:
   - created: "2019-05-28T09:03:51.208725656Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 7696d8775f92d0f505b6c2cda85f6022b6ca5331e21f02d3f9201fc50de3e586
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1023,7 +1009,6 @@ entries:
   - created: "2019-03-28T11:28:07.11762746Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: a7ce61b499ffdad8fe5c700411e43ae3959520372349b390c9ce140fe322f099
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1045,7 +1030,6 @@ entries:
   - created: "2019-03-27T16:28:49.715700276Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 9e63ea319b24a12a2c032518c88e6adaeeabace8d06dde1025917b05e4de3249
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1067,7 +1051,6 @@ entries:
   - created: "2019-02-07T14:19:07.125829434Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: d3d4ebe7f8374e909a7f0e596900466a55e46275d5cf8c0138a8a08df994cbef
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1089,7 +1072,6 @@ entries:
   - created: "2018-11-20T16:13:53.351826653Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: efa28370767c7c26383db241a8bee05f83db7330d5b3ff9145f7cd847a0a1fe3
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1111,7 +1093,6 @@ entries:
   - created: "2018-07-31T08:56:11.78602883Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: c355fdceeb4a1550b630708f9b54260ba2e79d842094cc0bb5447133de490ade
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1133,7 +1114,6 @@ entries:
   - created: "2018-07-02T08:20:35.135513142Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 6858eb80995c6e1c52b69baefab0c09bc31d89d4a5872b599e64991e2ee575fd
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1155,7 +1135,6 @@ entries:
   - created: "2018-02-28T12:48:13.294778025Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 5a2ce4628fceb7af1cfa90d431b4dee184994ad3e22d773fb82e9bec8b300251
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1179,7 +1158,6 @@ entries:
     description: Configure external DNS servers (AWS Route53, Google CloudDNS and
       others) for Kubernetes Ingresses and Services
     digest: 13f0631cc9e350045e3c6d1feeeee403dc680993739ba7a4177e07610a2d116b
-    engine: gotpl
     home: https://github.com/kubernetes-incubator/external-dns
     keywords:
     - dns
@@ -1196,12 +1174,22 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/external-dns-0.0.1.tgz
     version: 0.0.1
+  fah-client:
+  - apiVersion: v2
+    appVersion: 7.5.1
+    created: "2020-03-31T11:16:06.444979142Z"
+    description: A Helm chart to deploy the Folding@Home client on Kubernetes
+    digest: c2d0a452de599c922dd879c93eee1ec8d1244cc1bb672c0b6dcb99ef37ce6c76
+    name: fah-client
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/fah-client-0.1.0.tgz
+    version: 0.1.0
   fluentd-cloudwatch:
   - appVersion: v0.12.33-cloudwatch
     created: "2018-12-12T17:01:17.231556779Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 2563e347bcc383fc97674167552c5af09ac051a3dac4dcfdee82d11eb0fe69d8
-    engine: gotpl
     home: https://www.fluentd.org/
     icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
     keywords:
@@ -1226,7 +1214,6 @@ entries:
     created: "2018-06-08T08:49:35.340451431Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 266c6253e8e5043a238f253596cabd9eb4a3bfa5e44f91ce00aa89988ac8817f
-    engine: gotpl
     icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
     keywords:
     - fluentd
@@ -1250,7 +1237,6 @@ entries:
     created: "2018-04-24T10:14:21.139540252Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 9605cf960deb46ffef85bb597fe5055f882b7802b2a3535adc524ed60dcbbe1b
-    engine: gotpl
     icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
     keywords:
     - fluentd
@@ -1274,7 +1260,6 @@ entries:
     created: "2018-02-08T14:19:17.560380889Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: cbbf7fc72b86c9155987667d98e86a467cb86cda8a52f7c77b3540ddb7470b31
-    engine: gotpl
     icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
     keywords:
     - fluentd
@@ -1297,19 +1282,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-27T08:48:14.872048765Z"
+    created: "2020-03-31T11:16:06.44524607Z"
     description: A Helm chart to deploy anything
-    digest: b8ff11e92e8c6294b16a37478e1fb84f539df550ec5c634c0309539484949d98
+    digest: 369f0e518b5abbff520f056a40901d6d971b0c005dec51196fbeac867068d177
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.872265854Z"
+    created: "2020-03-31T11:16:06.445588478Z"
     description: A Helm chart for Kubernetes
-    digest: 0fdbc73433af3f6af33415a96fa95eff133976a24c8c288324490372ca3b5ab5
-    engine: gotpl
+    digest: c6dcbd8dc64aa3ed68595a1b9a9804a4c7605fe5d4d5ae81287092a2ae24f13f
     home: https://github.com/skyscrapers/charts.git
     keywords:
     - skyscrapers
@@ -1348,7 +1332,6 @@ entries:
     created: "2017-08-23T09:17:31.735205438Z"
     description: Automatically requests certificates from Let's Encrypt
     digest: d5d74f84eb2575aff308d1f28c9cc5233f399a30c1198b1d12f0916314ac175d
-    engine: gotpl
     keywords:
     - kube-lego
     - letsencrypt
@@ -1367,7 +1350,6 @@ entries:
   - created: "2017-08-23T09:17:31.735831502Z"
     description: Provide IAM credentials to pods based on annotations.
     digest: d20f5f3b58880f53ea4b8c690c0dfe3aa74479619f354dd953a036dc55dc9661
-    engine: gotpl
     keywords:
     - kube2iam
     - aws
@@ -1388,10 +1370,9 @@ entries:
     version: 0.2.1
   kubesignin:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.872517792Z"
+    created: "2020-03-31T11:16:06.44613194Z"
     description: A Kubesignin chart for Kubernetes
-    digest: 07277be630aebbd493c4fab4697635809784d4a11ba2aacd3ae6e5ca070e54e9
-    engine: gotpl
+    digest: b81d72a65209425ac0a7d8e922a99c9c941c707596f2085670a5f3d5a5935cb9
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1409,7 +1390,6 @@ entries:
     created: "2019-07-02T14:17:34.455866897Z"
     description: A Kubesignin chart for Kubernetes
     digest: 11b703ca43d1e985f8d136d7cad16d2c4d00508ec493b6f4277dc26d10a22953
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1427,7 +1407,6 @@ entries:
     created: "2019-06-07T21:28:33.717715473Z"
     description: A Kubesignin chart for Kubernetes
     digest: 1c9e090af4b423c1e9ef3d4b8e49facde1119e3f8b1d9e2c016403dfa529dc50
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1446,7 +1425,6 @@ entries:
     created: "2019-06-07T21:27:47.254356294Z"
     description: A Kubesignin chart for Kubernetes
     digest: ce0380af6ebe3817df04c2f1de7b6aebf7a5f38ac1415a09d8982216fc385c70
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1465,7 +1443,6 @@ entries:
     created: "2019-05-21T10:44:47.050936305Z"
     description: A Kubesignin chart for Kubernetes
     digest: 22626bda9c888d798cf6ea7ce5d5f9445ffd7124aedd0491e7c5a0ee27eb7b93
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1484,7 +1461,6 @@ entries:
     created: "2019-05-17T09:15:47.096814929Z"
     description: A Kubesignin chart for Kubernetes
     digest: 00dfc15c1c0510fd1268da26d1b078422953fc4d86bb3ba05096cf69da54f9f4
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1503,7 +1479,6 @@ entries:
     created: "2019-04-17T10:14:14.903875214Z"
     description: A Kubesignin chart for Kubernetes
     digest: 87088948a245be3860900c91856f700ac4ec15cb9317ff179951938f55e0a79d
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1522,7 +1497,6 @@ entries:
     created: "2018-10-25T13:07:16.084213936Z"
     description: A Kubesignin chart for Kubernetes
     digest: 5fae4ee9a04dbcceeae71387bdcb2178301c1816b7dcb6f3a25a966d2c44ac23
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1541,7 +1515,6 @@ entries:
     created: "2018-07-30T14:48:46.690301456Z"
     description: A Kubesignin chart for Kubernetes
     digest: 298280a3fcd59f2291740bbe4ebaf3ee71d9c3c4ebc98ff705c1448baecef82c
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1560,7 +1533,6 @@ entries:
     created: "2018-07-18T15:04:09.605354082Z"
     description: A Kubesignin chart for Kubernetes
     digest: ed3484f6de90ef1e949b3defc47b7437dc8d47d05bfdac33e5f42ef95adc9730
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1579,7 +1551,6 @@ entries:
     created: "2018-01-18T10:08:47.441310158Z"
     description: A Kubesignin chart for Kubernetes
     digest: 442aac850d385f6a4d984c7f3b4a6c46fc568b71c01ed4e4d26cacb57db091eb
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1598,7 +1569,6 @@ entries:
     created: "2018-01-08T16:13:59.616119925Z"
     description: A Kubesignin chart for Kubernetes
     digest: ea5f346964a76d66a5b817c42e32b9b93e087fa3f5a2b3a8e01770489781cea6
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1617,7 +1587,6 @@ entries:
     created: "2018-01-08T16:12:00.092071414Z"
     description: A Kubesignin chart for Kubernetes
     digest: 4ef8dffb202d12fd2aca5b38ab6b26f06362ec6ad7d198c53415269de641be4a
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1636,7 +1605,6 @@ entries:
     created: "2017-08-21T17:30:36.13399414+02:00"
     description: A Kubesignin chart for Kubernetes
     digest: 9487e8cb495d28c9530b14adac5a6f46cdecd8bbfa2716f47623ac58d83e68e6
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1655,7 +1623,6 @@ entries:
     created: "2017-08-21T17:16:11.691425808+02:00"
     description: A Kubesignin chart for Kubernetes
     digest: 095d96ee808cd38aac7296e08e81b789806788b1e7af42575a9c3bae71399822
-    engine: gotpl
     home: https://github.com/skyscrapers/kubesignin.git
     keywords:
     - skyscrapers
@@ -1672,10 +1639,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.872765535Z"
+    created: "2020-03-31T11:16:06.446671386Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: 28f08521400e5be892e9761037fe8350de9d51037f560cc02e00f80f21817d9a
-    engine: gotpl
+    digest: 7ba43870c9b9d44620ea6feaaaed46d39c6d425824a711aeae4d55c1f9494a8b
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1696,7 +1662,6 @@ entries:
     created: "2019-08-21T14:52:54.913894123Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: a45ec06faa56cbd86cf0fb3f3f8baea0c015c7c6e6acb85bfd5d9d9640e2b9a1
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1717,7 +1682,6 @@ entries:
     created: "2019-08-21T14:40:23.311589817Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 4a56be9b05e8659be0dcd6a3c2f2132f0dc4426911c278f857bc462dfb7da38d
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1738,7 +1702,6 @@ entries:
     created: "2019-05-28T09:03:51.222931875Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 7b5c544c1e93ec13fcae0428af584776ef67f73a77c6fc036b0dcc787933cd0e
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1759,7 +1722,6 @@ entries:
     created: "2019-02-07T14:19:07.127828511Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 3df84bdef832ad59cd8dc68bc08e41a8462615f631a719e44531d86d4a4805fb
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1780,7 +1742,6 @@ entries:
     created: "2019-01-15T09:49:27.968678435Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: 71917de86e8f52256a150bc29be782d27c1f7b0dbcb2d29c8ac4b3ee9ae1ede8
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1803,7 +1764,6 @@ entries:
     created: "2018-11-20T16:13:53.353490183Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
     digest: aa9ce3e3364e6aeb151d85c4633522c1baff6a4647537e8409b872b7b689b0cf
-    engine: gotpl
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1824,10 +1784,10 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.872965563Z"
+    created: "2020-03-31T11:16:06.447115432Z"
     description: External (not on K8s) NEO4J monitoring using Prometheus-operator
       and Grafana
-    digest: 72476cc444858b640f58770f35028b5c85865d70d608b559d3cfb98cad72cfe5
+    digest: fd0b05bce3c9dd69ac132b5d5adeb7bf3e46f2167a4f3818e97b4cc05970b2e1
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1864,7 +1824,6 @@ entries:
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: 7f43bb75bee4bca13920db15786587991039880e69d15cb1bfbe405fecc846f9
-    engine: gotpl
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
     keywords:
     - ingress
@@ -1886,7 +1845,6 @@ entries:
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: 6313532e62ee2bfa84dd89512b83819226244ca381f947ce17a3939aed25f2df
-    engine: gotpl
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
     keywords:
     - ingress
@@ -1907,11 +1865,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2020-03-27T08:48:14.873305775Z"
+    created: "2020-03-31T11:16:06.44806682Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: b27724c74a78fc18f2ded3db09e6a32b71b47a2462310a46202aa8b425b41a9a
+    digest: 857f441055d68cfb0737e2e8a32779baa759dac40f44d2c2a7f9302df7cbc3b0
     maintainers:
     - name: duboisph
     name: openvpn
@@ -1943,7 +1901,6 @@ entries:
     description: Provides easy monitoring definitions for Kubernetes services, and
       deployment and management of Prometheus instances.
     digest: e580726355b9b78f94a81b6077eee194e5ed6c1b88a98fab02b5eb2878134ef5
-    engine: gotpl
     maintainers:
     - email: mgoodness@gmail.com
       name: Michael Goodness
@@ -1955,9 +1912,13 @@ entries:
     version: 0.0.6-skyscrapers.1
   redshift-monitoring:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.87389159Z"
+    created: "2020-03-31T11:16:06.450118621Z"
+    dependencies:
+    - name: prometheus-cloudwatch-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 0.4.10
     description: Redshift monitoring using Prometheus-operator and Grafana.
-    digest: 5d0378b491da0daff9ce6c13f8d0740e3dc3011357e2d97b227db4983cbfa05d
+    digest: e90c575ff42887aeda708407f478bbaf6fa914ef04c967f540cc3b76eabe66ab
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1994,9 +1955,9 @@ entries:
     version: 1.0.0
   vault:
   - apiVersion: v1
-    created: "2020-03-27T08:48:14.874758135Z"
+    created: "2020-03-31T11:16:06.452766956Z"
     description: Install and configure Vault on Kubernetes.
-    digest: a21a4ef09d9ef8d808c34f74eec7cd5ca34f87a8e61f10dbb7788c3110579ea4
+    digest: 737cb365a1186e4eaf2027b903d88e14188c40edf823dea114e3116e04964f70
     home: https://www.vaultproject.io
     icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
     name: vault
@@ -2021,4 +1982,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vault-0.3.3.tgz
     version: 0.3.3
-generated: "2020-03-27T08:48:14.850247432Z"
+generated: "2020-03-31T11:16:06.386428324Z"
