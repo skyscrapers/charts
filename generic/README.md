@@ -40,19 +40,19 @@ data "http" "cert_manager_crds" {
 
 resource "helm_release" "cert_manager_crds" {
   name       = "cert-manager-crds"
-  repository = "${data.helm_repository.skyscrapers.metadata.0.name}"
+  repository = data.helm_repository.skyscrapers.metadata.0.name
   chart      = "generic"
   namespace  = "some-namespace"
 
   set {
     name  = "manifest"
-    value = "${data.http.cert_manager_crds.body}"
+    value = replace(data.http.cert_manager_crds.body, ",", "\\,")
   }
 }
 
 resource "helm_release" "cert_manager" {
   name       = "cert-manager"
-  repository = "${data.helm_repository.stable.metadata.0.name}"
+  repository = data.helm_repository.stable.metadata.0.name
   chart      = "cert-manager"
   version    = "v0.6.7"
   namespace  = "some-namespace"
@@ -61,6 +61,8 @@ resource "helm_release" "cert_manager" {
     ...
   ]
 
-  depends_on = ["helm_release.cert_manager_crds"]
+  depends_on = [
+    helm_release.cert_manager_crds
+  ]
 }
 ```

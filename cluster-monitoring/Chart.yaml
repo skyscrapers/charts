@@ -1,5 +1,5 @@
 name: cluster-monitoring
-version: 1.6.6
+version: 1.6.7
 description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
 keywords:
   - grafana
