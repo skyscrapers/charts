@@ -11,6 +11,8 @@ spec:
       {{- include "fah-client.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
       labels:
         {{- include "fah-client.selectorLabels" . | nindent 8 }}
     spec:
