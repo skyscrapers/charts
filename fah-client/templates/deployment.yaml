@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "fah-client.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: Recreate
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
