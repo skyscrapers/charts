@@ -5,6 +5,7 @@ metadata:
   labels:
 {{ include "openvpn.labels" . | indent 4 }}
 spec:
+  serviceName: {{ template "openvpn.fullname" . }}-headless
   replicas: {{ .Values.replicaCount }}
 {{- with .Values.updateStrategy }}
   strategy:
@@ -25,7 +26,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      serviceName: {{ template "openvpn.fullname" . }}-headless
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
