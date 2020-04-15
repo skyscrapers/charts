@@ -19,25 +19,4 @@ spec:
     matchLabels:
       app: {{ template "fullname" . }}
       component: calico
----
 {{ end }}
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: "{{ .Release.Name }}-autoscaler"
-  namespace: "{{ .Release.Namespace }}"
-  labels:
-{{ include "labels" $ | indent 4 }}
-    prometheus: "{{ .Release.Name }}"
-    component: autoscaler
-spec:
-  endpoints:
-  - port: http
-    interval: 10s
-  namespaceSelector:
-    matchNames:
-    - infrastructure
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: cluster-autoscaler
-      app.kubernetes.io/name: aws-cluster-autoscaler

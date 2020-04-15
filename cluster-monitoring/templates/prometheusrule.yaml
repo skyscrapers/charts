@@ -30,8 +30,8 @@ spec:
         description: '{{`{{$labels.instance}}`}} with calico-node pod {{`{{$labels.pod}}`}} has been having dataplane failures'
         summary: 'Instance {{`{{$labels.instance}}`}} - Dataplane failures'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-calicodataplanefailures'
----
 {{ end }}
+---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
