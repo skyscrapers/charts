@@ -2,6 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+prometheusSelectorLabels:
+  prometheus: rds-monitoring
+
 ## The following settings are for the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
   replicaCount: 1
@@ -15,10 +18,10 @@ prometheus-cloudwatch-exporter:
 
   resources:
     limits:
-    memory: 320Mi
-  requests:
-    cpu: 10m
-    memory: 320Mi
+      memory: 320Mi
+    requests:
+      cpu: 10m
+      memory: 320Mi
 
   aws:
     region: eu-west-1
@@ -38,28 +41,32 @@ prometheus-cloudwatch-exporter:
       - aws_namespace: AWS/RDS
         aws_metric_name: CPUCreditBalance
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: CPUUtilization
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: FreeableMemory
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: FreeStorageSpace
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: DiskQueueDepth
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: ReadIOPS
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
       - aws_namespace: AWS/RDS
         aws_metric_name: WriteIOPS
         aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Minimum, Maximum, Average, Sum]
+        aws_statistics: [Average]
+      - aws_namespace: AWS/RDS
+        aws_metric_name: ReplicaLag
+        aws_dimensions: [DBInstanceIdentifier]
+        aws_statistics: [Average, Maximum]
