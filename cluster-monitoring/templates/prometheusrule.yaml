@@ -44,15 +44,6 @@ spec:
   groups:
   - name: node-custom.rules
     rules:
-    - alert: CPUUsageHigh
-      expr: 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1h]))) >= 90
-      for: 5m
-      labels:
-        severity: info
-      annotations:
-        description: '{{`{{$labels.instance}}`}} is using more than 90% CPU for >1h '
-        summary: 'Instance {{`{{$labels.instance}}`}} CPU usage high'
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-cpuusagehigh'
     - alert: NodeWithImpairedVolumes
       expr: count by(node)(kube_node_spec_taint{key="NodeWithImpairedVolumes", effect="NoSchedule"}) > 0
       for: 5m
