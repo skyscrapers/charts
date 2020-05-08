@@ -58,3 +58,12 @@ spec:
           annotations:
             message: 'CPU usage for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 95%.'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdscpuusagehigh'
+        - alert: RDSReplicaLagHigh
+          expr: aws_rds_replicalag_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 30
+          for: 10m
+          labels:
+            severity: warning
+            group: persistence
+          annotations:
+            message: 'Replica lag for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 30 seconds.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsreplicalaghigh'
