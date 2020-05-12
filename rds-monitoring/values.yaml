@@ -5,6 +5,13 @@
 prometheusSelectorLabels:
   prometheus: rds-monitoring
 
+# Filters the Prometheus alert by a pre-defined AWS tag. This is useful
+# if you only want to alert on metrics from production databases.
+# You can disable the filtering by setting `tagFilter` to null or ""
+tagFilter:
+  key: Environment
+  value: production
+
 ## The following settings are for the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
   replicaCount: 1
