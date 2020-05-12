@@ -42,6 +42,9 @@ prometheus-cloudwatch-exporter:
         aws_metric_name: CPUCreditBalance
         aws_dimensions: [DBInstanceIdentifier]
         aws_statistics: [Average]
+        aws_tag_select:
+          resource_type_selection: "rds:db"
+          resource_id_dimension: DBInstanceIdentifier
       - aws_namespace: AWS/RDS
         aws_metric_name: CPUUtilization
         aws_dimensions: [DBInstanceIdentifier]
