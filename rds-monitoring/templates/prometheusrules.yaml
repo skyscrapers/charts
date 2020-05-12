@@ -1,0 +1,69 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "rds-monitoring.fullname" . }}
+  labels:
+{{ include "rds-monitoring.labels" . | indent 4 }}
+    {{- range $key, $val := .Values.prometheusSelectorLabels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  groups:
+    - name: rds-monitoring.rules
+      rules:
+        - alert: RDSCPUCreditBalanceLow
+          expr: aws_rds_cpucredit_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 5
+          for: 10m
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'The CPU credit balance for {{`{{ $labels.dbinstance_identifier }}`}} is less than 5!'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdscpucreditbalancelow'
+        - alert: RDSFreeableMemoryLow
+          expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 104857600
+          for: 10m
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is running low on memory (< 100Mb)!'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreeablememorylow'
+        - alert: RDSFreeStorageSpaceRunningLow
+          expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
+          for: 6h
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'Based on recent sampling, disk storage is expected to fill up in four days for RDS instance {{`{{ $labels.dbinstance_identifier }}`}}.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreestoragespacerunninglow'
+        - alert: RDSDiskQueueDepthHigh
+          expr: aws_rds_disk_queue_depth_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 1
+          for: 30m
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'The number of outstanding IO requests waiting to access the disk is high for RDS instance {{`{{ $labels.dbinstance_identifier }}`}}.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsdiskqueuedepthhigh'
+        - alert: RDSCPUUsageHigh
+          expr: aws_rds_cpuutilization_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 95
+          for: 10m
+          labels:
+            severity: info
+            group: persistence
+          annotations:
+            message: 'CPU usage for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 95%.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdscpuusagehigh'
+        - alert: RDSReplicaLagHigh
+          expr: aws_rds_replicalag_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 30
+          for: 10m
+          labels:
+            severity: warning
+            group: persistence
+          annotations:
+            message: 'Replica lag for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 30 seconds.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsreplicalaghigh'
