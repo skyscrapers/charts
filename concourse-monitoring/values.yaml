@@ -1,0 +1,72 @@
+# Default values for concourse-monitoring.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+prometheusSelectorLabels:
+  prometheus: concourse-monitoring
+
+concourse_workers_desired:
+
+concourse_url:
+
+blackbox_scrape_timeout: 30s
+
+blackbox_scrape_interval: 60s
+
+## The following settings are for the prometheus-cloudwatch-exporter chart
+prometheus-cloudwatch-exporter:
+  replicaCount: 1
+
+  serviceMonitor:
+    enabled: true
+    interval: 60s
+    labels:
+      prometheus: cloudwatch-exporter
+    timeout: 30s
+
+  resources:
+    limits:
+      memory: 320Mi
+    requests:
+      cpu: 10m
+      memory: 320Mi
+
+  aws:
+    region: eu-west-1
+    role:
+
+  serviceAccount:
+    create: true
+
+  rbac:
+    create: true
+
+  config: |-
+    region: eu-west-1
+    period_seconds: 60
+    set_timestamp: false
+    metrics:
+      - aws_namespace: AWS/EC2
+        aws_metric_name: CPUCreditBalance
+        aws_dimensions: [AutoScalingGroupName]
+        aws_dimension_select_regex:
+          AutoScalingGroupName: [concourse_worker_(.*)]
+        aws_statistics: [Average]
+      - aws_namespace: AWS/EC2
+        aws_metric_name: EBSIOBalance%%
+        aws_dimensions: [AutoScalingGroupName]
+        aws_dimension_select_regex:
+          AutoScalingGroupName: [concourse_worker_(.*)]        
+        aws_statistics: [Average]
+      - aws_namespace: AWS/EC2
+        aws_metric_name: EBSWriteBytes
+        aws_dimensions: [AutoScalingGroupName]
+        aws_dimension_select_regex:
+          AutoScalingGroupName: [concourse_worker_(.*)]        
+        aws_statistics: [Average]
+      - aws_namespace: AWS/EC2
+        aws_metric_name: EBSReadBytes
+        aws_dimensions: [AutoScalingGroupName]
+        aws_dimension_select_regex:
+          AutoScalingGroupName: [concourse_worker_(.*)]        
+        aws_statistics: [Average]
