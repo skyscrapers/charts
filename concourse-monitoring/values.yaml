@@ -51,22 +51,10 @@ prometheus-cloudwatch-exporter:
         aws_dimensions: [AutoScalingGroupName]
         aws_dimension_select_regex:
           AutoScalingGroupName: [concourse_worker_(.*)]
-        aws_statistics: [Average]
+        aws_statistics: [Minimum]
       - aws_namespace: AWS/EC2
         aws_metric_name: EBSIOBalance%%
         aws_dimensions: [AutoScalingGroupName]
         aws_dimension_select_regex:
           AutoScalingGroupName: [concourse_worker_(.*)]        
-        aws_statistics: [Average]
-      - aws_namespace: AWS/EC2
-        aws_metric_name: EBSWriteBytes
-        aws_dimensions: [AutoScalingGroupName]
-        aws_dimension_select_regex:
-          AutoScalingGroupName: [concourse_worker_(.*)]        
-        aws_statistics: [Average]
-      - aws_namespace: AWS/EC2
-        aws_metric_name: EBSReadBytes
-        aws_dimensions: [AutoScalingGroupName]
-        aws_dimension_select_regex:
-          AutoScalingGroupName: [concourse_worker_(.*)]        
-        aws_statistics: [Average]
+        aws_statistics: [Minimum]

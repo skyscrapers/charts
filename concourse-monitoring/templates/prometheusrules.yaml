@@ -13,7 +13,7 @@ spec:
   groups:
     - name: concourse-monitoring.rules
       rules:
-        - alert: ConcourseRunningWorkersLow
+        - alert: ConcourseRunningWorkersMismatch
           expr: concourse_workers_registered{state="running"} != {{ .Values.concourse_workers_desired }}
           for: 1h
           labels:
@@ -21,9 +21,9 @@ spec:
             group: concourse
           annotations:
             message: 'Number of running concourse workers is less than desired workers for more than an hour'
-            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-concoursestaleworkers'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-concourserunningworkersmismatch'
         - alert: ConcourseWorkerCPUCreditBalanceLow
-          expr: aws_ec2_cpucredit_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}  == 0 
+          expr: aws_ec2_cpucredit_balance_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}  == 0 
           for: 5m  
           labels:
             severity: critical
@@ -32,7 +32,7 @@ spec:
             message: 'The CPU credit balance for Concourse ASG is 0!'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-concoursecpucreditbalancelow'
         - alert: ConcourseWorkerEBSIOBalanceLow
-          expr: aws_ec2_ebsiobalance__average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}  == 0 
+          expr: aws_ec2_ebsiobalance__minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}  == 0 
           for: 5m  
           labels:
             severity: critical
