@@ -13,15 +13,15 @@ spec:
   groups:
     - name: concourse-monitoring.rules
       rules:
-        - alert: ConcourseRunningWorkersMismatch
-          expr: concourse_workers_registered{state="running"} != {{ .Values.concourse_workers_desired }}
+        - alert: ConcourseWorkersMismatch
+          expr: concourse_workers_registered{state="stalled"} != 0
           for: 1h
           labels:
             severity: critical
             group: concourse
           annotations:
-            message: 'Number of running concourse workers is less than desired workers for more than an hour'
-            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-concourserunningworkersmismatch'
+            message: 'There are stale Concourse workers for more than an hour'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-concourseworkersmismatch'
         - alert: ConcourseWorkerCPUCreditBalanceLow
           expr: aws_ec2_cpucredit_balance_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}  == 0 
           for: 5m  
