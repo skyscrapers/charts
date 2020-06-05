@@ -15,7 +15,7 @@ spec:
   podManagementPolicy: Parallel
   replicas: {{ template "vault.replicas" . }}
   updateStrategy:
-    type: OnDelete
+    type: RollingUpdate
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ template "vault.name" . }}
