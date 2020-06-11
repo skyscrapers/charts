@@ -4,6 +4,6 @@ dependencies:
   version: 2.1.1
 - name: prometheus-cloudwatch-exporter
   repository: https://kubernetes-charts.storage.googleapis.com
-  version: 0.7.0
-digest: sha256:80d7543f8b89e962dfad37bfbefc73a480577f19cdb1dc4957d248fb9c904661
-generated: "2020-05-07T18:22:16.409787+02:00"
+  version: 0.8.0
+digest: sha256:637c67330c7ae6f2632243fc0b1f95ab310b21b947758719bea20cdc9dc49b9b
+generated: "2020-06-11T16:46:26.1596653+02:00"
