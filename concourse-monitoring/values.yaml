@@ -31,10 +31,18 @@ prometheus-cloudwatch-exporter:
 
   aws:
     region: eu-west-1
-    role:
+    ## kube2iam
+    # role: <arn>
 
   serviceAccount:
     create: true
+    ## IRSA
+    # annotations:
+    #   eks.amazonaws.com/role-arn: <arn>
+
+  securityContext:
+    runAsUser: 65534
+    fsGroup: 65534
 
   rbac:
     create: true
