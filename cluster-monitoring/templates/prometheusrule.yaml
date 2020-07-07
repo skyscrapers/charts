@@ -78,4 +78,4 @@ spec:
             group: certificate-status
           annotations:
             message: 'A cert-manager certificate can not be issued/updated'
-            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#certificate-not-ready'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-not-ready'
