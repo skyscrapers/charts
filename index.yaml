@@ -3,9 +3,9 @@ entries:
   aws-calico:
   - apiVersion: v1
     appVersion: 3.8.1
-    created: "2020-07-07T10:14:42.528717968Z"
+    created: "2020-07-07T10:16:50.043170149Z"
     description: A Helm chart for installing Calico on AWS
-    digest: 069489bcd122637d1652af063e7e83ed06016ff5800b7ab26ca1c0db5e36705f
+    digest: ee83ab825f1cf5ad87d04c4aaabde226613691448aa39ad6750debc9edc17bf7
     icon: https://www.projectcalico.org/wp-content/uploads/2019/09/Calico_Logo_Large_Calico.png
     name: aws-calico
     urls:
@@ -24,10 +24,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2020-07-07T10:14:42.529753841Z"
+    created: "2020-07-07T10:16:50.04523473Z"
     description: The AWS Service Operator allows you to manage AWS resources using
       Kubernetes Custom Resource Definitions.
-    digest: b053392e6def3bf70bd020c374cd49d5d44e611c3cea6e6ad71129bebbfa9bc8
+    digest: 204081b56edd22b592da1612691e80bde310e61eb8671da65815e45eb050c758
     home: https://github.com/awslabs/aws-service-operator
     keywords:
     - AWS
@@ -107,6 +107,32 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
+  - apiVersion: v1
+    created: "2020-07-07T10:16:50.099335353Z"
+    dependencies:
+    - name: prometheus-operator
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 8.12.13
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 206fa9dc91521ebce3b3060ee7b15464375f8e069f3bbed534a1fab35ec0f802
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - monitoring
+    - prometheus
+    - opsgenie
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-1.8.6.tgz
+    version: 1.8.6
   - apiVersion: v1
     created: "2020-07-07T10:14:42.574799023Z"
     dependencies:
@@ -1191,13 +1217,13 @@ entries:
     version: 0.0.1
   concourse-monitoring:
   - apiVersion: v2
-    created: "2020-07-07T10:14:42.576295318Z"
+    created: "2020-07-07T10:16:50.101475767Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 0.8.0
     description: A Helm chart for Kubernetes
-    digest: 02fc71c46052e45069b988a18a37a181eda4429b9366fc7417d08ea5e1ad1374
+    digest: 3ad3d5907be032cb1ea0db7d727f52ccbb33640df557a2a7c14d2886d3548f8b
     name: concourse-monitoring
     type: application
     urls:
@@ -1231,7 +1257,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2020-07-07T10:14:42.579350985Z"
+    created: "2020-07-07T10:16:50.105988591Z"
     dependencies:
     - name: elasticsearch-exporter
       repository: https://kubernetes-charts.storage.googleapis.com
@@ -1240,7 +1266,7 @@ entries:
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 0.8.0
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: baae4aea1641ae1f2959d6446f02c4694a8269b28f60317d866f7ccf48580031
+    digest: 559f69cd29d742291f766f32a8d1c60f9e579b7df560ca4a8a18e347fe4e79fc
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1562,9 +1588,9 @@ entries:
   fah-client:
   - apiVersion: v2
     appVersion: 7.5.1
-    created: "2020-07-07T10:14:42.580052706Z"
+    created: "2020-07-07T10:16:50.106669221Z"
     description: A Helm chart to deploy the Folding@Home client on Kubernetes
-    digest: d28ad16dea300fe060e5bba6fb154ca1ba4623bd0cf69759cb22385ab0720a44
+    digest: d4d5885a7558b187f34deb182c0669d204af4c40fa8988148779250f6755f81b
     name: fah-client
     type: application
     urls:
@@ -1667,18 +1693,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-07T10:14:42.580341645Z"
+    created: "2020-07-07T10:16:50.106968575Z"
     description: A Helm chart to deploy anything
-    digest: 3898eb0d7749e30a7ec6709dcd607d7ce0bc41ac0b71d105e8965a0913170a7b
+    digest: 0381b9020ce09f10167bdc12d0e40289504fbffa4929af7c98ca375f49a2e302
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2020-07-07T10:14:42.580687909Z"
+    created: "2020-07-07T10:16:50.107398687Z"
     description: A Helm chart for Kubernetes
-    digest: ed928c2741622c40ecbc55aef00e49eb56900210809663989b04ee17143e7d78
+    digest: cda6e0366641b4a8e010f7792a7a8cadfae383063973f77598f04427336aeb97
     home: https://github.com/skyscrapers/charts.git
     keywords:
     - skyscrapers
@@ -2024,9 +2050,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2020-07-07T10:14:42.581216506Z"
+    created: "2020-07-07T10:16:50.107979819Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: e10bcc4dadd76f4d13c8833600e9db9520574cad37feabe3a23d9a6ded02b169
+    digest: c352e84e54ee975865744581c7efdbf166db7273d14a59c0bb302c169574458d
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2169,10 +2195,10 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2020-07-07T10:14:42.581673743Z"
+    created: "2020-07-07T10:16:50.10855382Z"
     description: External (not on K8s) NEO4J monitoring using Prometheus-operator
       and Grafana
-    digest: 5736e564df9c6ebd4f026b35bf54fab323303e16c31d651355da9ea6305234d1
+    digest: 906f7cd21b8ec235c70ae0b77a6df6c41ccf2781070a72b8c9f2b8f6596a86de
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2250,11 +2276,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2020-07-07T10:14:42.582607374Z"
+    created: "2020-07-07T10:16:50.109657294Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: 124d51829d6fc7e921d90ea28d9056012296001cc8dd8d1d41e5b9fd9c2d8a52
+    digest: 8728050a44efe7c6aa52df93a60609fc83c53808b87403d59167d5e740536f39
     maintainers:
     - name: duboisph
     name: openvpn
@@ -2329,13 +2355,13 @@ entries:
     version: 0.0.6-skyscrapers.1
   rds-monitoring:
   - apiVersion: v2
-    created: "2020-07-07T10:14:42.584651091Z"
+    created: "2020-07-07T10:16:50.121515253Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 0.8.0
     description: A Helm chart for Kubernetes
-    digest: 2390ee01071148f3daf55f9051d02663c2bbb6509c162590174bce6105f87eef
+    digest: 8b274c24666997bbd5c78b34c20d5e72289cec8aeaf67413a4ac094dd152f7fe
     name: rds-monitoring
     type: application
     urls:
@@ -2369,13 +2395,13 @@ entries:
     version: 0.1.0
   redshift-monitoring:
   - apiVersion: v2
-    created: "2020-07-07T10:14:42.58685266Z"
+    created: "2020-07-07T10:16:50.124009741Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://kubernetes-charts.storage.googleapis.com
       version: 0.8.0
     description: Redshift monitoring using Prometheus-operator and Grafana.
-    digest: 2cc9a739f38355ee5717a660d4c2e1da5cf259c9a17ac06a33c5d061bae2ca21
+    digest: b93458b2406733311e49ee15a719d41afcd1e6ee2122cd3e9566b1e16f5df021
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2484,9 +2510,9 @@ entries:
     version: 1.0.0
   vault:
   - apiVersion: v1
-    created: "2020-07-07T10:14:42.589354385Z"
+    created: "2020-07-07T10:16:50.126747761Z"
     description: Install and configure Vault on Kubernetes.
-    digest: 0b3f575b8debeb1683a8b6d0d5ee731f16f52bcb20742d6478004f9df1bbb124
+    digest: ebd63e258d68a668646bf3d1856284d897e46f3d0f21ed0c93bd52a31da3191f
     home: https://www.vaultproject.io
     icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
     name: vault
@@ -2511,4 +2537,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vault-0.3.3.tgz
     version: 0.3.3
-generated: "2020-07-07T10:14:42.527055432Z"
+generated: "2020-07-07T10:16:50.041470952Z"
