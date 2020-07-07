@@ -57,15 +57,12 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  metadata:
-    name: "{{ .Release.Name }}-certificate-status"
-    namespace: "{{ .Release.Namespace }}"
-    labels:
-  {{ include "labels" $ | indent 4 }}
-      prometheus: "{{ .Release.Name }}"
-      group: certificate-status
-  name: certmanager-certificate-status
-  namespace: infrastructure
+  name: "{{ .Release.Name }}-certificate-status"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    group: certificate-status
 spec:
   groups:
   - name: certmanager-certificate-status.rules
