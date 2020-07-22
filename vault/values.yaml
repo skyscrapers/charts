@@ -12,7 +12,8 @@ global:
   tlsDisable: true
   # Beta Feature: If deploying to OpenShift
   openshift: false
-  # extern
+  # Setting this will disable deployment of a vault server. If true, make sure
+  # to also set `injector.externalVaultAddr`
   externalServer: false
 
 injector:
