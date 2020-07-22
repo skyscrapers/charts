@@ -8,7 +8,7 @@ load _helpers
   kubectl create namespace acceptance
   kubectl config set-context --current --namespace=acceptance
 
-  helm install --name="$(name_prefix)" --set='server.dev.enabled=true' .
+  helm install "$(name_prefix)" --set='server.dev.enabled=true' .
   wait_for_running $(name_prefix)-0
 
   # Replicas
@@ -19,7 +19,7 @@ load _helpers
   # Volume Mounts
   local volumeCount=$(kubectl get statefulset "$(name_prefix)" --output json |
     jq -r '.spec.template.spec.containers[0].volumeMounts | length')
-  [ "${volumeCount}" == "0" ]
+  [ "${volumeCount}" == "1" ]
 
   # Service
   local service=$(kubectl get service "$(name_prefix)" --output json |
@@ -54,8 +54,11 @@ load _helpers
 
 # Clean up
 teardown() {
-  echo "helm/pvc teardown"
-  helm delete --purge vault
-  kubectl delete --all pvc
-  kubectl delete namespace acceptance --ignore-not-found=true
+  if [[ ${CLEANUP:-true} == "true" ]]
+  then
+      echo "helm/pvc teardown"
+      helm delete vault
+      kubectl delete --all pvc
+      kubectl delete namespace acceptance --ignore-not-found=true
+  fi
 }
