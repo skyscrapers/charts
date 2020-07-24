@@ -54,26 +54,28 @@ spec:
         description: 'EBS volumes are failing to attach to node {{`{{$labels.node}}`}}'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-nodewithimpairedvolumes'
 # Reverting due to issue addressed https://github.com/jetstack/cert-manager/issues/2248 causing false-positive alerts. To be enabled again once cert-manager v0.16.0 is released which should contain the fix from https://github.com/jetstack/cert-manager/pull/2923
-# ---
-# apiVersion: monitoring.coreos.com/v1
-# kind: PrometheusRule
-# metadata:
-#   name: "{{ .Release.Name }}-certificate-status"
-#   namespace: "{{ .Release.Namespace }}"
-#   labels:
-# {{ include "labels" $ | indent 4 }}
-#     prometheus: "{{ .Release.Name }}"
-#     group: certificate-status
-# spec:
-#   groups:
-#   - name: certmanager-certificate-status.rules
-#     rules:
-#     - alert: CertificateNotReady
-#       expr: certmanager_certificate_ready_status != 1
-#       for: 10m
-#       labels:
-#         severity: warning
-#         group: certificate-status
-#       annotations:
-#         message: 'A cert-manager certificate can not be issued/updated'
-#         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-not-ready'
+{{- /*
+---
+ apiVersion: monitoring.coreos.com/v1
+ kind: PrometheusRule
+ metadata:
+   name: "{{ .Release.Name }}-certificate-status"
+   namespace: "{{ .Release.Namespace }}"
+   labels:
+{{ include "labels" $ | indent 4 }}
+     prometheus: "{{ .Release.Name }}"
+     group: certificate-status
+ spec:
+   groups:
+   - name: certmanager-certificate-status.rules
+     rules:
+     - alert: CertificateNotReady
+       expr: certmanager_certificate_ready_status != 1
+       for: 10m
+       labels:
+         severity: warning
+         group: certificate-status
+       annotations:
+         message: 'A cert-manager certificate can not be issued/updated'
+         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-not-ready'
+*/ -}}   
