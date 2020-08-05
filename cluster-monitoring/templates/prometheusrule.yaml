@@ -68,7 +68,7 @@ spec:
   - name: certmanager-certificate-status.rules
     rules:
     - alert: CertificateNotReady
-      expr: certmanager_certificate_ready_status != 1
+      expr: certmanager_certificate_ready_status{condition="True"} != 1
       for: 10m
       labels:
         severity: warning
