@@ -107,4 +107,4 @@ spec:
         group: external-dns-errors
       annotations:
         message: External DNS source Errors increasing constantly
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#(#alert-name-externaldnssourceerrorsincrease'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-externaldnssourceerrorsincrease'
