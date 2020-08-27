@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: "{{ .Release.Name }}-external-dns"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    component: external-dns
+spec:
+  endpoints:
+  - port: 7979
+    interval: 10s
+  namespaceSelector:
+    matchNames:
+    - infrastructure
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: external-dns
+      app.kubernetes.io/name: external-dns
