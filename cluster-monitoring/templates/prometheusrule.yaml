@@ -76,3 +76,35 @@ spec:
       annotations:
         message: 'A cert-manager certificate can not be issued/updated'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-not-ready'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-external-dns-errors"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    group: external-dns
+spec:
+  groups:
+  - name: external-dns-errors.rules
+    rules:
+    - alert: ExternalDnsRegistryErrorsIncrease
+      expr: increase(external_dns_registry_errors_total{job="external-dns"}[5m]) > 0
+      for: 30m
+      labels:
+        severity: warning
+        group: external-dns-errors
+      annotations:
+        message: External DNS registry Errors increasing constantly
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#ExternalDnsRegistryErrorsIncrease'
+    - alert: ExternalDNSSourceErrorsIncrease
+      expr: increase(external_dns_source_errors_total{job="external-dns"}[5m]) > 0
+      for: 30m
+      labels:
+        severity: warning
+        group: external-dns-errors
+      annotations:
+        message: External DNS source Errors increasing constantly
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#ExternalDNSSourceErrorsIncrease'
