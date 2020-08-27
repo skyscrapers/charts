@@ -98,7 +98,7 @@ spec:
         group: external-dns-errors
       annotations:
         message: External DNS registry Errors increasing constantly
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#ExternalDnsRegistryErrorsIncrease'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-externaldnsregistryerrorsincrease'
     - alert: ExternalDNSSourceErrorsIncrease
       expr: increase(external_dns_source_errors_total{job="external-dns"}[5m]) > 0
       for: 30m
@@ -107,4 +107,4 @@ spec:
         group: external-dns-errors
       annotations:
         message: External DNS source Errors increasing constantly
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#ExternalDNSSourceErrorsIncrease'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#(#alert-name-externaldnssourceerrorsincrease'
