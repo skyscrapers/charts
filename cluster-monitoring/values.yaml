@@ -16,3 +16,6 @@ extraDashboards: []
 
 # Whether to enable the Calico ServiceMonitor & PrometheusRule
 enableCalico: true
+
+# Whether to enable the NodeLocal DNSCache ServiceMonitor
+enableNodeLocalDNS: false
