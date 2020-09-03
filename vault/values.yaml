@@ -10,15 +10,29 @@ global:
   #   - name: image-pull-secret
   # TLS for end-to-end encrypted transport
   tlsDisable: true
-  # Beta Feature: If deploying to OpenShift
+  # If deploying to OpenShift
   openshift: false
   # Setting this will disable deployment of a vault server. If true, make sure
   # to also set `injector.externalVaultAddr`
   externalServer: false
+  # Create PodSecurityPolicy for pods
+  psp:
+    enable: false
+    # Annotation for PodSecurityPolicy.
+    # This is a multi-line templated string map, and can also be set as YAML.
+    annotations: |
+      seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default,runtime/default
+      apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default
+      seccomp.security.alpha.kubernetes.io/defaultProfileName:  runtime/default
+      apparmor.security.beta.kubernetes.io/defaultProfileName:  runtime/default
 
 injector:
   # True if you want to enable vault agent injection.
   enabled: true
+
+  # If true, will enable a node exporter metrics endpoint at /metrics.
+  metrics:
+    enabled: false
 
   # External vault server address for the injector to use. Required to be set
   # when global.externalServer=true
@@ -27,7 +41,7 @@ injector:
   # image sets the repo and tag of the vault-k8s image to use for the injector.
   image:
     repository: "hashicorp/vault-k8s"
-    tag: "0.4.0"
+    tag: "0.5.0"
     pullPolicy: IfNotPresent
 
   # agentImage sets the repo and tag of the Vault image to use for the Vault Agent
@@ -35,7 +49,7 @@ injector:
   # required.
   agentImage:
     repository: "vault"
-    tag: "1.4.2"
+    tag: "1.5.2"
 
   # Mount Path of the Vault Kubernetes Auth Method.
   authPath: "auth/kubernetes"
@@ -118,7 +132,7 @@ server:
 
   image:
     repository: "vault"
-    tag: "1.4.2"
+    tag: "1.5.2"
     # Overrides the default Image Pull Policy
     pullPolicy: IfNotPresent
 
@@ -177,6 +191,20 @@ server:
   # This is useful if you need to run a script to provision TLS certificates or
   # write out configuration files in a dynamic way.
   extraInitContainers: null
+    # # This example installs a plugin pulled from github into the /usr/local/libexec/vault/oauthapp folder,
+    # # which is defined in the volumes value.
+    # - name: oauthapp
+    #   image: "alpine"
+    #   command: [sh, -c]
+    #   args:
+    #     - cd /tmp &&
+    #       wget https://github.com/puppetlabs/vault-plugin-secrets-oauthapp/releases/download/v1.2.0/vault-plugin-secrets-oauthapp-v1.2.0-linux-amd64.tar.xz -O oauthapp.xz &&
+    #       tar -xf oauthapp.xz &&
+    #       mv vault-plugin-secrets-oauthapp-v1.2.0-linux-amd64 /usr/local/libexec/vault/oauthapp &&
+    #       chmod +x /usr/local/libexec/vault/oauthapp
+    #   volumeMounts:
+    #     - name: plugins
+    #       mountPath: /usr/local/libexec/vault
 
   # extraContainers is a list of sidecar containers. Specified as a YAML list.
   extraContainers: null
@@ -231,6 +259,22 @@ server:
     # - type: secret (or "configMap")
     #   name: my-secret
     #   path: null # default is `/vault/userconfig`
+
+  # volumes is a list of volumes made available to all containers. These are rendered
+  # via toYaml rather than pre-processed like the extraVolumes value.
+  # The purpose is to make it easy to share volumes between containers.
+  volumes: null
+  #   - name: plugins
+  #     emptyDir: {}
+
+  # volumeMounts is a list of volumeMounts for the main server container. These are rendered
+  # via toYaml rather than pre-processed like the extraVolumes value.
+  # The purpose is to make it easy to share volumes between containers.
+  volumeMounts: null
+  #   - mountPath: /usr/local/libexec/vault
+  #     name: plugins
+  #     readOnly: true
+
 
   # Affinity Settings
   # Commenting out or setting as empty the affinity variable, will allow
@@ -309,6 +353,8 @@ server:
     storageClass: null
     # Access Mode of the storage device being used for the PVC
     accessMode: ReadWriteOnce
+    # Annotations to apply to the PVC
+    annotations: {}
 
   # This configures the Vault Statefulset to create a PVC for audit
   # logs.  Once Vault is deployed, initialized and unseal, Vault must
@@ -324,6 +370,8 @@ server:
     storageClass: null
     # Access Mode of the storage device being used for the PVC
     accessMode: ReadWriteOnce
+    # Annotations to apply to the PVC
+    annotations: {}
 
   # Run Vault in "dev" mode. This requires no further setup, no state management,
   # and no initialization. This is useful for experimenting with Vault without
@@ -344,6 +392,11 @@ server:
     # deployment. Default is to use a PersistentVolumeClaim mounted at /vault/data
     # and store data there. This is only used when using a Replica count of 1, and
     # using a stateful set. This should be HCL.
+
+    # Note: Configuration files are stored in ConfigMaps so sensitive data 
+    # such as passwords should be either mounted through extraSecretEnvironmentVars
+    # or through a Kube secret.  For more information see: 
+    # https://www.vaultproject.io/docs/platform/k8s/helm/run#protecting-sensitive-vault-configurations
     config: |
       ui = true
 
@@ -375,6 +428,11 @@ server:
     enabled: false
     replicas: 3
 
+    # Set the api_addr configuration for Vault HA
+    # See https://www.vaultproject.io/docs/configuration#api_addr
+    # If set to null, this will be set to the Pod IP Address
+    apiAddr: null
+
     # Enables Vault's integrated Raft storage.  Unlike the typical HA modes where
     # Vault's persistence is external (such as Consul), enabling Raft mode will create
     # persistent volumes for Vault to store data according to the configuration under server.dataStorage.
@@ -385,6 +443,11 @@ server:
       enabled: false
       # Set the Node Raft ID to the name of the pod
       setNodeId: false
+    
+      # Note: Configuration files are stored in ConfigMaps so sensitive data 
+      # such as passwords should be either mounted through extraSecretEnvironmentVars
+      # or through a Kube secret.  For more information see: 
+      # https://www.vaultproject.io/docs/platform/k8s/helm/run#protecting-sensitive-vault-configurations
       config: |
         ui = true
 
@@ -399,9 +462,15 @@ server:
         }
 
         service_registration "kubernetes" {}
+   
     # config is a raw string of default configuration when using a Stateful
     # deployment. Default is to use a Consul for its HA storage backend.
     # This should be HCL.
+    
+    # Note: Configuration files are stored in ConfigMaps so sensitive data 
+    # such as passwords should be either mounted through extraSecretEnvironmentVars
+    # or through a Kube secret.  For more information see: 
+    # https://www.vaultproject.io/docs/platform/k8s/helm/run#protecting-sensitive-vault-configurations
     config: |
       ui = true
 
@@ -438,9 +507,21 @@ server:
 
   # Definition of the serviceAccount used to run Vault.
   serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
     # Extra annotations for the serviceAccount definition. This can either be
     # YAML or a YAML-formatted multi-line templated string map of the
     # annotations to apply to the serviceAccount.
+    annotations: {}
+
+  # Settings for the statefulSet used to run Vault.
+  statefulSet:
+    # Extra annotations for the statefulSet. This can either be YAML or a
+    # YAML-formatted multi-line templated string map of the annotations to apply
+    # to the statefulSet.
     annotations: {}
 
 # Vault UI
@@ -451,6 +532,9 @@ ui:
   # example, setting this to "LoadBalancer" will create an external load
   # balancer (for supported K8S installations) to access the UI.
   enabled: false
+  publishNotReadyAddresses: true
+  # The service should only contain selectors for active Vault pod
+  activeVaultPodOnly: false
   serviceType: "ClusterIP"
   serviceNodePort: null
   externalPort: 8200
