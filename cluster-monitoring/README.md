@@ -121,5 +121,4 @@ Included Grafana dashboards are based of the following sources:
 - [Concourse](https://github.com/bosh-prometheus/prometheus-boshrelease/tree/master/jobs/grafana_dashboards/templates)
 - [MongoDB](https://grafana.com/dashboards/2583)
 - [AWS SQS](https://grafana.com/dashboards/584)
-- [Webapp](https://grafana.com/dashboards/3816)
 - [Node Exporter Full](https://grafana.com/grafana/dashboards/1860)
