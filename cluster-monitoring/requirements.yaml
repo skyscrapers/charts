@@ -1,5 +1,4 @@
 dependencies:
 - name: prometheus-operator
-  # https://github.com/helm/charts/issues/22081
-  version: 9.3.0
+  version: 9.3.1
   repository: https://kubernetes-charts.storage.googleapis.com/
