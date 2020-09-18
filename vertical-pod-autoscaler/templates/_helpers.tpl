@@ -34,6 +34,7 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "vpa.labels" -}}
+app.kubernetes.io/name: {{ include "vpa.name" . }}
 helm.sh/chart: {{ include "vpa.chart" . }}
 {{ include "vpa.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
