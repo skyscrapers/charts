@@ -14,9 +14,6 @@ metadata:
   name: {{ include "vpa.fullname" . }}-cleanup
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
-    helm.sh/chart: {{ include "vpa.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: cleanup
   annotations:
     "helm.sh/hook": "post-delete"
@@ -37,9 +34,6 @@ metadata:
   name: {{ include "vpa.fullname" . }}-cleanup
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
-    helm.sh/chart: {{ include "vpa.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: cleanup
   annotations:
     "helm.sh/hook": "post-delete"
@@ -51,9 +45,6 @@ spec:
       name: {{ include "vpa.fullname" . }}-cleanup
       labels:
         {{- include "vpa.labels" . | nindent 8 }}
-        helm.sh/chart: {{ include "vpa.chart" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/managed-by: {{ .Release.Service }}
         app.kubernetes.io/component: cleanup
     spec:
       restartPolicy: Never
