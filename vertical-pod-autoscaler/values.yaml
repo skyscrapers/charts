@@ -91,7 +91,7 @@ updater:
 
 admissionController:
   # admissionController.enabled -- If true, will install the admission-controller component of vpa
-  enabled: false
+  enabled: true
   # admissionController.generateCertificate -- If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook
   generateCertificate: true
   # admissionController.cleanupOnDelete -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
