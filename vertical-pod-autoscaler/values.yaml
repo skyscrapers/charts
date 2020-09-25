@@ -61,8 +61,8 @@ updater:
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
   extraArgs:
-    v: 4
-    stderrthreshold: info
+    v: 4 #default from https://github.com/kubernetes/autoscaler/blob/vertical-pod-autoscaler-0.6.3/vertical-pod-autoscaler/pkg/updater/Dockerfile#L22
+    stderrthreshold: info #default from https://github.com/kubernetes/autoscaler/blob/vertical-pod-autoscaler-0.6.3/vertical-pod-autoscaler/pkg/updater/Dockerfile#L22
     min-replicas: 1
 
   replicaCount: 1
