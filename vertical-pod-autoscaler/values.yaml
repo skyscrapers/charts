@@ -60,7 +60,11 @@ updater:
   # updater.enabled -- If true, the updater component will be deployed
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
-  extraArgs: {}
+  extraArgs:
+    v: 4
+    stderrthreshold: info
+    min-replicas: 1
+
   replicaCount: 1
   image:
     # updater.image.repository -- The location of the updater image
