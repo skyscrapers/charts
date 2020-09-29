@@ -9,6 +9,7 @@ spec:
       targetPort: 8000
     {{- if .Values.admissionController.servicemonitor.enabled }}
     - port: 8944
+      name: metrics
       targetPort: 8944
     {{- end }}
   selector:
