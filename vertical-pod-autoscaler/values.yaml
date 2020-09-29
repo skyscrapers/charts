@@ -55,6 +55,9 @@ recommender:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  servicemonitor:
+    enabled: true
+    scrapeInterval: 60s
 
 updater:
   # updater.enabled -- If true, the updater component will be deployed
@@ -92,6 +95,9 @@ updater:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  servicemonitor:
+    enabled: true
+    scrapeInterval: 60s
 
 admissionController:
   # admissionController.enabled -- If true, will install the admission-controller component of vpa
@@ -127,3 +133,6 @@ admissionController:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  servicemonitor:
+    enabled: true
+    scrapeInterval: 60s

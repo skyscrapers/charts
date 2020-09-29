@@ -45,6 +45,11 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+            {{- if .Values.recommender.servicemonitor.enabled }}
+            - name: metrics
+              containerPort: 8942
+              protocol: TCP
+            {{- end }}
           resources:
             {{- toYaml .Values.recommender.resources | nindent 12 }}
       {{- with .Values.recommender.nodeSelector }}

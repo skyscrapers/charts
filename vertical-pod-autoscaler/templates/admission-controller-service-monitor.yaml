@@ -1,0 +1,20 @@
+{{- if .Values.admissionController.servicemonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "vpa.fullname" . }}-admission-controller
+  labels:
+    app.kubernetes.io/component: admission-controller
+    {{- include "vpa.labels" . | nindent 4 }}
+spec:
+  endpoints:
+  - interval: {{ .Values.admissionController.servicemonitor.scrapeInterval }}
+    port: metrics
+  namespaceSelector:
+    matchNames:
+    - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      name: vpa-webhook
+{{- end }}
+
