@@ -16,6 +16,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/component: updater
-      {{- include "vpa.labels" . | nindent 6 }}
+      {{- include "vpa.selectorLabels" . | nindent 6 }}
 {{- end }}
 
