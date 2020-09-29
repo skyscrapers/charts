@@ -9,7 +9,7 @@ spec:
       targetPort: 8000
     {{- if .Values.admissionController.servicemonitor.enabled }}
     - port: metrics
-      targerPort: 8944
+      targetPort: 8944
     {{- end }}
   selector:
     app.kubernetes.io/component: admission-controller
