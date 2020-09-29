@@ -6,6 +6,7 @@ metadata:
 spec:
   ports:
     - port: 443
+      name: http
       targetPort: 8000
     {{- if .Values.admissionController.servicemonitor.enabled }}
     - port: 8944
