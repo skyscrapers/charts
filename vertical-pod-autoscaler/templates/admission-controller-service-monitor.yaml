@@ -9,7 +9,7 @@ metadata:
 spec:
   endpoints:
   - interval: {{ .Values.admissionController.servicemonitor.scrapeInterval }}
-    port: metrics
+    port: 8944
   namespaceSelector:
     matchNames:
     - "{{ .Release.Namespace }}"
