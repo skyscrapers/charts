@@ -1,0 +1,20 @@
+{{- if .Values.recommender.servicemonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "vpa.fullname" . }}-recommender
+  labels:
+    app.kubernetes.io/component: recommender
+    {{- include "vpa.labels" . | nindent 4 }}
+spec:
+  podMetricsEndpoints:
+  - interval: {{ .Values.recommender.servicemonitor.scrapeInterval }}
+    port: metrics
+  namespaceSelector:
+    matchNames:
+    - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: recommender
+{{- end }}
+

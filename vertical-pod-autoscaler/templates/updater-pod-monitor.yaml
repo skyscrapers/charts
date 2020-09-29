@@ -1,0 +1,20 @@
+{{- if .Values.updater.servicemonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "vpa.fullname" . }}-updater
+  labels:
+    app.kubernetes.io/component: updater
+    {{- include "vpa.labels" . | nindent 4 }}
+spec:
+  podMetricsEndpoints:
+  - interval: {{ .Values.updater.servicemonitor.scrapeInterval }}
+    port: metrics
+  namespaceSelector:
+    matchNames:
+    - "{{ .Release.Namespace }}"
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: updater
+{{- end }}
+
