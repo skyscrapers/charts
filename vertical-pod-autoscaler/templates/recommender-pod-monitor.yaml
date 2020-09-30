@@ -5,6 +5,7 @@ metadata:
   name: {{ include "vpa.fullname" . }}-recommender
   labels:
     app.kubernetes.io/component: recommender
+    prometheus: vertical-pod-autoscaler
     {{- include "vpa.labels" . | nindent 4 }}
 spec:
   podMetricsEndpoints:

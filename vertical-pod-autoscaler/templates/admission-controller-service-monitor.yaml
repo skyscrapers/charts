@@ -5,6 +5,7 @@ metadata:
   name: {{ include "vpa.fullname" . }}-admission-controller
   labels:
     app.kubernetes.io/component: admission-controller
+    prometheus: vertical-pod-autoscaler
     {{- include "vpa.labels" . | nindent 4 }}
 spec:
   endpoints:
@@ -15,6 +16,7 @@ spec:
     - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
-      name: vpa-webhook
+      app.kubernetes.io/component: admission-controller
+      {{- include "vpa.selectorLabels" . | nindent 6 }}
 {{- end }}
 

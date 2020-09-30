@@ -5,6 +5,7 @@ metadata:
   name: {{ include "vpa.fullname" . }}-updater
   labels:
     app.kubernetes.io/component: updater
+    prometheus: vertical-pod-autoscaler
     {{- include "vpa.labels" . | nindent 4 }}
 spec:
   podMetricsEndpoints:
