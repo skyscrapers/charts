@@ -1,0 +1,72 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    name: "{{ include "vpa.fullname" . }}"
+    {{- include "vpa.labels" . | nindent 4 }}
+    prometheus: vpa-monitoring
+  name: "{{ include "vpa.fullname" . }}-monitoring"
+spec:
+  groups:
+  - name: vpa.rules
+    rules:
+    {{- if .Values.admissionController.enabled }}
+    - alert: VPAAdmissionControllerDown
+      expr: up{job="{{ include "vpa.fullname" . }}-admission-controller"} != 1
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA AdmissionController is down!'
+        summary: The VPA AdmissionController is down!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPAAdmissionControllerDown'
+    - alert: VPAAdmissionControllerSlow
+      expr: irate(vpa_admission_controller_admission_latency_seconds_sum[5m]) > 5
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA Admission Controller is slow!'
+        summary: The VPA Recommender Admission Controller is slow!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPAAdmissionControllerSlow'
+    {{- end }}
+    {{- if .Values.recommender.enabled }}
+    - alert: VPARecommenderDown
+      expr: up{job="{{ include "vpa.fullname" . }}-recommender"} != 1
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA Recommender is down!'
+        summary: The VPA Recommender is down!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPARecommenderDown'
+    - alert: VPARecommenderSlow
+      expr: irate(vpa_recommender_execution_latency_seconds_sum{step="total"}[5m]) > 5
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA Recommender is slow!'
+        summary: The VPA Recommender is slow!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPARecommenderSlow'
+    {{- end }}
+    {{- if .Values.updater.enabled }}
+    - alert: VPAUpdaterDown
+      expr: up{job="{{ include "vpa.fullname" . }}-updater"} != 1
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA Updater is down!'
+        summary: The VPA Updater is down!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPAUpdaterDown'
+    - alert: VPAUpdaterSlow
+      expr: irate(vpa_updater_execution_latency_seconds_sum{step="total"}[5m]) > 5
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        description: 'The VPA Updater is slow!'
+        summary: The RVPA Updater is slow!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-VPAUpdaterSlow'
+    {{- end }}
