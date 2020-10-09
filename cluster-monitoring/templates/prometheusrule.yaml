@@ -31,6 +31,7 @@ spec:
         summary: 'Instance {{`{{$labels.instance}}`}} - Dataplane failures'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-calicodataplanefailures'
 {{ end }}
+
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -108,3 +109,60 @@ spec:
       annotations:
         message: External DNS source Errors increasing constantly
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-externaldnssourceerrorsincrease'
+
+{{- if .Values.enableVelero }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-velero"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    group: velero
+spec:
+  groups:
+  - name: velero-alerts
+    rules:
+    - alert: VeleroBackupPartialFailures
+      expr: |-
+        velero_backup_partial_failure_total{schedule!=""} / velero_backup_attempt_total{schedule!=""} > 0.25
+      for: 15m
+      labels:
+        severity: warning
+        group: velero
+      annotations:
+        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} partial failures.
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackuppartialfailures'
+    - alert: VeleroBackupFailures
+      expr: |-
+        velero_backup_failure_total{schedule!=""} / velero_backup_attempt_total{schedule!=""} > 0.25
+      for: 15m
+      labels:
+        severity: warning
+        group: velero
+      annotations:
+        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} failures.
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackupfailures'
+    - alert: VeleroVolumeSnapshotFailures
+      expr: |-
+        velero_volume_snapshot_failure_total{schedule!=""} / velero_volume_snapshot_attempt_total{schedule!=""} > 0.25
+      for: 15m
+      labels:
+        severity: warning
+        group: velero
+      annotations:
+        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} volume snapshot failures.
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerovolumesnapshotfailures'
+    - alert: VeleroBackupTooOld
+      expr: |-
+        velero_backup_last_successful_timestamp{schedule="velero-cluster-backup"} + 260000 < time()
+      for: 5m
+      labels:
+        severity: critical
+        group: velero
+      annotations:
+        message: Cluster hasn't been backed up for more than 3 days.
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackuptooold'
+{{- end }}
