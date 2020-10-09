@@ -19,3 +19,6 @@ enableCalico: true
 
 # Whether to enable the NodeLocal DNSCache ServiceMonitor
 enableNodeLocalDNS: false
+
+# Whether to enable the Velero ServiceMonitor and PrometheusRules
+enableVelero: false
