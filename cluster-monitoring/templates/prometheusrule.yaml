@@ -133,7 +133,7 @@ spec:
         severity: warning
         group: velero
       annotations:
-        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} partial failures.
+        message: Velero backup {{`{{ $labels.schedule }}`}} has {{`{{ $value | humanizePercentage }}`}} partial failures.
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackuppartialfailures'
     - alert: VeleroBackupFailures
       expr: |-
@@ -143,7 +143,7 @@ spec:
         severity: warning
         group: velero
       annotations:
-        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} failures.
+        message: Velero backup {{`{{ $labels.schedule }}`}} has {{`{{ $value | humanizePercentage }}`}} failures.
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackupfailures'
     - alert: VeleroVolumeSnapshotFailures
       expr: |-
@@ -153,7 +153,7 @@ spec:
         severity: warning
         group: velero
       annotations:
-        message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} volume snapshot failures.
+        message: Velero backup {{`{{ $labels.schedule }}`}} has {{`{{ $value | humanizePercentage }}`}} volume snapshot failures.
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerovolumesnapshotfailures'
     - alert: VeleroBackupTooOld
       expr: |-
