@@ -17,7 +17,7 @@ spec:
           expr: aws_rds_cpucredit_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 5
           for: 10m
           labels:
-            severity: critical
+            severity: warning
             group: persistence
           annotations:
             message: 'The CPU credit balance for {{`{{ $labels.dbinstance_identifier }}`}} is less than 5!'
@@ -26,10 +26,19 @@ spec:
           expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 104857600
           for: 10m
           labels:
-            severity: critical
+            severity: warning
             group: persistence
           annotations:
             message: 'RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is running low on memory (< 100Mb)!'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreeablememorylow'
+        - alert: RDSFreeableMemoryCritical
+          expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 10485760
+          for: 10m
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is running very low on memory (< 10Mb)!'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreeablememorylow'
         - alert: RDSFreeStorageSpaceRunningLow
           expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
@@ -44,7 +53,7 @@ spec:
           expr: aws_rds_disk_queue_depth_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 1
           for: 30m
           labels:
-            severity: critical
+            severity: warning
             group: persistence
           annotations:
             message: 'The number of outstanding IO requests waiting to access the disk is high for RDS instance {{`{{ $labels.dbinstance_identifier }}`}}.'
@@ -62,7 +71,7 @@ spec:
           expr: aws_rds_replicalag_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 30
           for: 10m
           labels:
-            severity: warning
+            severity: critical
             group: persistence
           annotations:
             message: 'Replica lag for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 30 seconds.'
