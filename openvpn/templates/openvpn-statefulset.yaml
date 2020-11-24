@@ -32,7 +32,9 @@ spec:
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          {{- with .Values.image }}
+          image: "{{ .repository }}{{- if .digest -}}@{{.digest}}{{- else -}}:{{ .tag }}"
+          {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/etc/openvpn/setup/configure.sh"]
           ports:

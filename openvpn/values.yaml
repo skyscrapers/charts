@@ -13,6 +13,8 @@ updateStrategy: {}
 image:
   repository: kylemanna/openvpn
   tag: 2.4
+  # Setting a digest will override any tag
+  # digest: ""
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
