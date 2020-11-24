@@ -19,9 +19,9 @@ maintainers:
     email: hello@skyscrapers.eu
 engine: gotpl
 dependencies:
-  - name: elasticsearch-exporter
-    version: 2.1.1
-    repository: https://kubernetes-charts.storage.googleapis.com
+  - name: prometheus-elasticsearch-exporter
+    version: 4.0.0
+    repository: https://prometheus-community.github.io/helm-charts
   - name: prometheus-cloudwatch-exporter
-    version: 0.9.0
+    version: 0.12.0
     repository: https://prometheus-community.github.io/helm-charts
