@@ -10,6 +10,7 @@ defaultDashboards: true
 # Specify which extra Grafana dashboards you want to include (found in 
 # ./dashboards-extra)
 extraDashboards: []
+# - k8s-autoscaler
 # - mongodb
 # - sqs
 # - webapp
