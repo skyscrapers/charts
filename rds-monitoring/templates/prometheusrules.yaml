@@ -41,7 +41,7 @@ spec:
             message: 'RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is running very low on memory (< 10Mb)!'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreeablememorylow'
         - alert: RDSFreeStorageSpaceRunningLow
-          expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
+          expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", container="prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
           for: 6h
           labels:
             severity: critical
