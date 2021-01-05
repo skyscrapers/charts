@@ -200,11 +200,6 @@ prometheus-cloudwatch-exporter:
 
   replicaCount: 1
 
-  image:
-    repository: prom/cloudwatch-exporter
-    tag: cloudwatch_exporter-0.7.0
-    pullPolicy: IfNotPresent
-
   # Example proxy configuration:
   # command:
   #   - 'java'
