@@ -44,10 +44,19 @@ spec:
           expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", container="prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
           for: 6h
           labels:
-            severity: critical
+            severity: warning
             group: persistence
           annotations:
             message: 'Based on recent sampling, disk storage is expected to fill up in four days for RDS instance {{`{{ $labels.dbinstance_identifier }}`}}.'
+            runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreestoragespacerunninglow'
+        - alert: RDSFreeStorageSpaceCritical
+          expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", container="prometheus-cloudwatch-exporter"}[1h], 3600 * 6) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
+          for: 1h
+          labels:
+            severity: critical
+            group: persistence
+          annotations:
+            message: 'Based on recent sampling, disk storage is expected to fill up in 6 hours for RDS instance {{`{{ $labels.dbinstance_identifier }}`}}.'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsfreestoragespacerunninglow'
         - alert: RDSDiskQueueDepthHigh
           expr: aws_rds_disk_queue_depth_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 1
