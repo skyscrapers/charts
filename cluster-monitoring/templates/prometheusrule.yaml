@@ -54,6 +54,15 @@ spec:
         summary: 'Node {{`{{$labels.node}}`}} has Impaired Volumes'
         description: 'EBS volumes are failing to attach to node {{`{{$labels.node}}`}}'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-nodewithimpairedvolumes'
+    - alert: NodeWithoutEIP
+      expr: count by(node)(kube_node_spec_taint{key="node.kubernetes.io/eip-unavailable", effect="NoSchedule"}) > 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: 'No EIP on {{`{{$labels.node}}`}}'
+        description: 'Node {{`{{$labels.node}}`}} failed to auto-assign an EIP'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-nodewithouteip'
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
