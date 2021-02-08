@@ -3,9 +3,9 @@ entries:
   aws-calico:
   - apiVersion: v1
     appVersion: 3.8.1
-    created: "2021-01-29T14:30:54.329066745Z"
+    created: "2021-02-08T12:32:03.048874568Z"
     description: A Helm chart for installing Calico on AWS
-    digest: 70bde7be6b7ef0293c3d29ccb1512769111048b01045a5e7627d69eaeba2de3d
+    digest: cd7eb7ee821aa45dfd3dc4e65c9cd28ead4360b2b398139685dcb79297d83c6b
     icon: https://www.projectcalico.org/wp-content/uploads/2019/09/Calico_Logo_Large_Calico.png
     name: aws-calico
     urls:
@@ -24,9 +24,9 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2021-01-29T14:30:54.329498977Z"
+    created: "2021-02-08T12:32:03.049630254Z"
     description: The AWS Service Operator allows you to manage AWS resources using Kubernetes Custom Resource Definitions.
-    digest: 09ae9b70e78d47784f87d4d52cde83e7ffae269e6462d33c927e2803c153d177
+    digest: 1aee63531bfb30e81d8d6f27387cc7bde46e509a5587ef2d7f6212471baaaa76
     home: https://github.com/awslabs/aws-service-operator
     keywords:
     - AWS
@@ -42,7 +42,8 @@ entries:
     - https://skyscrapers.github.io/charts/aws-service-operator-0.0.1-alpha4.tgz
     version: 0.0.1-alpha4
   cloudwatch-monitoring:
-  - created: "2019-11-29T11:00:21.530589823Z"
+  - apiVersion: v1
+    created: "2019-11-29T11:00:21.530589823Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 610c333203978b8447b76ea839ea45a26c98a439626db777136f51e5619815cc
     home: https://github.com/skyscrapers/charts/
@@ -63,7 +64,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.2.tgz
     version: 0.1.2
-  - created: "2018-11-20T16:13:53.340857985Z"
+  - apiVersion: v1
+    created: "2018-11-20T16:13:53.340857985Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 923914cdd5ebe3040b8ec3a709689937eb1d04f6e4b11e0c54655334fdafa4de
     home: https://github.com/skyscrapers/charts/
@@ -84,7 +86,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.1.tgz
     version: 0.1.1
-  - created: "2018-07-17T14:46:01.433977967Z"
+  - apiVersion: v1
+    created: "2018-07-17T14:46:01.433977967Z"
     description: Cloudwatch monitoring using Prometheus-operator and Grafana.
     digest: 8079c753badba56b42afb1c1e3b772b5a5f3644c77749b95797a58f60bce62ab
     home: https://github.com/skyscrapers/charts/
@@ -107,13 +110,13 @@ entries:
     version: 0.1.0
   cluster-monitoring:
   - apiVersion: v1
-    created: "2021-01-29T14:30:54.35672914Z"
+    created: "2021-02-08T12:32:03.159907098Z"
     dependencies:
     - name: kube-prometheus-stack
       repository: https://prometheus-community.github.io/helm-charts
       version: 12.12.1
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
-    digest: 4c5aa77c402e33c491786e09dc5383ef8567bec857474083fc76fd55713cadaa
+    digest: a1c8a1e643e677894a6903250bf920135c3a4671124bd0a88224a23dd1ca92e1
     home: https://github.com/coreos/prometheus-operator/
     keywords:
     - grafana
@@ -886,7 +889,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.8.tgz
     version: 1.6.8
-  - created: "2020-03-27T08:48:14.870677052Z"
+  - apiVersion: v1
+    created: "2020-03-27T08:48:14.870677052Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5679c5f6cd30eeacebac585654c8369c66a5edd5663ee2748b203f929c9cd406
     home: https://github.com/coreos/prometheus-operator/
@@ -907,7 +911,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.6.tgz
     version: 1.6.6
-  - created: "2020-03-23T12:40:00.020329271Z"
+  - apiVersion: v1
+    created: "2020-03-23T12:40:00.020329271Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: eab3aabcb3ffcfc7ceb7046aae09c044641b98016932606ea0f7f623758367c2
     home: https://github.com/coreos/prometheus-operator/
@@ -928,7 +933,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.5.tgz
     version: 1.6.5
-  - created: "2020-03-09T12:56:06.350630302Z"
+  - apiVersion: v1
+    created: "2020-03-09T12:56:06.350630302Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: bae9459f9c19be0fbebe399a8d5edfac1c5bce59f20cb383aa38b0f64202af4c
     home: https://github.com/coreos/prometheus-operator/
@@ -949,7 +955,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.4.tgz
     version: 1.6.4
-  - created: "2020-02-25T16:01:15.661202389Z"
+  - apiVersion: v1
+    created: "2020-02-25T16:01:15.661202389Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 3fcb24db95bf9dbf480a4e9536d4d43c6cae74dc7d17000720c73698b1195b18
     home: https://github.com/coreos/prometheus-operator/
@@ -970,7 +977,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.3.tgz
     version: 1.6.3
-  - created: "2019-11-27T20:34:02.41458783Z"
+  - apiVersion: v1
+    created: "2019-11-27T20:34:02.41458783Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 71d90746d142bfe1d4a1035823fd66a03dc58cbade48aa809a98eb8be360143a
     home: https://github.com/coreos/prometheus-operator/
@@ -991,7 +999,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.2.tgz
     version: 1.6.2
-  - created: "2019-11-27T09:54:31.886540871Z"
+  - apiVersion: v1
+    created: "2019-11-27T09:54:31.886540871Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: fb1309176f4f84bfe1e04efcdfc881ac0eccd2fe509e8bee455b7e6f32fdf250
     home: https://github.com/coreos/prometheus-operator/
@@ -1012,7 +1021,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.1.tgz
     version: 1.6.1
-  - created: "2019-11-15T12:00:52.560184804Z"
+  - apiVersion: v1
+    created: "2019-11-15T12:00:52.560184804Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 74fa0f1f8baee990f0aa64fea1ade45f2276677528f629796ce088592313d0ba
     home: https://github.com/coreos/prometheus-operator/
@@ -1033,7 +1043,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.6.0.tgz
     version: 1.6.0
-  - created: "2019-10-24T09:39:01.868343434Z"
+  - apiVersion: v1
+    created: "2019-10-24T09:39:01.868343434Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 2572e5ea8b44fcc25e872db895017549ed5c0e90e68eb460b16ae86db2919ea8
     home: https://github.com/coreos/prometheus-operator/
@@ -1054,7 +1065,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.5.0.tgz
     version: 1.5.0
-  - created: "2019-10-02T13:31:11.678022587Z"
+  - apiVersion: v1
+    created: "2019-10-02T13:31:11.678022587Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 8888c0cbc8d18acce64974b1923eecfccfca1b6ba67328c88066f7ee451c78a3
     home: https://github.com/coreos/prometheus-operator/
@@ -1075,7 +1087,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.4.4.tgz
     version: 1.4.4
-  - created: "2019-08-02T08:38:25.977869532Z"
+  - apiVersion: v1
+    created: "2019-08-02T08:38:25.977869532Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 4f25f01d7836cb58d157b3fe98dc47ca4b2126ddce52d9ac59d97092f4492015
     home: https://github.com/coreos/prometheus-operator/
@@ -1096,7 +1109,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.4.3.tgz
     version: 1.4.3
-  - created: "2019-08-01T14:14:12.729250532Z"
+  - apiVersion: v1
+    created: "2019-08-01T14:14:12.729250532Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 91d57438a972d2bb8e96f04738c652588016b28c447759bdf58402b325347a21
     home: https://github.com/coreos/prometheus-operator/
@@ -1117,7 +1131,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.4.1.tgz
     version: 1.4.1
-  - created: "2019-07-19T13:13:56.805102401Z"
+  - apiVersion: v1
+    created: "2019-07-19T13:13:56.805102401Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: bb35be27628211f942e38989032e52694f0bceef2005c9151aefa73a692f2eca
     home: https://github.com/coreos/prometheus-operator/
@@ -1138,7 +1153,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.4.0.tgz
     version: 1.4.0
-  - created: "2019-07-03T08:09:24.230707908Z"
+  - apiVersion: v1
+    created: "2019-07-03T08:09:24.230707908Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: ba5f4d5930a49e829fa5f3af53aa8a9a243f5f1eb59d7d8baf8787c422041973
     home: https://github.com/coreos/prometheus-operator/
@@ -1159,7 +1175,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.3.3.tgz
     version: 1.3.3
-  - created: "2019-05-28T09:03:51.20724915Z"
+  - apiVersion: v1
+    created: "2019-05-28T09:03:51.20724915Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 99ccb3fd9cabe70d8d8e83fed06fe4832daf25532f10ff6f7704229fdac43671
     home: https://github.com/coreos/prometheus-operator/
@@ -1180,7 +1197,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.3.2.tgz
     version: 1.3.2
-  - created: "2019-05-21T16:50:55.363068501Z"
+  - apiVersion: v1
+    created: "2019-05-21T16:50:55.363068501Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5780c420c7c1d8bce1343dca7d4ccd6ab6be5d5329fa9d29ba1fc258f494b929
     home: https://github.com/coreos/prometheus-operator/
@@ -1201,7 +1219,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.3.1.tgz
     version: 1.3.1
-  - created: "2019-05-08T15:31:32.835023087Z"
+  - apiVersion: v1
+    created: "2019-05-08T15:31:32.835023087Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 703acbbf125c420e8b0576fb38c9e0db9def201b039bdbf3ffa75efb9244f323
     home: https://github.com/coreos/prometheus-operator/
@@ -1222,7 +1241,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.3.0.tgz
     version: 1.3.0
-  - created: "2019-05-08T12:21:49.37242804Z"
+  - apiVersion: v1
+    created: "2019-05-08T12:21:49.37242804Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 0fc74fcde8d87ab1b86b40bb783e21ed37d5957ab597c68e93547e9932cee72e
     home: https://github.com/coreos/prometheus-operator/
@@ -1243,7 +1263,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.2.0.tgz
     version: 1.2.0
-  - created: "2019-04-16T15:09:00.624862999Z"
+  - apiVersion: v1
+    created: "2019-04-16T15:09:00.624862999Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 749633026b9b6c97027ee1730f698621de3a95fd9d0c0e6030cfb5dfb076e247
     home: https://github.com/coreos/prometheus-operator/
@@ -1264,7 +1285,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.5.tgz
     version: 1.1.5
-  - created: "2019-03-28T17:25:42.670252647Z"
+  - apiVersion: v1
+    created: "2019-03-28T17:25:42.670252647Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 8844084416a7a51d9349fe0359de6118d07a9de29e016fae82a61cb2a5ff38f1
     home: https://github.com/coreos/prometheus-operator/
@@ -1285,7 +1307,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.4.tgz
     version: 1.1.4
-  - created: "2019-03-21T16:43:16.614845502Z"
+  - apiVersion: v1
+    created: "2019-03-21T16:43:16.614845502Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: b9cfa29139e207537443bdcf49d965e7fda88a6c782803b70323c4825da74c0e
     home: https://github.com/coreos/prometheus-operator/
@@ -1306,7 +1329,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.3.tgz
     version: 1.1.3
-  - created: "2019-02-07T14:19:07.12494537Z"
+  - apiVersion: v1
+    created: "2019-02-07T14:19:07.12494537Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: fc7a14969518041965bb7f015fae06baad27de014d90fba0e907cccb535b30ad
     home: https://github.com/coreos/prometheus-operator/
@@ -1327,7 +1351,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.2.tgz
     version: 1.1.2
-  - created: "2019-01-29T12:35:06.220669963Z"
+  - apiVersion: v1
+    created: "2019-01-29T12:35:06.220669963Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 22d065605d4eb103e3800fd99db2100c131f4d72ed2b45101e7973318e218c8c
     home: https://github.com/coreos/prometheus-operator/
@@ -1348,7 +1373,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.1.tgz
     version: 1.1.1
-  - created: "2019-01-15T09:49:27.796143188Z"
+  - apiVersion: v1
+    created: "2019-01-15T09:49:27.796143188Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: eb0a2cb4de3d5be0c4c7e9e71e93a619739f428ca0df963bc9c9f036803d2a29
     home: https://github.com/coreos/prometheus-operator/
@@ -1369,7 +1395,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.1.0.tgz
     version: 1.1.0
-  - created: "2019-01-15T09:19:12.293180204Z"
+  - apiVersion: v1
+    created: "2019-01-15T09:19:12.293180204Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 4504c316a4f4b9a097e1dd4ef3bd4771871b16be2e5b573a55d19ceb4fda693b
     home: https://github.com/coreos/prometheus-operator/
@@ -1390,7 +1417,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.5.tgz
     version: 1.0.5
-  - created: "2019-01-14T11:01:30.962557251Z"
+  - apiVersion: v1
+    created: "2019-01-14T11:01:30.962557251Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 580f503d7ac343560c65d158e400a0d0be3541c6d85f4264a1dee24f89a63e85
     home: https://github.com/coreos/prometheus-operator/
@@ -1411,7 +1439,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.4.tgz
     version: 1.0.4
-  - created: "2018-11-23T10:26:12.05414089Z"
+  - apiVersion: v1
+    created: "2018-11-23T10:26:12.05414089Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: a35488ab92f15758b15ed7798031c835e9446e3dd167c7f032e07103ab1bcde0
     home: https://github.com/coreos/prometheus-operator/
@@ -1432,7 +1461,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.3.tgz
     version: 1.0.3
-  - created: "2018-11-21T10:22:38.984553848Z"
+  - apiVersion: v1
+    created: "2018-11-21T10:22:38.984553848Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 1933cacd4ce5e6f9af4096bce66dad93a97482d929afa06c0edc5fbe20aaeed9
     home: https://github.com/coreos/prometheus-operator/
@@ -1453,7 +1483,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.2.tgz
     version: 1.0.2
-  - created: "2018-11-20T16:39:35.739967724Z"
+  - apiVersion: v1
+    created: "2018-11-20T16:39:35.739967724Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 36393cf4ef6161498f0e806978d558ccbb6da2a378f071af38efc80e8ae38aff
     home: https://github.com/coreos/prometheus-operator/
@@ -1474,7 +1505,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.1.tgz
     version: 1.0.1
-  - created: "2018-11-20T08:36:46.474945676Z"
+  - apiVersion: v1
+    created: "2018-11-20T08:36:46.474945676Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: a78ec15ff70ed9ae040a9135d4c3dad31134d647f04f0021c7f1b41fac6c829c
     home: https://github.com/coreos/prometheus-operator/
@@ -1495,7 +1527,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-1.0.0.tgz
     version: 1.0.0
-  - created: "2018-11-14T08:18:21.212727399Z"
+  - apiVersion: v1
+    created: "2018-11-14T08:18:21.212727399Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 59c10d2c55244e73ffe279ce7c25a11b8092d2888678566846fb3cf411c035d6
     home: https://github.com/coreos/prometheus-operator/
@@ -1514,7 +1547,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.5.tgz
     version: 0.2.5
-  - created: "2018-10-25T12:46:41.828216865Z"
+  - apiVersion: v1
+    created: "2018-10-25T12:46:41.828216865Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 6f8403d0260608af5f249e1d36acdefca2caea9c3cde92af56e6c925a00a9367
     home: https://github.com/coreos/prometheus-operator/
@@ -1533,7 +1567,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.4.tgz
     version: 0.2.4
-  - created: "2018-10-25T12:30:35.952553323Z"
+  - apiVersion: v1
+    created: "2018-10-25T12:30:35.952553323Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: f53b007968b26f209e61cffee0979eb7387f3b89a48beaa8e5e10d4ff923fa46
     home: https://github.com/coreos/prometheus-operator/
@@ -1552,7 +1587,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.3.tgz
     version: 0.2.3
-  - created: "2018-09-25T13:21:33.721544978Z"
+  - apiVersion: v1
+    created: "2018-09-25T13:21:33.721544978Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 201949a334cf6bde9dfae56ca8c32ae5c0d8be43f387eb1544f2fb34e9fa7c90
     home: https://github.com/coreos/prometheus-operator/
@@ -1571,7 +1607,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.2.tgz
     version: 0.2.2
-  - created: "2018-02-28T16:32:37.936266108Z"
+  - apiVersion: v1
+    created: "2018-02-28T16:32:37.936266108Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 5423cddedaab58d3e7fb3bad7a3e5a2064fa3e5ddbbde4b383df96d970522bf2
     home: https://github.com/coreos/prometheus-operator/
@@ -1590,7 +1627,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.1.tgz
     version: 0.2.1
-  - created: "2018-02-28T09:27:38.489206781Z"
+  - apiVersion: v1
+    created: "2018-02-28T09:27:38.489206781Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: ce583a3fe62536f55c4d86a74c9908ccca0c9a91df3ff2c46811958bfd9a42ba
     home: https://github.com/coreos/prometheus-operator/
@@ -1609,7 +1647,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.2.0.tgz
     version: 0.2.0
-  - created: "2018-02-13T08:09:19.752981674Z"
+  - apiVersion: v1
+    created: "2018-02-13T08:09:19.752981674Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 7eef0691b803a3fcb885af1ae88ac477e6094625888e02516e6a962acb3a57c3
     home: https://github.com/coreos/prometheus-operator/
@@ -1628,7 +1667,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.1.0.tgz
     version: 0.1.0
-  - created: "2018-01-08T16:47:09.212442492Z"
+  - apiVersion: v1
+    created: "2018-01-08T16:47:09.212442492Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 71c965dbba80276cfa126e81a79c2991b05e7b561efb3a9396060071d196259c
     home: https://github.com/coreos/prometheus-operator/
@@ -1647,7 +1687,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.3.tgz
     version: 0.0.3
-  - created: "2017-10-25T10:23:29.801339038Z"
+  - apiVersion: v1
+    created: "2017-10-25T10:23:29.801339038Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 18b4a0fd6f1cdeea20a1fd9d716f45a08c9379bbd9ed6a71245776b173ec9b2d
     home: https://github.com/coreos/prometheus-operator/
@@ -1666,7 +1707,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.2.tgz
     version: 0.0.2
-  - created: "2017-08-22T07:26:43.931972379Z"
+  - apiVersion: v1
+    created: "2017-08-22T07:26:43.931972379Z"
     description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
     digest: 04a6fd08368f0bd6e7be29efeabf3c4a34593325a5e22a175fbbb401bb4d58ad
     home: https://github.com/coreos/prometheus-operator/
@@ -1687,7 +1729,8 @@ entries:
     - https://skyscrapers.github.io/charts/cluster-monitoring-0.0.1.tgz
     version: 0.0.1
   concourse:
-  - created: "2018-05-08T13:24:52.52880829Z"
+  - apiVersion: v1
+    created: "2018-05-08T13:24:52.52880829Z"
     description: Concourse is a simple and scalable CI system. This chart only sets up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
     home: https://concourse.ci/
@@ -1709,13 +1752,13 @@ entries:
     version: 0.0.1
   concourse-monitoring:
   - apiVersion: v2
-    created: "2021-01-29T14:30:54.357984693Z"
+    created: "2021-02-08T12:32:03.16303218Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.12.1
     description: A Helm chart for Kubernetes
-    digest: 470ece1b80a162ca9ea8c19b45bc51889a099787381bdd0d36d9a45ef5b7d41b
+    digest: 0bf6fb9d928e4b0fd3bf165b00836dd18e268c75a5f6cffdfd134096d6781068
     name: concourse-monitoring
     type: application
     urls:
@@ -1775,7 +1818,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2021-01-29T14:30:54.360534292Z"
+    created: "2021-02-08T12:32:03.172083196Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -1784,7 +1827,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.12.1
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 4c94abb0d6319afb6732ab43c4e3c53df1ec57c0b8a24b32c3ee68b8447d43d2
+    digest: dadcd7988f5c8c2cdb065e0246625e4d3042920d8108e519d0c81ecd83a8a4ab
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -1953,7 +1996,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-1.0.0.tgz
     version: 1.0.0
-  - created: "2019-12-05T14:57:45.845511502Z"
+  - apiVersion: v1
+    created: "2019-12-05T14:57:45.845511502Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 3946a6e80f384f992db88e3bb711d2dd34f808f7649e1d35acea4c6036683f84
     home: https://github.com/skyscrapers/charts/
@@ -1974,7 +2018,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.5.tgz
     version: 0.2.5
-  - created: "2019-05-28T09:03:51.208725656Z"
+  - apiVersion: v1
+    created: "2019-05-28T09:03:51.208725656Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 7696d8775f92d0f505b6c2cda85f6022b6ca5331e21f02d3f9201fc50de3e586
     home: https://github.com/skyscrapers/charts/
@@ -1995,7 +2040,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.4.tgz
     version: 0.2.4
-  - created: "2019-03-28T11:28:07.11762746Z"
+  - apiVersion: v1
+    created: "2019-03-28T11:28:07.11762746Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: a7ce61b499ffdad8fe5c700411e43ae3959520372349b390c9ce140fe322f099
     home: https://github.com/skyscrapers/charts/
@@ -2016,7 +2062,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.3.tgz
     version: 0.2.3
-  - created: "2019-03-27T16:28:49.715700276Z"
+  - apiVersion: v1
+    created: "2019-03-27T16:28:49.715700276Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 9e63ea319b24a12a2c032518c88e6adaeeabace8d06dde1025917b05e4de3249
     home: https://github.com/skyscrapers/charts/
@@ -2037,7 +2084,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.2.tgz
     version: 0.2.2
-  - created: "2019-02-07T14:19:07.125829434Z"
+  - apiVersion: v1
+    created: "2019-02-07T14:19:07.125829434Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: d3d4ebe7f8374e909a7f0e596900466a55e46275d5cf8c0138a8a08df994cbef
     home: https://github.com/skyscrapers/charts/
@@ -2058,7 +2106,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.1.tgz
     version: 0.2.1
-  - created: "2018-11-20T16:13:53.351826653Z"
+  - apiVersion: v1
+    created: "2018-11-20T16:13:53.351826653Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: efa28370767c7c26383db241a8bee05f83db7330d5b3ff9145f7cd847a0a1fe3
     home: https://github.com/skyscrapers/charts/
@@ -2079,7 +2128,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.2.0.tgz
     version: 0.2.0
-  - created: "2018-07-31T08:56:11.78602883Z"
+  - apiVersion: v1
+    created: "2018-07-31T08:56:11.78602883Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: c355fdceeb4a1550b630708f9b54260ba2e79d842094cc0bb5447133de490ade
     home: https://github.com/skyscrapers/charts/
@@ -2100,7 +2150,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.1.1.tgz
     version: 0.1.1
-  - created: "2018-07-02T08:20:35.135513142Z"
+  - apiVersion: v1
+    created: "2018-07-02T08:20:35.135513142Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 6858eb80995c6e1c52b69baefab0c09bc31d89d4a5872b599e64991e2ee575fd
     home: https://github.com/skyscrapers/charts/
@@ -2121,7 +2172,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.1.0.tgz
     version: 0.1.0
-  - created: "2018-02-28T12:48:13.294778025Z"
+  - apiVersion: v1
+    created: "2018-02-28T12:48:13.294778025Z"
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
     digest: 5a2ce4628fceb7af1cfa90d431b4dee184994ad3e22d773fb82e9bec8b300251
     home: https://github.com/skyscrapers/charts/
@@ -2143,7 +2195,8 @@ entries:
     - https://skyscrapers.github.io/charts/elasticsearch-monitoring-0.0.1.tgz
     version: 0.0.1
   external-dns:
-  - created: "2017-08-23T09:17:31.734430188Z"
+  - apiVersion: v1
+    created: "2017-08-23T09:17:31.734430188Z"
     description: Configure external DNS servers (AWS Route53, Google CloudDNS and others) for Kubernetes Ingresses and Services
     digest: 13f0631cc9e350045e3c6d1feeeee403dc680993739ba7a4177e07610a2d116b
     home: https://github.com/kubernetes-incubator/external-dns
@@ -2165,16 +2218,17 @@ entries:
   fah-client:
   - apiVersion: v2
     appVersion: 7.5.1
-    created: "2021-01-29T14:30:54.360951345Z"
+    created: "2021-02-08T12:32:03.172729546Z"
     description: A Helm chart to deploy the Folding@Home client on Kubernetes
-    digest: c3c9c2109f6eb937a985ffa88f60ff0db602156a6187ba5654c2a239b156e336
+    digest: 181f73a2b2f584f61aa42f224f78a59df33bc205d1547ca06a55ae5bef13d6ab
     name: fah-client
     type: application
     urls:
     - https://skyscrapers.github.io/charts/fah-client-0.1.0.tgz
     version: 0.1.0
   fluentd-cloudwatch:
-  - appVersion: v0.12.33-cloudwatch
+  - apiVersion: v1
+    appVersion: v0.12.33-cloudwatch
     created: "2018-12-12T17:01:17.231556779Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 2563e347bcc383fc97674167552c5af09ac051a3dac4dcfdee82d11eb0fe69d8
@@ -2198,7 +2252,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/fluentd-cloudwatch-0.4.2.tgz
     version: 0.4.2
-  - appVersion: 0.1.1
+  - apiVersion: v1
+    appVersion: 0.1.1
     created: "2018-06-08T08:49:35.340451431Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 266c6253e8e5043a238f253596cabd9eb4a3bfa5e44f91ce00aa89988ac8817f
@@ -2221,7 +2276,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/fluentd-cloudwatch-0.2.3.tgz
     version: 0.2.3
-  - appVersion: 0.1.1
+  - apiVersion: v1
+    appVersion: 0.1.1
     created: "2018-04-24T10:14:21.139540252Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 9605cf960deb46ffef85bb597fe5055f882b7802b2a3535adc524ed60dcbbe1b
@@ -2244,7 +2300,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/fluentd-cloudwatch-0.2.2.tgz
     version: 0.2.2
-  - appVersion: 0.1.1
+  - apiVersion: v1
+    appVersion: 0.1.1
     created: "2018-02-08T14:19:17.560380889Z"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: cbbf7fc72b86c9155987667d98e86a467cb86cda8a52f7c77b3540ddb7470b31
@@ -2270,18 +2327,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-01-29T14:30:54.361149421Z"
+    created: "2021-02-08T12:32:03.173043238Z"
     description: A Helm chart to deploy anything
-    digest: bc5c8aa82776385d6c23c715e88b68cc433e237797e738de1b52db8fc4d978f3
+    digest: 51ce52a3471b984443cdc7ef2fcbd5c0cb2a05daa34b937a1c7f479be4c51805
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2021-01-29T14:30:54.361369962Z"
+    created: "2021-02-08T12:32:03.173845511Z"
     description: A Helm chart for Kubernetes
-    digest: 9a869eda0d75e5ae23e929cf3697747ea480d666b24daed6913f06b52807a9c9
+    digest: 9d34aea36b71d1737475956b98a234c1d364ff1b76acb64bbe1f167a562acf6a
     home: https://github.com/skyscrapers/charts.git
     keywords:
     - skyscrapers
@@ -2335,7 +2392,8 @@ entries:
     - https://skyscrapers.github.io/charts/kube-lego-0.1.10.tgz
     version: 0.1.10
   kube2iam:
-  - created: "2017-08-23T09:17:31.735831502Z"
+  - apiVersion: v1
+    created: "2017-08-23T09:17:31.735831502Z"
     description: Provide IAM credentials to pods based on annotations.
     digest: d20f5f3b58880f53ea4b8c690c0dfe3aa74479619f354dd953a036dc55dc9661
     keywords:
@@ -2627,9 +2685,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2021-01-29T14:30:54.361717768Z"
+    created: "2021-02-08T12:32:03.17583345Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: e56b67e6ded3d4a613b92064ea8d94d4446fe5173d71302f5b00129a136acb1f
+    digest: a6cc00de184ca6bf99098015983bf911125837f7e3faf3fea69c16a79f8c1ebb
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2772,9 +2830,9 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2021-01-29T14:30:54.362014955Z"
+    created: "2021-02-08T12:32:03.176380417Z"
     description: External (not on K8s) NEO4J monitoring using Prometheus-operator and Grafana
-    digest: 0c70651f65d32c21ad15b51651d7a7e6e583bd01e089e3202ffe808da0b17df5
+    digest: 5e360662d4d30bc2165143afb0965caa7395f9b05501aa08efb06ed64414f284
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2806,7 +2864,8 @@ entries:
     - https://skyscrapers.github.io/charts/neo4j-monitoring-0.1.0.tgz
     version: 0.1.0
   nginx-ingress:
-  - created: "2017-08-23T09:17:31.737000128Z"
+  - apiVersion: v1
+    created: "2017-08-23T09:17:31.737000128Z"
     description: An nginx Ingress controller that uses ConfigMap to store the nginx configuration.
     digest: 7f43bb75bee4bca13920db15786587991039880e69d15cb1bfbe405fecc846f9
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
@@ -2826,7 +2885,8 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/nginx-ingress-0.4.3.tgz
     version: 0.4.3
-  - created: "2017-08-21T17:23:00.502599172+02:00"
+  - apiVersion: v1
+    created: "2017-08-21T17:23:00.502599172+02:00"
     description: An nginx Ingress controller that uses ConfigMap to store the nginx configuration.
     digest: 6313532e62ee2bfa84dd89512b83819226244ca381f947ce17a3939aed25f2df
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
@@ -2849,9 +2909,9 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2021-01-29T14:30:54.362616551Z"
+    created: "2021-02-08T12:32:03.177509193Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
-    digest: c69adbd6523a7be6438457b837a244c0b9760ac7470cb3dd71884a3bebce0aaf
+    digest: 95c4de648bddaf345b9695128fcacb3026eaf5630fadec387f5f930dda655542
     maintainers:
     - name: duboisph
     name: openvpn
@@ -2947,13 +3007,13 @@ entries:
     version: 0.0.6-skyscrapers.1
   rds-monitoring:
   - apiVersion: v2
-    created: "2021-01-29T14:30:54.363916344Z"
+    created: "2021-02-08T12:32:03.180147988Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.12.1
     description: A Helm chart for Kubernetes
-    digest: 61a06e82c74f8841d88ef597e11e19fc9ce635d60cd30d8e04137820f6a2d8da
+    digest: c7f93d5ba8e84c1d2fef7fd062d88ddbe96daaefc278e957632f676b21dab366
     name: rds-monitoring
     type: application
     urls:
@@ -3052,13 +3112,13 @@ entries:
     version: 0.1.0
   redshift-monitoring:
   - apiVersion: v2
-    created: "2021-01-29T14:30:54.365280291Z"
+    created: "2021-02-08T12:32:03.182159905Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.12.1
     description: Redshift monitoring using Prometheus-operator and Grafana.
-    digest: a4ef10005452148102705c7f40e2e8a70bafb38eba8e66ae73f21337571d73a2
+    digest: 5bfca0e7f5bd2878773baed951559515ae95cbe7e261172257560557e98c866f
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -3216,9 +3276,9 @@ entries:
   vault:
   - apiVersion: v2
     appVersion: 1.5.2
-    created: "2021-01-29T14:30:54.36898746Z"
+    created: "2021-02-08T12:32:03.186832947Z"
     description: Official HashiCorp Vault Chart
-    digest: 496d2865101f7357c85cca2d6e52a6d9a1db5ab47b72cc6425ab192f88ad3049
+    digest: dc8289230af429bce679e84a9630ce8827799dfa2fea91531cac17936cb6bae8
     home: https://www.vaultproject.io
     icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
     keywords:
@@ -3289,6 +3349,21 @@ entries:
     - https://skyscrapers.github.io/charts/vault-0.3.3.tgz
     version: 0.3.3
   vertical-pod-autoscaler:
+  - apiVersion: v2
+    appVersion: 0.9.2
+    created: "2021-02-08T12:32:03.189003241Z"
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    digest: b1ab6fef84f504774b434ee135e89d00dff15276d602c59b73bdbbea7f5e0af6
+    maintainers:
+    - name: skyscrapers
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+    - https://github.com/FairwindsOps/charts/tree/master/stable/vpa
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.4.2.tgz
+    version: 0.4.2
   - apiVersion: v2
     appVersion: 0.9.0
     created: "2021-01-29T14:30:54.371038791Z"
@@ -3484,4 +3559,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2021-01-29T14:30:54.328302927Z"
+generated: "2021-02-08T12:32:03.046269836Z"
