@@ -107,7 +107,7 @@ Included Grafana dashboards are based of the following sources:
 - [Elasticsearch](https://grafana.com/dashboards/4358)
 - [K8s Autoscaler](https://grafana.com/dashboards/3831)
 - [K8s Calico](https://grafana.com/dashboards/3244)
-- [K8s Nginx Ingress Controller](https://grafana.com/dashboards/6927) with [certificate expiry](https://grafana.com/dashboards/6927)
+- [K8s Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx/tree/master/deploy/grafana/dashboards)
 - [K8s Node Resource Requests](https://github.com/coreos/prometheus-operator/blob/master/helm/grafana/dashboards/kubernetes-resource-requests-dashboard.json)
 - [Concourse](https://github.com/bosh-prometheus/prometheus-boshrelease/tree/master/jobs/grafana_dashboards/templates)
 - [MongoDB](https://grafana.com/dashboards/2583)
