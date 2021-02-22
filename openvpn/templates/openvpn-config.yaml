@@ -208,6 +208,7 @@ data:
     OVPN_K8S_SEARCH
     {{- end }}
     push "dhcp-option DNS OVPN_K8S_DNS"
+    push "dhcp-option DOMAIN-SEARCH amazonaws.com"
 
     {{- if .Values.openvpn.serverConf }}
     {{- .Values.openvpn.serverConf | nindent 4 }}
