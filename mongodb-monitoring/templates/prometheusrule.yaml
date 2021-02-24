@@ -21,16 +21,16 @@ spec:
         description: 'The MongoDB metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: MongoDB monitoring is DOWN!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodbmetricsdown'
-    - alert: MongodbNoConnectionsAvailable
-      expr: mongodb_mongod_connections{state='available'} == 0
+    - alert: MongodbLowConnectionsAvailable
+      expr: mongodb_mongod_connections{state='available'} < 10
       for: 5m
       labels:
         severity: warning
         group: persistence
       annotations:
-        description: 'No connections available anymore on {{`{{$labels.instance}}`}}'
-        summary: 'No connections available anymore on {{`{{$labels.instance}}`}}'
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodbnoconnectionsavailable'
+        description: 'Low connections available anymore on {{`{{$labels.instance}}`}}'
+        summary: 'Low connections available anymore on {{`{{$labels.instance}}`}}'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodblowconnectionsavailable'
     - alert: MongodbUnhealthyMember
       expr: mongodb_mongod_replset_member_health != 1
       for: 1m
