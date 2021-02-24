@@ -23,13 +23,13 @@ spec:
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodbmetricsdown'
     - alert: MongodbLowConnectionsAvailable
       expr: mongodb_mongod_connections{state='available'} < 10
-      for: 5m
+      for: 1m
       labels:
         severity: warning
         group: persistence
       annotations:
-        description: 'Low connections available anymore on {{`{{$labels.instance}}`}}'
-        summary: 'Low connections available anymore on {{`{{$labels.instance}}`}}'
+        description: 'Low connections available on {{`{{$labels.instance}}`}}'
+        summary: 'Low connections available on {{`{{$labels.instance}}`}}'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodblowconnectionsavailable'
     - alert: MongodbUnhealthyMember
       expr: mongodb_mongod_replset_member_health != 1
