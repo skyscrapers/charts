@@ -23,7 +23,7 @@ spec:
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-mongodbmetricsdown'
     - alert: MongodbLowConnectionsAvailable
       expr: mongodb_mongod_connections{state='available'} < 10
-      for: 1m
+      for: 5m
       labels:
         severity: warning
         group: persistence
