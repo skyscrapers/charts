@@ -2,7 +2,7 @@ apiVersion: v2
 description: ElasticSearch monitoring using Prometheus-operator and Grafana.
 name: elasticsearch-monitoring
 type: application
-version: 1.2.4
+version: 1.2.5
 keywords:
   - grafana
   - kube-prometheus
@@ -11,8 +11,6 @@ keywords:
   - elasticsearch
 home: https://github.com/skyscrapers/charts/
 sources:
-  - https://github.com/justwatchcom/elasticsearch_exporter
-  - https://github.com/kubernetes/charts/tree/master/stable/elasticsearch-exporter
   - https://github.com/skyscrapers/charts
 maintainers:
   - name: skyscrapers

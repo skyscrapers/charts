@@ -59,7 +59,7 @@ Create the name of the service account to use
 Truncate names of the subchart-exporters
 */}}
 {{- define "elasticsearch-monitoring.elasticsearchExporterName" -}}
-{{- printf "%s-%s" .Release.Name "elasticsearch-exporter" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name "prometheus-elasticsearch-exporter" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- define "elasticsearch-monitoring.cloudwatchExporterName" -}}
 {{- printf "%s-%s" .Release.Name "prometheus-cloudwatch-exporter" | trunc 63 | trimSuffix "-" -}}
