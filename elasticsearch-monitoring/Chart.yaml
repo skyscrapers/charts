@@ -2,7 +2,7 @@ apiVersion: v2
 description: ElasticSearch monitoring using Prometheus-operator and Grafana.
 name: elasticsearch-monitoring
 type: application
-version: 1.2.3
+version: 1.2.4
 keywords:
   - grafana
   - kube-prometheus

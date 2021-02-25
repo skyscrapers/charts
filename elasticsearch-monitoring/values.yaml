@@ -15,7 +15,7 @@ amazonService: true
 ## ------------------------------ ##
 
 ## The following settings come from the elasticsearch-exporter chart
-elasticsearch-exporter:
+prometheus-elasticsearch-exporter:
   ## number of exporter instances
   ##
   replicaCount: 1
