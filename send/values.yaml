@@ -1,0 +1,97 @@
+# Default values for send.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+send:
+  # The Host where traffic will be served
+  host: ""
+  # The S3 bucket name
+  S3Bucket: ""
+  # Extra Environment variables to add to the Send container
+  extraEnv: []
+
+replicaCount: 1
+
+image:
+  repository: mozilla/send
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 10001
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 10001
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  # Create an Ingress with send.baseUrl as host
+  enabled: false
+  tls: true
+  annotations: {}
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   memory: 512Mi
+  # requests:
+  #   cpu: 10m
+  #   memory: 320Mi
+
+nodeSelector: {}
+
+tolerations: {}
+
+affinity: {}
+
+# Redis dependency values
+# https://github.com/bitnami/charts/blob/master/bitnami/redis/values.yaml
+redis:
+  # Whether to deploy Redis via the bitnami/redis subchart
+  enabled: true
+  # If redis.enabled=false, specify an external Redis URL to use with Firefox Send
+  # externalHost: ""
+
+  # Override some default bitnami/redis values
+  cluster:
+    enabled: false
+  networkPolicy:
+    enabled: false
+  serviceAccount:
+    create: true
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  usePassword: false
+  master:
+    service:
+      type: ClusterIP
+      port: 6379
