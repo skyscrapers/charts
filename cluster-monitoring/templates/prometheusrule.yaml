@@ -165,6 +165,16 @@ spec:
       annotations:
         message: Velero backup {{`{{ $labels.schedule }}`}} has {{`{{ $value | humanizePercentage }}`}} volume snapshot failures.
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerovolumesnapshotfailures'
+    - alert: VeleroBackupOld
+      expr: |-
+        velero_backup_last_successful_timestamp{schedule="velero-cluster-backup"} + 129600 < time()
+      for: 5m
+      labels:
+        severity: warning
+        group: velero
+      annotations:
+        message: Cluster hasn't been backed up for more than 36 hours.
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-velerobackupold'
     - alert: VeleroBackupTooOld
       expr: |-
         velero_backup_last_successful_timestamp{schedule="velero-cluster-backup"} + 260000 < time()
