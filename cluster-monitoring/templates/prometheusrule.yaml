@@ -108,7 +108,7 @@ spec:
         severity: warning
         group: certificate-status
       annotations:
-        message: 'A cert-manager certificate is expiring'
+        message: 'A cert-manager certificate is about to expire'
         description: 'Certificate {{`{{$labels.name}}`}} will expire in less than two weeks and has not been renewed'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-about-to-expire'
 ---
@@ -129,38 +129,12 @@ spec:
       expr: certmanager_certificate_expiration_timestamp_seconds < time() + 604800 # one week
       for: 10m
       labels:
-        severity: critical
+        severity: warning
         group: certificate-status
-        namepsace: application-monitoring # This is not necessarly an existing namespace, the label is just meant for routing the cirtical alert
       annotations:
         message: 'A cert-manager certificate is expiring'
         description: 'Certificate {{`{{$labels.name}}`}} will expire in less than one week and has not been renewed'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-expiring'
----
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: "{{ .Release.Name }}-certificate-status"
-  namespace: "{{ .Release.Namespace }}"
-  labels:
-{{ include "labels" $ | indent 4 }}
-    prometheus: "{{ .Release.Name }}"
-    group: certificate-status
-spec:
-  groups:
-  - name: certmanager-certificate-status.rules
-    rules:
-    - alert: CertificateExpiring
-      expr: certmanager_certificate_expiration_timestamp_seconds < time() + 604800 # one week
-      for: 10m
-      labels:
-        severity: critical
-        group: certificate-status
-        namepsace: application-monitoring
-      annotations:
-        message: 'A cert-manager certificate is expiring'
-        description: 'Certificate {{`{{$labels.name}}`}} will expire in less than one week and has not been renewed'
-        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-expiring'        
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
