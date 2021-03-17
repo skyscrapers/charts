@@ -91,6 +91,54 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
+  name: "{{ .Release.Name }}-certificate-about-to-expire"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    group: certificate-status
+spec:
+  groups:
+  - name: certmanager-certificate-status.rules
+    rules:
+    - alert: CertificateAboutToExpire
+      expr: certmanager_certificate_expiration_timestamp_seconds < time() + 1209600 # two weeks
+      for: 10m
+      labels:
+        severity: warning
+        group: certificate-status
+      annotations:
+        message: 'A cert-manager certificate is about to expire'
+        description: 'Certificate {{`{{$labels.name}}`}} will expire in less than two weeks and has not been renewed'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-about-to-expire'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-certificate-expiring"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+    group: certificate-status
+spec:
+  groups:
+  - name: certmanager-certificate-status.rules
+    rules:
+    - alert: CertificateExpiring
+      expr: certmanager_certificate_expiration_timestamp_seconds < time() + 604800 # one week
+      for: 10m
+      labels:
+        severity: warning
+        group: certificate-status
+      annotations:
+        message: 'A cert-manager certificate is expiring'
+        description: 'Certificate {{`{{$labels.name}}`}} will expire in less than one week and has not been renewed'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-expiring'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
   name: "{{ .Release.Name }}-external-dns-errors"
   namespace: "{{ .Release.Namespace }}"
   labels:
