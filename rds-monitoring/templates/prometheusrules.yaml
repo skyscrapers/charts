@@ -17,6 +17,9 @@ spec:
           expr: aws_rds_cpucredit_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 5
           for: 10m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: warning
             group: persistence
           annotations:
@@ -26,6 +29,9 @@ spec:
           expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 104857600
           for: 10m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: warning
             group: persistence
           annotations:
@@ -35,6 +41,9 @@ spec:
           expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 10485760
           for: 10m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}                  
             severity: critical
             group: persistence
           annotations:
@@ -44,6 +53,9 @@ spec:
           expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", container="prometheus-cloudwatch-exporter"}[6h], 3600 * 24 * 4) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
           for: 6h
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: warning
             group: persistence
           annotations:
@@ -53,6 +65,9 @@ spec:
           expr: predict_linear(aws_rds_free_storage_space_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", container="prometheus-cloudwatch-exporter"}[1h], 3600 * 6) * on (instance) group_left up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 0
           for: 1h
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: critical
             group: persistence
           annotations:
@@ -62,6 +77,9 @@ spec:
           expr: aws_rds_disk_queue_depth_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 1
           for: 30m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: warning
             group: persistence
           annotations:
@@ -71,6 +89,9 @@ spec:
           expr: aws_rds_cpuutilization_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 95
           for: 10m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: info
             group: persistence
           annotations:
@@ -80,6 +101,9 @@ spec:
           expr: aws_rds_replicalag_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} > 30
           for: 10m
           labels:
+{{- if .Values.alertsLabels }}
+{{ toYaml .Values.alertsLabels | indent 12 }}
+{{- end }}
             severity: critical
             group: persistence
           annotations:
