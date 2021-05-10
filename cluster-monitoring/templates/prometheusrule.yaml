@@ -36,6 +36,33 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
+  name: "{{ .Release.Name }}-target-critical"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+spec:
+  groups:
+  - name: target-critical.rules
+    rules:
+    - alert: InfrastructureTargetDown
+      expr: count(up{namespace="infrastructure"} == 0) by (job) / count(up{namespace="infrastructure"}) by (job) > 0.10
+      for: 5m
+      labels:
+        severity: Critical
+      annotations:
+        message: '{{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the infrastructure namespace'
+    - alert: SystemTargetDown
+      expr: count(up{namespace="kube-system"} == 0) by (job) / count(up{namespace="kube-system"}) by (job) > 0.10
+      for: 5m
+      labels:
+        severity: Critical
+      annotations:
+        message: '{{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the kube-system namespace'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
   name: "{{ .Release.Name }}-node-custom"
   namespace: "{{ .Release.Namespace }}"
   labels:
@@ -167,6 +194,35 @@ spec:
       annotations:
         message: External DNS source Errors increasing constantly
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-externaldnssourceerrorsincrease'
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "{{ .Release.Name }}-resource-usage"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+{{ include "labels" $ | indent 4 }}
+    prometheus: "{{ .Release.Name }}"
+spec:
+  groups:
+  - name: resource-usage.rules
+    rules:
+    - alert: ContainerExcessiveCPU
+      expr: sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate) by (container, pod, namespace) / sum(kube_pod_container_resource_requests_cpu_cores) by (container, pod, namespace) > 2.0
+      for: 30m
+      labels:
+        severity: warning
+      annotations:
+        message: 'Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested CPU for 30 min'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivecpu'
+    - alert: ContainerExcessiveMEM
+      expr: sum(container_memory_working_set_bytes) by (container, pod, namespace) / sum(kube_pod_container_resource_requests_memory_bytes) by (container, pod, namespace) > 2.0
+      for: 30m
+      labels:
+        severity: warning
+      annotations:
+        message: 'Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested Memory for 30min'
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivemem'
 
 {{- if .Values.enableVelero }}
 ---
