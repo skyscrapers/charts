@@ -51,14 +51,16 @@ spec:
       labels:
         severity: Critical
       annotations:
-        message: '{{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the infrastructure namespace'
+        message: |
+          {{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the infrastructure namespace
     - alert: SystemTargetDown
       expr: count(up{namespace="kube-system"} == 0) by (job) / count(up{namespace="kube-system"}) by (job) > 0.10
       for: 5m
       labels:
         severity: Critical
       annotations:
-        message: '{{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the kube-system namespace'
+        message: |
+          {{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the kube-system namespace
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -213,7 +215,8 @@ spec:
       labels:
         severity: warning
       annotations:
-        message: 'Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested CPU for 30 min'
+        message: |
+          Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested CPU for 30 min
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivecpu'
     - alert: ContainerExcessiveMEM
       expr: sum(container_memory_working_set_bytes) by (container, pod, namespace) / sum(kube_pod_container_resource_requests_memory_bytes) by (container, pod, namespace) > 2.0
@@ -221,7 +224,8 @@ spec:
       labels:
         severity: warning
       annotations:
-        message: 'Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested Memory for 30min'
+        message: |
+          Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it\'s requested Memory for 30min
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivemem'
 
 {{- if .Values.enableVelero }}
