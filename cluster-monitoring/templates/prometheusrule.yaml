@@ -225,7 +225,7 @@ spec:
         severity: warning
       annotations:
         message: |
-          Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it\'s requested Memory for 30min
+          Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested Memory for 30min
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivemem'
 
 {{- if .Values.enableVelero }}
