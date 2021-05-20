@@ -113,3 +113,4 @@ Included Grafana dashboards are based of the following sources:
 - [MongoDB](https://grafana.com/dashboards/2583)
 - [AWS SQS](https://grafana.com/dashboards/584)
 - [Node Exporter Full](https://grafana.com/grafana/dashboards/1860)
+- [RabbitMQ Overview](https://grafana.com/grafana/dashboards/10991)
