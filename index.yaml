@@ -3,9 +3,9 @@ entries:
   aws-calico:
   - apiVersion: v1
     appVersion: 3.8.1
-    created: "2021-05-21T12:04:09.051025982Z"
+    created: "2021-05-28T07:54:26.535367719Z"
     description: A Helm chart for installing Calico on AWS
-    digest: 99babf32048408b6d7c00783fd496c587d6487e580ca040f2454dbaa15fafabb
+    digest: 85927717784a66b0299e46f26c03b4be77f5a7ca4b977b68d2c7ae47ca124c1a
     icon: https://www.projectcalico.org/wp-content/uploads/2019/09/Calico_Logo_Large_Calico.png
     name: aws-calico
     urls:
@@ -24,9 +24,10 @@ entries:
   aws-service-operator:
   - apiVersion: v1
     appVersion: v0.0.1-alpha4
-    created: "2021-05-21T12:04:09.051484691Z"
-    description: The AWS Service Operator allows you to manage AWS resources using Kubernetes Custom Resource Definitions.
-    digest: fe61926ea7a71bf560577010f3792c8078f2bb7e124f16bf4d0fc47fb352f8c3
+    created: "2021-05-28T07:54:26.617292517Z"
+    description: The AWS Service Operator allows you to manage AWS resources using
+      Kubernetes Custom Resource Definitions.
+    digest: 2bd9dbed2f38ab45a165465b32ca6f10c06d235efaeac704184845f79aa32bc0
     home: https://github.com/awslabs/aws-service-operator
     keywords:
     - AWS
@@ -109,6 +110,32 @@ entries:
     - https://skyscrapers.github.io/charts/cloudwatch-monitoring-0.1.0.tgz
     version: 0.1.0
   cluster-monitoring:
+  - apiVersion: v1
+    created: "2021-05-28T07:54:27.578609075Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.4.6
+    description: Cluster-wide monitoring setup using Prometheus-operator and Grafana.
+    digest: 9625ecd99c398b2c0455aa75007cde38123d35a4c5e4c819c2f704bda7e3e39a
+    home: https://github.com/coreos/prometheus-operator/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - monitoring
+    - prometheus
+    - opsgenie
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: cluster-monitoring
+    sources:
+    - https://github.com/coreos/prometheus-operator
+    - https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    - https://github.com/skyscrapers/charts
+    urls:
+    - https://skyscrapers.github.io/charts/cluster-monitoring-1.14.4.tgz
+    version: 1.14.4
   - apiVersion: v1
     created: "2021-05-21T12:04:09.080782224Z"
     dependencies:
@@ -2043,7 +2070,8 @@ entries:
   concourse:
   - apiVersion: v1
     created: "2018-05-08T13:24:52.52880829Z"
-    description: Concourse is a simple and scalable CI system. This chart only sets up the web portal of concourse.
+    description: Concourse is a simple and scalable CI system. This chart only sets
+      up the web portal of concourse.
     digest: eda43b0bc144d038350c300758d01d772a5cac0419003fc05e0c3d16c41e5a18
     home: https://concourse.ci/
     icon: https://avatars1.githubusercontent.com/u/7809479
@@ -2064,13 +2092,13 @@ entries:
     version: 0.0.1
   concourse-monitoring:
   - apiVersion: v2
-    created: "2021-05-21T12:04:09.081987491Z"
+    created: "2021-05-28T07:54:27.580722547Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.16.0
     description: A Helm chart for Kubernetes
-    digest: 3d282a1ea2f11b5ab4f288e336045e42057f055426a4c292bb94bdb25dc57f46
+    digest: 4438c299972deeb9d1cd54560113533e8a5146db21a6287c4a84bc823a301ad5
     name: concourse-monitoring
     type: application
     urls:
@@ -2156,7 +2184,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2021-05-21T12:04:09.084888715Z"
+    created: "2021-05-28T07:54:27.654827911Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -2165,7 +2193,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.16.0
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 9b562f1830773062c9e10e37a2219d7b9b2f0ebc47fb0ca076df5e2d3e1603b9
+    digest: 094694321f47d77fad66c4c293d31da032b99de7548134c8e9775592616a0954
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -2677,7 +2705,8 @@ entries:
   external-dns:
   - apiVersion: v1
     created: "2017-08-23T09:17:31.734430188Z"
-    description: Configure external DNS servers (AWS Route53, Google CloudDNS and others) for Kubernetes Ingresses and Services
+    description: Configure external DNS servers (AWS Route53, Google CloudDNS and
+      others) for Kubernetes Ingresses and Services
     digest: 13f0631cc9e350045e3c6d1feeeee403dc680993739ba7a4177e07610a2d116b
     home: https://github.com/kubernetes-incubator/external-dns
     keywords:
@@ -2698,9 +2727,9 @@ entries:
   fah-client:
   - apiVersion: v2
     appVersion: 7.5.1
-    created: "2021-05-21T12:04:09.085400788Z"
+    created: "2021-05-28T07:54:27.667301307Z"
     description: A Helm chart to deploy the Folding@Home client on Kubernetes
-    digest: bff61b933a051b71d64b545c69de1aef87eb0f67eae71a7af8ecaf64a2f3d325
+    digest: d280ca9b4c5eedebddfa71b605cd50250d15af028d38f0e6a73cd361b813a15b
     name: fah-client
     type: application
     urls:
@@ -2807,18 +2836,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-21T12:04:09.0855952Z"
+    created: "2021-05-28T07:54:27.672456313Z"
     description: A Helm chart to deploy anything
-    digest: 72ad51e756f71a8a55a5de237c8fd5c777d531f1fbc4756b27e41f9e32d92871
+    digest: 41ae659de11521f3621c04d312a0359b302d782bff971b4c4141db1f72f8c50a
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2021-05-21T12:04:09.085833428Z"
+    created: "2021-05-28T07:54:27.672829545Z"
     description: A Helm chart for Kubernetes
-    digest: 7c7e8c8ea375618d17704714608978d1e0f60211ef39ba376eac36dfe4c7d2c9
+    digest: 49358b547ee78f73a8575f9e1365d5a3010713053dc24e0126d5abdb07ff03bf
     home: https://github.com/skyscrapers/charts.git
     keywords:
     - skyscrapers
@@ -3165,9 +3194,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2021-05-21T12:04:09.086190965Z"
+    created: "2021-05-28T07:54:27.683776711Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: 963d75ad4036148dfa83ffeb2eba4eb436f663ff84bb2cfdaff85be7b8aff2f5
+    digest: 1683e63078792724db1decf1d79612fbf30523df1edb0bd8f807c28f576b7677
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -3330,9 +3359,10 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2021-05-21T12:04:09.08648504Z"
-    description: External (not on K8s) NEO4J monitoring using Prometheus-operator and Grafana
-    digest: 30500e73212e8078d3542900f6d5ceb28a69d31104f266f70ec9513b625a3a54
+    created: "2021-05-28T07:54:27.684254688Z"
+    description: External (not on K8s) NEO4J monitoring using Prometheus-operator
+      and Grafana
+    digest: e583a06d8fc04e802f8ff52864dd380a16f842a6fb1a68007c8035f8e977ef6c
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -3348,7 +3378,8 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     created: "2019-08-21T13:30:09.739302445Z"
-    description: External (not on K8s) NEO4J monitoring using Prometheus-operator and Grafana
+    description: External (not on K8s) NEO4J monitoring using Prometheus-operator
+      and Grafana
     digest: db3de83686cda53af01864601967fcd80d263b5c1f94f02f52035fc524372869
     home: https://github.com/skyscrapers/charts/
     keywords:
@@ -3366,7 +3397,8 @@ entries:
   nginx-ingress:
   - apiVersion: v1
     created: "2017-08-23T09:17:31.737000128Z"
-    description: An nginx Ingress controller that uses ConfigMap to store the nginx configuration.
+    description: An nginx Ingress controller that uses ConfigMap to store the nginx
+      configuration.
     digest: 7f43bb75bee4bca13920db15786587991039880e69d15cb1bfbe405fecc846f9
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
     keywords:
@@ -3387,7 +3419,8 @@ entries:
     version: 0.4.3
   - apiVersion: v1
     created: "2017-08-21T17:23:00.502599172+02:00"
-    description: An nginx Ingress controller that uses ConfigMap to store the nginx configuration.
+    description: An nginx Ingress controller that uses ConfigMap to store the nginx
+      configuration.
     digest: 6313532e62ee2bfa84dd89512b83819226244ca381f947ce17a3939aed25f2df
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
     keywords:
@@ -3409,9 +3442,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2021-05-21T12:04:09.087097686Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
-    digest: ca60a3f3625c32a1bd708463bfab8a57422b44be94027abd27d44e832daccd56
+    created: "2021-05-28T07:54:27.685220415Z"
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
+    digest: 8454752f20d76078604d36fa3d7480278d79400ba5317fc29fd3669c8b587fa2
     maintainers:
     - name: duboisph
     name: openvpn
@@ -3424,7 +3459,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2021-03-22T15:35:06.71392173Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: f512578506bb8926731ee9d14503a81e63669c0708b7f6a2eb46841d26cea84b
     maintainers:
     - name: duboisph
@@ -3438,7 +3475,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2020-11-24T13:54:15.602140877Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: a0dcd1f14cb17df5c2d2ec1f4bd48a349d1db199303f7e28d4d65263da37f0b5
     maintainers:
     - name: duboisph
@@ -3452,7 +3491,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2020-11-09T09:09:39.93149374Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: 9557920f56fe8dd94ad4b82099fc4b5548602118d22238d80b752d75c71b61fd
     maintainers:
     - name: duboisph
@@ -3466,7 +3507,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2020-04-10T10:38:36.122134433Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: da5bea57637c0b039e1ec856bf9251769ad0f04c17b1ae98404091c998da8d4b
     maintainers:
     - name: duboisph
@@ -3480,7 +3523,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2020-04-08T15:08:04.163708534Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: f72c09bf85616776f5f38d9f53136f89f8435e633d436580cc573bf6bc59d1ef
     maintainers:
     - name: duboisph
@@ -3494,7 +3539,9 @@ entries:
   - apiVersion: v1
     appVersion: 2.4.0
     created: "2019-12-05T15:05:00.676383414Z"
-    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate generation is also part of the deployment, and this chart will generate client keys as needed.
+    description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
+      generation is also part of the deployment, and this chart will generate client
+      keys as needed.
     digest: b1aa8611963a677779693efd19370a241e7e8e8e99bed00f4d4e58039603e318
     maintainers:
     - name: duboisph
@@ -3508,7 +3555,8 @@ entries:
   prometheus-operator:
   - apiVersion: v1
     created: "2017-08-21T18:27:10.230925437+02:00"
-    description: Provides easy monitoring definitions for Kubernetes services, and deployment and management of Prometheus instances.
+    description: Provides easy monitoring definitions for Kubernetes services, and
+      deployment and management of Prometheus instances.
     digest: e580726355b9b78f94a81b6077eee194e5ed6c1b88a98fab02b5eb2878134ef5
     maintainers:
     - email: mgoodness@gmail.com
@@ -3521,13 +3569,13 @@ entries:
     version: 0.0.6-skyscrapers.1
   rds-monitoring:
   - apiVersion: v2
-    created: "2021-05-21T12:04:09.088448458Z"
+    created: "2021-05-28T07:54:27.720947923Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.16.0
     description: A Helm chart for Kubernetes
-    digest: 4ba146df4f6d0033827d181b294d3a57d651f502d56742b667300b13268c26c8
+    digest: f6d83e4fc9e9063dc40e47a442566026d6e9ef43c4089e3e7c50448c448eceee
     name: rds-monitoring
     type: application
     urls:
@@ -3665,13 +3713,13 @@ entries:
     version: 0.1.0
   redshift-monitoring:
   - apiVersion: v2
-    created: "2021-05-21T12:04:09.091376937Z"
+    created: "2021-05-28T07:54:27.738155607Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.16.0
     description: Redshift monitoring using Prometheus-operator and Grafana.
-    digest: f6048092bfaf0ab7bd5b2af4f8b359c2a4654b481f33c5ab7bc5e7d3cf3e40e6
+    digest: 2b716454996fe2bb8b0a3b244faa7bc01acbc7b6ce18d14886c6a686e33a92b7
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -3877,13 +3925,13 @@ entries:
   send:
   - apiVersion: v2
     appVersion: v3.0.22
-    created: "2021-05-21T12:04:09.096164069Z"
+    created: "2021-05-28T07:54:27.802998584Z"
     dependencies:
     - name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 10.7.11
     description: A Helm chart for Firefox Send
-    digest: ef07efc04c1e4e4f0e87d0518a22d1989619185fcae5bc06f7064a936bec0f43
+    digest: 92916584a34136c058426a55e07a0e07b3a0b6ae4f03320c047cfb2025b565d4
     keywords:
     - firfox
     - send
@@ -3901,9 +3949,9 @@ entries:
   vault:
   - apiVersion: v2
     appVersion: 1.5.2
-    created: "2021-05-21T12:04:09.098265425Z"
+    created: "2021-05-28T07:54:27.806429253Z"
     description: Official HashiCorp Vault Chart
-    digest: 528a6b3b94fa181fcb680f3b0a970ab607b6f264e2cdac0ab2e3f01f98976fe0
+    digest: e85dd1e885e14af3665af71d93afa953a3b2cf34101e1d10cefa9ad75d1bf3a3
     home: https://www.vaultproject.io
     icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
     keywords:
@@ -3976,9 +4024,10 @@ entries:
   vertical-pod-autoscaler:
   - apiVersion: v2
     appVersion: 0.9.2
-    created: "2021-05-21T12:04:09.099274334Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
-    digest: 8723590f511d80af7e3bae3964f17f3337ab5d28f4b38715e6395ec7cd0c8962
+    created: "2021-05-28T07:54:27.836412854Z"
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
+    digest: 0431ee56608b32243e3ea49ece5ef0eb31205db448945c3991438e16b0ed4d2f
     maintainers:
     - name: skyscrapers
     name: vertical-pod-autoscaler
@@ -3992,7 +4041,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.9.0
     created: "2021-01-29T14:30:54.371038791Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 3903a344fb8f6aed835e256f232ad65464821c0ca1365a4f06e98ca044a70e54
     maintainers:
     - name: skyscrapers
@@ -4007,7 +4057,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.9.0
     created: "2020-11-27T09:00:26.327639294Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 704cee82bf67dad2fc414c9165bbc743fd0f6fdbe6ed0a1b2b0ca21c32bc174a
     maintainers:
     - name: skyscrapers
@@ -4022,7 +4073,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-11-27T08:18:22.294186749Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 7f5c0f719cdad1ae0a6929581bb991ddbda9805fd35ea1465f7e98606039e72d
     maintainers:
     - name: skyscrapers
@@ -4037,7 +4089,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-30T12:16:14.567372279Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 684b17d181ed2ceccfd8ea60b80a5b14d81d28bc53b614af870a27d40e8645dd
     maintainers:
     - name: skyscrapers
@@ -4052,7 +4105,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-29T14:55:03.464289031Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: b19576da42074114120e237f5b1ea4e794bab51ad55b1b99cdbcf0430572bbb6
     maintainers:
     - name: skyscrapers
@@ -4067,7 +4121,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-29T14:33:47.323605523Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 53e8291221751b276d4bc1614400b3c241e26df22649eb3390de4ee81edbce86
     maintainers:
     - name: skyscrapers
@@ -4082,7 +4137,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-29T14:17:38.419299427Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 4e75a470ce598a89af8d87875e5e6ec918b8be78a7baeca666168bd47a41e835
     maintainers:
     - name: skyscrapers
@@ -4097,7 +4153,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-29T14:07:01.085445552Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 76a8dc70b54f29699b1609c0fe740eee707cf91871c57e5a15bb86c74b9bf5ce
     maintainers:
     - name: skyscrapers
@@ -4112,7 +4169,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-29T13:22:46.852655844Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 4deee72b15250fb564b49f26c7daf636911b27299947dd540ea3759b3956b8bf
     maintainers:
     - name: skyscrapers
@@ -4127,7 +4185,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.1
     created: "2020-09-25T13:40:12.161811017Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 271c163ac34bc3e56d61c6d9e36cbf1a4ae6a73df2f4948e5c34552b58cdb2a8
     maintainers:
     - name: skyscrapers
@@ -4142,7 +4201,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.0
     created: "2020-09-23T16:13:39.639492184Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: 82b04b69d758cf64e4ddf80006d6a4d16827f6618d367a07aebcf49ca8387ff8
     maintainers:
     - name: skyscrapers
@@ -4157,7 +4217,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.0
     created: "2020-09-23T15:53:16.676228345Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: cd8c7a5ef7cd5941a1a45327c8d39e6faa595c7e57e0122ad4bf136b8c23153c
     maintainers:
     - name: skyscrapers
@@ -4172,7 +4233,8 @@ entries:
   - apiVersion: v2
     appVersion: 0.8.0
     created: "2020-09-18T12:39:03.134517098Z"
-    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
     digest: d8089aef4ec7842410f2adaf559276ba4ebcadbf470e29a3671099ebb4dc7950
     maintainers:
     - name: skyscrapers
@@ -4184,4 +4246,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-21T12:04:09.050224715Z"
+generated: "2021-05-28T07:54:26.508263454Z"
