@@ -1,5 +1,5 @@
 # Whether to create an "application-monitoring" namespace where you can add
-# additional PrometheusRules and/or ServiceMonitors. This namespace will have a 
+# additional PrometheusRules and/or ServiceMonitors. This namespace will have a
 # `prometheus` label, which can be used with Prometheus' ruleNamespaceSelector
 # and serviceMonitorNamespaceSelector
 createMonitoringNamespace: false
@@ -7,7 +7,10 @@ createMonitoringNamespace: false
 # Whether to include the default dashboards (found in ./dashboards-default)
 defaultDashboards: true
 
-# Specify which extra Grafana dashboards you want to include (found in 
+# Whether to include the istio dashboards (found in ./dashboards-istio)
+istioDashboards: false
+
+# Specify which extra Grafana dashboards you want to include (found in
 # ./dashboards-extra)
 extraDashboards: []
 # - k8s-autoscaler
