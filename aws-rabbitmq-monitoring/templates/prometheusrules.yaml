@@ -1,0 +1,45 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "aws-rabbitmq-monitoring.fullname" . }}
+  labels:
+{{ include "aws-rabbitmq-monitoring.labels" . | indent 4 }}
+    {{- range $key, $val := .Values.prometheusSelectorLabels }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+  name: "{{ .Release.Name }}"
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  groups:
+  - name: amazonmq.rules
+    rules:
+    - alert: AmazonMQCWExporterDown
+      expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
+      for: 10m
+      labels:
+        severity: critical
+        group: persistence
+      annotations:
+        description: 'The AmazonMQ for RabbitMQ metrics exporter for {{`{{ $labels.job }}`}} is down!'
+        summary: AmazonMQ monitoring is DOWN!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqcwexporterdown'
+    - alert: AmazonMQMemoryAboveLimit
+      expr: aws_amazonmq_rabbitmqmemlimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqmemused_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} < 0
+      for: 5m
+      labels:
+        severity: critical
+        group: persistence
+      annotations:
+        description: 'AmazonMQ for RabbitMQ node memory usage is above the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
+        summary: AmazonMQ memory usage too hight!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqmemoryabovelimit'
+    - alert: AmazonMQDiskFreeBelowLimit
+      expr: aws_amazonmq_rabbitmqdiskfreelimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqdiskfree_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 0
+      for: 15m
+      labels:
+        severity: critical
+        group: persistence
+      annotations:
+        description: 'AmazonMQ for RabbitMQ node free disk space is lower than the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
+        summary: AmazonMQ free disk space too low!
+        runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqdiskfreebelowlimit'
