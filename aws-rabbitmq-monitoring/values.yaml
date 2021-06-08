@@ -61,7 +61,7 @@ prometheus-cloudwatch-exporter:
     - aws_namespace: AWS/AmazonMQ
       aws_metric_name: RabbitMQMemUsed
       aws_dimensions: [Node, Broker]
-      aws_statistics: [Average, Maximum]
+      aws_statistics: [Maximum]
     - aws_namespace: AWS/AmazonMQ
       aws_metric_name: RabbitMQDiskFreeLimit
       aws_dimensions: [Node, Broker]
@@ -69,7 +69,7 @@ prometheus-cloudwatch-exporter:
     - aws_namespace: AWS/AmazonMQ
       aws_metric_name: RabbitMQDiskFree
       aws_dimensions: [Node, Broker]
-      aws_statistics: [Average, Minimum]
+      aws_statistics: [Minimum]
 
   nodeSelector: {}
 
