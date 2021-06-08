@@ -60,3 +60,14 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Alerts severity label
+*/}}
+{{- define "aws-rabbitmq-monitoring.alertSeverity" -}}
+{{- if .Values.sla == "production" }}
+{{- "critical" -}}
+{{- else }}
+{{- "warning" }}
+{{- end }}
+{{- end }}

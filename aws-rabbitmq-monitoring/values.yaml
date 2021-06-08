@@ -4,6 +4,11 @@ prometheusSelectorLabels:
 
 scrapeInterval: "60s"
 
+# SLA of the AmazonMQ broker to monitor.
+# If the value is set to "production" the produced alerts will be "critical".
+# If set to another value the alerts will be "warning"
+sla: production
+
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
   # Default values for prometheus-cloudwatch-exporter.

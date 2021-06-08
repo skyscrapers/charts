@@ -17,7 +17,7 @@ spec:
       expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
       for: 10m
       labels:
-        severity: critical
+        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
         group: persistence
       annotations:
         description: 'The AmazonMQ for RabbitMQ metrics exporter for {{`{{ $labels.job }}`}} is down!'
@@ -27,7 +27,7 @@ spec:
       expr: aws_amazonmq_rabbitmqmemlimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqmemused_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} < 0
       for: 5m
       labels:
-        severity: critical
+        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
         group: persistence
       annotations:
         description: 'AmazonMQ for RabbitMQ node memory usage is above the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
@@ -37,7 +37,7 @@ spec:
       expr: aws_amazonmq_rabbitmqdiskfreelimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqdiskfree_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 0
       for: 15m
       labels:
-        severity: critical
+        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
         group: persistence
       annotations:
         description: 'AmazonMQ for RabbitMQ node free disk space is lower than the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
