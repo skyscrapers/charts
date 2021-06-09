@@ -24,7 +24,7 @@ spec:
         summary: AmazonMQ monitoring is DOWN!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqcwexporterdown'
     - alert: AmazonMQMemoryAboveLimit
-      expr: aws_amazonmq_rabbitmqmemlimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqmemused_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} < 0
+      expr: aws_amazonmq_rabbit_mqmem_limit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node,pod) aws_amazonmq_rabbit_mqmem_used_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} < 0
       for: 5m
       labels:
         severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
@@ -34,7 +34,7 @@ spec:
         summary: AmazonMQ memory usage too hight!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqmemoryabovelimit'
     - alert: AmazonMQDiskFreeBelowLimit
-      expr: aws_amazonmq_rabbitmqdiskfreelimit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node) aws_amazonmq_rabbitmqdiskfree_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 0
+      expr: aws_amazonmq_rabbit_mqdisk_free_limit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node,pod) aws_amazonmq_rabbit_mqdisk_free_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 0
       for: 15m
       labels:
         severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}

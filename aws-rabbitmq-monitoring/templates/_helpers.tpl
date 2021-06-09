@@ -65,7 +65,7 @@ Create the name of the service account to use
 Alerts severity label
 */}}
 {{- define "aws-rabbitmq-monitoring.alertSeverity" -}}
-{{- if .Values.sla == "production" }}
+{{- if eq .Values.sla "production" }}
 {{- "critical" -}}
 {{- else }}
 {{- "warning" }}
