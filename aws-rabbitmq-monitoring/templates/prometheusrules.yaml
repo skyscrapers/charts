@@ -14,7 +14,7 @@ spec:
   - name: amazonmq.rules
     rules:
     - alert: AmazonMQCWExporterDown
-      expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
+      expr: up{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} != 1
       for: 10m
       labels:
         severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
@@ -24,7 +24,7 @@ spec:
         summary: AmazonMQ monitoring is DOWN!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqcwexporterdown'
     - alert: AmazonMQMemoryAboveLimit
-      expr: aws_amazonmq_rabbit_mqmem_limit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node,pod) aws_amazonmq_rabbit_mqmem_used_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} < 0
+      expr: aws_amazonmq_rabbit_mqmem_limit_average{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} - on (broker,node,pod) aws_amazonmq_rabbit_mqmem_used_maximum{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} < 0
       for: 5m
       labels:
         severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
@@ -34,7 +34,7 @@ spec:
         summary: AmazonMQ memory usage too hight!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-amazonmqmemoryabovelimit'
     - alert: AmazonMQDiskFreeBelowLimit
-      expr: aws_amazonmq_rabbit_mqdisk_free_limit_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} - on (broker,node,pod) aws_amazonmq_rabbit_mqdisk_free_minimum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} > 0
+      expr: aws_amazonmq_rabbit_mqdisk_free_limit_average{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} - on (broker,node,pod) aws_amazonmq_rabbit_mqdisk_free_minimum{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} > 0
       for: 15m
       labels:
         severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}

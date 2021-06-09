@@ -66,8 +66,15 @@ Alerts severity label
 */}}
 {{- define "aws-rabbitmq-monitoring.alertSeverity" -}}
 {{- if eq .Values.sla "production" }}
-{{- "critical" -}}
+{{- "critical" }}
 {{- else }}
 {{- "warning" }}
 {{- end }}
 {{- end }}
+
+{{/*
+Cloudwatch exporter prometheus job name
+*/}}
+{{- define "aws-rabbitmq-monitoring.cwExporterSvcName" -}}
+{{- print "%s-%s" .Release.Name "prometheus-cloudwatch-exporter" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
