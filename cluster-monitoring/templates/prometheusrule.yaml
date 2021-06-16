@@ -49,7 +49,7 @@ spec:
       expr: count(up{namespace="infrastructure"} == 0) by (job) / count(up{namespace="infrastructure"}) by (job) > 0.10
       for: 5m
       labels:
-        severity: Critical
+        severity: critical
       annotations:
         message: |
           {{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the infrastructure namespace
@@ -57,7 +57,7 @@ spec:
       expr: count(up{namespace="kube-system"} == 0) by (job) / count(up{namespace="kube-system"}) by (job) > 0.10
       for: 5m
       labels:
-        severity: Critical
+        severity: critical
       annotations:
         message: |
           {{`{{ $value | humanizePercentage }}`}} of the {{`{{ $labels.job }}`}} targets are down in the kube-system namespace
