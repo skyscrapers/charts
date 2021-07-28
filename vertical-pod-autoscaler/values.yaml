@@ -27,7 +27,7 @@ recommender:
   extraArgs:
     v: "4"
     pod-recommendation-min-cpu-millicores: 15
-    pod-recommendation-min-memory-mb: 100
+    pod-recommendation-min-memory-mb: 64
   replicaCount: 1
   image:
     # recommender.image.repository -- The location of the recommender image
