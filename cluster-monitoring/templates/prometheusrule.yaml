@@ -210,7 +210,7 @@ spec:
   - name: resource-usage.rules
     rules:
     - alert: ContainerExcessiveCPU
-      expr: sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate) by (container, pod, namespace) / sum(kube_pod_container_resource_requests_cpu_cores) by (container, pod, namespace) > 2.0
+      expr: sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate) by (container, pod, namespace) / sum(kube_pod_container_resource_requests{resource=\"cpu\", unit=\"core\"}) by (container, pod, namespace) > 2.0
       for: 30m
       labels:
         severity: warning
@@ -219,7 +219,7 @@ spec:
           Container {{`{{ $labels.container }}`}} of pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been using {{`{{ $value | humanizePercentage }}`}} of it's requested CPU for 30 min
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-containerexcessivecpu'
     - alert: ContainerExcessiveMEM
-      expr: sum(container_memory_working_set_bytes) by (container, pod, namespace) / sum(kube_pod_container_resource_requests_memory_bytes) by (container, pod, namespace) > 2.0
+      expr: sum(container_memory_working_set_bytes) by (container, pod, namespace) / sum(kube_pod_container_resource_requests{resource=\"memory\", unit=\"byte\"}) by (container, pod, namespace) > 2.0
       for: 30m
       labels:
         severity: warning
