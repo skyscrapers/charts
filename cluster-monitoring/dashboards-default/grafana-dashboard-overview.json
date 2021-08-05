@@ -503,14 +503,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kube_node_status_capacity{resource=\"cpu\", unit=\"core\"}{node=~\"$node\"})",
+          "expr": "sum(kube_node_status_capacity{resource=\"cpu\", unit=\"core\", node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "capacity",
           "refId": "A"
         },
         {
-          "expr": "sum(kube_node_status_allocatable{resource=\"cpu\", unit=\"core\"}{node=~\"$node\"})",
+          "expr": "sum(kube_node_status_allocatable{resource=\"cpu\", unit=\"core\", node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "allocatable",
@@ -612,14 +612,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kube_node_status_allocatable{resource=\"memory\", unit=\"byte\"}{node=~\"$node\"})",
+          "expr": "sum(kube_node_status_allocatable{resource=\"memory\", unit=\"byte\", node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "allocatable",
           "refId": "A"
         },
         {
-          "expr": "sum(kube_node_status_capacity{resource=\"memory\", unit=\"byte\"}{node=~\"$node\"})",
+          "expr": "sum(kube_node_status_capacity{resource=\"memory\", unit=\"byte\", node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "capacity",
