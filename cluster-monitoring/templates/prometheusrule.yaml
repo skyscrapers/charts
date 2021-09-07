@@ -210,7 +210,7 @@ spec:
   - name: resource-usage.rules
     rules:
     - alert: ContainerExcessiveCPU
-      expr: sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate) by (container, pod, namespace) / sum(kube_pod_container_resource_requests{resource="cpu", unit="core"}) by (container, pod, namespace) > 2.0
+      expr: sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate) by (container, pod, namespace) / sum(kube_pod_container_resource_requests{resource="cpu", unit="core"}) by (container, pod, namespace) > 2.0
       for: 30m
       labels:
         severity: warning
