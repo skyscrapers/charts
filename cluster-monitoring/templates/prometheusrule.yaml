@@ -114,7 +114,7 @@ spec:
         group: certificate-status
       annotations:
         message: 'A cert-manager certificate can not be issued/updated'
-        description: 'Certificate {{`{{$labels.name}}`}} can not be issued/updated'
+        description: 'Certificate {{`{{$labels.exported_namespace}}`}}/{{`{{$labels.name}}`}} can not be issued/updated'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-not-ready'
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -138,7 +138,7 @@ spec:
         group: certificate-status
       annotations:
         message: 'A cert-manager certificate is about to expire'
-        description: 'Certificate {{`{{$labels.name}}`}} will expire in less than two weeks and has not been renewed'
+        description: 'Certificate {{`{{$labels.exported_namespace}}`}}/{{`{{$labels.name}}`}} will expire in less than two weeks and has not been renewed'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-about-to-expire'
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -162,7 +162,7 @@ spec:
         group: certificate-status
       annotations:
         message: 'A cert-manager certificate is expiring'
-        description: 'Certificate {{`{{$labels.name}}`}} will expire in less than one week and has not been renewed'
+        description: 'Certificate {{`{{$labels.exported_namespace}}`}}/{{`{{$labels.name}}`}} will expire in less than one week and has not been renewed'
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-certificate-expiring'
 ---
 apiVersion: monitoring.coreos.com/v1
