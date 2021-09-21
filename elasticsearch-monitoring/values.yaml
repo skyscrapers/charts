@@ -24,12 +24,6 @@ prometheus-elasticsearch-exporter:
   ##
   restartPolicy: Always
 
-  image:
-    repository: justwatch/elasticsearch_exporter
-    tag: 1.1.0
-    pullPolicy: IfNotPresent
-    pullSecret: ""
-
   ## Set enabled to false if you don't want securityContext
   ## in your Deployment.
   ## The below values are the default for kubernetes.
