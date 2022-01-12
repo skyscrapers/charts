@@ -1,8 +1,11 @@
 # Prometheus MatchLabel selectors
 prometheusSelectorLabels:
   prometheus: cluster-monitoring
-  
+
 scrapeInterval: "60s"
+
+# SLA of the Redshift cluster to monitor.
+# sla: production
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:

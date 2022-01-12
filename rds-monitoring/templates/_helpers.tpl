@@ -71,3 +71,14 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Alert labels
+*/}}
+{{- define "rds-monitoring.alertLabels" -}}
+group: persistence
+{{- if .Values.sla }}
+sla: {{ .Values.sla }}
+{{- end }}
+{{ toYaml .Values.alertsLabels }}
+{{- end }}

@@ -12,6 +12,9 @@ fullnameOverride: ""
 ## https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/es-metricscollected.html
 amazonService: true
 
+# SLA of the Elasticsearch cluster to monitor.
+# sla: production
+
 ## ------------------------------ ##
 
 ## The following settings come from the elasticsearch-exporter chart

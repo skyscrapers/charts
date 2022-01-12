@@ -17,8 +17,8 @@ spec:
       expr: up{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} != 1
       for: 10m
       labels:
-        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
-        group: persistence
+{{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'The AmazonMQ for RabbitMQ metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: AmazonMQ monitoring is DOWN!
@@ -27,8 +27,8 @@ spec:
       expr: aws_amazonmq_rabbit_mqmem_limit_average{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} - on (broker,node,pod) aws_amazonmq_rabbit_mqmem_used_maximum{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} < 0
       for: 5m
       labels:
-        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
-        group: persistence
+{{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'AmazonMQ for RabbitMQ node memory usage is above the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
         summary: AmazonMQ memory usage too hight!
@@ -37,8 +37,8 @@ spec:
       expr: aws_amazonmq_rabbit_mqdisk_free_limit_average{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} - on (broker,node,pod) aws_amazonmq_rabbit_mqdisk_free_minimum{job="{{ include "aws-rabbitmq-monitoring.cwExporterSvcName" . }}"} > 0
       for: 15m
       labels:
-        severity: {{ include "aws-rabbitmq-monitoring.alertSeverity" . }}
-        group: persistence
+{{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'AmazonMQ for RabbitMQ node free disk space is lower than the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
         summary: AmazonMQ free disk space too low!

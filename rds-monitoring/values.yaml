@@ -12,8 +12,11 @@ tagFilter:
   key: Environment
   value: production
 
-# Override the labels of the alerts with custom labels.
-alertsLabels:
+# SLA of the RDS cluster to monitor.
+# sla: production
+
+# Add additional labels to the alerts.
+alertsLabels: {}
 
 ## The following settings are for the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:

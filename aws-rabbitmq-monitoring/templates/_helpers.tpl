@@ -62,13 +62,12 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-Alerts severity label
+Alert labels
 */}}
-{{- define "aws-rabbitmq-monitoring.alertSeverity" -}}
-{{- if eq .Values.sla "production" }}
-{{- "critical" }}
-{{- else }}
-{{- "warning" }}
+{{- define "aws-rabbitmq-monitoring.alertLabels" -}}
+group: persistence
+{{- if .Values.sla }}
+sla: {{ .Values.sla }}
 {{- end }}
 {{- end }}
 

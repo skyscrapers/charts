@@ -43,3 +43,13 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{/*
+Alert labels
+*/}}
+{{- define "redshift-monitoring.alertLabels" -}}
+group: persistence
+{{- if .Values.sla }}
+sla: {{ .Values.sla }}
+{{- end }}
+{{- end }}
