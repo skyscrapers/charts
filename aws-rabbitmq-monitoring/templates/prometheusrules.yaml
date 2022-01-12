@@ -18,6 +18,7 @@ spec:
       for: 10m
       labels:
 {{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'The AmazonMQ for RabbitMQ metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: AmazonMQ monitoring is DOWN!
@@ -27,6 +28,7 @@ spec:
       for: 5m
       labels:
 {{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'AmazonMQ for RabbitMQ node memory usage is above the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
         summary: AmazonMQ memory usage too hight!
@@ -36,6 +38,7 @@ spec:
       for: 15m
       labels:
 {{ include "aws-rabbitmq-monitoring.alertLabels" . | indent 8 }}
+        severity: critical
       annotations:
         description: 'AmazonMQ for RabbitMQ node free disk space is lower than the limit for {{`{{ $labels.broker }}`}}! Cluster is now blocking producer connections.'
         summary: AmazonMQ free disk space too low!

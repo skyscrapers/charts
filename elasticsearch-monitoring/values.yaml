@@ -13,7 +13,7 @@ fullnameOverride: ""
 amazonService: true
 
 # SLA of the Elasticsearch cluster to monitor.
-sla:
+# sla: production
 
 ## ------------------------------ ##
 

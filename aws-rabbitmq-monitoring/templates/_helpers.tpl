@@ -66,7 +66,6 @@ Alert labels
 */}}
 {{- define "aws-rabbitmq-monitoring.alertLabels" -}}
 group: persistence
-severity: critical
 {{- if .Values.sla }}
 sla: {{ .Values.sla }}
 {{- end }}

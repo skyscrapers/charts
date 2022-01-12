@@ -5,7 +5,7 @@ prometheusSelectorLabels:
 scrapeInterval: "60s"
 
 # SLA of the AmazonMQ broker to monitor.
-sla:
+# sla: production
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:

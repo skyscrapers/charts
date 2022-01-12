@@ -13,7 +13,7 @@ tagFilter:
   value: production
 
 # SLA of the RDS cluster to monitor.
-sla:
+# sla: production
 
 # Add additional labels to the alerts.
 alertsLabels: {}
