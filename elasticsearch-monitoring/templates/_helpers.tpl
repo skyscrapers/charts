@@ -64,3 +64,13 @@ Truncate names of the subchart-exporters
 {{- define "elasticsearch-monitoring.cloudwatchExporterName" -}}
 {{- printf "%s-%s" .Release.Name "prometheus-cloudwatch-exporter" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Alert labels
+*/}}
+{{- define "elasticsearch-monitoring.alertLabels" -}}
+group: persistence
+{{- if .Values.sla }}
+sla: {{ .Values.sla }}
+{{- end }}
+{{- end }}

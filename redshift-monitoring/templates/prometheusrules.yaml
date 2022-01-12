@@ -17,8 +17,8 @@ spec:
       expr: up{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1
       for: 5m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: critical
-        group: persistence
       annotations:
         description: 'The Redshift metrics exporter for {{`{{ $labels.job }}`}} is down!'
         summary: Redshift monitoring is DOWN!
@@ -27,8 +27,8 @@ spec:
       expr: aws_redshift_health_status_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 1 and aws_redshift_maintenance_mode_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} == 0
       for: 5m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: critical
-        group: persistence
       annotations:
         description: 'Redshift cluster is not healthy for {{`{{ $labels.cluster }}`}}!'
         summary: Redshift cluster is not healthy!
@@ -37,8 +37,9 @@ spec:
       expr: aws_redshift_maintenance_mode_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} != 0
       for: 5m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: warning
-        group: persistence
+      annotations:
         description: 'Redshift cluster is in maintenance mode for {{`{{ $labels.cluster }}`}}!'
         summary: Redshift cluster is in maintenance mode!
         runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-RedshiftMaintenanceMode'
@@ -46,8 +47,8 @@ spec:
       expr: aws_redshift_percentage_disk_space_used_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 95
       for: 15m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: warning
-        group: persistence
       annotations:
         description: 'AWS Redshift cluster {{`{{ $labels.cluster }}`}} is low on free disk space'
         summary: AWS Redshift low disk
@@ -56,8 +57,8 @@ spec:
       expr: aws_redshift_percentage_disk_space_used_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 99
       for: 15m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: critical
-        group: persistence
       annotations:
         description: 'AWS Redshift cluster {{`{{ $labels.cluster }}`}} is out of free disk space'
         summary: AWS Redshift low disk
@@ -66,8 +67,8 @@ spec:
       expr: aws_redshift_cpuutilization_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} >= 95
       for: 30m
       labels:
+{{ include "redshift-monitoring.alertLabels" . | indent 8 }}
         severity: warning
-        group: persistence
       annotations:
         description: 'AWS Redshift cluster {{`{{ $labels.cluster }}`}} is running at max CPU for 30 minutes'
         summary: AWS Redshift high CPU
