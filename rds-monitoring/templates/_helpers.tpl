@@ -80,5 +80,7 @@ group: persistence
 {{- if .Values.sla }}
 sla: {{ .Values.sla }}
 {{- end }}
+{{- if .Values.alertsLabels }}
 {{ toYaml .Values.alertsLabels }}
+{{- end }}
 {{- end }}

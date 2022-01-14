@@ -16,7 +16,7 @@ tagFilter:
 # sla: production
 
 # Add additional labels to the alerts.
-alertsLabels: {}
+# alertsLabels:
 
 ## The following settings are for the prometheus-cloudwatch-exporter chart
 prometheus-cloudwatch-exporter:
