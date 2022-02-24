@@ -33,7 +33,7 @@
     ]
   },
   "description": "A dashboard for the CoreDNS DNS server which also exposes NodeLocal Cache  metrics.",
-  "editable": true,
+  "editable": false,
   "gnetId": 11759,
   "graphTooltip": 0,
   "id": null,

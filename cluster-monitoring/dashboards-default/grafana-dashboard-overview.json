@@ -13,7 +13,7 @@
     ]
   },
   "description": "Summary dashboard of all relevant metrics",
-  "editable": true,
+  "editable": false,
   "gnetId": 6417,
   "graphTooltip": 1,
   "id": 33,

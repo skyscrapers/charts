@@ -47,7 +47,7 @@
     ]
   },
   "description": "Neo4j (>= 3.5) monitoring dashboard, with Prometheus data source.\nRead more at https://graphaware.com/neo4j/2019/06/11/monitoring-neo4j-prometheus.html",
-  "editable": true,
+  "editable": false,
   "gnetId": 10371,
   "graphTooltip": 0,
   "id": null,

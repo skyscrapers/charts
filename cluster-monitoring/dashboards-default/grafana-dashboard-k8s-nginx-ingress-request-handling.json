@@ -32,7 +32,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "gnetId": 9614,
   "graphTooltip": 1,
   "id": null,

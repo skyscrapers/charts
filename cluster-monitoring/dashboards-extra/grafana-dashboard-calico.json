@@ -13,7 +13,7 @@
     ]
   },
   "description" : "Calico cluster monitoring dashboard",
-  "editable"    : true,
+  "editable"    : false,
   "gnetId"      : 3244,
   "graphTooltip": 0,
   "hideControls": false,
