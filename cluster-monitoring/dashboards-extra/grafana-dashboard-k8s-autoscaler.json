@@ -13,7 +13,7 @@
     ]
   },
   "description" : "Super simple dashboard showing an overview of kubernetes cluster autoscaling activity and status, using metrics reported by the autoscaler to prometheus.\r\n\r\nhttps://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler",
-  "editable"    : true,
+  "editable"    : false,
   "gnetId"      : 3831,
   "graphTooltip": 0,
   "hideControls": false,

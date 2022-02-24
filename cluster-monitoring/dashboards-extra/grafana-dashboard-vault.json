@@ -13,7 +13,7 @@
     ]
   },
   "description" : " ",
-  "editable"    : true,
+  "editable"    : false,
   "gnetId"      : 7700,
   "graphTooltip": 0,
   "id"          : 33,
