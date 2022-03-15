@@ -43,6 +43,10 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
+            {{- if .Values.admissionController.servicemonitor.enabled }}
+            - name: metrics
+              containerPort: 8944
+            {{- end }}
           env:
             - name: NAMESPACE
               valueFrom:
