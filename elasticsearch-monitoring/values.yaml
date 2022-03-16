@@ -197,9 +197,6 @@ prometheus-cloudwatch-exporter:
 
   replicaCount: 1
 
-  image:
-    tag: cloudwatch_exporter-0.11.0
-
   # Example proxy configuration:
   # command:
   #   - 'java'
