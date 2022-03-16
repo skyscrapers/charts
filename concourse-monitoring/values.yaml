@@ -15,9 +15,6 @@ blackbox_scrape_interval: 60s
 prometheus-cloudwatch-exporter:
   replicaCount: 1
 
-  image:
-    tag: cloudwatch_exporter-0.11.0
-
   serviceMonitor:
     enabled: true
     interval: 60s
