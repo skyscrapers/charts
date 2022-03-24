@@ -1017,13 +1017,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_working_set_bytes{pod=~\"$pod\",image!=\"\",container=\"fluent-bit\"}\n",
+          "expr": "container_memory_working_set_bytes{pod=~\"$pod\",image!=\"\",container=~\".*fluent-bit.*\"}\n",
           "interval": "",
           "legendFormat": "{{ pod }}",
           "refId": "A"
         },
         {
-          "expr": "avg(kube_pod_container_resource_requests_memory_bytes{pod=~\"$pod\",container=\"fluent-bit\"}) by (pod)",
+          "expr": "avg(kube_pod_container_resource_requests_memory_bytes{pod=~\"$pod\",container=~\".*fluent-bit.*\"}) by (pod)",
           "interval": "",
           "legendFormat": "{{ pod }} request",
           "refId": "B"
@@ -1122,13 +1122,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_cpu_usage_seconds_total{pod=~\"$pod\",image!=\"\",container=\"fluent-bit\"}[5m])",
+          "expr": "rate(container_cpu_usage_seconds_total{pod=~\"$pod\",image!=\"\",container=~\".*fluent-bit.*\"}[5m])",
           "interval": "",
           "legendFormat": "{{ pod }}",
           "refId": "A"
         },
         {
-          "expr": "avg(kube_pod_container_resource_requests_cpu_cores{pod=~\"$pod\",container=\"fluent-bit\"}) by (pod)",
+          "expr": "avg(kube_pod_container_resource_requests_cpu_cores{pod=~\"$pod\",container=~\".*fluent-bit.*\"}) by (pod)",
           "interval": "",
           "legendFormat": "{{ pod }} request",
           "refId": "B"
@@ -1179,7 +1179,6 @@
   "refresh": "5s",
   "schemaVersion": 27,
   "style": "dark",
-  "tags": [],
   "templating": {
     "list": [
       {
@@ -1211,7 +1210,7 @@
           "value": "$__all"
         },
         "datasource": "Prometheus",
-        "definition": "label_values(fluentbit_build_info{container=\"fluent-bit\"}, pod)",
+        "definition": "label_values(fluentbit_build_info{container=~\".*fluent-bit.*\"}, pod)",
         "description": null,
         "error": null,
         "hide": 0,
@@ -1221,7 +1220,7 @@
         "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(fluentbit_build_info{container=\"fluent-bit\"}, pod)",
+          "query": "label_values(fluentbit_build_info{container=~\".*fluent-bit.*\"}, pod)",
           "refId": "Prometheus-pod-Variable-Query"
         },
         "refresh": 2,
@@ -1265,8 +1264,12 @@
       "30d"
     ]
   },
+  "tags": [
+    "fluent-bit",
+    "logging"
+  ],
   "timezone": "",
-  "title": "fluent-bit",
+  "title": "Kubernetes / Fluent Bit",
   "uid": "fluent-bit",
   "version": 3
 }
