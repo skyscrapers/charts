@@ -1,8 +1,0 @@
-{{- if .Values.createMonitoringNamespace }}
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: application-monitoring
-  labels:
-    prometheus: "{{ .Release.Name }}"
-{{- end }}
