@@ -2,7 +2,7 @@ apiVersion: v2
 description: ElasticSearch monitoring using Prometheus-operator and Grafana.
 name: elasticsearch-monitoring
 type: application
-version: 1.6.0
+version: 1.6.1
 keywords:
   - grafana
   - kube-prometheus
@@ -15,7 +15,6 @@ sources:
 maintainers:
   - name: skyscrapers
     email: hello@skyscrapers.eu
-engine: gotpl
 dependencies:
   - name: prometheus-elasticsearch-exporter
     version: 4.9.0
