@@ -53,7 +53,7 @@ prometheus-cloudwatch-exporter:
     create: true
 
   config: |-
-    region: eu-west-1
+    region: {{ .Values.aws.region }}
     period_seconds: 60
     set_timestamp: false
     metrics:

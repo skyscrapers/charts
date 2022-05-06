@@ -249,7 +249,7 @@ prometheus-cloudwatch-exporter:
 
   config: |-
     # Only get statistics for AWS/ES FreeStorageSpace
-    region: eu-west-1
+    region: {{ .Values.aws.region }}
     period_seconds: 60  # Important to get accurate AWS ES readings
     set_timestamp: false
     metrics:
