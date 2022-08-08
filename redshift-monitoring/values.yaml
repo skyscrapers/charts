@@ -8,12 +8,8 @@ scrapeInterval: "60s"
 # sla: production
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-cloudwatch-exporter/values.yaml
 prometheus-cloudwatch-exporter:
-  # Default values for prometheus-cloudwatch-exporter.
-  # This is a YAML-formatted file.
-  # Declare variables to be passed into your templates.
-
-  replicaCount: 1
 
   service:
     type: ClusterIP
@@ -21,37 +17,16 @@ prometheus-cloudwatch-exporter:
     targetPort: 9100
     annotations: {}
 
-  serviceMonitor:
-    enabled: false
-
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # limits:
-    #   memory: 128Mi
-
   aws:
-    region: eu-west-1
-    ## kube2iam
-    # role: <arn>
+    stsRegional:
+      enabled: true
 
   serviceAccount:
     create: true
     ## IRSA
     # annotations:
     #   eks.amazonaws.com/role-arn: <arn>
-
-  securityContext:
-    runAsUser: 65534
-    fsGroup: 65534
-
-  rbac:
-    create: true
+    #   eks.amazonaws.com/sts-regional-endpoints: "true"
 
   config: |-
     region: {{ .Values.aws.region }}
@@ -111,8 +86,5 @@ prometheus-cloudwatch-exporter:
       aws_dimensions: [NodeID, ClusterIdentifier]
       aws_statistics: [Average]
 
-  nodeSelector: {}
-
-  tolerations: []
-
-  affinity: {}
+  serviceMonitor:
+    enabled: false

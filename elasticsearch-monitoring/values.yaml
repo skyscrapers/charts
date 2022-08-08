@@ -18,148 +18,18 @@ amazonService: true
 ## ------------------------------ ##
 
 ## The following settings come from the elasticsearch-exporter chart
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-elasticsearch-exporter/values.yaml
 prometheus-elasticsearch-exporter:
-  ## number of exporter instances
-  ##
-  replicaCount: 1
-
-  ## restart policy for all containers
-  ##
-  restartPolicy: Always
-
-  ## Set enabled to false if you don't want securityContext
-  ## in your Deployment.
-  ## The below values are the default for kubernetes.
-  ## Openshift won't deploy with runAsUser: 1000 without additional permissions.
-  securityContext:
-    enabled: true  # Should be set to false when running on OpenShift
-    runAsUser: 1000
-
-  resources: {}
-    # requests:
-    #   cpu: 5m
-    #   memory: 48Mi
-    # limits:
-    #   memory: 48Mi
-
-  priorityClassName: ""
-
-  nodeSelector: {}
-
-  tolerations: {}
-
-  podAnnotations: {}
-
-  affinity: {}
-
-  service:
-    type: ClusterIP
-    httpPort: 9108
-    metricsPort:
-      name: http
-    annotations: {}
-    labels: {}
-
-  ## Extra environment variables that will be passed into the exporter pod
-  ## example:
-  ## env:
-  ##   KEY_1: value1
-  ##   KEY_2: value2
-  # env:
-
-  # A list of secrets and their paths to mount inside the pod
-  # This is useful for mounting certificates for security
-  secretMounts: []
-  #  - name: elastic-certs
-  #    secretName: elastic-certs
-  #    path: /ssl
-
   es:
     ## Address (host and port) of the Elasticsearch node we should connect to.
     ## This could be a local node (localhost:9200, for instance), or the address
     ## of a remote Elasticsearch server. When basic auth is needed,
     ## specify as: <proto>://<user>:<password>@<host>:<port>. e.g., http://admin:pass@localhost:9200.
     ##
-    uri: http://admin:pass@localhost:9200
-
-    ## If true, query stats for all nodes in the cluster, rather than just the
-    ## node we connect to.
-    ##
-    all: true
-
-    ## If true, query stats for all indices in the cluster.
-    ##
-    indices: true
-
-    ## If true, query settings stats for all indices in the cluster.
-    ##
-    indices_settings: true
-
-    ## If true, query stats for shards in the cluster.
-    ##
-    shards: true
-
-    ## If true, query stats for snapshots in the cluster.
-    ##
-    snapshots: true
-
-    ## If true, query stats for cluster settings.
-    ##
-    cluster_settings: false
-
-    ## Timeout for trying to get stats from Elasticsearch. (ex: 20s)
-    ##
-    timeout: 30s
-
-    ## Skip SSL verification when connecting to Elasticsearch
-    ## (only available if image.tag >= 1.0.4rc1)
-    ##
-    sslSkipVerify: false
-
-    ssl:
-      ## If true, a secure connection to ES cluster is used (requires SSL certs below)
-      ##
-      enabled: false
-
-      ## If true, certs from secretMounts will be need to be referenced instead of certs below
-      ##
-      useExistingSecrets: false
-
-      ca:
-
-        ## PEM that contains trusted CAs used for setting up secure Elasticsearch connection
-        ##
-        # pem:
-
-        # Path of ca pem file which should match a secretMount path
-        # path: /ssl/ca.pem
-      client:
-
-        ## PEM that contains the client cert to connect to Elasticsearch.
-        ##
-        # pem:
-
-        # Path of client pem file which should match a secretMount path
-        # pemPath: /ssl/client.pem
-
-        ## Private key for client auth when connecting to Elasticsearch
-        ##
-        # key:
-
-        # Path of client key file which should match a secretMount path
-        # keyPath: /ssl/client.key
-
-  web:
-    ## Path under which to expose metrics.
-    ##
-    path: /metrics
+    uri: http://localhost:9200
 
   serviceMonitor:
-    ## If true, a ServiceMonitor CRD is created for a prometheus operator
-    ## https://github.com/coreos/prometheus-operator
-    ##
     enabled: true
-    #  namespace: monitoring
     labels:
       prometheus: cluster-monitoring
     interval: 60s
@@ -167,85 +37,23 @@ prometheus-elasticsearch-exporter:
     scheme: http
 
   prometheusRule:
-    ## If true, a PrometheusRule CRD is created for a prometheus operator
-    ## https://github.com/coreos/prometheus-operator
-    ##
     enabled: false
-    #  namespace: monitoring
-    labels: {}
-    rules: []
-
-  # Create a service account
-  # To use a service account not handled by the chart, set the name here
-  # and set create to false
-  serviceAccount:
-    create: false
-    name: default
-
-  # Creates a PodSecurityPolicy and the role/rolebinding
-  # allowing the serviceaccount to use it
-  podSecurityPolicies:
-    enabled: true
 
 ## ------------------------------ ##
 
 ## The following settings come from the prometheus-cloudwatch-exporter chart
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-cloudwatch-exporter/values.yaml
 prometheus-cloudwatch-exporter:
-  # Default values for prometheus-cloudwatch-exporter.
-  # This is a YAML-formatted file.
-  # Declare variables to be passed into your templates.
-
-  replicaCount: 1
-
-  # Example proxy configuration:
-  # command:
-  #   - 'java'
-  #   - '-Dhttp.proxyHost=proxy.example.com'
-  #   - '-Dhttp.proxyPort=3128'
-  #   - '-Dhttps.proxyHost=proxy.example.com'
-  #   - '-Dhttps.proxyPort=3128'
-  #   - '-jar'
-  #   - '/cloudwatch_exporter.jar'
-  #   - '9106'
-  #   - '/config/config.yml'
-
-  command: []
-
-  service:
-    type: ClusterIP
-    port: 9106
-    portName: http
-    annotations: {}
-    labels: {}
-
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # requests:
-    #   cpu: 5m
-    #   memory: 160Mi
-    # limits:
-    #   memory: 160Mi
-
   aws:
-    region: eu-west-1
-    ## kube2iam
-    # role: <arn>
+    stsRegional:
+      enabled: true
 
   serviceAccount:
     create: true
     ## IRSA
     # annotations:
     #   eks.amazonaws.com/role-arn: <arn>
-
-  securityContext:
-    runAsUser: 65534
-    fsGroup: 65534
-
-  rbac:
-    create: true
+    #   eks.amazonaws.com/sts-regional-endpoints: "true"
 
   config: |-
     # Only get statistics for AWS/ES FreeStorageSpace
@@ -262,66 +70,9 @@ prometheus-cloudwatch-exporter:
       aws_dimensions: [ClientId, DomainName]
       aws_statistics: [Maximum]
 
-  nodeSelector: {}
-
-  tolerations: []
-
-  affinity: {}
-
-  # Configurable health checks against the /healthy and /ready endpoints
-  livenessProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 3
-
-  readinessProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 3
-
   serviceMonitor:
-    # When set true then use a ServiceMonitor to configure scraping
     enabled: true
-    # Set the namespace the ServiceMonitor should be deployed
-    # namespace: monitoring
-    # Set how frequently Prometheus should scrape
     interval: 300s
-    # Set path to cloudwatch-exporter telemtery-path
-    # telemetryPath: /metrics
-    # Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator
     labels:
       prometheus: "cluster-monitoring"
-    # Set timeout for scrape
     timeout: 10s
-    # Set relabelings for the ServiceMonitor, use to apply to samples before scraping
-    # relabelings: []
-    # Set metricRelabelings for the ServiceMonitor, use to apply to samples for ingestion
-    # metricRelabelings: []
-    #
-    # Example - note the Kubernetes convention of camelCase instead of Prometheus' snake_case
-    # metricRelabelings:
-    #   - sourceLabels: [dbinstance_identifier]
-    #     action: replace
-    #     replacement: mydbname
-    #     targetLabel: dbname
-
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    labels: {}
-    path: /
-    hosts:
-      - chart-example.local
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-
-  securityContext:
-    runAsUser: 65534  # run as nobody user instead of root

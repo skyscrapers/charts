@@ -18,16 +18,12 @@ tagFilter:
 # Add additional labels to the alerts.
 # alertsLabels:
 
-## The following settings are for the prometheus-cloudwatch-exporter chart
+## The following settings come from the prometheus-cloudwatch-exporter chart
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-cloudwatch-exporter/values.yaml
 prometheus-cloudwatch-exporter:
-  replicaCount: 1
-
-  serviceMonitor:
-    enabled: true
-    interval: 60s
-    labels:
-      prometheus: cloudwatch-exporter
-    timeout: 30s
+  aws:
+    stsRegional:
+      enabled: true
 
   resources:
     limits:
@@ -36,23 +32,12 @@ prometheus-cloudwatch-exporter:
       cpu: 10m
       memory: 320Mi
 
-  aws:
-    region: eu-west-1
-    ## kube2iam
-    # role: <arn>
-
   serviceAccount:
     create: true
     ## IRSA
     # annotations:
     #   eks.amazonaws.com/role-arn: <arn>
-
-  securityContext:
-    runAsUser: 65534
-    fsGroup: 65534
-
-  rbac:
-    create: true
+    #   eks.amazonaws.com/sts-regional-endpoints: "true"
 
   config: |-
     region: {{ .Values.aws.region }}
@@ -94,3 +79,10 @@ prometheus-cloudwatch-exporter:
         aws_metric_name: ReplicaLag
         aws_dimensions: [DBInstanceIdentifier]
         aws_statistics: [Average, Maximum]
+
+  serviceMonitor:
+    enabled: true
+    interval: 60s
+    labels:
+      prometheus: cloudwatch-exporter
+    timeout: 30s
