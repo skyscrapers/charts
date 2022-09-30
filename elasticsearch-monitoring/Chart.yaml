@@ -2,7 +2,7 @@ apiVersion: v2
 description: ElasticSearch monitoring using Prometheus-operator and Grafana.
 name: elasticsearch-monitoring
 type: application
-version: 1.7.0
+version: 1.8.0
 keywords:
   - grafana
   - kube-prometheus
@@ -20,6 +20,6 @@ dependencies:
     version: 4.14.0
     repository: https://prometheus-community.github.io/helm-charts
   - name: prometheus-cloudwatch-exporter
-    version: 0.19.2
+    version: 0.21.0
     repository: https://prometheus-community.github.io/helm-charts
     condition: amazonService

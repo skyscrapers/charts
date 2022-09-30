@@ -2,7 +2,7 @@ apiVersion: v2
 description: Redshift monitoring using Prometheus-operator and Grafana.
 name: redshift-monitoring
 type: application
-version: 1.7.0
+version: 1.8.0
 keywords:
   - grafana
   - prometheus-operator
@@ -16,5 +16,5 @@ maintainers:
     email: hello@skyscrapers.eu
 dependencies:
   - name: prometheus-cloudwatch-exporter
-    version: 0.19.2
+    version: 0.21.0
     repository: https://prometheus-community.github.io/helm-charts
