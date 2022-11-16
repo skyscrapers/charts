@@ -24,6 +24,21 @@ entries:
   aws-rabbitmq-monitoring:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2022-11-16T10:28:58.66361575Z"
+    dependencies:
+    - name: prometheus-cloudwatch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 0.22.0
+    description: Deploys a cloudwatch-exporter configured to collect Amazon MQ RabbitMQ
+      metrics.
+    digest: 725ac3ad8aaf5e3f5e482af4f508989f0ff471f22c44236198935740af3bda22
+    name: aws-rabbitmq-monitoring
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/aws-rabbitmq-monitoring-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2022-09-30T13:32:53.580584722Z"
     dependencies:
     - name: prometheus-cloudwatch-exporter
@@ -2843,6 +2858,35 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
+    created: "2022-11-16T10:28:58.665268034Z"
+    dependencies:
+    - name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.15.1
+    - condition: amazonService
+      name: prometheus-cloudwatch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 0.22.0
+    description: ElasticSearch monitoring using Prometheus-operator and Grafana.
+    digest: d58fcf6557b762c288c6230890d46170f43b6dfdb183991bee0625bdc1984aa2
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - kube-prometheus
+    - monitoring
+    - prometheus
+    - elasticsearch
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: elasticsearch-monitoring
+    sources:
+    - https://github.com/skyscrapers/charts
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/elasticsearch-monitoring-1.9.0.tgz
+    version: 1.9.0
+  - apiVersion: v2
     created: "2022-09-30T13:32:53.583091107Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
@@ -3676,9 +3720,9 @@ entries:
   fah-client:
   - apiVersion: v2
     appVersion: 7.5.1
-    created: "2022-09-30T13:32:53.583537395Z"
+    created: "2022-11-16T10:28:58.66556357Z"
     description: A Helm chart to deploy the Folding@Home client on Kubernetes
-    digest: 0c9e31c1ac4de04d5cfacdc2d6bb23eb3e60c454348f9c57539fbcac62c29f06
+    digest: 438529f574b5143ee541e2bfb9735eb3080f776db9f2c8eb8eff1a1a16f92624
     name: fah-client
     type: application
     urls:
@@ -3785,18 +3829,18 @@ entries:
   generic:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2022-09-30T13:32:53.58373481Z"
+    created: "2022-11-16T10:28:58.665689862Z"
     description: A Helm chart to deploy anything
-    digest: 85d8c891c265c6241794b91e3c4cb9ddf0c2a9633136d616d3ca99ac0df4e326
+    digest: da96c01007f71a0c142da9dc27ebdd60248d8fcd76821f1da102270c32346d01
     name: generic
     urls:
     - https://skyscrapers.github.io/charts/generic-0.1.0.tgz
     version: 0.1.0
   helm-base:
   - apiVersion: v1
-    created: "2022-09-30T13:32:53.583974894Z"
+    created: "2022-11-16T10:28:58.665838555Z"
     description: A Helm chart for Kubernetes
-    digest: 58ed36546c813ab84fe18815a4453cec4dcfa21ac3675680f8fa944dc10c57dc
+    digest: 904d18c855dae14fb1256e12cac32583e96896913d261a6ff6dc08ae9d69228d
     home: https://github.com/skyscrapers/charts.git
     keywords:
     - skyscrapers
@@ -4143,9 +4187,9 @@ entries:
     version: 0.1.0
   mongodb-monitoring:
   - apiVersion: v1
-    created: "2022-09-30T13:32:53.58434483Z"
+    created: "2022-11-16T10:28:58.666062389Z"
     description: MongoDB monitoring using Prometheus-operator and Grafana.
-    digest: 7c5d723b1f9521d72962816ffe8e6b7fabe834ad399dc33a29127c33e9c4805a
+    digest: 1a7ec0cc9afa38da268973c1ff2c99b83e9ef4fd2c85934a35795dfe5ad11555
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4308,10 +4352,10 @@ entries:
     version: 0.0.1
   neo4j-monitoring:
   - apiVersion: v1
-    created: "2022-09-30T13:32:53.584656026Z"
+    created: "2022-11-16T10:28:58.666252373Z"
     description: External (not on K8s) NEO4J monitoring using Prometheus-operator
       and Grafana
-    digest: 634e399bfc54ecf4e198ce777cef90419cb5248f479bf2a179f39ce8c26a2f88
+    digest: 9858018dac9d2a24dccd785b85b988f55736888aa86ae93b34c718a3f34dccae
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4391,11 +4435,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2022-09-30T13:32:53.585301847Z"
+    created: "2022-11-16T10:28:58.666663702Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: 11c6e8df8cd2ebcd60224a21c4036e694100faecbf83ec95c7c70fccdb47d66d
+    digest: affd5e0c2375480e6dbbe6736955ba71e22807e932f5e268a5fca8e210890640
     maintainers:
     - name: duboisph
     name: openvpn
@@ -4517,6 +4561,19 @@ entries:
     - https://skyscrapers.github.io/charts/charts/prometheus-operator-0.0.6-skyscrapers.1.tgz
     version: 0.0.6-skyscrapers.1
   rds-monitoring:
+  - apiVersion: v2
+    created: "2022-11-16T10:28:58.667633592Z"
+    dependencies:
+    - name: prometheus-cloudwatch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 0.22.0
+    description: A Helm chart for Kubernetes
+    digest: 122e5b71a02e362e646cc6334fc1a54c3b1574abed6b3c11307593b8032a81ac
+    name: rds-monitoring
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/rds-monitoring-0.8.0.tgz
+    version: 0.8.0
   - apiVersion: v2
     created: "2022-09-30T13:32:53.588365414Z"
     dependencies:
@@ -4765,6 +4822,30 @@ entries:
     - https://skyscrapers.github.io/charts/rds-monitoring-0.1.0.tgz
     version: 0.1.0
   redshift-monitoring:
+  - apiVersion: v2
+    created: "2022-11-16T10:28:58.66857298Z"
+    dependencies:
+    - name: prometheus-cloudwatch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 0.22.0
+    description: Redshift monitoring using Prometheus-operator and Grafana.
+    digest: 357af9e8bca04ad26c65b5d0763cfa3969fc428ba692b0619b6db037ab2e4e1d
+    home: https://github.com/skyscrapers/charts/
+    keywords:
+    - grafana
+    - prometheus-operator
+    - prometheus
+    - redshift
+    maintainers:
+    - email: hello@skyscrapers.eu
+      name: skyscrapers
+    name: redshift-monitoring
+    sources:
+    - https://github.com/skyscrapers/charts
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/redshift-monitoring-1.9.0.tgz
+    version: 1.9.0
   - apiVersion: v2
     created: "2022-09-30T13:32:53.589641126Z"
     dependencies:
@@ -5221,10 +5302,10 @@ entries:
   vertical-pod-autoscaler:
   - apiVersion: v2
     appVersion: 0.12.0
-    created: "2022-09-30T13:32:53.590702276Z"
+    created: "2022-11-16T10:28:58.669319696Z"
     description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
       cluster.
-    digest: cab7992f9e1624bf3040cf3f1e3801d015dcd6fc07bc7f18fd2fdfb1dd7fc198
+    digest: 5ab981b52329404b0a95e1e180e757a4dd6c67d9f315f0bd5ac69d53362e38dd
     maintainers:
     - name: skyscrapers
     name: vertical-pod-autoscaler
@@ -5507,4 +5588,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-30T13:32:53.579019124Z"
+generated: "2022-11-16T10:28:58.661754372Z"
