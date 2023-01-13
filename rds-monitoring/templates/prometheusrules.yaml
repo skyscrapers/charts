@@ -22,6 +22,15 @@ spec:
           annotations:
             message: 'The CPU credit balance for {{`{{ $labels.dbinstance_identifier }}`}} is less than 5!'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdscpucreditbalancelow'
+        - alert: RDSCPUBurstBalanceLow
+          expr: aws_rds_burst_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 20
+          for: 10m
+          labels:
+{{ include "rds-monitoring.alertLabels" . | indent 12 }}
+            severity: warning
+          annotations:
+            message: 'The burst balance for {{`{{ $labels.dbinstance_identifier }}`}} is less than 20%!'
+            runbook_url: 'https://aws.amazon.com/premiumsupport/knowledge-center/rds-low-burst-balance/'
         - alert: RDSFreeableMemoryLow
           expr: aws_rds_freeable_memory_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 104857600
           for: 10m
