@@ -1,10 +1,11 @@
 apiVersion: v1
 description: A Helm chart for Kubernetes
 name: helm-base
-version: 0.1.1
+version: 0.1.2
 keywords: [skyscrapers, kubesignin, helm, auth, oidc]
 home: https://github.com/skyscrapers/charts.git
 maintainers:
   - name: luca venturelli
     email: luca@skyscrapers.eu
 engine: gotpl
+deprecated: true
