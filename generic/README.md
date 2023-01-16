@@ -1,3 +1,7 @@
+# Deprecation notice
+
+This chart is deprecated for Skyscrapers as we are migrating resources to native terraform objects.
+
 # A Helm chart to deploy anything
 
 This chart deploys any Kubernetes manifest provided in the `manifest` value.

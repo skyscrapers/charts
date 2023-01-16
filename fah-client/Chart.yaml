@@ -11,3 +11,5 @@ version: 0.1.0
 # incremented each time you make changes to the application. It's also used to determine
 # the fah-client Docker image tag.
 appVersion: 7.5.1
+
+deprecated: true
