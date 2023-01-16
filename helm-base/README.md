@@ -1,3 +1,7 @@
+# Deprecation notice
+
+This chart is deprecated for Skyscrapers as we are migrating resources to native terraform objects.
+
 # A Helm Chart for basic setup of Helm
 
 This charts creates a ServiceAccount used by Concourse to deploy helm charts with the right permissions.
