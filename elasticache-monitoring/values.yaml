@@ -1,0 +1,65 @@
+# Default values for elasticache-monitoring.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+prometheusSelectorLabels:
+  prometheus: elasticache-monitoring
+
+# Filters the Prometheus alert by a pre-defined AWS tag. This is useful
+# if you only want to alert on metrics from production databases.
+# You can disable the filtering by setting `tagFilter` to null or ""
+tagFilter:
+  key: Environment
+  value: production
+
+# SLA of the elasticache cluster to monitor.
+# sla: production
+
+# Add additional labels to the alerts.
+# alertsLabels:
+
+## The following settings come from the prometheus-cloudwatch-exporter chart
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-cloudwatch-exporter/values.yaml
+prometheus-cloudwatch-exporter:
+  aws:
+    stsRegional:
+      enabled: true
+
+  resources:
+    limits:
+      memory: 320Mi
+    requests:
+      cpu: 10m
+      memory: 320Mi
+
+  serviceAccount:
+    create: true
+    ## IRSA
+    # annotations:
+    #   eks.amazonaws.com/role-arn: <arn>
+    #   eks.amazonaws.com/sts-regional-endpoints: "true"
+
+  config: |-
+    region: {{ .Values.aws.region }}
+    period_seconds: 60
+    set_timestamp: false
+    metrics:
+      - aws_namespace: AWS/ElastiCache
+        aws_metric_name: CPUUtilization
+        aws_dimensions: [CacheClusterId]
+        aws_statistics: [Average]
+      - aws_namespace: AWS/ElastiCache
+        aws_metric_name: DatabaseMemoryUsagePercentage
+        aws_dimensions: [CacheClusterId]
+        aws_statistics: [Average]
+      - aws_namespace: AWS/ElastiCache
+        aws_metric_name: Evictions
+        aws_dimensions: [CacheClusterId]
+        aws_statistics: [Average]
+
+  serviceMonitor:
+    enabled: true
+    interval: 60s
+    labels:
+      prometheus: cloudwatch-exporter
+    timeout: 30s
