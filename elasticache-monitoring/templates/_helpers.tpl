@@ -5,7 +5,7 @@ Filter on tag if specified
 */}}
 {{- define "elasticache-monitoring.filterOnTag" -}}
 {{- if .Values.tagFilter -}}
-* on (dbinstance_identifier, instance) aws_resource_info{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", tag_{{ .Values.tagFilter.key }}="{{ .Values.tagFilter.value }}"}
+* on (cache_cluster_id) aws_resource_info{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter", tag_{{ .Values.tagFilter.key }}="{{ .Values.tagFilter.value }}"}
 {{- end -}}
 {{- end -}}
 

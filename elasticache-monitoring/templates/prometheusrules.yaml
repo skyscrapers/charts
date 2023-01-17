@@ -16,7 +16,7 @@ spec:
         - alert: ElastiCacheMemoryUsageIsHigh
           annotations:
             message: 'ElastiCache memory usage on {{`{{$labels.cache_cluster_id}}`}} in cluster is higher than 90%'
-          expr: aws_elasticache_database_memory_usage_percentage_maximum{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "elasticache-monitoring.filterOnTag" . }} > 90
+          expr: aws_elasticache_database_memory_usage_percentage_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "elasticache-monitoring.filterOnTag" . }} > 90
           for: 10m
           labels:
 {{ include "elasticache-monitoring.alertLabels" . | indent 12 }}
