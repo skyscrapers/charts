@@ -18,7 +18,7 @@ spec:
           for: 10m
           labels:
 {{ include "rds-monitoring.alertLabels" . | indent 12 }}
-            severity: warning
+            severity: info
           annotations:
             message: 'The CPU credit balance for {{`{{ $labels.dbinstance_identifier }}`}} is less than 5!'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdscpucreditbalancelow'
