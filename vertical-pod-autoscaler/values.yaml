@@ -38,6 +38,8 @@ recommender:
     tag: ""
   # recommender.podAnnotations -- Annotations to add to the recommender pod
   podAnnotations: {}
+  # recommender.priorityClassName -- Priority class to assign to the recommender pod
+  priorityClassName: ""
   # recommender.podSecurityContetxt -- The security context for the recommender pod
   podSecurityContext:
     runAsNonRoot: true
@@ -78,6 +80,8 @@ updater:
     tag: ""
   # updater.podAnnotations -- Annotations to add to the updater pod
   podAnnotations: {}
+  # updater.priorityClassName -- Priority class to assign to the updater pod
+  priorityClassName: ""
   # updater.podSecurityContetxt -- The security context for the updater pod
   podSecurityContext:
     runAsNonRoot: true
@@ -116,6 +120,8 @@ admissionController:
     tag: ""
   # admissionController.podAnnotations -- Annotations to add to the admission controller pod
   podAnnotations: {}
+  # admissionController.priorityClassName -- Priority class to assign to the admission controller pod
+  priorityClassName: ""
   # admissionController.podSecurityContetxt -- The security context for the admission controller pod
   podSecurityContext:
     runAsNonRoot: true

@@ -27,6 +27,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "vpa.serviceAccountName" . }}-updater
+      {{- if .Values.updater.priorityClassName }}
+      priorityClassName: {{ .Values.updater.priorityClassName | quote }}
+      {{- end }}
       securityContext:
         {{- toYaml .Values.updater.podSecurityContext | nindent 8 }}
       containers:

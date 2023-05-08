@@ -27,6 +27,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "vpa.serviceAccountName" . }}-recommender
+      {{- if .Values.recommender.priorityClassName }}
+      priorityClassName: {{ .Values.recommender.priorityClassName | quote }}
+      {{- end }}
       securityContext:
         {{- toYaml .Values.recommender.podSecurityContext | nindent 8 }}
       containers:

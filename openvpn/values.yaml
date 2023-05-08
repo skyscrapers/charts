@@ -10,6 +10,8 @@ updateStrategy: {}
   #   maxSurge: 1
   #   maxUnavailable: 0
 
+priorityClassName: ""
+
 image:
   repository: kylemanna/openvpn
   tag: 2.4
