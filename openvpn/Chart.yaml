@@ -4,7 +4,7 @@ description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certif
   generation is also part of the deployment, and this chart will generate client keys
   as needed.
 name: openvpn
-version: 1.2.2
+version: 1.2.3
 maintainers:
 - name: duboisph
 sources:
