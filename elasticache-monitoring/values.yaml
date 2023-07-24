@@ -9,7 +9,7 @@ prometheusSelectorLabels:
 # if you only want to alert on metrics from production databases.
 # You can disable the filtering by setting `tagFilter` to null or ""
 tagFilter:
-  key: Environment
+  key: environment
   value: production
 
 # SLA of the elasticache cluster to monitor.
