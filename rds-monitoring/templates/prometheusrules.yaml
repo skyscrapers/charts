@@ -99,7 +99,7 @@ spec:
           for: 10m
           labels:
 {{ include "rds-monitoring.alertLabels" . | indent 12 }}
-            severity: info
+            severity: warning
           annotations:
             message: 'EBS BurstBalance for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is lower than 20%.'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsburstbalancelowhigh'
