@@ -95,7 +95,7 @@ spec:
             message: 'Replica lag for RDS instance {{`{{ $labels.dbinstance_identifier }}`}} is higher than 30 seconds.'
             runbook_url: 'https://github.com/skyscrapers/documentation/tree/master/runbook.md#alert-name-rdsreplicalaghigh'
         - alert: RDSBurstBalanceLow
-          expr: aws_rds_burstbalance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 20
+          expr: aws_rds_burst_balance_average{job="{{ .Release.Name }}-prometheus-cloudwatch-exporter"} {{ include "rds-monitoring.filterOnTag" . }} < 20
           for: 10m
           labels:
 {{ include "rds-monitoring.alertLabels" . | indent 12 }}
