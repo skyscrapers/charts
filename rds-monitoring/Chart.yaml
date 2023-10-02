@@ -14,9 +14,9 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.11.1
+version: 0.11.2
 
 dependencies:
   - name: prometheus-cloudwatch-exporter
-    version: 0.25.1
+    version: 0.25.2
     repository: https://prometheus-community.github.io/helm-charts
