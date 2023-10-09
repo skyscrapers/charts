@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: 0.14.0
+appVersion: 1.0.0
 name: vertical-pod-autoscaler
 type: application
 description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes cluster.
-version: 0.8.2
+version: 0.9.0
 maintainers:
   - name: skyscrapers
 sources:
