@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-metrics-reader
+  name: system:metrics-reader
 rules:
   - apiGroups:
       - "metrics.k8s.io"
@@ -16,7 +16,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-actor
+  name: system:vpa-actor
 rules:
   - apiGroups:
       - ""
@@ -45,7 +45,6 @@ rules:
       - get
       - list
       - watch
-      - patch
   - apiGroups:
       - "autoscaling.k8s.io"
     resources:
@@ -54,12 +53,24 @@ rules:
       - get
       - list
       - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:vpa-status-actor
+rules:
+  - apiGroups:
+      - "autoscaling.k8s.io"
+    resources:
+      - verticalpodautoscalers/status
+    verbs:
+      - get
       - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-checkpoint-actor
+  name: system:vpa-checkpoint-actor
 rules:
   - apiGroups:
       - "poc.autoscaling.k8s.io"
@@ -94,7 +105,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-evictioner
+  name: system:evictioner
 rules:
   - apiGroups:
       - "apps"
@@ -113,7 +124,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-target-reader
+  name: system:vpa-target-reader
 rules:
   - apiGroups:
     - '*'
@@ -154,7 +165,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-status-reader
+  name: system:vpa-status-reader
 rules:
   - apiGroups:
       - "coordination.k8s.io"
