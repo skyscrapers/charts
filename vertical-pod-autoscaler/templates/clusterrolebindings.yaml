@@ -5,11 +5,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-metrics-reader
+  name: system:metrics-reader
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-metrics-reader
+  name: system:metrics-reader
 subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-recommender
@@ -18,11 +18,24 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-checkpoint-actor
+  name: system:vpa-status-actor
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-checkpoint-actor
+  name: system:vpa-status-actor
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vpa.serviceAccountName" . }}-recommender
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:vpa-checkpoint-actor
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:vpa-checkpoint-actor
 subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-recommender
@@ -34,11 +47,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-evictioner-binding
+  name: system:vpa-evictioner-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-evictioner
+  name: system:evictioner
 subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-updater
@@ -47,11 +60,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-status-reader-binding
+  name: system:vpa-status-reader-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-status-reader
+  name: system:vpa-status-reader
 subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-updater
@@ -63,11 +76,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-actor
+  name: system:vpa-actor
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-actor
+  name: system:vpa-actor
 subjects:
 {{- if .Values.recommender.enabled }}
   - kind: ServiceAccount
@@ -86,11 +99,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vpa-target-reader-binding
+  name: system:vpa-target-reader-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: vpa-target-reader
+  name: system:vpa-target-reader
 subjects:
 {{- if .Values.recommender.enabled }}
   - kind: ServiceAccount
