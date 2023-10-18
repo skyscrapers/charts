@@ -2,7 +2,7 @@ apiVersion: v2
 description: Redshift monitoring using Prometheus-operator and Grafana.
 name: redshift-monitoring
 type: application
-version: 1.10.2
+version: 1.10.3
 keywords:
   - grafana
   - prometheus-operator

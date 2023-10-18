@@ -51,7 +51,7 @@ prometheus-cloudwatch-exporter:
       aws_statistics: [Average]
     - aws_namespace: AWS/Redshift
       aws_metric_name: PercentageDiskSpaceUsed
-      aws_dimensions: [NodeID, ClusterIdentifier]
+      aws_dimensions: [ClusterIdentifier]
       aws_statistics: [Average]
     - aws_namespace: AWS/Redshift
       aws_metric_name: NetworkReceiveThroughput
