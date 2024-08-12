@@ -175,4 +175,48 @@ rules:
       - get
       - list
       - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: system:leader-locking-vpa-updater
+rules:
+  - apiGroups:
+      - "coordination.k8s.io"
+    resources:
+      - leases
+    verbs:
+      - create
+  - apiGroups:
+      - "coordination.k8s.io"
+    resourceNames:
+      - vpa-updater
+    resources:
+      - leases
+    verbs:
+      - get
+      - watch
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: system:leader-locking-vpa-recommender
+rules:
+  - apiGroups:
+      - "coordination.k8s.io"
+    resources:
+      - leases
+    verbs:
+      - create
+  - apiGroups:
+      - "coordination.k8s.io"
+    resourceNames:
+      - vpa-recommender
+    resources:
+      - leases
+    verbs:
+      - get
+      - watch
+      - update
 {{- end }}

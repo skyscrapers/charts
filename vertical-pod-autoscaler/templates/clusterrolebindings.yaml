@@ -40,6 +40,19 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-recommender
     namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: system:leader-locking-vpa-recommender
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: system:leader-locking-vpa-recommender
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vpa.serviceAccountName" . }}-updater
+    namespace: {{ .Release.Namespace }}
 {{- end }}
 
 {{- if .Values.updater.enabled }}
@@ -65,6 +78,19 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: system:vpa-status-reader
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vpa.serviceAccountName" . }}-updater
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: system:leader-locking-vpa-updater
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: system:leader-locking-vpa-updater
 subjects:
   - kind: ServiceAccount
     name: {{ include "vpa.serviceAccountName" . }}-updater
