@@ -86,10 +86,6 @@ prometheus-cloudwatch-exporter:
         aws_metric_name: ReplicaLag
         aws_dimensions: [DBInstanceIdentifier]
         aws_statistics: [Average, Maximum]
-      - aws_namespace: AWS/RDS
-        aws_metric_name: BurstBalance
-        aws_dimensions: [DBInstanceIdentifier]
-        aws_statistics: [Average]
 
   serviceMonitor:
     enabled: true
