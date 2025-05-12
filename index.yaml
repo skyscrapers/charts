@@ -2982,7 +2982,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2025-04-09T07:08:39.988946889Z"
+    created: "2025-05-12T13:27:01.619739066Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -2992,7 +2992,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.25.2
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 93d98993f461155b34086041c1441213f444ff092f033646305f003204ea9f0e
+    digest: e1de3ad760a78961ae76f80db21be627b0bfee4e59b8723ac9597bcf300e3021
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4696,11 +4696,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2025-04-09T07:08:39.990553345Z"
+    created: "2025-05-12T13:27:01.620199656Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: 19af666dcb279e57c8836993338d479cfd9a28f2fd0cba382cb27c7f0091854e
+    digest: a1c6c59375aabfed83745ba81dcf5c41c7bdc3039646c5e0b91c5071409e718d
     maintainers:
     - name: duboisph
     name: openvpn
@@ -5792,10 +5792,10 @@ entries:
   vertical-pod-autoscaler:
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2025-04-09T07:08:39.992878549Z"
+    created: "2025-05-12T13:27:01.62182309Z"
     description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
       cluster.
-    digest: 0aac2c8bbc414172b71f51cf26b4bc3cfbb8cf7852bc3987efbd93079ca85276
+    digest: a3392223d08d2c45409b5f5e5115fd52ab0a8788acc47c28812ed4f4f13c67a4
     maintainers:
     - name: skyscrapers
     name: vertical-pod-autoscaler
@@ -6286,4 +6286,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-09T07:08:39.984344492Z"
+generated: "2025-05-12T13:27:01.617937828Z"
