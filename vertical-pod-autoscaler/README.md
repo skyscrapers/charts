@@ -2,8 +2,6 @@
 
 This chart is a fork from the helm chart of [FairwindsOps](https://github.com/FairwindsOps/charts/tree/master/stable/vpa)
 
-The CRD is not part of this Chart. This can be found in [the official repo](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/deploy/vpa-v1-crd.yaml).
-
 ## Chart Values
 
 | Key                                                 | Type   | Default                                                                                       | Description                                                                                                                                                                               |
