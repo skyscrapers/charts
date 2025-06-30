@@ -2982,7 +2982,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2025-05-12T13:30:27.936492557Z"
+    created: "2025-06-30T14:16:20.935829184Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -2992,7 +2992,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.25.2
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: c49df27718b4a02fb70e2ecb11c1eb620215d7d875035f8c519a51640c4af597
+    digest: 8756fe5af977080b51adac09d4aa7ff1f0fa1f63f965fd28a9e34902babd9902
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4696,11 +4696,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2025-05-12T13:30:27.936925114Z"
+    created: "2025-06-30T14:16:20.936199871Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: ffc4656e9a0c98ed732b74c98fca4b0e200dca2c5181d8986e4e632128d68c6a
+    digest: 4611bf647f41869845bdfb597cfbd382153611d7b4b49b3517a92b36d38db341
     maintainers:
     - name: duboisph
     name: openvpn
@@ -5791,6 +5791,22 @@ entries:
     version: 0.3.3
   vertical-pod-autoscaler:
   - apiVersion: v2
+    appVersion: 1.4.1
+    created: "2025-06-30T14:16:20.936919775Z"
+    description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
+      cluster.
+    digest: 37a26b6ccf1759ab4ddf5ce2bb2870f2e3ea88e942fec7fe21046beb497c9218
+    maintainers:
+    - name: skyscrapers
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+    - https://github.com/FairwindsOps/charts/tree/master/stable/vpa
+    type: application
+    urls:
+    - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.17.0.tgz
+    version: 0.17.0
+  - apiVersion: v2
     appVersion: 1.3.1
     created: "2025-05-12T13:30:27.937703197Z"
     description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
@@ -6302,4 +6318,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-12T13:30:27.933833034Z"
+generated: "2025-06-30T14:16:20.934191382Z"
