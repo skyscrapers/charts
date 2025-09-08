@@ -2982,7 +2982,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2025-08-06T09:01:41.023669575Z"
+    created: "2025-09-08T11:36:19.176229347Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -2992,7 +2992,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.25.2
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 660919e36e3f8d45ef5b4c68d04b14dfe39bb9a8a07551c64c5c23e213d959c8
+    digest: 33ec6632ab618fc1db24a6e8b4ba8b070d287e89f77739e45d3632c873300c1f
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4696,11 +4696,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2025-08-06T09:01:41.024060187Z"
+    created: "2025-09-08T11:36:19.176633341Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: 4816632bf6b8b29d2bf91639028595880027ecde5ac40798e1173ac2ddeb5b97
+    digest: de34a510bad3eab37cd157f65d9b1f16c9bc1785cdb5c623fbababfc0e3c1278
     maintainers:
     - name: duboisph
     name: openvpn
@@ -5792,10 +5792,10 @@ entries:
   vertical-pod-autoscaler:
   - apiVersion: v2
     appVersion: 1.4.1
-    created: "2025-08-06T09:01:41.024848123Z"
+    created: "2025-09-08T11:36:19.177349843Z"
     description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
       cluster.
-    digest: 0a9bfd76637edbc1f0d2a165e47c73a0d0cc7f4b027905e60262534f4c4cb1e0
+    digest: 7aada84deaf8a26b59427eb925a17794efe6448f68995ce11519d3247e12e224
     maintainers:
     - name: skyscrapers
     name: vertical-pod-autoscaler
@@ -6334,4 +6334,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-06T09:01:41.021890012Z"
+generated: "2025-09-08T11:36:19.174566Z"
