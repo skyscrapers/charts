@@ -1,0 +1,42 @@
+workload:
+  type: deployment
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+containers:
+  - name: app
+    image: nginx:1.25-alpine
+    ports:
+      - name: http
+        containerPort: 80
+  - name: exporter
+    image: prom/statsd-exporter
+    ports:
+      - name: metrics
+        containerPort: 9102
+
+service:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: metrics
+      port: 9102
+      targetPort: metrics
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: demo.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          # default goes to primary/http
+  tls:
+    - hosts: [demo.example.com]
+      secretName: demo-tls

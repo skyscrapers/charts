@@ -1,0 +1,67 @@
+{{/* Primary Service (back-compat) */}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "goldenapp.fullname" . }}
+  labels:
+    {{- include "goldenapp.labels" . | nindent 4 }}
+    {{- with .Values.service.labels }}{{ toYaml . | nindent 4 }}{{ end }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if and (eq .Values.workload.type "statefulset") (.Values.service.headless.enabled) }}
+  clusterIP: None
+  {{- with .Values.service.headless.publishNotReadyAddresses }}
+  publishNotReadyAddresses: {{ . }}
+  {{- end }}
+  {{- end }}
+  type: {{ .Values.service.type | default "ClusterIP" }}
+  ports:
+    {{- if .Values.service.ports }}
+    {{- range .Values.service.ports }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .targetPort | default .name }}
+      protocol: {{ .protocol | default "TCP" }}
+    {{- end }}
+    {{- else }}
+    - name: http
+      port: {{ .Values.service.port | default 80 }}
+      targetPort: http
+      protocol: TCP
+    {{- end }}
+  selector:
+    {{- include "goldenapp.selectorLabels" . | nindent 4 }}
+
+{{/* Extra Services */}}
+{{- range .Values.extraServices }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "goldenapp.fullname" $ }}-{{ .name }}
+  labels:
+    {{- include "goldenapp.labels" $ | nindent 4 }}
+    {{- with .labels }}{{ toYaml . | nindent 4 }}{{ end }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .headless }}
+  clusterIP: None
+  {{- end }}
+  type: {{ .type | default "ClusterIP" }}
+  ports:
+    {{- range .ports }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .targetPort | default .name }}
+      protocol: {{ .protocol | default "TCP" }}
+    {{- end }}
+  selector:
+    {{- include "goldenapp.selectorLabels" $ | nindent 4 }}
+    {{- with .extraSelector }}{{ toYaml . | nindent 4 }}{{ end }}
+{{- end }}

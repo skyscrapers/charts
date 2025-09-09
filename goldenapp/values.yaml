@@ -1,0 +1,202 @@
+# -----------------
+# Global / metadata
+# -----------------
+nameOverride: ""
+fullnameOverride: ""
+
+# -----------------
+# Workload choice
+# -----------------
+workload:
+  type: deployment      # deployment | statefulset
+  replicas: 1
+  # For Deployment use `strategy`, for StatefulSet use `updateStrategy`
+  strategy: {}
+  updateStrategy: {}
+  revisionHistoryLimit: 10
+  terminationGracePeriodSeconds: 30
+
+# -----------------
+# Pod spec
+# -----------------
+podAnnotations: {}
+podLabels: {}
+imagePullSecrets: []
+
+# Generic placement knobs (optional, in addition to Karpenter)
+nodeSelector: {}
+tolerations: []
+affinity: {}
+topologySpreadConstraints: []
+
+# -----------------
+# Containers
+# -----------------
+containers:
+  - name: app
+    image: "nginx:1.25-alpine"
+    imagePullPolicy: IfNotPresent
+    ports:
+      - name: http
+        containerPort: 80
+    resources: {}
+    # securityMode: enforced | privileged | passthrough
+    # securityContext: {}   # allowed tweaks; honored differently per mode
+    # dataMount:
+    #   enabled: true
+    #   mountPath: /data
+    #   subPath: ""
+
+# -----------------
+# InitContainers
+# -----------------
+initContainers: []
+# Example privileged initContainer:
+# - name: migrate
+#   image: alpine:3.20
+#   command: ["sh","-c","echo running migration; sleep 5"]
+#   securityMode: privileged
+#   securityContext:
+#     capabilities:
+#       add: ["SYS_ADMIN"]
+
+# -----------------
+# Security profiles
+# -----------------
+globalSecurityDefaults:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 65534
+  runAsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+  capabilities:
+    drop: ["ALL"]
+
+securityProfiles:
+  privileged:
+    allowPrivilegeEscalation: true
+    privileged: true
+    runAsNonRoot: false
+    runAsUser: 0
+    runAsGroup: 0
+    capabilities:
+      add: []
+      drop: []
+
+# -----------------
+# Service (primary)
+# -----------------
+service:
+  type: ClusterIP
+  port: 80                      # legacy single-port support
+  ports: []                     # if set, overrides "port"
+  headless:
+    enabled: true               # headless when statefulset
+    publishNotReadyAddresses: false
+  annotations: {}
+  labels: {}
+
+# -----------------
+# Extra Services
+# -----------------
+extraServices: []
+# - name: metrics
+#   type: ClusterIP
+#   headless: false
+#   annotations: {}
+#   labels: {}
+#   ports:
+#     - name: metrics
+#       port: 9102
+#       targetPort: metrics
+#   extraSelector: {}
+
+# -----------------
+# Ingress (legacy single)
+# -----------------
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+          # service: { name: primary, port: http }
+  tls: []
+
+# -----------------
+# Multiple ingresses
+# -----------------
+ingresses: []
+# - name: public
+#   enabled: true
+#   className: ""
+#   annotations: {}
+#   tls: []
+#   hosts:
+#     - host: myapp.example.com
+#       paths:
+#         - path: /
+#           pathType: Prefix
+#           service: { name: primary, port: http }
+#         - path: /metrics
+#           pathType: Prefix
+#           service: { name: metrics, port: metrics }
+
+# -----------------
+# Persistence (only with statefulset)
+# -----------------
+persistence:
+  enabled: false
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 8Gi
+  mount:
+    defaultEnabled: true
+    mountPath: /data
+    subPath: ""
+
+# -----------------
+# KEDA autoscaling
+# -----------------
+keda:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  triggers: []
+  # Example:
+  # - type: cpu
+  #   metadata:
+  #     type: Utilization
+  #     value: "75"
+
+# -----------------
+# PodDisruptionBudget
+# -----------------
+pdb:
+  enabled: false
+  minAvailable: 1
+  maxUnavailable: ""
+
+# -----------------
+# Karpenter node placement
+# -----------------
+karpenter:
+  enabled: false
+  nodePool: "default"
+  tolerations:
+    - key: "role"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+# -----------------
+# ServiceAccount
+# -----------------
+serviceAccount:
+  create: false
+  name: ""
+  annotations: {}
