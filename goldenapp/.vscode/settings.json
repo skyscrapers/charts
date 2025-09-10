@@ -1,0 +1,7 @@
+{
+  "yaml.schemas": {
+    "./values.schema.json": [
+      "*/custom-values.yaml"
+    ]
+  }
+}

@@ -177,9 +177,9 @@ keda:
 # PodDisruptionBudget
 # -----------------
 pdb:
-  enabled: false
-  minAvailable: 1
-  maxUnavailable: ""
+  enabled: auto            # auto | true | false
+  minAvailable: null       # if null, the chart decides (see logic below)
+  maxUnavailable: null     # leave null unless you want to use it explicitly
 
 # -----------------
 # Karpenter node placement
