@@ -38,12 +38,7 @@ spec:
             {{- toYaml .Values.updater.securityContext | nindent 12 }}
           image: "{{ .Values.updater.image.repository }}:{{ .Values.updater.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.updater.image.pullPolicy }}
-          {{- if .Values.updater.extraArgs }}
-          args:
-          {{- range $key, $value := .Values.updater.extraArgs }}
-            - --{{ $key }}={{ $value }}
-          {{- end }}
-          {{- end }}
+          args: ["--v=4", "--stderrthreshold=info", "--min-replicas=1", "--feature-gates=InPlaceOrRecreate=true"]
           env:
             - name: NAMESPACE
               valueFrom:
