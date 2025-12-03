@@ -1,0 +1,7 @@
+apiVersion: v2
+name: goldenapp
+description: Skyscrapers golden chart, for generic stateful or stateless workloads
+type: application
+version: 0.0.1
+appVersion: "1.0.0"
+icon: https://skyscrapers.eu/wp-content/uploads/2023/12/Logo-skyscrapers.jpg

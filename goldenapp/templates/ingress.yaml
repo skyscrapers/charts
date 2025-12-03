@@ -1,0 +1,89 @@
+{{/* Legacy single Ingress (optional) */}}
+{{- if .Values.ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "goldenapp.fullname" . }}
+  labels:
+    {{- include "goldenapp.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.ingress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- with .Values.ingress.tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType | default "Prefix" }}
+            backend:
+              service:
+                name: {{ if and .service (eq .service.name "primary") }}{{ include "goldenapp.fullname" $ }}{{ else if .service }}{{ include "goldenapp.fullname" $ }}-{{ .service.name }}{{ else }}{{ include "goldenapp.fullname" $ }}{{ end }}
+                port:
+                  {{- if and .service .service.port }}
+                  {{- if kindIs "string" .service.port }}
+                  name: {{ .service.port }}
+                  {{- else }}
+                  number: {{ .service.port }}
+                  {{- end }}
+                  {{- else }}
+                  name: http
+                  {{- end }}
+          {{- end }}
+    {{- end }}
+{{- end }}
+
+{{/* Multiple ingress objects */}}
+{{- range .Values.ingresses }}
+{{- if .enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "goldenapp.fullname" $ }}-{{ .name }}
+  labels:
+    {{- include "goldenapp.labels" $ | nindent 4 }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- with .tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- range .hosts }}
+    - host: {{ .host }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType | default "Prefix" }}
+            backend:
+              service:
+                name: {{ if eq .service.name "primary" }}{{ include "goldenapp.fullname" $ }}{{ else }}{{ include "goldenapp.fullname" $ }}-{{ .service.name }}{{ end }}
+                port:
+                  {{- if kindIs "string" .service.port }}
+                  name: {{ .service.port }}
+                  {{- else }}
+                  number: {{ .service.port }}
+                  {{- end }}
+          {{- end }}
+    {{- end }}
+{{- end }}
+{{- end }}

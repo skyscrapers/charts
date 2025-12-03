@@ -1,0 +1,45 @@
+{{- /*
+PodDisruptionBudget
+Enable rules:
+- pdb.enabled: "auto" (default): render when replicas > 1 OR keda.enabled = true
+- pdb.enabled: true:  always render
+- pdb.enabled: false: never render
+*/ -}}
+{{- $replicas := int (default 1 .Values.workload.replicas) -}}
+{{- $keda := and .Values.keda .Values.keda.enabled -}}
+{{- $autoEnable := or (gt $replicas 1) $keda -}}
+
+{{- $enabled := false -}}
+{{- if hasKey .Values "pdb" -}}
+  {{- if eq .Values.pdb.enabled "auto" -}}
+    {{- $enabled = $autoEnable -}}
+  {{- else if eq .Values.pdb.enabled true -}}
+    {{- $enabled = true -}}
+  {{- else if eq .Values.pdb.enabled false -}}
+    {{- $enabled = false -}}
+  {{- else -}}
+    {{- /* default when pdb.enabled unset or unknown: auto */ -}}
+    {{- $enabled = $autoEnable -}}
+  {{- end -}}
+{{- else -}}
+  {{- /* no pdb block in values -> auto behavior */ -}}
+  {{- $enabled = $autoEnable -}}
+{{- end -}}
+
+{{- if $enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "goldenapp.fullname" . }}
+  labels:
+    {{- include "goldenapp.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "goldenapp.selectorLabels" . | nindent 6 }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- else }}
+  minAvailable: {{ default 1 .Values.pdb.minAvailable }}
+  {{- end }}
+{{- end }}
