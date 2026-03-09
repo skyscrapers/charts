@@ -89,7 +89,7 @@ metadata:
   name: system:vpa-updater-in-place-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: system:vpa-updater-in-place
 subjects:
   - kind: ServiceAccount
