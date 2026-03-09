@@ -40,6 +40,7 @@ spec:
           imagePullPolicy: {{ .Values.recommender.image.pullPolicy }}
           {{- if .Values.recommender.extraArgs }}
           args:
+            - "--v=4"
           {{- range $key, $value := .Values.recommender.extraArgs }}
             - --{{ $key }}={{ $value }}
           {{- end }}
