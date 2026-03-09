@@ -84,6 +84,19 @@ subjects:
     namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:vpa-updater-in-place-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: system:vpa-updater-in-place
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vpa.serviceAccountName" . }}-updater
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: system:leader-locking-vpa-updater
