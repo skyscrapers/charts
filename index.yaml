@@ -2982,7 +2982,7 @@ entries:
     version: 0.1.0
   elasticsearch-monitoring:
   - apiVersion: v2
-    created: "2026-03-09T11:33:36.032853165Z"
+    created: "2026-03-24T07:09:02.87716611Z"
     dependencies:
     - name: prometheus-elasticsearch-exporter
       repository: https://prometheus-community.github.io/helm-charts
@@ -2992,7 +2992,7 @@ entries:
       repository: https://prometheus-community.github.io/helm-charts
       version: 0.25.2
     description: ElasticSearch monitoring using Prometheus-operator and Grafana.
-    digest: 0987628ba8f66497f94e8074b46f8c34ca6cc5c5208d71a6454e02f4e0997791
+    digest: 7b5de21cead1dcf41b4313f89d97e9bcead17e3b480133613eefa8553ff35c35
     home: https://github.com/skyscrapers/charts/
     keywords:
     - grafana
@@ -4696,11 +4696,11 @@ entries:
   openvpn:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2026-03-09T11:33:36.033247151Z"
+    created: "2026-03-24T07:09:02.87761311Z"
     description: A Helm chart to install OpenVPN inside a Kubernetes cluster. Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
-    digest: 5c91b7a28b211fc3692bd40157ccd5a9f74da0a730c68846e6ce806c5512dc6f
+    digest: beb935310f7bad33ca24c44a4657daca73f750c2512642a84d62995771f23cbf
     maintainers:
     - name: duboisph
     name: openvpn
@@ -5792,10 +5792,10 @@ entries:
   vertical-pod-autoscaler:
   - apiVersion: v2
     appVersion: 1.6.0
-    created: "2026-03-09T11:33:36.034059324Z"
+    created: "2026-03-24T07:09:02.878352638Z"
     description: A Helm chart to install vertical-pod-autoscaler inside a Kubernetes
       cluster.
-    digest: 70df9f08cf99dbacbc748342d0a5c877f60a602dcd20bd04b45f5de60d67dfc7
+    digest: 13441f86c77a2e9621379db58379f8ab28c29ad4177cedc091f3e543d3011e54
     maintainers:
     - name: skyscrapers
     name: vertical-pod-autoscaler
@@ -6382,4 +6382,4 @@ entries:
     urls:
     - https://skyscrapers.github.io/charts/vertical-pod-autoscaler-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-09T11:33:36.030676793Z"
+generated: "2026-03-24T07:09:02.875470359Z"
