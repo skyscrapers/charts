@@ -111,6 +111,12 @@ admissionController:
     pullPolicy: Always
     # admissionController.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
+  certgen:
+    image:
+      # admissionController.certgen.image.repository -- The location of the image used by the cert-generation pre-install hook and the post-delete cleanup hook (both share the same image).
+      repository: quay.io/reactiveops/ci-images
+      # admissionController.certgen.image.tag -- The tag of the cert-generation/cleanup image.
+      tag: v11-alpine
   # admissionController.podAnnotations -- Annotations to add to the admission controller pod
   podAnnotations: {}
   # admissionController.priorityClassName -- Priority class to assign to the admission controller pod
