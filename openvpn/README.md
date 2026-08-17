@@ -1,5 +1,8 @@
 # Helm chart for OpenVPN
 
+> [!WARNING]
+> **Deprecation Notice**: This chart is deprecated and will no longer receive updates.
+
 This chart is in large taken over from [the upstream community chart for OpenVPN](https://github.com/helm/charts/tree/master/stable/openvpn), however with quite some changes:
 
 - Uses a Statefulset instead of Deployment for OpenVPN and enable persistence by default
