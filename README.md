@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> **DEPRECATION NOTICE**: This repo, and the charts in here, are no longer maintained.
+> 
+
 # Skyscrapers Helm charts
 
 Our Kubernetes applications.
